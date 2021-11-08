@@ -385,3 +385,5 @@ lvim.plugins = {
 vim.cmd [[
   autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply --source-path "%"
 ]]
+
+require('machine_specific')
