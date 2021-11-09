@@ -251,14 +251,6 @@ lvim.plugins = {
     end,
     disable = false,
   },
-  {
-    "Yggdroot/LeaderF",
-    run = ":LeaderfInstallCExtension",
-    setup = function()
-      _my_load_vimscript "./site/bundle/leaderf.vim"
-    end,
-    disable = true,
-  },
   { "mg979/vim-visual-multi" },
 
   { "simrat39/symbols-outline.nvim", cmd = "SymbolsOutline" },
@@ -386,4 +378,4 @@ vim.cmd [[
   autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply --source-path "%"
 ]]
 
-require('machine_specific')
+require "machine_specific"
