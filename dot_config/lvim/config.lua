@@ -138,5 +138,5 @@ end
 -- Additional Plugins
 lvim.plugins = load_plugins()
 
-require "keymap"
+require "keymap".setup()
 require "machine_specific"

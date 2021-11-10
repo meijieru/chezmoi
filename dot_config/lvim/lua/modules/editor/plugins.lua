@@ -11,8 +11,18 @@ editor["p00f/nvim-ts-rainbow"] = {}
 editor["bronson/vim-visual-star-search"] = {}
 
 editor["phaazon/hop.nvim"] = {
-  -- FIXME(meijieru): lazy load
-  event = "BufRead",
+  cmd = {
+    "HopLineStart",
+    "HopLineStartAC",
+    "HopLineStartBC",
+    "HopWord",
+    "HopWordAC",
+    "HopWordBC",
+    "HopPattern",
+    "HopChar1",
+    "HopChar2",
+  },
+  -- event = "BufRead",
   config = conf.hop,
   disable = false,
 }
