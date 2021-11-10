@@ -49,19 +49,6 @@ function _G._my_load_vimscript(path)
   vim.cmd("source " .. vim.fn.expand "~/.config/lvim/" .. path)
 end
 
-function _G.set_terminal_keymaps()
-  -- TODO(meijieru): `vim-terminal-help` like `drop`
-  local opts = { noremap = true }
-  vim.api.nvim_buf_set_keymap(0, "t", "<M-q>", [[<C-\><C-n>]], opts)
-  vim.api.nvim_buf_set_keymap(0, "t", "<M-h>", [[<C-\><C-n><C-W>h]], opts)
-  vim.api.nvim_buf_set_keymap(0, "t", "<M-j>", [[<C-\><C-n><C-W>j]], opts)
-  vim.api.nvim_buf_set_keymap(0, "t", "<M-k>", [[<C-\><C-n><C-W>k]], opts)
-  vim.api.nvim_buf_set_keymap(0, "t", "<M-l>", [[<C-\><C-n><C-W>l]], opts)
-end
-
--- if you only want these mappings for toggle term use term://*toggleterm#* instead
-vim.cmd "autocmd! TermOpen term://* lua set_terminal_keymaps()"
-
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save = false
@@ -381,9 +368,6 @@ lvim.plugins = {
         repl_enable = { "Python3_original" }, --# enable REPL-like behavior for the given interpreters
         repl_disable = {}, --# disable REPL-like behavior for the given interpreters
       }
-      vim.api.nvim_set_keymap("v", "r", "<Plug>SnipRun", { silent = true })
-      vim.api.nvim_set_keymap("n", "<leader>r", "<Plug>SnipRunOperator", { silent = true })
-      vim.api.nvim_set_keymap("n", "<leader>rr", "<Plug>SnipRun", { silent = true })
     end,
     disable = false,
   },
