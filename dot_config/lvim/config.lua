@@ -373,6 +373,20 @@ lvim.plugins = {
     end,
     disable = false,
   },
+  {
+    "folke/zen-mode.nvim",
+    cmd = "ZenMode",
+    config = function()
+      require("zen-mode").setup {}
+    end,
+  },
+  {
+    "folke/twilight.nvim",
+    cmd = { "Twilight", "TwilightEnable" },
+    config = function()
+      require("twilight").setup {}
+    end,
+  },
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
