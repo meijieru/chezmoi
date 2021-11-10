@@ -102,14 +102,10 @@ formatters.setup {
 -- }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
--- lvim.autocommands.custom_groups = {
---   { "BufWinEnter", "*.lua", "setlocal ts=8 sw=8" },
--- }
-
--- https://www.chezmoi.io/docs/how-to/#configure-vim-to-run-chezmoi-apply-whenever-you-save-a-dotfile
-vim.cmd [[
-  autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply --source-path "%"
-]]
+lvim.autocommands.custom_groups = {
+  -- https://www.chezmoi.io/docs/how-to/#configure-vim-to-run-chezmoi-apply-whenever-you-save-a-dotfile
+  {"BufWritePost", "~/.local/share/chezmoi/*", "!chezmoi apply --source-path %"}
+}
 
 local function load_plugins()
   local lvim_config_dir = os.getenv "LUNARVIM_CONFIG_DIR"
