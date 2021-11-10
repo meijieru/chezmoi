@@ -227,6 +227,7 @@ lvim.plugins = {
 
   {
     "lukas-reineke/indent-blankline.nvim",
+    event = "BufRead",
     config = function()
       require("indent_blankline").setup {
         char = "|",
@@ -352,6 +353,8 @@ lvim.plugins = {
   {
     "michaelb/sniprun",
     run = { "bash install.sh" },
+    -- FIXME(meijieru): lazy_load
+    -- cmd = { "SnipRun", "'<,'>SnipRun" },
     config = function()
       require("sniprun").setup {
         display = {
@@ -374,6 +377,7 @@ lvim.plugins = {
 
   {
     "norcalli/nvim-colorizer.lua",
+    event = "BufRead",
     config = function()
       require("colorizer").setup()
     end,
