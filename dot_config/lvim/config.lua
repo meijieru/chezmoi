@@ -116,9 +116,9 @@ lvim.builtin.treesitter.ensure_installed = "maintained"
 --   buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 -- end
 -- you can overwrite the null_ls setup table (useful for setting the root_dir function)
--- lvim.lsp.null_ls.setup = {
---   root_dir = require("lspconfig").util.root_pattern("Makefile", ".git", "node_modules"),
--- }
+lvim.lsp.null_ls.setup = {
+  root_dir = require("lspconfig").util.root_pattern(unpack(vim.g.root_markers)),
+}
 -- or if you need something more advanced
 -- lvim.lsp.null_ls.setup.root_dir = function(fname)
 --   if vim.bo.filetype == "javascript" then
