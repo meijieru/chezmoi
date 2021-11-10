@@ -366,6 +366,16 @@ lvim.plugins = {
     end,
     disable = false,
   },
+  {
+    "kevinhwang91/nvim-bqf",
+    ft = "qf",
+    config = function()
+      require("bqf").setup {
+        auto_resize_height = false,
+      }
+    end,
+    disable = false,
+  },
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
