@@ -184,6 +184,14 @@ lvim.plugins = {
     end,
     disable = false,
   },
+  {
+    "sainnhe/edge",
+    setup = function()
+      vim.g.edge_enable_italic = false
+      vim.g.edge_disable_italic_comment = true
+    end,
+    disable = false,
+  },
 
   {
     "tpope/vim-fugitive",
