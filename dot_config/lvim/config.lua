@@ -132,15 +132,12 @@ lvim.lsp.null_ls.setup = {
 -- end
 
 -- -- set a formatter, this will override the language server formatting capabilities (if it exists)
--- local formatters = require "lvim.lsp.null-ls.formatters"
--- formatters.setup {
---   { exe = "black" },
---   {
---     exe = "prettier",
---     ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
---     filetypes = { "typescript", "typescriptreact" },
---   },
--- }
+local formatters = require "lvim.lsp.null-ls.formatters"
+formatters.setup {
+  { exe = "yapf" },
+  { exe = "prettier" },
+  { exe = "stylua", args = { "--search-parent-directories" } },
+}
 
 -- -- set additional linters
 -- local linters = require "lvim.lsp.null-ls.linters"
