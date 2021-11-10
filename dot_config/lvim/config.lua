@@ -428,8 +428,14 @@ lvim.plugins = {
       vim.g.matchup_matchparen_offscreen = { method = "popup" }
     end,
   },
+
+  {
+    "junegunn/vim-easy-align",
+    cmd = "EasyAlign",
+  },
 }
 
+require "keymap"
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- lvim.autocommands.custom_groups = {
 --   { "BufWinEnter", "*.lua", "setlocal ts=8 sw=8" },
