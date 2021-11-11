@@ -16,7 +16,7 @@ lvim.builtin.dap.on_config_done = function()
           type = "python",
           request = "launch",
           name = "Launch file",
-          program = "${file}",
+          program = "${workspaceFolder}/${file}",
           pythonPath = function()
             local venv_path = os.getenv "VIRTUAL_ENV"
             if venv_path then
