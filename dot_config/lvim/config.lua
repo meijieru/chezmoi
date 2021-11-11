@@ -1,4 +1,4 @@
-vim.g.root_markers = { ".svn", ".git", ".root", ".project", ".env", ".vim" }
+vim.g.root_markers = { ".git", ".root", ".project", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json" }
 
 local disable_distribution_plugins = function()
   vim.g.loaded_gzip = 1

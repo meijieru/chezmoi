@@ -31,4 +31,6 @@ function config.dapui()
   require("dapui").setup {}
 end
 
+require("modules.editor.lvim").setup()
+
 return config
