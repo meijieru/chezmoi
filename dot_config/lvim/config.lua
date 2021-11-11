@@ -42,7 +42,7 @@ end
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save = false
-lvim.colorscheme = "edge"
+lvim.colorscheme = "gruvbox-material"
 lvim.leader = "space"
 
 -- TODO: User Config for predefined plugins
