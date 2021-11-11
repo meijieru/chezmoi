@@ -30,9 +30,17 @@ tools["TimUntersberger/neogit"] = {
 }
 
 tools["skywind3000/asynctasks.vim"] = {
+  cmd = { "AsyncTask", "AsyncTaskEdit", "AsyncTaskList" },
+  fn = { "asynctasks#source" },
+  after = { "asyncrun.vim" },
   requires = {
-    "skywind3000/asyncrun.vim",
-    { "GustavoKatel/telescope-asynctasks.nvim", disable = not lvim.builtin.telescope.active },
+    { "skywind3000/asyncrun.vim", opt = true, cmd = { "AsyncRun" } },
+    {
+      "GustavoKatel/telescope-asynctasks.nvim",
+
+      module = "telescope._extensions.asynctasks", -- if you wish to lazy-load
+      disable = not lvim.builtin.telescope.active,
+    },
   },
   setup = conf.asynctasks,
 }
