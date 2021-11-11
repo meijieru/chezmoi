@@ -8,10 +8,11 @@ completion["benfowler/telescope-luasnip.nvim"] = {
 }
 
 completion["folke/trouble.nvim"] = {
-  cmd = { "Trouble", "TroubleToggle", "TroubleRefresh" },
-  module = {
-    "trouble.providers.telescope",
-  },
+  -- FIXME(meijieru): lazy load
+  -- cmd = { "Trouble", "TroubleToggle", "TroubleRefresh" },
+  -- module = {
+  --   "trouble.providers.telescope",
+  -- },
   config = conf.trouble,
   disable = false,
 }
