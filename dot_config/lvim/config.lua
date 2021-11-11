@@ -31,6 +31,7 @@ end
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save = false
+vim.o.background = "light"
 lvim.colorscheme = "gruvbox-material"
 lvim.leader = "space"
 
