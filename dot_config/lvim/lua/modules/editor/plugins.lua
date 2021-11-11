@@ -51,7 +51,6 @@ editor["andymass/vim-matchup"] = {
 }
 
 editor["ethanholz/nvim-lastplace"] = {
-  -- FIXME(meijieru): lazy load
   config = conf.lastplace,
   disable = false,
 }
