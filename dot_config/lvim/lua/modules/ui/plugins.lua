@@ -40,6 +40,6 @@ ui["kevinhwang91/nvim-bqf"] = {
 }
 
 ui["vimpostor/vim-tpipeline"] = {}
-ui["mbbill/undotree"] = {}
+ui["mbbill/undotree"] = { cmd = { "UndotreeToggle" } }
 
 return ui
