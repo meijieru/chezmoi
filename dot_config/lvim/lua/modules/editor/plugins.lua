@@ -26,7 +26,10 @@ editor["phaazon/hop.nvim"] = {
   config = conf.hop,
   disable = false,
 }
-editor["mg979/vim-visual-multi"] = {}
+editor["mg979/vim-visual-multi"] = {
+  -- TODO(meijieru): lazy load
+  -- keys = { "<Plug>(VM-Find-Under)" },
+}
 editor["simrat39/symbols-outline.nvim"] = {
   cmd = { "SymbolsOutline", "SymbolsOulineOpen" },
 }
