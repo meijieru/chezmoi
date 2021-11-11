@@ -104,7 +104,7 @@ formatters.setup {
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 lvim.autocommands.custom_groups = {
   -- https://www.chezmoi.io/docs/how-to/#configure-vim-to-run-chezmoi-apply-whenever-you-save-a-dotfile
-  {"BufWritePost", "~/.local/share/chezmoi/*", "!chezmoi apply --source-path %"}
+  { "BufWritePost", "~/.local/share/chezmoi/*", "!chezmoi apply --source-path %" },
 }
 
 local function load_plugins()
@@ -138,5 +138,5 @@ end
 -- Additional Plugins
 lvim.plugins = load_plugins()
 
-require "keymap".setup()
+require("keymap").setup()
 require "machine_specific"
