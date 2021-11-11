@@ -1,6 +1,6 @@
 vim.g.root_markers = { ".git", ".root", ".project", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json" }
 
-local disable_distribution_plugins = function()
+local function disable_distribution_plugins()
   vim.g.loaded_gzip = 1
   vim.g.loaded_tar = 1
   vim.g.loaded_tarPlugin = 1
@@ -24,17 +24,6 @@ end
 
 disable_distribution_plugins()
 
--- speed up startup
--- $ANACONDA_HOME should be set in shell
-local anaconda_home = os.getenv "ANACONDA_HOME"
-if anaconda_home ~= nil then
-  vim.g.python_host_prog = anaconda_home .. "/bin/python2"
-  vim.g.python3_host_prog = anaconda_home .. "/bin/python3"
-else
-  vim.g.python_host_prog = "/usr/bin/python2"
-  vim.g.python3_host_prog = "/usr/bin/python3"
-end
-
 function _G._my_load_vimscript(path)
   vim.cmd("source " .. vim.fn.expand "~/.config/lvim/" .. path)
 end
@@ -44,62 +33,6 @@ lvim.log.level = "warn"
 lvim.format_on_save = false
 lvim.colorscheme = "gruvbox-material"
 lvim.leader = "space"
-
--- TODO: User Config for predefined plugins
--- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
-lvim.builtin.dashboard.active = true
-lvim.builtin.terminal.active = true
-lvim.builtin.nvimtree.setup.view.side = "left"
-lvim.builtin.nvimtree.show_icons.git = 0
-lvim.builtin.telescope.active = true
-lvim.builtin.bufferline.active = false
-lvim.builtin.treesitter.ensure_installed = "maintained"
-
--- generic LSP settings
-
--- ---@usage disable automatic installation of servers
--- lvim.lsp.automatic_servers_installation = false
-
--- ---@usage Select which servers should be configured manually. Requires `:LvimCacheRest` to take effect.
--- See the full default list `:lua print(vim.inspect(lvim.lsp.override))`
--- vim.list_extend(lvim.lsp.override, { "pyright" })
-
--- ---@usage setup a server -- see: https://www.lunarvim.org/languages/#overriding-the-default-configuration
--- local opts = {} -- check the lspconfig documentation for a list of all possible options
--- require("lvim.lsp.manager").setup("pylsp", opts)
-
--- you can set a custom on_attach function that will be used for all the language servers
--- See <https://github.com/neovim/nvim-lspconfig#keybindings-and-completion>
--- lvim.lsp.on_attach_callback = function(client, bufnr)
---   local function buf_set_option(...)
---     vim.api.nvim_buf_set_option(bufnr, ...)
---   end
---   --Enable completion triggered by <c-x><c-o>
---   buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
--- end
--- you can overwrite the null_ls setup table (useful for setting the root_dir function)
-lvim.lsp.null_ls.setup = {
-  root_dir = require("lspconfig").util.root_pattern(unpack(vim.g.root_markers)),
-}
-
--- -- set a formatter, this will override the language server formatting capabilities (if it exists)
-local formatters = require "lvim.lsp.null-ls.formatters"
-formatters.setup {
-  { exe = "yapf" },
-  { exe = "prettier" },
-  { exe = "stylua", args = { "--search-parent-directories" } },
-}
-
--- -- set additional linters
--- local linters = require "lvim.lsp.null-ls.linters"
--- linters.setup {
---   { exe = "black" },
---   {
---     exe = "eslint_d",
---     ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
---     filetypes = { "javascript", "javascriptreact" },
---   },
--- }
 
 local function load_plugins()
   local lvim_config_dir = os.getenv "LUNARVIM_CONFIG_DIR"
@@ -129,6 +62,7 @@ local function load_plugins()
   return plugins
 end
 
+-- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 -- Additional Plugins
 lvim.plugins = load_plugins()
 

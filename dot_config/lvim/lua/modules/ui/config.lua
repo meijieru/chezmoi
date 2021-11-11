@@ -72,4 +72,6 @@ function config.bqf()
   }
 end
 
+require("modules.ui.lvim").setup()
+
 return config
