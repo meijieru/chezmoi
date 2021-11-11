@@ -50,10 +50,11 @@ local function load_plugins()
   local plugins_file = get_plugins_list()
   local plugins = {}
   for _, m in ipairs(plugins_file) do
-    local ok, _repos = pcall(require, m:sub(0, #m - 4))
-    if not ok then
-      print(vim.inspect { ok, m })
-    end
+    -- local ok, _repos = pcall(require, m:sub(0, #m - 4))
+    -- if not ok then
+    --   print(vim.inspect { ok, m })
+    -- end
+    local _repos = require(m:sub(0, #m - 4))
     for repo, conf in pairs(_repos) do
       plugins[#plugins + 1] = vim.tbl_extend("force", { repo }, conf)
     end
