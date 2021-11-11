@@ -58,4 +58,11 @@ editor["ethanholz/nvim-lastplace"] = {
   disable = false,
 }
 
+editor["rcarriga/nvim-dap-ui"] = {
+  config = conf.dapui,
+  -- module = { "dapui" },  --affect open_on_start
+  requires = { "mfussenegger/nvim-dap" },
+  disable = not lvim.builtin.dap.active,
+}
+
 return editor
