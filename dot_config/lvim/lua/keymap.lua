@@ -78,6 +78,11 @@ end
 
 function M.setup_lvim()
   lvim.builtin.which_key.mappings["d"]["T"] = { "<cmd>lua require'dapui'.toggle()<cr>", "Toggle UI" }
+
+  lvim.builtin.which_key.mappings["S"] = {
+    "<cmd>lua require'telescope'.extensions.luasnip.luasnip{}<cr>",
+    "Find snippets",
+  }
 end
 
 function M.setup()
