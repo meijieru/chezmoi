@@ -57,4 +57,6 @@ lvim.builtin.dap.on_config_done = function()
   end
 end
 
+require("modules.lang.null_ls").config()
+
 return config
