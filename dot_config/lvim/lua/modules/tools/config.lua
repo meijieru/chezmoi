@@ -34,4 +34,13 @@ function config.colorizer()
   require("colorizer").setup()
 end
 
+function config.filtype()
+  require("filetype").setup({
+    function_literal = {
+      -- TODO(meijieru): set template ft
+      -- template = function () end
+    }
+  })
+end
+
 return config

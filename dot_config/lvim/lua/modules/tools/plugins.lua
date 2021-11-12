@@ -65,7 +65,9 @@ tools["norcalli/nvim-colorizer.lua"] = {
 }
 
 tools["wakatime/vim-wakatime"] = {}
-tools["nathom/filetype.nvim"] = {}
+tools["nathom/filetype.nvim"] = {
+  config = conf.filtype,
+}
 
 tools["ludovicchabant/vim-gutentags"] = { disable = true }
 tools["skywind3000/gutentags_plus"] = { disable = true }
