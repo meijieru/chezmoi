@@ -61,18 +61,22 @@ bind -r C-l resize-pane -R 2
 
 set -g default-terminal "tmux-256color"
 set -as terminal-overrides ',xterm*:sitm=\E[3m'  # italic font
-set-option -ga terminal-overrides ",xterm-256color:Tc:"  # true color
-set-window-option -g xterm-keys
+set -ga terminal-overrides ",xterm-256color:Tc:"  # true color
+setw -g xterm-keys
 
 # status line
 set -g focus-events on
 set -g status-style fg=default,bg=default
-# set-option -g status-justify centre
+{{- if eq .chezmoi.osRelease.name "Arch Linux" }}
+# require tmux >= 3.2
 set -g status-justify absolute-centre
-set-option -g status-left '[#[fg=cyan]#S#[fg=green]]'
-set-option -g status-right '#[fg=green][#[fg=cyan]%Y-%m-%d#[fg=green]]'
+{{ else }}
+set -g status-justify centre
+{{ end -}}
+set -g status-left '[#[fg=cyan]#S#[fg=green]]'
+set -g status-right '#[fg=green][#[fg=cyan]%Y-%m-%d#[fg=green]]'
 set -g status-left-length 80
 set -g status-right-length 80
 set -g status-position bottom
-set-window-option -g window-status-format '#[dim]#I:#[default]#W#[fg=grey,dim]'
-set-window-option -g window-status-current-format '#[fg=cyan,bold]#I#[fg=blue]:#[fg=cyan]#W#[fg=dim]'
+setw -g window-status-format '#[dim]#I:#[default]#W#[fg=grey,dim]'
+setw -g window-status-current-format '#[fg=cyan,bold]#I#[fg=blue]:#[fg=cyan]#W#[fg=dim]'
