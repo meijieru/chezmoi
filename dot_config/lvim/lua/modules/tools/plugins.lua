@@ -52,8 +52,8 @@ tools["dstein64/vim-startuptime"] = {
 
 tools["michaelb/sniprun"] = {
   run = { "bash install.sh" },
-  -- FIXME(meijieru): lazy_load
-  -- cmd = { "SnipRun", "'<,'>SnipRun" },
+  keys = { "<Plug>SnipRun",  "<Plug>SnipRunOperator" },
+  cmd = {"SnipRun", "'<,'>SnipRun"},
   config = conf.sniprun,
   disable = false,
 }
