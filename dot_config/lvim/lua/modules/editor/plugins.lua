@@ -62,7 +62,6 @@ editor["rcarriga/nvim-dap-ui"] = {
   config = conf.dapui,
   -- module = { "dapui" },  --affect open_on_start
   requires = { "mfussenegger/nvim-dap" },
-  disable = not lvim.builtin.dap.active,
 }
 
 editor["nvim-treesitter/nvim-treesitter-textobjects"] = {}

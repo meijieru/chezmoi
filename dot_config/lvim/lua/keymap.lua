@@ -76,6 +76,10 @@ function M.setup_lsp()
   vim.api.nvim_set_keymap("v", "gm", "<cmd>lua format_range_operator()<CR>", { noremap = true })
 end
 
+function M.setup_lvim()
+  lvim.builtin.which_key.mappings["d"]["T"] = { "<cmd>lua require'dapui'.toggle()<cr>", "Toggle UI" }
+end
+
 function M.setup()
   M.setup_easy_align()
   M.setup_terminal()
@@ -83,5 +87,7 @@ function M.setup()
   M.setup_hop()
   M.setup_lsp()
 end
+
+M.setup_lvim()
 
 return M
