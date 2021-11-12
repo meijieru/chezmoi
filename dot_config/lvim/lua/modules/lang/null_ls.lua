@@ -11,7 +11,15 @@ M.config = function()
   -- if not status_ok then
   --   return
   -- end
-  local nls = require("null-ls")
+  local nls = require "null-ls"
+
+  local methods = require "null-ls.methods"
+  local my_nls_yapf = nls.builtins.formatting.yapf
+  if type(my_nls_yapf.method) == "table" then
+    error "Remove these block, use null-ls yapf"
+  else
+    my_nls_yapf.method = { methods.internal.FORMATTING, methods.internal.RANGE_FORMATTING }
+  end
 
   local util = require "lspconfig/util"
   -- you can either config null-ls itself
@@ -25,7 +33,7 @@ M.config = function()
     sources = {
       nls.builtins.formatting.prettier,
       nls.builtins.formatting.stylua,
-      nls.builtins.formatting.yapf,
+      my_nls_yapf,
       -- nls.builtins.formatting.goimports,
       -- nls.builtins.formatting.cmake_format,
       -- nls.builtins.formatting.scalafmt,
