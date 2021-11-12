@@ -79,6 +79,15 @@ end
 function M.setup_lvim()
   lvim.builtin.which_key.mappings["d"]["T"] = { "<cmd>lua require'dapui'.toggle()<cr>", "Toggle UI" }
 
+  lvim.builtin.which_key.mappings["t"] = {
+    name = "Diagnostics",
+    t = { "<cmd>TroubleToggle<cr>", "trouble" },
+    w = { "<cmd>TroubleToggle lsp_workspace_diagnostics<cr>", "workspace" },
+    d = { "<cmd>TroubleToggle lsp_document_diagnostics<cr>", "document" },
+    q = { "<cmd>TroubleToggle quickfix<cr>", "quickfix" },
+    l = { "<cmd>TroubleToggle loclist<cr>", "loclist" },
+  }
+
   lvim.builtin.which_key.mappings["S"] = {
     "<cmd>lua require'telescope'.extensions.luasnip.luasnip{}<cr>",
     "Find snippets",
