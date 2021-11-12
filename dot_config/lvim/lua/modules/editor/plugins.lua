@@ -65,4 +65,9 @@ editor["rcarriga/nvim-dap-ui"] = {
   disable = not lvim.builtin.dap.active,
 }
 
+editor["nvim-treesitter/nvim-treesitter-textobjects"] = {}
+editor["p00f/nvim-ts-rainbow"] = {}
+editor["nvim-treesitter/playground"] = { event = "BufRead" }
+editor["RRethy/nvim-treesitter-textsubjects"] = {}
+
 return editor
