@@ -33,7 +33,7 @@ function M.setup_terminal()
 end
 
 function M.setup_sniprun()
-  vim.api.nvim_set_keymap("v", "r", "<Plug>SnipRun", { silent = true })
+  vim.api.nvim_set_keymap("v", "gr", "<Plug>SnipRun", { silent = true })
   vim.api.nvim_set_keymap("n", "<leader>r", "<Plug>SnipRunOperator", { silent = true })
   vim.api.nvim_set_keymap("n", "<leader>rr", "<Plug>SnipRun", { silent = true })
 end
