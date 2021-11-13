@@ -141,7 +141,7 @@ function M.setup_lvim()
 
   lvim.builtin.which_key.mappings["un"] = { ":UndotreeToggle<cr>", "UndotreeToggle" }
 
-  lvim.builtin.which_key.mappings["d"]["T"] = { "<cmd>lua require'dapui'.toggle()<cr>", "Toggle UI" }
+  lvim.builtin.which_key.mappings["dT"] = { "<cmd>lua require'dapui'.toggle()<cr>", "Toggle UI" }
 
   lvim.builtin.which_key.mappings["t"] = {
     name = "Diagnostics",
