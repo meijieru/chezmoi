@@ -5,7 +5,7 @@ function config.neogit()
 end
 
 function config.asynctasks()
-  _my_load_vimscript "./site/bundle/asynctasks.vim"
+  require("core.utils").load_vimscript "./site/bundle/asynctasks.vim"
 end
 
 function config.startuptime()

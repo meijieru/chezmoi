@@ -1,9 +1,5 @@
 vim.g.root_markers = { ".git", ".root", ".project", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json" }
 
-function _G._my_load_vimscript(path)
-  vim.cmd("source " .. vim.fn.expand "~/.config/lvim/" .. path)
-end
-
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save = false
