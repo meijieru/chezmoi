@@ -17,4 +17,7 @@ completion["folke/trouble.nvim"] = {
   disable = false,
 }
 
+completion["tzachar/cmp-tabnine"] = { run = "./install.sh", config = conf.tabnine}
+completion["hrsh7th/cmp-cmdline"] = { config = conf.cmp_cmdline }
+
 return completion
