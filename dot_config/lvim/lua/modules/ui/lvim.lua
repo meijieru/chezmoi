@@ -56,6 +56,9 @@ function M.setup()
   lvim.builtin.dashboard.active = true
   lvim.builtin.terminal.active = true
 
+  lvim.builtin.gitsigns.opts.signs.delete.text = "▎"
+  lvim.builtin.gitsigns.opts.signs.topdelete.text = "▔"
+
   M.setup_lualine()
 end
 
