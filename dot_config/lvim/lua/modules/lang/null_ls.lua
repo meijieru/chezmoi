@@ -27,8 +27,9 @@ M.config = function()
     debounce = 200,
     save_after_format = false,
     root_dir = function(fname)
-      print(vim.inspect(util.root_pattern(unpack(vim.g.root_markers))(fname)))
-      return util.root_pattern(unpack(vim.g.root_markers))(fname) or util.path.dirname(fname)
+      -- FIXME(meijieru): never called
+      print(vim.inspect(util.root_pattern(unpack(myvim.root_markers))(fname)))
+      return util.root_pattern(unpack(myvim.root_markers))(fname) or util.path.dirname(fname)
     end,
     sources = {
       nls.builtins.formatting.prettier,
