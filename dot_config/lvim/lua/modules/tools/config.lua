@@ -35,12 +35,16 @@ function config.colorizer()
 end
 
 function config.filtype()
-  require("filetype").setup({
+  require("filetype").setup {
     function_literal = {
       -- TODO(meijieru): set template ft
       -- template = function () end
-    }
-  })
+    },
+  }
+end
+
+function config.telescope_frecency()
+  require("telescope").load_extension "frecency"
 end
 
 return config

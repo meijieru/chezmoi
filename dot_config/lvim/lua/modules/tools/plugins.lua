@@ -52,8 +52,8 @@ tools["dstein64/vim-startuptime"] = {
 
 tools["michaelb/sniprun"] = {
   run = { "bash install.sh" },
-  keys = { "<Plug>SnipRun",  "<Plug>SnipRunOperator" },
-  cmd = {"SnipRun", "'<,'>SnipRun"},
+  keys = { "<Plug>SnipRun", "<Plug>SnipRunOperator" },
+  cmd = { "SnipRun", "'<,'>SnipRun" },
   config = conf.sniprun,
   disable = false,
 }
@@ -71,5 +71,11 @@ tools["nathom/filetype.nvim"] = {
 
 tools["ludovicchabant/vim-gutentags"] = { disable = true }
 tools["skywind3000/gutentags_plus"] = { disable = true }
+
+tools["nvim-telescope/telescope-frecency.nvim"] = {
+  config = conf.telescope_frecency,
+  requires = { "tami5/sqlite.lua" },
+  disable = false,
+}
 
 return tools
