@@ -160,6 +160,9 @@ function M.setup()
   M.setup_hop()
   M.setup_lsp()
   M.setup_gitsigns()
+
+  -- TODO(meijieru): more keymap
+  -- ["m<space>"] = { "<cmd>delmarks!<cr>" },
 end
 
 M.setup_lvim()
