@@ -5,7 +5,22 @@ function config.neogit()
 end
 
 function config.asynctasks()
-  require("core.utils").load_vimscript "./site/bundle/asynctasks.vim"
+  vim.g.asynctasks_term_reuse = 1
+  vim.g.asynctasks_term_pos = "toggleterm"
+
+  vim.g.asyncrun_rootmarks = myvim.root_markers
+  vim.g.asyncrun_open = 10
+  vim.g.asyncrun_status = ""
+
+  -- TODO(meijieru): convert to lua
+  vim.cmd [[
+    function! s:toggle_term_runner(opts)
+      lua require("site.bundle.asynctasks").runner(vim.fn.eval("a:opts.cmd"), vim.fn.eval("a:opts.cwd"))
+    endfunction
+
+    let g:asyncrun_runner = get(g:, 'asyncrun_runner', {})
+    let g:asyncrun_runner.toggleterm = function('s:toggle_term_runner')
+  ]]
 end
 
 function config.startuptime()

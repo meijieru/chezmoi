@@ -1,4 +1,5 @@
 local M = {}
+local which_key = require "which-key"
 
 local escape = function(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)
@@ -39,7 +40,6 @@ function M.setup_sniprun()
 end
 
 function M.setup_hop()
-  local which_key = require "which-key"
   local mappings = {
     w = { ":HopWordAC<CR>", "Forward Words" },
     b = { ":HopWordBC<CR>", "Backward Words" },
@@ -77,7 +77,6 @@ function M.setup_lsp()
 end
 
 function M.setup_gitsigns()
-  local which_key = require "which-key"
   which_key.register {
     ["]c"] = { "&diff ? ']c' : '<cmd>lua require\"gitsigns.actions\".next_hunk()<CR>'", "Next Hunk", expr = true },
     ["[c"] = { "&diff ? '[c' : '<cmd>lua require\"gitsigns.actions\".prev_hunk()<CR>'", "Prev Hunk", expr = true },
@@ -153,6 +152,16 @@ function M.setup_lvim()
   }
 end
 
+function M.setup_asynctasks()
+  local mappings = {
+    ["<F5>"] = { ":AsyncTask file-run<cr>", "File Run" },
+    ["<F6>"] = { ":AsyncTask file-build<cr>", "File Build" },
+    ["<f7>"] = { ":AsyncTask project-run<cr>", "Project Run" },
+    ["<f8>"] = { ":AsyncTask project-build<cr>", "Project Build" },
+  }
+  which_key.register(mappings, { silent = true })
+end
+
 function M.setup()
   M.setup_easy_align()
   M.setup_terminal()
@@ -160,6 +169,7 @@ function M.setup()
   M.setup_hop()
   M.setup_lsp()
   M.setup_gitsigns()
+  M.setup_asynctasks()
 
   -- TODO(meijieru): more keymap
   -- ["m<space>"] = { "<cmd>delmarks!<cr>" },
