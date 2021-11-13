@@ -1,12 +1,5 @@
 vim.g.root_markers = { ".git", ".root", ".project", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json" }
 
--- general
-lvim.log.level = "warn"
-lvim.format_on_save = false
-vim.o.background = "light"
-lvim.colorscheme = "gruvbox-material"
-lvim.leader = "space"
-
 require("core").setup()
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
