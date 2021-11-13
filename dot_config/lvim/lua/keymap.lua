@@ -77,6 +77,59 @@ function M.setup_lsp()
 end
 
 function M.setup_lvim()
+  -- disable some defaults mappings
+  for _, key in ipairs { "/" } do
+    lvim.builtin.which_key.vmappings[key] = nil
+  end
+  for _, key in ipairs { "w", "q", "/", "c", "f" } do
+    lvim.builtin.which_key.mappings[key] = nil
+  end
+  lvim.builtin.which_key.mappings["s"] = nil
+
+  lvim.builtin.which_key.mappings["f"] = {
+    name = "Find",
+    b = { "<cmd>lua require('telescope.builtin').buffers()<cr>", "Find Buffer" },
+    -- FIXME(meijieru): duplicate with lsp block
+    -- FIXME(meijieru): function, bufTag
+    d = {
+      name = "Document-Wise Find",
+      d = { "<cmd>Telescope lsp_document_diagnostics<cr>", "Diagnostics" },
+      s = { "<cmd>Telescope lsp_document_symbols<cr>", "Symbols" },
+    },
+    w = {
+      name = "Workspace-Wise Find",
+      d = { "<cmd>Telescope lsp_workspace_diagnostics<cr>", "Diagnostics" },
+      s = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Symbols" },
+    },
+    c = { "<cmd>Telescope command_history<cr>", "Find Commands History" },
+    s = { "<cmd>Telescope search_history<cr>", "Find Search History" },
+    S = {
+      "<cmd>lua require'telescope'.extensions.luasnip.luasnip{}<cr>",
+      "Find snippets",
+    },
+    f = { "<cmd>Telescope find_files<cr>", "Find File" },
+    h = { "<cmd>Telescope help_tags<cr>", "Find Help" },
+    M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
+    r = { "<cmd>Telescope frecency<cr>", "Open Recent File" },
+    R = { "<cmd>Telescope registers<cr>", "Registers" },
+    g = { "<cmd>Telescope live_grep<cr>", "Grep" },
+    k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
+    C = { "<cmd>Telescope commands<cr>", "Commands" },
+    P = { "<cmd>Telescope projects<cr>", "Projects" },
+    p = { "<cmd>lua require('telescope.builtin').resume()<cr>", "Find Previous" },
+    t = { "<cmd>lua require('telescope').extensions.asynctasks.all()<cr>", "Find Tasks" },
+    l = { "<cmd>lua require('telescope.builtin').loclist()<cr>", "Find Loclist" },
+    q = { "<cmd>lua require('telescope.builtin').quickfix()<cr>", "Find QuickFix" },
+  }
+
+  lvim.builtin.which_key.mappings.g.j = nil
+  lvim.builtin.which_key.mappings.g.k = nil
+  lvim.builtin.which_key.mappings.g.d = nil
+  lvim.builtin.which_key.mappings.g.v = { "<cmd>:Gvdiff<cr>", "Git Diff" }
+  lvim.builtin.which_key.mappings.g.g = { "<cmd>call auxlib#toggle_fugitive()<cr>", "Toggle git status" }
+
+  lvim.builtin.which_key.mappings["un"] = { ":UndotreeToggle<cr>", "UndotreeToggle" }
+
   lvim.builtin.which_key.mappings["d"]["T"] = { "<cmd>lua require'dapui'.toggle()<cr>", "Toggle UI" }
 
   lvim.builtin.which_key.mappings["t"] = {
@@ -86,11 +139,6 @@ function M.setup_lvim()
     d = { "<cmd>TroubleToggle lsp_document_diagnostics<cr>", "document" },
     q = { "<cmd>TroubleToggle quickfix<cr>", "quickfix" },
     l = { "<cmd>TroubleToggle loclist<cr>", "loclist" },
-  }
-
-  lvim.builtin.which_key.mappings["S"] = {
-    "<cmd>lua require'telescope'.extensions.luasnip.luasnip{}<cr>",
-    "Find snippets",
   }
 end
 
