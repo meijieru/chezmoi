@@ -21,6 +21,7 @@ ui["lukas-reineke/indent-blankline.nvim"] = {
 
 ui["folke/zen-mode.nvim"] = {
   cmd = "ZenMode",
+  after = { "twilight.nvim" },
   config = conf.zen_mode,
 }
 ui["folke/twilight.nvim"] = {
