@@ -76,6 +76,17 @@ function M.setup_lsp()
   vim.api.nvim_set_keymap("v", "gm", "<cmd>lua format_range_operator()<CR>", { noremap = true })
 end
 
+function M.setup_gitsigns()
+  local which_key = require "which-key"
+  which_key.register {
+    ["]c"] = { "&diff ? ']c' : '<cmd>lua require\"gitsigns.actions\".next_hunk()<CR>'", "Next Hunk", expr = true },
+    ["[c"] = { "&diff ? '[c' : '<cmd>lua require\"gitsigns.actions\".prev_hunk()<CR>'", "Prev Hunk", expr = true },
+    -- FIXME(meijieru): hunk text obj
+    -- ['o ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>',
+    -- ['x ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>'
+  }
+end
+
 function M.setup_lvim()
   -- disable some defaults mappings
   for _, key in ipairs { "/" } do
@@ -148,6 +159,7 @@ function M.setup()
   M.setup_sniprun()
   M.setup_hop()
   M.setup_lsp()
+  M.setup_gitsigns()
 end
 
 M.setup_lvim()
