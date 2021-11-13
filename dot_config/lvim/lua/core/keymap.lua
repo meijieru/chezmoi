@@ -162,19 +162,18 @@ function M.setup_asynctasks()
   which_key.register(mappings, { silent = true })
 end
 
-function M.setup()
-  M.setup_easy_align()
-  M.setup_terminal()
+function M.post_setup()
   M.setup_sniprun()
-  M.setup_hop()
-  M.setup_lsp()
-  M.setup_gitsigns()
-  M.setup_asynctasks()
-
-  -- TODO(meijieru): more keymap
-  -- ["m<space>"] = { "<cmd>delmarks!<cr>" },
 end
 
 M.setup_lvim()
+M.setup_easy_align()
+M.setup_terminal()
+M.setup_hop()
+M.setup_lsp()
+M.setup_gitsigns()
+M.setup_asynctasks()
+-- TODO(meijieru): more keymap
+-- ["m<space>"] = { "<cmd>delmarks!<cr>" },
 
 return M
