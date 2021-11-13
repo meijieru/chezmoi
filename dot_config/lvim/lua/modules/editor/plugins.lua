@@ -34,13 +34,6 @@ editor["simrat39/symbols-outline.nvim"] = {
   cmd = { "SymbolsOutline", "SymbolsOulineOpen" },
 }
 
-editor["Chiel92/vim-autoformat"] = {
-  cmd = { "Autoformat" },
-  setup = function()
-    _my_load_vimscript "./site/bundle/autoformat.vim"
-  end,
-}
-
 editor["kana/vim-textobj-user"] = {}
 editor["kana/vim-textobj-indent"] = {}
 editor["jceb/vim-textobj-uri"] = {}
