@@ -4,4 +4,6 @@ lvim.autocommands.custom_groups = {
   { "BufWritePost", "~/.local/share/chezmoi/*", "!chezmoi apply --source-path %" },
   -- HACK(meijieru): postpone keymap settings, otherwise may not take effects
   { "VimEnter", "*", "lua require('core.keymap').post_setup()" },
+  -- disable fold for alpha-nvim
+  { "FileType", "alpha", "setlocal nofoldenable" },
 }

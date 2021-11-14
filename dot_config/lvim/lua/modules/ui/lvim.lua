@@ -53,7 +53,8 @@ function M.setup()
   lvim.builtin.nvimtree.setup.view.side = "left"
   lvim.builtin.nvimtree.show_icons.git = 0
 
-  lvim.builtin.dashboard.active = true
+  -- lvim.builtin.dashboard.active = true
+  lvim.builtin.alpha.mode = "startify"
   lvim.builtin.terminal.active = true
 
   lvim.builtin.gitsigns.opts.signs.delete.text = "▎"

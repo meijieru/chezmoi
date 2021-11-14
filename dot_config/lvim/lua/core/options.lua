@@ -1,3 +1,4 @@
+vim.o.ruler = false
 vim.o.cmdheight = 1
 vim.o.foldmethod = "indent"
 vim.o.foldexpr = ""
