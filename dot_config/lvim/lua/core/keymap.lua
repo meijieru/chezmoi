@@ -166,7 +166,15 @@ function M.post_setup()
   M.setup_sniprun()
 end
 
+function M.setup_basic()
+  local mappings = {
+    ["<f1>"] = { "<cmd>call auxlib#toggle_colorcolumn()<cr>", "Toggle colorcolumn" },
+  }
+  which_key.register(mappings, {})
+end
+
 M.setup_lvim()
+M.setup_basic()
 M.setup_easy_align()
 M.setup_terminal()
 M.setup_hop()

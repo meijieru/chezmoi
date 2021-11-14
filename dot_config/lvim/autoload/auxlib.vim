@@ -11,7 +11,7 @@ endfunction
 function! auxlib#toggle_colorcolumn()
     if &colorcolumn ==# ''
         let &colorcolumn=join(range(81,999),',')
-        let &colorcolumn='80,'.join(range(120,999),',')
+        let &colorcolumn='80,'.join(range(121,999),',')
     else
         let &colorcolumn=''
     endif
