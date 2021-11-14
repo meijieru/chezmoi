@@ -13,6 +13,8 @@ ui["sainnhe/everforest"] = {
   opt = false,
 }
 
+ui["LunarVim/Colorschemes"] = {}
+
 ui["lukas-reineke/indent-blankline.nvim"] = {
   event = "BufRead",
   config = conf.indent_blankline,
