@@ -141,15 +141,6 @@ function M.setup_lvim()
   lvim.builtin.which_key.mappings["un"] = { ":UndotreeToggle<cr>", "UndotreeToggle" }
 
   lvim.builtin.which_key.mappings["dT"] = { "<cmd>lua require'dapui'.toggle()<cr>", "Toggle UI" }
-
-  lvim.builtin.which_key.mappings["t"] = {
-    name = "Diagnostics",
-    t = { "<cmd>TroubleToggle<cr>", "trouble" },
-    w = { "<cmd>TroubleToggle lsp_workspace_diagnostics<cr>", "workspace" },
-    d = { "<cmd>TroubleToggle lsp_document_diagnostics<cr>", "document" },
-    q = { "<cmd>TroubleToggle quickfix<cr>", "quickfix" },
-    l = { "<cmd>TroubleToggle loclist<cr>", "loclist" },
-  }
 end
 
 function M.setup_asynctasks()
@@ -173,8 +164,25 @@ function M.setup_basic()
   which_key.register(mappings, {})
 end
 
+function M.setup_trouble()
+  lvim.builtin.which_key.mappings["t"] = {
+    name = "Diagnostics",
+    t = { "<cmd>TroubleToggle<cr>", "trouble" },
+    w = { "<cmd>TroubleToggle lsp_workspace_diagnostics<cr>", "workspace" },
+    d = { "<cmd>TroubleToggle lsp_document_diagnostics<cr>", "document" },
+    q = { "<cmd>TroubleToggle quickfix<cr>", "quickfix" },
+    l = { "<cmd>TroubleToggle loclist<cr>", "loclist" },
+  }
+
+  which_key.register {
+    ["]t"] = { '<cmd>lua require("trouble").next({skip_groups = true, jump = true})<CR>', "Next Trouble" },
+    ["[t"] = { '<cmd>lua require("trouble").previous({skip_groups = true, jump = true})<CR>', "Previous Trouble" },
+  }
+end
+
 M.setup_lvim()
 M.setup_basic()
+M.setup_trouble()
 M.setup_easy_align()
 M.setup_terminal()
 M.setup_hop()
