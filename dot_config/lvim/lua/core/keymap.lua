@@ -160,6 +160,7 @@ end
 function M.setup_basic()
   local mappings = {
     ["<f1>"] = { "<cmd>call auxlib#toggle_colorcolumn()<cr>", "Toggle colorcolumn" },
+    ["m<space>"] = { "<cmd>delmarks!<cr>", "Delete all marks" },
   }
   which_key.register(mappings, {})
 end
@@ -189,7 +190,5 @@ M.setup_hop()
 M.setup_lsp()
 M.setup_gitsigns()
 M.setup_asynctasks()
--- TODO(meijieru): more keymap
--- ["m<space>"] = { "<cmd>delmarks!<cr>" },
 
 return M
