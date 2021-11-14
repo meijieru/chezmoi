@@ -161,6 +161,7 @@ function M.setup_basic()
   local mappings = {
     ["<f1>"] = { "<cmd>call auxlib#toggle_colorcolumn()<cr>", "Toggle colorcolumn" },
     ["m<space>"] = { "<cmd>delmarks!<cr>", "Delete all marks" },
+    ["-"] = { "<cmd>NvimTreeOpen<cr>", "Open Directory" }
   }
   which_key.register(mappings, {})
 end
