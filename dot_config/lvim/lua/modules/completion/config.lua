@@ -47,6 +47,33 @@ lvim.builtin.cmp.confirm_opts = {
   behavior = cmp.ConfirmBehavior.Insert,
   select = false,
 }
+lvim.builtin.cmp.formatting.kind_icons = {
+  Text = "",
+  Method = "",
+  Function = "",
+  Constructor = "",
+  Field = "ﰠ",
+  Variable = "",
+  Class = "ﴯ",
+  Interface = "",
+  Module = "",
+  Property = "ﰠ",
+  Unit = "塞",
+  Value = "",
+  Enum = "",
+  Keyword = "",
+  Snippet = "",
+  Color = "",
+  File = "",
+  Reference = "",
+  Folder = "",
+  EnumMember = "",
+  Constant = "",
+  Struct = "פּ",
+  Event = "",
+  Operator = "",
+  TypeParameter = "",
+}
 
 if lvim.builtin.telescope.active then
   local function _open_with_trouble(prompt_bufnr, _mode)
