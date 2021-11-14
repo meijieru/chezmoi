@@ -21,16 +21,8 @@ M.config = function()
     my_nls_yapf.method = { methods.internal.FORMATTING, methods.internal.RANGE_FORMATTING }
   end
 
-  local util = require "lspconfig/util"
   -- you can either config null-ls itself
   nls.config {
-    debounce = 200,
-    save_after_format = false,
-    root_dir = function(fname)
-      -- FIXME(meijieru): never called
-      print(vim.inspect(util.root_pattern(unpack(myvim.root_markers))(fname)))
-      return util.root_pattern(unpack(myvim.root_markers))(fname) or util.path.dirname(fname)
-    end,
     sources = {
       nls.builtins.formatting.prettier,
       nls.builtins.formatting.stylua,
@@ -48,6 +40,13 @@ M.config = function()
       -- nls.builtins.diagnostics.chktex,
     },
   }
+
+  local util = require "lspconfig/util"
+  local default_opts = require("lvim.lsp").get_common_opts()
+  default_opts.root_dir = function(fname)
+    return util.root_pattern(unpack(myvim.root_markers))(fname) or vim.fn.getcwd()
+  end
+  lvim.lsp.null_ls.setup = default_opts
 
   -- or use the lunarvim syntax
   -- local formatters = require "lvim.lsp.null-ls.formatters"
