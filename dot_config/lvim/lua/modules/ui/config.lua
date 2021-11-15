@@ -1,6 +1,6 @@
 local config = {}
 
-vim.g.gruvbox_material_palette = 'material'
+vim.g.gruvbox_material_palette = 'origin'
 vim.g.gruvbox_material_background = "medium"
 vim.g.gruvbox_material_enable_italic = 0
 vim.g.gruvbox_material_disable_italic_comment = 1
@@ -10,7 +10,7 @@ vim.g.gruvbox_material_better_performance = 1
 vim.g.edge_enable_italic = 0
 vim.g.edge_disable_italic_comment = 1
 vim.g.edge_show_eob = 1
-vim.g.edge_enable_italic = 0
+vim.g.edge_better_performance = 1
 
 vim.g.everforest_enable_italic = 0
 vim.g.everforest_disable_italic_comment = 1
