@@ -24,4 +24,8 @@ parser_configs.markdown = {
   filetype = "markdown",
 }
 
+function config.markdown_preview()
+  vim.g.mkdp_auto_start = 0
+end
+
 return config
