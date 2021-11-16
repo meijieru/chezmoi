@@ -14,4 +14,14 @@ end
 require("modules.lang.lvim").setup()
 require("modules.lang.null_ls").config()
 
+-- TODO(meijieru): wait for https://github.com/nvim-treesitter/nvim-treesitter/issues/872
+local parser_configs = require("nvim-treesitter.parsers").get_parser_configs()
+parser_configs.markdown = {
+  install_info = {
+    url = "https://github.com/ikatyang/tree-sitter-markdown",
+    files = { "src/parser.c", "src/scanner.cc" },
+  },
+  filetype = "markdown",
+}
+
 return config
