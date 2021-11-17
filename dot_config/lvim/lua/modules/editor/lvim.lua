@@ -7,6 +7,7 @@ function M.setup()
   -- NOTE(meijieru): lsp sometimes is annoying
   lvim.builtin.project.detection_methods = { "pattern", "lsp" }
 
+  lvim.builtin.treesitter.highlight.additional_vim_regex_highlighting = false
   lvim.builtin.treesitter.ensure_installed = "maintained"
   lvim.builtin.treesitter.matchup.enable = true
   -- TODO(meijieru): check later
