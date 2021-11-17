@@ -17,4 +17,5 @@ lvim.log.level = "warn"
 lvim.format_on_save = false
 lvim.leader = "space"
 vim.o.background = "light"
-lvim.colorscheme = "gruvbox-material"
+lvim.colorscheme = "edge"
+-- lvim.transparent_window = true
