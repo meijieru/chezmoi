@@ -1,7 +1,19 @@
-vim.cmd [[packadd which-key.nvim]]
-
 local M = {}
-local which_key = require "which-key"
+
+local Log = require "lvim.core.log"
+local safe_load = require("core.utils").safe_load
+
+vim.cmd [[packadd which-key.nvim]]
+local status_ok, which_key = safe_load "which-key"
+if not status_ok then
+  return M
+end
+
+local status_ok, mapx = safe_load "mapx"
+if not status_ok then
+  return M
+end
+mapx.setup { global = false, whichkey = true, debug = false }
 
 local escape = function(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)
@@ -16,18 +28,19 @@ function _G.enhance_align()
 end
 
 function M.setup_easy_align()
-  vim.api.nvim_set_keymap("n", "ga", "v:lua.enhance_align()", { expr = true })
-  vim.api.nvim_set_keymap("x", "ga", "v:lua.enhance_align()", { expr = true })
+  local label = "EasyAlign"
+  mapx.nmap("ga", enhance_align, mapx.expr, label)
+  mapx.xmap("ga", enhance_align, mapx.expr, label)
 end
 
 function _G.set_terminal_keymaps()
   -- TODO(meijieru): `vim-terminal-help` like `drop`
-  local opts = { noremap = true }
-  vim.api.nvim_buf_set_keymap(0, "t", "<M-q>", [[<C-\><C-n>]], opts)
-  vim.api.nvim_buf_set_keymap(0, "t", "<M-h>", [[<C-\><C-n><C-W>h]], opts)
-  vim.api.nvim_buf_set_keymap(0, "t", "<M-j>", [[<C-\><C-n><C-W>j]], opts)
-  vim.api.nvim_buf_set_keymap(0, "t", "<M-k>", [[<C-\><C-n><C-W>k]], opts)
-  vim.api.nvim_buf_set_keymap(0, "t", "<M-l>", [[<C-\><C-n><C-W>l]], opts)
+  local opts = { noremap = true, buffer = 0 }
+  mapx.tnoremap("<M-q>", [[<C-\><C-n>]], opts)
+  mapx.tnoremap("<M-h>", [[<C-\><C-n><C-W>h]], opts)
+  mapx.tnoremap("<M-j>", [[<C-\><C-n><C-W>j]], opts)
+  mapx.tnoremap("<M-k>", [[<C-\><C-n><C-W>k]], opts)
+  mapx.tnoremap("<M-l>", [[<C-\><C-n><C-W>l]], opts)
 end
 
 -- if you only want these mappings for toggle term use term://*toggleterm#* instead
@@ -36,9 +49,9 @@ function M.setup_terminal()
 end
 
 function M.setup_sniprun()
-  vim.api.nvim_set_keymap("v", "gr", "<Plug>SnipRun", { silent = true })
-  vim.api.nvim_set_keymap("n", "<leader>r", "<Plug>SnipRunOperator", { silent = true })
-  vim.api.nvim_set_keymap("n", "<leader>rr", "<Plug>SnipRun", { silent = true })
+  mapx.vmap("gr", "<Plug>SnipRun", mapx.silent, "SnipRun")
+  mapx.nmap("<leader>r", "<Plug>SnipRunOperator", mapx.silent, "SnipRun")
+  mapx.nmap("<leader>rr", "<Plug>SnipRun", mapx.silent, "SnipRun")
 end
 
 function M.setup_hop()
@@ -155,15 +168,11 @@ function M.setup_asynctasks()
   which_key.register(mappings, { silent = true })
 end
 
-function M.post_setup()
-  M.setup_sniprun()
-end
-
 function M.setup_basic()
   local mappings = {
     ["<f1>"] = { "<cmd>call auxlib#toggle_colorcolumn()<cr>", "Toggle colorcolumn" },
     ["m<space>"] = { "<cmd>delmarks!<cr>", "Delete all marks" },
-    ["-"] = { "<cmd>NvimTreeOpen<cr>", "Open Directory" }
+    ["-"] = { "<cmd>NvimTreeOpen<cr>", "Open Directory" },
   }
   which_key.register(mappings, {})
 end
@@ -178,10 +187,13 @@ function M.setup_trouble()
     l = { "<cmd>TroubleToggle loclist<cr>", "loclist" },
   }
 
-  which_key.register {
-    ["]t"] = { '<cmd>lua require("trouble").next({skip_groups = true, jump = true})<CR>', "Next Trouble" },
-    ["[t"] = { '<cmd>lua require("trouble").previous({skip_groups = true, jump = true})<CR>', "Previous Trouble" },
-  }
+  mapx.nmap("]t", '<cmd>lua require("trouble").next({skip_groups = true, jump = true})<CR>', "Next Trouble")
+  mapx.nmap("[t", '<cmd>lua require("trouble").previous({skip_groups = true, jump = true})<CR>', "Previous Trouble")
+end
+
+function M.post_setup()
+  -- NOTE: run with VimEnter
+  Log:debug "Keymaps post_setup"
 end
 
 M.setup_lvim()
@@ -193,5 +205,6 @@ M.setup_hop()
 M.setup_lsp()
 M.setup_gitsigns()
 M.setup_asynctasks()
+M.setup_sniprun()
 
 return M

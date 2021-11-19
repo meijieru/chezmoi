@@ -1,7 +1,7 @@
 local editor = {}
 local conf = require "modules.editor.config"
 
-editor["tpope/vim-unimpaired"] = {}
+-- editor["tpope/vim-unimpaired"] = {}
 -- editor["tpope/vim-surround"] = { keys = { "c", "d", "y", "S" }, disable = true }
 -- editor["tpope/vim-repeat"] = {}
 editor["machakann/vim-sandwich"] = { keys = { "s" } }
@@ -64,5 +64,7 @@ editor["nvim-treesitter/nvim-treesitter-textobjects"] = {}
 editor["p00f/nvim-ts-rainbow"] = {}
 editor["nvim-treesitter/playground"] = { event = "BufRead" }
 editor["RRethy/nvim-treesitter-textsubjects"] = {}
+
+editor["b0o/mapx.nvim"] = {}
 
 return editor

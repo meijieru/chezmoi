@@ -55,7 +55,6 @@ function M.setup()
   require "core.defaults"
   require "core.machine_specific"
   require "core.options"
-  require "core.keymap"
   require "core.autocmd"
 
   M.disable_distribution_plugins()
@@ -63,6 +62,8 @@ function M.setup()
   -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
   -- Additional Plugins
   lvim.plugins = M.load_plugins()
+
+  require "core.keymap"
 end
 
 return M
