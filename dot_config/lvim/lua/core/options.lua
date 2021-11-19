@@ -11,6 +11,7 @@ vim.o.shiftwidth = 4
 vim.o.tabstop = 4
 vim.o.showbreak = "↳ "
 vim.o.diffopt = "filler,iwhite,internal,algorithm:patience" -- use patience diff algorithm
+vim.o.lazyredraw = true
 
 -- lvim
 lvim.log.level = "warn"
