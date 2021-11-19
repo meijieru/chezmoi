@@ -29,7 +29,9 @@ editor["phaazon/hop.nvim"] = {
 }
 editor["mg979/vim-visual-multi"] = {
   -- TODO(meijieru): lazy load
+  -- TODO(meijieru): fix https://github.com/mg979/vim-visual-multi/issues/121
   -- keys = { "<Plug>(VM-Find-Under)" },
+  config = conf.visual_multi,
 }
 editor["simrat39/symbols-outline.nvim"] = {
   cmd = { "SymbolsOutline", "SymbolsOulineOpen" },

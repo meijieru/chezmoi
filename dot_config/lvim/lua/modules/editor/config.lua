@@ -31,6 +31,18 @@ function config.dapui()
   require("dapui").setup {}
 end
 
+function config.visual_multi()
+  local vm_maps = {}
+  vm_maps["Select Operator"] = ""
+  vm_maps["Undo"] = "u"
+  vm_maps["Redo"] = "<C-r>"
+  -- useful default mappings
+  -- \\z for normal everywhere
+
+  vim.g.VM_default_mappings = false
+  vim.g.VM_maps = vm_maps
+end
+
 require("modules.editor.lvim").setup()
 
 return config
