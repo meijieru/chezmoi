@@ -41,6 +41,15 @@ function M.setup_lualine()
   diff.symbols = { added = "  ", modified = " ", removed = " " }
   lvim.builtin.lualine.sections.lualine_c = { diff, components.python_env }
   -- table.insert(lvim.builtin.lualine.sections.lualine_x, components.encoding)
+
+  local lsp = components.lsp
+  lsp.color = {}
+  lvim.builtin.lualine.sections.lualine_x = {
+    components.diagnostics,
+    components.treesitter,
+    lsp,
+    components.filetype,
+  }
   lvim.builtin.lualine.sections.lualine_y = { "encoding" }
 
   lvim.builtin.lualine.style = "lvim"
