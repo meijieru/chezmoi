@@ -5,6 +5,6 @@ _G.myvim = {
   colorscheme_enable_italic_comment = true,
 
   plugins = {
-    tabnine = { active = true },
+    tabnine = { active = false },
   },
 }
