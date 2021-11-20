@@ -3,4 +3,9 @@
 
 {{ if eq .chezmoi.hostname "Jieru-PC" }}
 myvim.plugins.tabnine.active = true
+myvim.plugins.treesitter.ensure_installed = "maintained"
+{{ end }}
+
+{{ if eq .chezmoi.hostname "JIERUMEI-NB0" }}
+myvim.plugins.treesitter.ensure_installed = "maintained"
 {{ end }}

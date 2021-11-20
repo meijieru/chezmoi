@@ -8,7 +8,7 @@ function M.setup()
   lvim.builtin.project.detection_methods = { "pattern", "lsp" }
 
   lvim.builtin.treesitter.highlight.additional_vim_regex_highlighting = false
-  lvim.builtin.treesitter.ensure_installed = "maintained"
+  lvim.builtin.treesitter.ensure_installed = myvim.plugins.treesitter.ensure_installed
   lvim.builtin.treesitter.matchup.enable = true
   -- TODO(meijieru): check later
   lvim.builtin.treesitter.indent.disable = { "yaml", "python" }

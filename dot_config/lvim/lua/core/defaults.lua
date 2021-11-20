@@ -6,5 +6,9 @@ _G.myvim = {
 
   plugins = {
     tabnine = { active = false },
+
+    treesitter = {
+      ensure_installed = {},
+    },
   },
 }
