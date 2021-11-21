@@ -1,3 +1,5 @@
+vim.cmd [[packadd which-key.nvim]]
+
 local M = {}
 local which_key = require "which-key"
 
