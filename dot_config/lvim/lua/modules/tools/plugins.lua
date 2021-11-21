@@ -79,4 +79,12 @@ tools["nvim-telescope/telescope-frecency.nvim"] = {
   disable = false,
 }
 
+tools["glacambre/firenvim"] = {
+  -- FIXME(meijieru): doesn't work now
+  run = function()
+    vim.fn["firenvim#install"](0)
+  end,
+  disable = true,
+}
+
 return tools
