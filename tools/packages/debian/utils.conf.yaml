@@ -1,0 +1,16 @@
+apt:
+  # - tldr
+  - git
+  - etckeeper
+  - trash-cli
+  - htop
+  - tmux
+  - tree
+  - ripgrep
+  - fd-find
+  - fzf
+  - neovim
+
+  - make
+  - sqlite3
+  - libsqlite3-dev

@@ -1,0 +1,54 @@
+pacman:
+  - archlinuxcn-keyring
+  - openssh
+  - sudo
+  - xclip
+  - zsh
+  - lua
+  - etckeeper
+  - rclone
+  - tldr
+  - trash-cli
+  - neofetch
+  - wget
+
+  - tmux
+  - htop
+  - fzf
+  - git
+  - tokei
+  - tree
+  - ripgrep
+  - fd
+  - neovim-git
+  - python-neovim
+  - nodejs
+  - yarn
+  - npm
+  - clang
+  - cmake
+  - chezmoi
+
+  - yapf
+  - python-black
+  - prettier
+
+  - python-pip
+  - python-yaml
+  - python-scipy
+  - python-matplotlib
+  - python-pyqt5
+  - python-ipdb
+  - python-klepto  # sniprun
+  - ipython
+
+  - python-torchvision
+  - python-pytorch
+
+  - adobe-source-han-sans-cn-fonts
+  - noto-fonts-emoji
+  - nerd-fonts-jetbrains-mono
+
+yay:
+  - lsyncd
+  - stylua

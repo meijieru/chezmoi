@@ -1,0 +1,6 @@
+opts:
+  local_path: ~/.local/bin
+  overwrite: true
+
+wget:
+  im-select.exe: https://github.com/daipeihust/im-select/raw/master/im-select-win/out/x64/im-select.exe
