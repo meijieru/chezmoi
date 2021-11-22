@@ -219,11 +219,11 @@ class Wget(Action):
 
 
 def guess_type(config: typing.Dict) -> Action:
-    for cls in [Wget, Yay, Apt]:
+    for cls in [Wget, Yay, Apt, Pip]:
         if cls.is_usable(config):
             logging.info("Use action: {}".format(cls.__name__))
             return cls(config)
-    raise ValueError("Unknown config")
+    raise ValueError("Unknown config with keys: {}".format(list(config.keys())))
 
 
 if __name__ == "__main__":
