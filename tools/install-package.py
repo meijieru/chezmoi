@@ -163,6 +163,24 @@ class Apt(PackageManager):
         )
 
 
+class Pip(PackageManager):
+    """Download from apt."""
+
+    _keys = ["pip"]
+
+    def __init__(self, context: dict):
+        strings = {
+            PkgStatus.NOT_FOUND: "No matching distribution found",
+            PkgStatus.INSTALLED: "Successfully installed",
+            PkgStatus.UP_TO_DATE: "Requirement already satisfied",
+        }
+        super().__init__(
+            context,
+            "LANG=en_US pip3 install --upgrade {}",
+            strings,
+        )
+
+
 class Wget(Action):
     """Download from urls."""
 

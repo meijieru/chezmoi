@@ -10,6 +10,7 @@ apt:
   - fd-find
   - fzf
   - neovim
+  - python3-pip
 
   - make
   - sqlite3

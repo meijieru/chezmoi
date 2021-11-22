@@ -13,7 +13,7 @@ pacman:
   - wget
 
   - tmux
-  - htop
+  - glances
   - fzf
   - git
   - tokei
