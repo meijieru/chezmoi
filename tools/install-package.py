@@ -175,7 +175,7 @@ class Wget(Action):
     def is_usable(cls, config: dict) -> bool:
         return cls._key in config
 
-    def chmod_digit(self, file_path: str, perms: int = 655) -> None:
+    def chmod_digit(self, file_path: str, perms: int = 755) -> None:
         os.chmod(file_path, int(str(perms), base=8))
 
     def deploy(self) -> None:
