@@ -1,2 +1,4 @@
 pip:
   - glances
+  - glances[cpuinfo,docker,sensors,gpu,folders,hddtemp]
+  # - glances[action,batinfo,browser,cpuinfo,docker,export,folders,gpu,graph,ip,raid,snmp,web,wifi,sensors]
