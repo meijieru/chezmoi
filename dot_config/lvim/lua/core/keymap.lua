@@ -103,6 +103,9 @@ end
 
 function M.setup_lvim()
   -- disable some defaults mappings
+  for _, key in ipairs { "insert_mode", "normal_mode", "term_mode", "visual_mode", "visual_block_mode", "command_mode" } do
+    lvim.keys[key] = {}
+  end
   for _, key in ipairs { "/" } do
     lvim.builtin.which_key.vmappings[key] = nil
   end
@@ -169,12 +172,35 @@ function M.setup_asynctasks()
 end
 
 function M.setup_basic()
-  local mappings = {
-    ["<f1>"] = { "<cmd>call auxlib#toggle_colorcolumn()<cr>", "Toggle colorcolumn" },
-    ["m<space>"] = { "<cmd>delmarks!<cr>", "Delete all marks" },
-    ["-"] = { "<cmd>NvimTreeOpen<cr>", "Open Directory" },
-  }
-  which_key.register(mappings, {})
+  mapx.inoremap("<C-k>", "<Up>")
+  mapx.inoremap("<C-j>", "<Down>")
+  mapx.inoremap("<C-h>", "<Left>")
+  mapx.inoremap("<C-l>", "<Right>")
+
+  -- Better window movement
+  mapx.nnoremap("<A-h>", "<C-w>h", "Left Window")
+  mapx.nnoremap("<A-j>", "<C-w>j", "Down Window")
+  mapx.nnoremap("<A-k>", "<C-w>k", "Up Window")
+  mapx.nnoremap("<A-l>", "<C-w>l", "Right Window")
+
+  mapx.nnoremap("]q", ":cnext<CR>", "Next Quickfix")
+  mapx.nnoremap("[q", ":cprev<CR>", "Previous Quickfix")
+  mapx.nnoremap("]l", ":lnext<CR>", "Next Loclist")
+  mapx.nnoremap("[l", ":lprev<CR>", "Previous Loclist")
+
+  mapx.nnoremap("<F1>", "<cmd>call auxlib#toggle_colorcolumn()<cr>", "Toggle Colorcolumn")
+  mapx.nnoremap("m<space>", "<cmd>delmarks!<cr>", "Delete All Marks")
+  mapx.nnoremap("-", "<cmd>NvimTreeOpen<cr>", "Open Directory")
+  -- TODO(meijieru)
+  -- ["<leader>tq"] = ":call QuickFixToggle()<CR>",
+
+  mapx.vnoremap("<", "<gv")
+  mapx.vnoremap(">", ">gv")
+
+  mapx.cnoremap("<c-h>", "<left>")
+  mapx.cnoremap("<c-j>", "<down>")
+  mapx.cnoremap("<c-k>", "<up>")
+  mapx.cnoremap("<c-l>", "<right>")
 end
 
 function M.setup_trouble()
