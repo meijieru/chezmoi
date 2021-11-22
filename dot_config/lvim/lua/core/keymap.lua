@@ -206,11 +206,12 @@ end
 function M.setup_trouble()
   lvim.builtin.which_key.mappings["t"] = {
     name = "Diagnostics",
-    t = { "<cmd>TroubleToggle<cr>", "trouble" },
-    w = { "<cmd>TroubleToggle lsp_workspace_diagnostics<cr>", "workspace" },
-    d = { "<cmd>TroubleToggle lsp_document_diagnostics<cr>", "document" },
-    q = { "<cmd>TroubleToggle quickfix<cr>", "quickfix" },
-    l = { "<cmd>TroubleToggle loclist<cr>", "loclist" },
+    t = { "<cmd>TroubleToggle<cr>", "Toggle" },
+    w = { "<cmd>TroubleToggle lsp_workspace_diagnostics<cr>", "Workspace" },
+    d = { "<cmd>TroubleToggle lsp_document_diagnostics<cr>", "Document" },
+    q = { "<cmd>TroubleToggle quickfix<cr>", "Quickfix" },
+    l = { "<cmd>TroubleToggle loclist<cr>", "Loclist" },
+    r = { "<cmd>TroubleRefresh<cr>", "Refresh" },
   }
 
   mapx.nmap("]t", '<cmd>lua require("trouble").next({skip_groups = true, jump = true})<CR>', "Next Trouble")
