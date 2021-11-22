@@ -15,12 +15,12 @@ if not status_ok then
 end
 mapx.setup { global = false, whichkey = true, debug = false }
 
-local escape = function(str)
+local function escape(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
 
 -- HACK
-function _G.enhance_align()
+local function enhance_align()
   if not packer_plugins["vim-easy-align"].loaded then
     vim.cmd [[packadd vim-easy-align]]
   end
