@@ -26,7 +26,7 @@
 	reb = "!r() { git rebase -i HEAD~$1; }; r"
 	# https://stackoverflow.com/questions/2517339/how-to-restore-the-permissions-of-files-and-directories-within-git-if-they-have
 	permission-reset = !git diff -p -R --no-color | grep -E \"^(diff|(old|new) mode)\" --color=never | git apply
-	verbose = "!f() { git diff $1^1 $1 ; }; f"
+	verbose = "!f() { git icdiff ${1:-HEAD}^1 $1 ; }; f"
     rl = rev-list HEAD --oneline
 
 [apply]
@@ -71,3 +71,5 @@
 	default = matching
 [init]
 	defaultBranch = master
+[icdiff]
+	options = --highlight --line-numbers
