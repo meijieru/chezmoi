@@ -74,7 +74,7 @@ function M.setup_hop()
 end
 
 -- https://github.com/neovim/nvim-lspconfig/wiki/User-contributed-tips#range-formatting-with-a-motion
-function _G.format_range_operator()
+local function format_range_operator()
   local old_func = vim.go.operatorfunc
   _G.op_func_formatting = function()
     local start = vim.api.nvim_buf_get_mark(0, "[")
@@ -87,8 +87,8 @@ function _G.format_range_operator()
   vim.api.nvim_feedkeys("g@", "n", false)
 end
 function M.setup_lsp()
-  vim.api.nvim_set_keymap("n", "gm", "<cmd>lua format_range_operator()<CR>", { noremap = true })
-  vim.api.nvim_set_keymap("v", "gm", "<cmd>lua format_range_operator()<CR>", { noremap = true })
+  mapx.nnoremap("gm", format_range_operator, "Range Format")
+  mapx.vnoremap("gm", format_range_operator, "Range Format")
 end
 
 function M.setup_gitsigns()
