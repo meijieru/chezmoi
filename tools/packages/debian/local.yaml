@@ -1,0 +1,6 @@
+opts:
+  local_path: ~/.local/bin
+  overwrite: true
+
+wget:
+  nvim: https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
