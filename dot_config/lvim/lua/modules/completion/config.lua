@@ -1,5 +1,23 @@
 local config = {}
 
+function config.lsp_signature()
+  require("lsp_signature").setup {
+    bind = true, -- This is mandatory, otherwise border config won't get registered.
+    handler_opts = {
+      -- border = "rounded",
+      border = "none",
+    },
+    floating_window = true, -- show hint in a floating window, set to false for virtual text only mode
+    floating_window_above_cur_line = true, -- try to place the floating above the current line when possible Note:
+    hint_enable = false, -- virtual hint enable
+    hint_prefix = "🐼 ", -- Panda for parameter
+
+    doc_lines = 0,
+    -- will set to true when fully tested, set to false will use whichever side has more space
+    -- this setting will be helpful if you do not want the PUM and floating win overlap
+  }
+end
+
 function config.telescope_luasnip()
   require("telescope").load_extension "luasnip"
 end

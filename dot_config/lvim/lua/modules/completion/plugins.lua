@@ -24,4 +24,9 @@ completion["tzachar/cmp-tabnine"] = {
 }
 completion["hrsh7th/cmp-cmdline"] = { config = conf.cmp_cmdline }
 
+completion["ray-x/lsp_signature.nvim"] = {
+  event = "BufRead",
+  config = conf.lsp_signature,
+}
+
 return completion
