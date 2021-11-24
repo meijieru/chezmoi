@@ -23,6 +23,7 @@ editor["phaazon/hop.nvim"] = {
     "HopChar1",
     "HopChar2",
   },
+  module = { "hop" },
   -- event = "BufRead",
   config = conf.hop,
   disable = false,
