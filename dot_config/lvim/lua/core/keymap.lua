@@ -63,12 +63,11 @@ function M.setup_hop()
     s = { ":HopPattern<CR>", "Search Patterns" },
   }
   local opts = {
-    mode = "n", -- NORMAL mode
+    mode = "n",
     prefix = "<leader><leader>",
-    buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-    silent = true, -- use `silent` when creating keymaps
-    noremap = true, -- use `noremap` when creating keymaps
-    nowait = true, -- use `nowait` when creating keymaps
+    silent = true,
+    noremap = true,
+    nowait = true,
   }
   which_key.register(mappings, opts)
 
@@ -99,13 +98,10 @@ function M.setup_lsp()
 end
 
 function M.setup_gitsigns()
-  which_key.register {
-    ["]c"] = { "&diff ? ']c' : '<cmd>lua require\"gitsigns.actions\".next_hunk()<CR>'", "Next Hunk", expr = true },
-    ["[c"] = { "&diff ? '[c' : '<cmd>lua require\"gitsigns.actions\".prev_hunk()<CR>'", "Prev Hunk", expr = true },
-    -- FIXME(meijieru): hunk text obj
-    -- ['o ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>',
-    -- ['x ih'] = ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>'
-  }
+  mapx.nnoremap("]c", "&diff ? ']c' : '<cmd>lua require\"gitsigns.actions\".next_hunk()<CR>'", mapx.expr, "Next Hunk")
+  mapx.nnoremap("[c", "&diff ? '[c' : '<cmd>lua require\"gitsigns.actions\".prev_hunk()<CR>'", mapx.expr, "Prev Hunk")
+  mapx.onoremap("ih", ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>', "Hunk")
+  mapx.xnoremap("ih", ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>', "Hunk")
 end
 
 function M.setup_lvim()
@@ -204,10 +200,10 @@ function M.setup_basic()
   mapx.vnoremap("<", "<gv")
   mapx.vnoremap(">", ">gv")
 
-  mapx.cnoremap("<c-h>", "<left>")
-  mapx.cnoremap("<c-j>", "<down>")
-  mapx.cnoremap("<c-k>", "<up>")
-  mapx.cnoremap("<c-l>", "<right>")
+  mapx.cnoremap("<C-h>", "<Left>")
+  mapx.cnoremap("<C-j>", "<Down>")
+  mapx.cnoremap("<C-k>", "<Up>")
+  mapx.cnoremap("<C-l>", "<Right>")
 end
 
 function M.setup_trouble()
@@ -221,8 +217,8 @@ function M.setup_trouble()
     r = { "<cmd>TroubleRefresh<cr>", "Refresh" },
   }
 
-  mapx.nmap("]t", '<cmd>lua require("trouble").next({skip_groups = true, jump = true})<CR>', "Next Trouble")
-  mapx.nmap("[t", '<cmd>lua require("trouble").previous({skip_groups = true, jump = true})<CR>', "Previous Trouble")
+  mapx.nnoremap("]t", '<cmd>lua require("trouble").next({skip_groups = true, jump = true})<CR>', "Next Trouble")
+  mapx.nnoremap("[t", '<cmd>lua require("trouble").previous({skip_groups = true, jump = true})<CR>', "Previous Trouble")
 end
 
 function M.post_setup()
