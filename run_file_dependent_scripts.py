@@ -98,11 +98,11 @@ def verify_checksums(existing_checksum_map: Dict[str, str], dependencies: Dict[s
             hash = hashlib.sha256(file_bytes).hexdigest()
             if (fpath not in existing_checksum_map or
                     hash != existing_checksum_map[fpath]):
-                logging.info("Hashes for {} do not match.".format(fpath))
+                logging.info("Hashes mismatch: {}".format(fpath))
                 checksum_refresh = True
                 to_executes.update(exes)
             else:
-                logging.info("Hashes for {} match.".format(fpath))
+                logging.info("Hashes match: {}".format(fpath))
 
     for exe in to_executes:
         logging.info("Running: {}".format(exe))
