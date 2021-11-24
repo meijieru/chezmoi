@@ -73,3 +73,5 @@
 	defaultBranch = master
 [icdiff]
 	options = --highlight --line-numbers
+[pull]
+	ff = only
