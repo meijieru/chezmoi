@@ -2,9 +2,9 @@ local editor = {}
 local conf = require "modules.editor.config"
 
 -- editor["tpope/vim-unimpaired"] = {}
--- editor["tpope/vim-surround"] = { keys = { "c", "d", "y", "S" }, disable = true }
--- editor["tpope/vim-repeat"] = {}
-editor["machakann/vim-sandwich"] = { keys = { "s" } }
+editor["tpope/vim-repeat"] = {}
+editor["tpope/vim-surround"] = {}
+editor["machakann/vim-sandwich"] = { keys = { "s" }, disable = true }
 editor["tpope/vim-sleuth"] = {}
 editor["tpope/vim-rsi"] = {}
 editor["tpope/vim-eunuch"] = {}
