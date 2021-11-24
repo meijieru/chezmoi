@@ -14,11 +14,11 @@ M.config = function()
   local nls = require "null-ls"
 
   local methods = require "null-ls.methods"
-  local my_nls_yapf = nls.builtins.formatting.yapf
-  if type(my_nls_yapf.method) == "table" then
-    error "Remove these block, use null-ls yapf"
+  local my_nls_python = nls.builtins.formatting.black
+  if type(my_nls_python.method) == "table" then
+    error "Remove these block, use null-ls black"
   else
-    my_nls_yapf.method = { methods.internal.FORMATTING, methods.internal.RANGE_FORMATTING }
+    my_nls_python.method = { methods.internal.FORMATTING, methods.internal.RANGE_FORMATTING }
   end
 
   -- you can either config null-ls itself
@@ -26,7 +26,7 @@ M.config = function()
     sources = {
       nls.builtins.formatting.prettier,
       nls.builtins.formatting.stylua,
-      my_nls_yapf,
+      my_nls_python,
       -- nls.builtins.formatting.goimports,
       -- nls.builtins.formatting.cmake_format,
       -- nls.builtins.formatting.scalafmt,
