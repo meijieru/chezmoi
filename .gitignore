@@ -1,4 +1,5 @@
 *.bak
+.local_checksum
 
 # ---> Python
 # Byte-compiled / optimized / DLL files

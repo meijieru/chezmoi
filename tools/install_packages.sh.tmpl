@@ -1,8 +1,7 @@
 #!/bin/bash
 
 install () {
-	directories=( {{ .chezmoi.sourceDir }}/tools/packages/$1/*.yaml )
-	for fname in $directories
+	for fname in  {{ .chezmoi.sourceDir }}/tools/packages/$1/*
 	do
 		$2 python3 {{ .chezmoi.sourceDir }}/tools/install-package.py $fname
 	done
