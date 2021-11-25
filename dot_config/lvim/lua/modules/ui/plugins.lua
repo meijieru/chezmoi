@@ -1,18 +1,12 @@
 local ui = {}
 local conf = require "modules.ui.config"
 
-ui["sainnhe/gruvbox-material"] = {
-  opt = false,
-}
+ui["rktjmp/lush.nvim"] = {}
+ui["https://gitea.meijieru.com/meijieru/edge_lush"] = {}
 
-ui["sainnhe/edge"] = {
-  opt = false,
-}
-
-ui["sainnhe/everforest"] = {
-  opt = false,
-}
-
+ui["sainnhe/gruvbox-material"] = { opt = false }
+-- ui["sainnhe/edge"] = { opt = false }
+ui["sainnhe/everforest"] = { opt = false }
 ui["LunarVim/Colorschemes"] = {}
 
 ui["lukas-reineke/indent-blankline.nvim"] = {
