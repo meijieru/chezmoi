@@ -62,7 +62,7 @@ tools["michaelb/sniprun"] = {
 tools["norcalli/nvim-colorizer.lua"] = {
   event = "BufRead",
   config = conf.colorizer,
-  disable = false,
+  disable = true,
 }
 
 tools["wakatime/vim-wakatime"] = {}
