@@ -24,8 +24,23 @@ function M.setup_lualine()
     end
   end
 
+  local function _my_palettes(name)
+    local utils = require("core.utils")
+    if name == "edge_lush" then
+      local palette = require("lush_theme.palette")
+      return utils.map({ bg = palette.bg1, fg = palette.grey_dim }, function (hsl)
+        return tostring(hsl):lower()
+      end)
+    end
+  end
+
   local function safe_get_palettes(name)
-    local status, value = pcall(_sainnhe_palettes, name)
+    local status, value
+    if name == "edge_lush" then
+      status, value = pcall(_my_palettes, name)
+    else
+      status, value = pcall(_sainnhe_palettes, name)
+    end
     if status then
       return value
     else
