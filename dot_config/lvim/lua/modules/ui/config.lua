@@ -21,7 +21,7 @@ function config.indent_blankline()
   require("indent_blankline").setup {
     char = "|",
     buftype_exclude = { "terminal" },
-    filetype_exclude = { "help", "terminal", "dashboard" },
+    filetype_exclude = { "help", "terminal", "dashboard", "NvimTree", "packer" },
     show_trailing_blankline_indent = false,
     show_first_indent_level = true,
     show_current_context = true,
