@@ -1,8 +1,9 @@
 local ui = {}
 local conf = require "modules.ui.config"
 
-ui["rktjmp/lush.nvim"] = {}
-ui["https://gitea.meijieru.com/meijieru/edge_lush"] = {}
+ui["https://gitea.meijieru.com/meijieru/edge_lush"] = {
+  requires = { "rktjmp/lush.nvim" },
+}
 
 ui["sainnhe/gruvbox-material"] = { opt = false }
 -- ui["sainnhe/edge"] = { opt = false }
