@@ -10,5 +10,7 @@ _G.myvim = {
     treesitter = {
       ensure_installed = {},
     },
+
+    imtoggle = { active = false },
   },
 }

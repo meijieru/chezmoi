@@ -1,5 +1,9 @@
 local config = {}
 
+function config.imtoggle()
+  require("imtoggle").setup { enable = false }
+end
+
 function config.neogit()
   require("neogit").setup {}
 end

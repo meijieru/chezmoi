@@ -1,6 +1,11 @@
 local tools = {}
 local conf = require "modules.tools.config"
 
+tools["meijieru/imtoggle.nvim"] = {
+  config = conf.imtoggle,
+  disable = not myvim.plugins.imtoggle.active,
+}
+
 tools["tpope/vim-fugitive"] = {
   cmd = {
     "G",
