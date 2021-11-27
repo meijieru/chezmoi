@@ -221,6 +221,12 @@ function M.setup_trouble()
   mapx.nnoremap("[t", '<cmd>lua require("trouble").previous({skip_groups = true, jump = true})<CR>', "Previous Trouble")
 end
 
+function M.setup_zenmode()
+  mapx.nname("<leader>z", "ZenMode")
+  mapx.nnoremap("<leader>zz", "<cmd>ZenMode<cr>", "Toggle ZenMode")
+  mapx.nnoremap("<leader>zt", "<cmd>Twilight<cr>", "Toggle Twilight")
+end
+
 function M.post_setup()
   -- NOTE: run with VimEnter
   Log:debug "Keymaps post_setup"
@@ -236,5 +242,6 @@ M.setup_lsp()
 M.setup_gitsigns()
 M.setup_asynctasks()
 M.setup_sniprun()
+M.setup_zenmode()
 
 return M
