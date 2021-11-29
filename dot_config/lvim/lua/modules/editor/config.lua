@@ -10,8 +10,8 @@ end
 
 function config.lastplace()
   require("nvim-lastplace").setup {
-    lastplace_ignore_buftype = { "quickfix", "nofile", "help" },
-    lastplace_ignore_filetype = { "gitcommit", "gitrebase", "svn", "hgcommit" },
+    lastplace_ignore_buftype = myvim.ignores.buftype,
+    lastplace_ignore_filetype = myvim.ignores.filetype,
     lastplace_open_folds = true,
   }
 end

@@ -20,8 +20,8 @@ vim.g.everforest_better_performance = 1
 function config.indent_blankline()
   require("indent_blankline").setup {
     char = "|",
-    buftype_exclude = { "terminal" },
-    filetype_exclude = { "help", "terminal", "dashboard", "NvimTree", "packer", "nofile" },
+    buftype_exclude = myvim.ignores.buftype,
+    filetype_exclude = myvim.ignores.filetype,
     show_trailing_blankline_indent = false,
     show_first_indent_level = true,
     show_current_context = true,
