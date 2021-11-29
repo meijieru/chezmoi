@@ -1,6 +1,6 @@
 local config = {}
 
-vim.g.gruvbox_material_palette = 'origin'
+vim.g.gruvbox_material_palette = "origin"
 vim.g.gruvbox_material_background = "medium"
 vim.g.gruvbox_material_enable_italic = myvim.colorscheme_enable_italic
 vim.g.gruvbox_material_disable_italic_comment = not myvim.colorscheme_enable_italic_comment
@@ -21,7 +21,7 @@ function config.indent_blankline()
   require("indent_blankline").setup {
     char = "|",
     buftype_exclude = { "terminal" },
-    filetype_exclude = { "help", "terminal", "dashboard", "NvimTree", "packer" },
+    filetype_exclude = { "help", "terminal", "dashboard", "NvimTree", "packer", "nofile" },
     show_trailing_blankline_indent = false,
     show_first_indent_level = true,
     show_current_context = true,
