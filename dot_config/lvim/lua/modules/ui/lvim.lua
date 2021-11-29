@@ -25,12 +25,12 @@ function M.setup_lualine()
   end
 
   local function _my_palettes(name)
-    local utils = require("core.utils")
+    local utils = require "core.utils"
     if name == "edge_lush" then
-      local palette = require("lush_theme.palette")
-      return utils.map({ bg = palette.bg1, fg = palette.grey_dim }, function (hsl)
+      local palette = require "lush_theme.palette"
+      return vim.tbl_map(function(hsl)
         return tostring(hsl):lower()
-      end)
+      end, { bg = palette.bg1, fg = palette.grey_dim })
     end
   end
 

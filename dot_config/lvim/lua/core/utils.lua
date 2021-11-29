@@ -14,14 +14,6 @@ function M.safe_load(name)
   return status_ok, module
 end
 
-function M.map(tbl, f)
-  local t = {}
-  for k, v in pairs(tbl) do
-    t[k] = f(v)
-  end
-  return t
-end
-
 function M.is_dap_debugger_installed(name)
   if not lvim.builtin.dap.active then
     return false
