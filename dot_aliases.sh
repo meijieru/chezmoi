@@ -5,10 +5,10 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 
 # Detect which `ls` flavor is in use
-if ls --color > /dev/null 2>&1; then # GNU `ls`
-	colorflag="--color"
+if ls --color >/dev/null 2>&1; then # GNU `ls`
+    colorflag="--color"
 else # OS X `ls`
-	colorflag="-G"
+    colorflag="-G"
 fi
 
 # List all files colorized in long format
@@ -30,12 +30,12 @@ alias less="less -R"
 alias mk='make'
 alias matlab='matlab -nodesktop -nosplash'
 alias proxychains='proxychains -q'
-alias zc='z -c'      # match subdir of current dir
-# alias zz='z -i'      # interactively
-# alias zf='z -I'      # fuzzy finder
-alias zb='z -b'      
-alias zbi='z -b -i'  # jump to parent dir
-alias zbf='z -b -I'  # jump to parent dir using fzf
+alias zc='z -c' # match subdir of current dir
+# alias zz='z -i' # interactively
+# alias zf='z -I' # fuzzy finder
+alias zb='z -b'
+alias zbi='z -b -i' # jump to parent dir
+alias zbf='z -b -I' # jump to parent dir using fzf
 alias rm='echo "This is not the command you are looking for."; false'
 
 alias -s gz='tar -xzvf'
@@ -48,21 +48,21 @@ alias copytoclipboard='xclip -selection c'
 alias pastefromclipboard='xclip -o -selection c'
 
 if [ -x "$(command -v ccat)" ]; then
-	alias cat='ccat'
+    alias cat='ccat'
 fi
 if [ -x "$(command -v tmux-next)" ]; then
-	alias tmux='tmux-next -2'
+    alias tmux='tmux-next -2'
 else
-	alias tmux='tmux -2'
+    alias tmux='tmux -2'
 fi
 if [ -x "$(command -v nvim)" ]; then
-	alias vim='nvim'
-	alias vi='nvim'
-	alias vimdiff='nvim -d'
+    alias vim='nvim'
+    alias vi='nvim'
+    alias vimdiff='nvim -d'
 fi
 if [ -x "$(command -v lvim)" ]; then
-	alias nvim='lvim'
+    alias nvim='lvim'
 fi
 if [ -x "$(command -v fdfind)" ]; then
-	alias fd='fdfind'
+    alias fd='fdfind'
 fi

@@ -10,7 +10,7 @@ if [[ $(uname -r) =~ Microsoft$ ]]; then
     unsetopt beep
     umask 022
 
-    export DISPLAY=localhost:0 
+    export DISPLAY=localhost:0
     export GDK_SCALE=2
     export QT_SCALE_FACTOR=2
 

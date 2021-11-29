@@ -1,14 +1,14 @@
-import typing
-
 import abc
 import argparse
-import os
+import enum
 import logging
-import yaml
-import requests
+import os
 import subprocess
 import time
-import enum
+import typing
+
+import requests
+import yaml
 
 
 class Action(object):

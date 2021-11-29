@@ -4,14 +4,13 @@ Chezmoi script to run scripts based on dependent files changing.
 
 Modified from https://gist.github.com/karlwbrown/7e48ebfdc3c14b3c879880d88bd77f66
 """
-
-from typing import Dict, Final, List
 import collections
 import hashlib
+import logging
 import os
 import subprocess
 import tempfile
-import logging
+from typing import Dict, Final, List
 
 # Expects a file of the format output by sha256sum (text mode)
 CHECKSUM_FILE: Final = ".local_checksum"
@@ -73,8 +72,9 @@ def UmaskNamedTemporaryFile(*args, perms: int = 0o700, **kargs):
 def run_file(fname: str) -> None:
     base_name, ext = os.path.splitext(os.path.basename(fname))
     if ext in [".tmpl"]:
-        with UmaskNamedTemporaryFile(suffix=base_name,
-                                     delete=False) as tmp_file:
+        with UmaskNamedTemporaryFile(
+            suffix=base_name, delete=False
+        ) as tmp_file:
             subprocess.run(
                 ["chezmoi", "execute-template"],
                 stdin=open(fname, "r"),
@@ -88,7 +88,9 @@ def run_file(fname: str) -> None:
         subprocess.run(fname, check=True)
 
 
-def verify_checksums(existing_checksum_map: Dict[str, str], dependencies: Dict[str, List[str]]) -> bool:
+def verify_checksums(
+    existing_checksum_map: Dict[str, str], dependencies: Dict[str, List[str]]
+) -> bool:
     checksum_refresh = False
     to_executes = set()
 
@@ -96,8 +98,10 @@ def verify_checksums(existing_checksum_map: Dict[str, str], dependencies: Dict[s
         with open(fpath, "rb") as dep_file:
             file_bytes = dep_file.read()
             hash = hashlib.sha256(file_bytes).hexdigest()
-            if (fpath not in existing_checksum_map or
-                    hash != existing_checksum_map[fpath]):
+            if (
+                fpath not in existing_checksum_map
+                or hash != existing_checksum_map[fpath]
+            ):
                 logging.info("Hashes mismatch: {}".format(fpath))
                 checksum_refresh = True
                 to_executes.update(exes)

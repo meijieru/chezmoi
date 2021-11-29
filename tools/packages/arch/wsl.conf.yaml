@@ -39,7 +39,7 @@ pacman:
   - python-matplotlib
   - python-pyqt5
   - python-ipdb
-  - python-klepto  # sniprun
+  - python-klepto # sniprun
   - ipython
 
   - python-torchvision
