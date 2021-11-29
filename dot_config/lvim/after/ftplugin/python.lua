@@ -3,12 +3,9 @@ local function dap_install_config()
     return
   end
 
+  local dap_install = require "dap-install"
   local opt = {
-    adapters = {
-      type = "executable",
-      command = "python3",
-      args = { "-m", "debugpy.adapter" },
-    },
+    -- https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation#python
     configurations = {
       {
         type = "python",
@@ -25,20 +22,11 @@ local function dap_install_config()
             return venv_path .. "/bin/python"
           end
 
-          local cwd = vim.fn.getcwd()
-          if vim.fn.executable(cwd .. "/venv/bin/python") == 1 then
-            return cwd .. "/venv/bin/python"
-          elseif vim.fn.executable(cwd .. "/.venv/bin/python") == 1 then
-            return cwd .. "/.venv/bin/python"
-          else
-            return "/usr/bin/python3"
-          end
+          return "python3"
         end,
       },
     },
   }
-
-  local dap_install = require "dap-install"
   dap_install.config("python", opt)
 end
 
