@@ -12,7 +12,6 @@ else
 end
 
 require("modules.lang.lvim").setup()
-require("modules.lang.null_ls").config()
 
 -- TODO(meijieru): wait for https://github.com/nvim-treesitter/nvim-treesitter/issues/872
 local parser_configs = require("nvim-treesitter.parsers").get_parser_configs()

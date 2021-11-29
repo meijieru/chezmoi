@@ -1,3 +1,5 @@
+local Log = require "lvim.core.log"
+
 local function dap_install_config()
   if not require("core.utils").is_dap_debugger_installed "python" then
     return
@@ -30,4 +32,28 @@ local function dap_install_config()
   dap_install.config("python", opt)
 end
 
+local function null_ls_config()
+  local safe_load = require("core.utils").safe_load
+  local status_ok, nls = safe_load "null-ls"
+  if not status_ok then
+    return
+  end
+
+  local methods = require "null-ls.methods"
+  local my_nls_python = nls.builtins.formatting.black
+  if type(my_nls_python.method) == "table" then
+    Log:warn "Remove these block, use null-ls black"
+  else
+    my_nls_python.method = { methods.internal.FORMATTING, methods.internal.RANGE_FORMATTING }
+  end
+
+  nls.register {
+    sources = {
+      my_nls_python,
+      -- nls.builtins.formatting.isort.with { extra_args = { "--profile", "black" } },
+    },
+  }
+end
+
 dap_install_config()
+null_ls_config()
