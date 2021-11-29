@@ -147,10 +147,22 @@ function M.setup_lvim()
 
   -- lsp
   lvim.builtin.which_key.mappings.l.s = nil
+  lvim.lsp.buffer_mappings.normal_mode["gd"] = {
+    "<cmd>lua require('telescope.builtin').lsp_definitions()<cr>",
+    "Goto Definition",
+  }
   lvim.lsp.buffer_mappings.normal_mode["gr"] = {
-    "<cmd>lua vim.lsp.buf.references({ includeDeclaration = false })<cr>",
+    "<cmd>lua require('telescope.builtin').lsp_references()<cr>",
     "Goto References",
   }
+  lvim.lsp.buffer_mappings.normal_mode["gI"] = {
+    "<cmd>lua require('telescope.builtin').lsp_implementations()<cr>",
+    "Goto Implementation",
+  }
+  -- lvim.lsp.buffer_mappings.normal_mode["gD"] = {
+  --   "<cmd>lua require('telescope.builtin').lsp_type_definitions()<cr>",
+  --   "Goto Type Definitions",
+  -- }
 end
 
 function M.setup_find()
@@ -303,9 +315,9 @@ function M.setup_treesitter()
 end
 
 function M.setup_visual_multi()
- mapx.nmap("<C-Down>", "<Plug>(VM-Add-Cursor-Down)", "VM Add Cursor Down")
- mapx.nmap("<C-Up>", "<Plug>(VM-Add-Cursor-Up)", "VM Add Cursor Up")
- mapx.nmap("<C-n>", "<Plug>(VM-Find-Under)", "VM Find Under")
+  mapx.nmap("<C-Down>", "<Plug>(VM-Add-Cursor-Down)", "VM Add Cursor Down")
+  mapx.nmap("<C-Up>", "<Plug>(VM-Add-Cursor-Up)", "VM Add Cursor Up")
+  mapx.nmap("<C-n>", "<Plug>(VM-Find-Under)", "VM Find Under")
 end
 
 M.setup_lvim()
