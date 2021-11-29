@@ -29,8 +29,10 @@ pacman:
   - cmake
   - chezmoi
 
+  - shfmt
   - yapf
   - python-black
+  - python-isort
   - prettier
 
   - python-pip
@@ -52,3 +54,4 @@ pacman:
 yay:
   - lsyncd
   - stylua
+  - cmake-format
