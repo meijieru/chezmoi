@@ -48,9 +48,10 @@ local function null_ls_config()
   end
 
   nls.register {
+    -- order matters
     sources = {
       my_nls_python,
-      -- nls.builtins.formatting.isort.with { extra_args = { "--profile", "black" } },
+      nls.builtins.formatting.isort.with { extra_args = { "--profile", "black" } },
     },
   }
 end
