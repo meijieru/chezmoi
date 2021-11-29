@@ -14,7 +14,7 @@ local function dap_install_config()
         type = "python",
         request = "launch",
         name = "Launch file",
-        program = "${workspaceFolder}/${file}",
+        program = "${file}",
         pythonPath = function()
           local venv_path = os.getenv "VIRTUAL_ENV"
           if venv_path then
