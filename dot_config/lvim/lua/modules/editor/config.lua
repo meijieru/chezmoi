@@ -6,6 +6,8 @@ end
 
 function config.matchup()
   vim.g.matchup_matchparen_offscreen = { method = "popup" }
+  -- enable ds%, cs%
+  vim.g.matchup_surround_enabled = true
 end
 
 function config.lastplace()
