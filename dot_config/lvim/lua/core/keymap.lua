@@ -112,26 +112,18 @@ function M.setup_lvim()
   for _, key in ipairs { "/" } do
     lvim.builtin.which_key.vmappings[key] = nil
   end
-  for _, key in ipairs { "w", "q", "/", "c", "f" } do
+  for _, key in ipairs { "w", "q", "/", "c", "f", "h" } do
     lvim.builtin.which_key.mappings[key] = nil
   end
   lvim.builtin.which_key.mappings["s"] = nil
+  lvim.builtin.which_key.mappings["b"] = nil
 
   lvim.builtin.which_key.mappings["f"] = {
     name = "Find",
     b = { "<cmd>lua require('telescope.builtin').buffers()<cr>", "Find Buffer" },
-    -- FIXME(meijieru): duplicate with lsp block
     -- FIXME(meijieru): function, bufTag
-    d = {
-      name = "Document-Wise Find",
-      d = { "<cmd>Telescope lsp_document_diagnostics<cr>", "Diagnostics" },
-      s = { "<cmd>Telescope lsp_document_symbols<cr>", "Symbols" },
-    },
-    w = {
-      name = "Workspace-Wise Find",
-      d = { "<cmd>Telescope lsp_workspace_diagnostics<cr>", "Diagnostics" },
-      s = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Symbols" },
-    },
+    d = { "<cmd>Telescope lsp_document_symbols<cr>", "Symbols" },
+    w = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Workspace Symbols" },
     c = { "<cmd>Telescope command_history<cr>", "Find Commands History" },
     s = { "<cmd>Telescope search_history<cr>", "Find Search History" },
     S = {
@@ -159,7 +151,7 @@ function M.setup_lvim()
   lvim.builtin.which_key.mappings.g.v = { "<cmd>:Gvdiff<cr>", "Git Diff" }
   lvim.builtin.which_key.mappings.g.g = { "<cmd>call auxlib#toggle_fugitive()<cr>", "Toggle git status" }
 
-  lvim.builtin.which_key.mappings["un"] = { ":UndotreeToggle<cr>", "UndotreeToggle" }
+  lvim.builtin.which_key.mappings["u"] = { "<cmd>UndotreeToggle<cr>", "Undotree" }
 
   lvim.builtin.which_key.mappings["dT"] = { "<cmd>lua require'dapui'.toggle()<cr>", "Toggle UI" }
 
