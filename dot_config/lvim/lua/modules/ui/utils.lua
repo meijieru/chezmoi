@@ -13,7 +13,7 @@ function M.use_colorschemes(plugins, url, colors, extras)
     extras = { extras, "table", true },
   }
 
-  local opts = { cond = M.is_used_colorschemes(colors) }
+  local opts = {}
   if extras then
     opts = vim.tbl_extend("error", opts, extras)
   end
