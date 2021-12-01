@@ -48,6 +48,11 @@ function M.setup_lualine()
     end
   end
 
+  local filename = vim.tbl_extend("force", components.filename, {
+    path = 1,
+    shorting_target = 150,
+  })
+  lvim.builtin.lualine.sections.lualine_b = { components.branch, filename }
   scrollbar.color = safe_get_palettes(lvim.colorscheme)
   lvim.builtin.lualine.sections.lualine_z = { scrollbar }
 
