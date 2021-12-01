@@ -162,6 +162,12 @@ function M.setup_lvim()
   lvim.builtin.which_key.mappings["un"] = { ":UndotreeToggle<cr>", "UndotreeToggle" }
 
   lvim.builtin.which_key.mappings["dT"] = { "<cmd>lua require'dapui'.toggle()<cr>", "Toggle UI" }
+
+  -- lsp
+  lvim.lsp.buffer_mappings.normal_mode["gr"] = {
+    "<cmd>lua vim.lsp.buf.references({ includeDeclaration = false })<cr>",
+    "Goto References",
+  }
 end
 
 function M.setup_asynctasks()
