@@ -21,7 +21,7 @@ def cleanup(config: dict, root_dir: str) -> None:
         if not os.path.exists(fpath):
             continue
 
-        if os.path.isdir(fpath):
+        if os.path.isdir(fpath) and not os.path.islink(fpath):
             shutil.rmtree(fpath)
         else:
             os.remove(fpath)
@@ -32,22 +32,23 @@ def cleanup(config: dict, root_dir: str) -> None:
     if len(files_to_warn):
         logging.warning("Check: {}".format(files_to_warn))
 
-    for src, dst in config["move"].items():
-        src = get_files(src)
+    for pattern, dst in config["move"].items():
+        src = get_files(pattern)
         if len(src) == 0:
             continue
         elif len(src) == 1:
             src = src[0]
         else:
-            raise RuntimeError("{} should not be pattern")
+            raise RuntimeError("{} should not be pattern".format(pattern))
 
-        if not os.path.isabs(os.path.expandvars(dst)):
-            logging.warning("Skip {}, must be abs path".format(dst))
         dst = os.path.expandvars(dst)
-        logging.info("Renaming {} -> {}".format(src, dst))
-        if os.path.exists(dst):
-            logging.warning("Skip {}, dst exists".format(dst))
+        msg = "{} -> {}".format(src, dst)
+        if not os.path.isabs(dst):
+            logging.warning("Skip {}, must be abs path".format(msg))
+        elif os.path.exists(dst):
+            logging.warning("Skip {}, dst exists".format(msg))
         else:
+            logging.info("Renaming {}".format(msg))
             os.rename(src, dst)
 
 
