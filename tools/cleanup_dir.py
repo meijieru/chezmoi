@@ -45,7 +45,10 @@ def cleanup(config: dict, root_dir: str) -> None:
             logging.warning("Skip {}, must be abs path".format(dst))
         dst = os.path.expandvars(dst)
         logging.info("Renaming {} -> {}".format(src, dst))
-        os.rename(src, os.path.expandvars(dst))
+        if os.path.exists(dst):
+            logging.warning("Skip {}, dst exists".format(dst))
+        else:
+            os.rename(src, dst)
 
 
 if __name__ == "__main__":

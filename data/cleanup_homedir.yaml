@@ -3,6 +3,7 @@ delete:
   - .android
   - .bash_*
   - .bashrc
+  - .profile
   - .gemrc
   - .npmrc
   - .vimrc
@@ -30,11 +31,14 @@ delete:
   - .zshrc.config
   - .p10k.zsh
   - .lesshst
+  - .dotfiles
+  - .ycm_extra_conf.py
 
 move:
   .wget-hsts: $XDG_STATE_HOME/wget-hsts
   .zlua: $XDG_STATE_HOME/zlua
   .zsh_history: $XDG_STATE_HOME/zsh/history
+  .zcomet: $ZCOMET_DIR
 
 check:
   - .conda
