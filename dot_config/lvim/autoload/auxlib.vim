@@ -8,15 +8,6 @@ function! auxlib#toggle_loclist()
     lopen
 endfunction
 
-function! auxlib#toggle_colorcolumn()
-    if &colorcolumn ==# ''
-        let &colorcolumn=join(range(81,999),',')
-        let &colorcolumn='81,'.join(range(121,999),',')
-    else
-        let &colorcolumn=''
-    endif
-endfunction
-
 function! auxlib#save_mappings(keys, mode, global) abort
     " https://vi.stackexchange.com/a/7735
     let mappings = {}
@@ -87,11 +78,3 @@ function! auxlib#toggle_fugitive() abort
         Git
     endtry
 endfunction
-
-" https://stackoverflow.com/a/1467830/4453332
-function! auxlib#syn_stack()
-    if !exists("*synstack")
-        return
-    endif
-    echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc

@@ -191,7 +191,7 @@ function M.setup_basic()
   mapx.nnoremap("]l", ":lnext<CR>", "Next Loclist")
   mapx.nnoremap("[l", ":lprev<CR>", "Previous Loclist")
 
-  mapx.nnoremap("<F1>", "<cmd>call auxlib#toggle_colorcolumn()<cr>", "Toggle Colorcolumn")
+  mapx.nnoremap("<F1>", "<cmd>lua require('modules.ui.utils').toggle_colorcolumn()<cr>", "Toggle Colorcolumn")
   mapx.nnoremap("m<space>", "<cmd>delmarks!<cr>", "Delete All Marks")
   mapx.nnoremap("-", "<cmd>NvimTreeOpen<cr>", "Open Directory")
   -- TODO(meijieru)
