@@ -1,0 +1,48 @@
+delete:
+  - .LfCache
+  - .android
+  - .bash_*
+  - .bashrc
+  - .gemrc
+  - .npmrc
+  - .vimrc
+  - .viminfo
+  - .vimspector.log
+  - .wakatime*
+  - .yarn/
+  - .yarnrc
+  - .zcompdump*
+  - .*.zwc
+  - .gitconfig
+  - .gitignore
+  - .node_repl_history
+  - .python_history
+  - .aria2
+  - .ackrc
+  - .tmux.conf
+  - .config/QtProject.conf
+  - .latexmkrc
+  - .inputrc
+  - .aliases.sh
+  - .exports.sh
+  - .extra.sh
+  - .functions.sh
+  - .zshrc.config
+  - .p10k.zsh
+  - .lesshst
+
+move:
+  .wget-hsts: $XDG_STATE_HOME/wget-hsts
+  .zlua: $XDG_STATE_HOME/zlua
+  .zsh_history: $XDG_STATE_HOME/zsh/history
+
+check:
+  - .conda
+
+  - .cargo
+  - .cache
+  - .ipython
+  - .keras/
+  - .gnupg
+    
+  - ~/lib/anaconda
