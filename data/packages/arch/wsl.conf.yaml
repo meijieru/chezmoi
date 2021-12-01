@@ -55,3 +55,4 @@ yay:
   - lsyncd
   - stylua
   - cmake-format
+  - diffsitter-bin

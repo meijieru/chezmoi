@@ -1,5 +1,5 @@
 *.bak
-data/tmp
+data/tmp/*
 
 # ---> Python
 # Byte-compiled / optimized / DLL files

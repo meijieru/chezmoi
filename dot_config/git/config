@@ -27,7 +27,7 @@
 	# https://stackoverflow.com/questions/2517339/how-to-restore-the-permissions-of-files-and-directories-within-git-if-they-have
 	permission-reset = !git diff -p -R --no-color | grep -E \"^(diff|(old|new) mode)\" --color=never | git apply
 	verbose = "!f() { git icdiff ${1:-HEAD}^1 $1 ; }; f"
-    rl = rev-list HEAD --oneline
+	rl = rev-list HEAD --oneline
 
 [apply]
 	# Detect whitespace errors when applying a patch
@@ -45,7 +45,9 @@
 [difftool]
 	prompt = true
 [difftool "nvimdiff"]
-    cmd = "lvim -d \"$LOCAL\" \"$REMOTE\""
+	cmd = "lvim -d \"$LOCAL\" \"$REMOTE\""
+[difftool "diffsitter"]
+	cmd = diffsitter "$LOCAL" "$REMOTE"
 [color]
 	# Use colors in Git commands that are capable of colored output when outputting to the terminal
 	ui = auto
