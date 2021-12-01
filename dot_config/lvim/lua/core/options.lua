@@ -12,6 +12,7 @@ vim.o.tabstop = 4
 vim.o.showbreak = "↳ "
 vim.o.diffopt = "filler,iwhite,internal,algorithm:patience" -- use patience diff algorithm
 vim.o.lazyredraw = true
+vim.o.colorcolumn = ""
 
 -- lvim
 lvim.log.level = "warn"
