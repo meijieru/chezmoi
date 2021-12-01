@@ -48,7 +48,14 @@ export XAUTHORITY=$HOME/.Xauthority
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_DATA_HOME=$HOME/.local/share
+export XDG_STATE_HOME=$HOME/.local/state
 
+export _ZL_DATA=$XDG_STATE_HOME/zlua
+export WGETRC=$XDG_CONFIG_HOME/wgetrc
+export GNUPGHOME="$XDG_DATA_HOME"/gnupg
+export INPUTRC=$XDG_CONFIG_HOME/readline/inputrc
+export ACKRC=$XDG_CONFIG_HOME/ack/ackrc
+export WAKATIME_HOME=$XDG_CONFIG_HOME/wakatime
 # export ZDOTDIR=$XDG_CONFIG_HOME/zsh
 export IPYTHONDIR=$XDG_CONFIG_HOME/ipython
 export JUPYTER_CONFIG_DIR=$XDG_CONFIG_HOME/jupyter

@@ -13,14 +13,14 @@ import tempfile
 from typing import Dict, Final, List
 
 # Expects a file of the format output by sha256sum (text mode)
-CHECKSUM_FILE: Final = ".local_checksum"
+CHECKSUM_FILE: Final = "data/tmp/local_checksum"
 
 # Global mapping between files/scripts
 DEPENDENCIES_MAPS = [
     {
         "script": "./tools/install_packages.sh.tmpl",
         # "dependent_files": [],
-        "dependent_dirs": ["./tools/packages"],
+        "dependent_dirs": ["./data/packages"],
     },
 ]
 

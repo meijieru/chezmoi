@@ -1,7 +1,7 @@
 #!/bin/bash
 
 install () {
-	fname={{ .chezmoi.sourceDir }}/tools/packages/$1
+	fname={{ .chezmoi.sourceDir }}/data/packages/$1
 	$2 python3 {{ .chezmoi.sourceDir }}/tools/install-package.py ${fname}
 }
 

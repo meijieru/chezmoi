@@ -37,6 +37,7 @@ alias zb='z -b'
 alias zbi='z -b -i' # jump to parent dir
 alias zbf='z -b -I' # jump to parent dir using fzf
 alias rm='echo "This is not the command you are looking for."; false'
+alias wget='wget --hsts-file="$XDG_STATE_HOME/wget-hsts"'
 
 alias -s gz='tar -xzvf'
 alias -s tgz='tar -xzvf'
