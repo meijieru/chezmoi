@@ -12,5 +12,6 @@ lang["iamcco/markdown-preview.nvim"] = {
 }
 
 lang["lervag/vimtex"] = { ft = { "tex" }, disable = true }
+lang["teal-language/vim-teal"] = { ft = { "teal" } }
 
 return lang
