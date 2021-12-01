@@ -12,15 +12,6 @@ utils.use_colorschemes(
 utils.use_colorschemes(ui, "sainnhe/gruvbox-material", { "gruvbox-material" })
 utils.use_colorschemes(ui, "sainnhe/edge", { "edge" })
 utils.use_colorschemes(ui, "sainnhe/everforest", { "everforest" })
-utils.use_colorschemes(ui, "LunarVim/Colorschemes", {
-  "aurora",
-  "codemonkey",
-  "darkplus",
-  "onedarker",
-  "spacedark",
-  "system76",
-  "tomorrow",
-})
 
 ui["lukas-reineke/indent-blankline.nvim"] = {
   event = "BufRead",
