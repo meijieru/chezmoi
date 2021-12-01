@@ -19,11 +19,11 @@ function! MyFoldText()
 
     if &foldmethod ==? "expr" && &foldexpr ==? "nvim_treesitter#foldexpr()"
         " Only use for treesitter
-        let str = indentation . startLineText . "..." . endLineText . spaces
+        let str = indentation . startLineText . " ... " . endLineText . spaces
     else
-        let str = indentation . startLineText . "..." . spaces
+        let str = indentation . startLineText . " ... " . spaces
     endif
-    return str
+    return ">" . str
 endfunction
 
 " Custom display for text when folding
