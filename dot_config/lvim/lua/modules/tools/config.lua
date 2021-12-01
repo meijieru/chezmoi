@@ -66,4 +66,6 @@ function config.telescope_frecency()
   require("telescope").load_extension "frecency"
 end
 
+require("modules.tools.lvim").setup()
+
 return config
