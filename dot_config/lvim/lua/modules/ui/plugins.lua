@@ -1,14 +1,26 @@
 local ui = {}
+
 local conf = require "modules.ui.config"
+local utils = require "modules.ui.utils"
 
-ui["https://gitea.meijieru.com/meijieru/edge_lush"] = {
-  requires = { "rktjmp/lush.nvim" },
-}
-
-ui["sainnhe/gruvbox-material"] = { opt = false }
--- ui["sainnhe/edge"] = { opt = false }
-ui["sainnhe/everforest"] = { opt = false }
-ui["LunarVim/Colorschemes"] = {}
+utils.use_colorschemes(
+  ui,
+  "https://gitea.meijieru.com/meijieru/edge_lush",
+  { "edge_lush" },
+  { requires = { "rktjmp/lush.nvim" } }
+)
+utils.use_colorschemes(ui, "sainnhe/gruvbox-material", { "gruvbox-material" })
+utils.use_colorschemes(ui, "sainnhe/edge", { "edge" })
+utils.use_colorschemes(ui, "sainnhe/everforest", { "everforest" })
+utils.use_colorschemes(ui, "LunarVim/Colorschemes", {
+  "aurora",
+  "codemonkey",
+  "darkplus",
+  "onedarker",
+  "spacedark",
+  "system76",
+  "tomorrow",
+})
 
 ui["lukas-reineke/indent-blankline.nvim"] = {
   event = "BufRead",
