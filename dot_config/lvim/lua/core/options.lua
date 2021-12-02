@@ -13,6 +13,8 @@ vim.o.showbreak = "↳ "
 vim.o.diffopt = "filler,iwhite,internal,algorithm:patience" -- use patience diff algorithm
 vim.o.lazyredraw = true
 vim.o.colorcolumn = ""
+vim.o.grepprg = [[rg --hidden --glob "!.git" --no-heading --smart-case --vimgrep --follow $*]]
+vim.o.grepformat = "%f:%l:%c:%m"
 
 -- lvim
 lvim.log.level = "warn"
