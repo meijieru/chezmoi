@@ -55,6 +55,7 @@ function M.setup_sniprun()
 end
 
 function M.setup_hop()
+  mapx.nname("<leader><leader>", "Hop")
   local mappings = {
     w = { ":HopWordAC<CR>", "Forward Words" },
     b = { ":HopWordBC<CR>", "Backward Words" },
