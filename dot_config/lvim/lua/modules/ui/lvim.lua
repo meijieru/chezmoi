@@ -1,5 +1,7 @@
 local M = {}
 
+local Log = require "lvim.core.log"
+
 function M.setup_lualine()
   local background = vim.opt.background:get()
   local components = require "lvim.core.lualine.components"
@@ -76,12 +78,35 @@ function M.setup_lualine()
   lvim.builtin.lualine.options.disabled_filetypes = { "toggleterm", "dashboard", "terminal", "NvimTree", "Outline" }
 end
 
-function M.setup()
-  lvim.builtin.bufferline.active = false
+function M.setup_nvimtree()
+  local safe_load = require("core.utils").safe_load
+  local status_ok, nvim_tree_config = safe_load "nvim-tree.config"
+  if not status_ok then
+    return
+  end
+  local tree_cb = nvim_tree_config.nvim_tree_callback
+
+  lvim.builtin.nvimtree.show_icons.git = 1
+  lvim.builtin.nvimtree.quit_on_open = 1
 
   lvim.builtin.nvimtree.setup.view.side = "left"
-  lvim.builtin.nvimtree.show_icons.git = 0
-  lvim.builtin.nvimtree.quit_on_open = 1
+  lvim.builtin.nvimtree.setup.view.mappings.list = {
+    { key = "d", cb = tree_cb "trash" },
+  }
+
+  local trash_cmd = "trash-put"
+  if vim.fn.executable(trash_cmd) then
+    lvim.builtin.nvimtree.setup.trash = {
+      cmd = trash_cmd,
+      require_confirm = true,
+    }
+  else
+    Log:warn(trash_cmd .. " not found")
+  end
+end
+
+function M.setup()
+  lvim.builtin.bufferline.active = false
 
   -- lvim.builtin.dashboard.active = true
   lvim.builtin.alpha.mode = "startify"
@@ -93,6 +118,7 @@ function M.setup()
   lvim.builtin.terminal.execs = {}
 
   M.setup_lualine()
+  M.setup_nvimtree()
 end
 
 return M
