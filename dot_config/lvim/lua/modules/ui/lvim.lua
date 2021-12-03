@@ -105,6 +105,12 @@ function M.setup_nvimtree()
   end
 end
 
+function M.setup_notify()
+  lvim.builtin.notify.active = true
+  lvim.builtin.notify.opts.stages = "fade_in_slide_out"
+  vim.notify = require("notify")
+end
+
 function M.setup()
   lvim.builtin.bufferline.active = false
 
@@ -119,6 +125,7 @@ function M.setup()
 
   M.setup_lualine()
   M.setup_nvimtree()
+  M.setup_notify()
 end
 
 return M

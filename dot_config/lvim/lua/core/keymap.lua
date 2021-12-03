@@ -134,6 +134,7 @@ function M.setup_lvim()
     f = { "<cmd>Telescope find_files<cr>", "Find File" },
     h = { "<cmd>Telescope help_tags<cr>", "Find Help" },
     M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
+    n = { "<cmd>lua require('telescope').extensions.notify.notify()<cr>", "Notifications" },
     r = { "<cmd>Telescope frecency<cr>", "Open Recent File" },
     R = { "<cmd>Telescope registers<cr>", "Registers" },
     g = { "<cmd>Telescope live_grep<cr>", "Grep" },
