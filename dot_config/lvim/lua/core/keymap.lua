@@ -149,7 +149,7 @@ function M.setup_lvim()
   lvim.builtin.which_key.mappings.g.j = nil
   lvim.builtin.which_key.mappings.g.k = nil
   lvim.builtin.which_key.mappings.g.d = nil
-  lvim.builtin.which_key.mappings.g.v = { "<cmd>:Gvdiff<cr>", "Git Diff" }
+  lvim.builtin.which_key.mappings.g.v = { "<cmd>Gtabedit <Bar>Gdiffsplit<CR>", "Git Diff" }
   lvim.builtin.which_key.mappings.g.g = { "<cmd>call auxlib#toggle_fugitive()<cr>", "Toggle git status" }
 
   lvim.builtin.which_key.mappings["u"] = { "<cmd>UndotreeToggle<cr>", "Undotree" }

@@ -22,6 +22,7 @@ tools["tpope/vim-fugitive"] = {
     "GRename",
     "Glgrep",
     "Gedit",
+    "Gtabedit",
   },
   ft = { "fugitive" },
   fn = { "FugitiveGitDir" },
