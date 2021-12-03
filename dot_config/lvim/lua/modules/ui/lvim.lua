@@ -1,6 +1,7 @@
 local M = {}
 
 local Log = require "lvim.core.log"
+local utils = require "core.utils"
 
 function M.setup_lualine()
   local background = vim.opt.background:get()
@@ -27,7 +28,6 @@ function M.setup_lualine()
   end
 
   local function _my_palettes(name)
-    local utils = require "core.utils"
     if name == "edge_lush" then
       local palette = require "edge_lush.palette"
       return vim.tbl_map(function(hsl)
@@ -108,7 +108,11 @@ end
 function M.setup_notify()
   lvim.builtin.notify.active = true
   lvim.builtin.notify.opts.stages = "fade_in_slide_out"
-  vim.notify = require("notify")
+  local status_ok, notify = utils.safe_load "notify"
+  if not status_ok then
+    return
+  end
+  vim.notify = notify
 end
 
 function M.setup()
