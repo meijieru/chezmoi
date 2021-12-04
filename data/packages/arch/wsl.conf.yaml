@@ -5,6 +5,7 @@ pacman:
   - xclip
   - zsh
   - lua
+  - luarocks
   - etckeeper
   - rclone
   - tldr
