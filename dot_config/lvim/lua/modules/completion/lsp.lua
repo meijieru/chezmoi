@@ -24,4 +24,6 @@ function M.lsp_config(server_name, automatic_servers_installation)
   end
 end
 
+function M.setup() end
+
 return M

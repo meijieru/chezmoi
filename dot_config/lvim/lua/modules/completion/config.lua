@@ -104,4 +104,6 @@ if lvim.builtin.telescope.active then
   lvim.builtin.telescope.defaults.mappings.n["<C-t>"] = _open_with_trouble
 end
 
+require("modules.completion.lsp").setup()
+
 return config
