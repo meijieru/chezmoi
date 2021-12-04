@@ -34,4 +34,21 @@ function M.is_dap_debugger_installed(name)
   return true
 end
 
+function M.asyncrun_notify(prefix)
+  prefix = prefix or "AsyncRun: "
+  local status = vim.g.asyncrun_status
+  local info_level = {
+    running = "info",
+    success = "info",
+    failure = "warn",
+  }
+  vim.notify(prefix .. status, info_level[status])
+end
+
+function M.chezmoi_apply()
+  vim.cmd [[
+    AsyncRun -post=lua\ require("core.utils").asyncrun_notify() -silent -raw=1 chezmoi apply --source-path %
+  ]]
+end
+
 return M

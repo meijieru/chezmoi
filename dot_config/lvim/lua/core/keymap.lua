@@ -166,10 +166,11 @@ end
 
 function M.setup_asynctasks()
   local mappings = {
-    ["<F5>"] = { ":AsyncTask file-run<cr>", "File Run" },
-    ["<F6>"] = { ":AsyncTask file-build<cr>", "File Build" },
-    ["<f7>"] = { ":AsyncTask project-run<cr>", "Project Run" },
-    ["<f8>"] = { ":AsyncTask project-build<cr>", "Project Build" },
+    ["<F5>"] = { "<cmd>AsyncTask file-run<cr>", "File Run" },
+    ["<F6>"] = { "<cmd>AsyncTask file-build<cr>", "File Build" },
+    ["<f7>"] = { "<cmd>AsyncTask project-run<cr>", "Project Run" },
+    ["<f8>"] = { "<cmd>AsyncTask project-build<cr>", "Project Build" },
+    ["<f10>"] = { "<cmd>call QuickFixToggle()<cr>", "Toggle Quickfix" },
   }
   which_key.register(mappings, { silent = true })
 end
@@ -194,8 +195,6 @@ function M.setup_basic()
   mapx.nnoremap("<F1>", "<cmd>lua require('modules.ui.utils').toggle_colorcolumn()<cr>", "Toggle Colorcolumn")
   mapx.nnoremap("m<space>", "<cmd>delmarks!<cr>", "Delete All Marks")
   mapx.nnoremap("-", "<cmd>NvimTreeOpen<cr>", "Open Directory")
-  -- TODO(meijieru)
-  -- ["<leader>tq"] = ":call QuickFixToggle()<CR>",
 
   mapx.vnoremap("<", "<gv")
   mapx.vnoremap(">", ">gv")
