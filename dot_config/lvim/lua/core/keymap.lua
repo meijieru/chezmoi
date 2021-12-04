@@ -155,8 +155,6 @@ function M.setup_lvim()
 
   lvim.builtin.which_key.mappings["u"] = { "<cmd>UndotreeToggle<cr>", "Undotree" }
 
-  lvim.builtin.which_key.mappings["dT"] = { "<cmd>lua require'dapui'.toggle()<cr>", "Toggle UI" }
-
   -- lsp
   lvim.lsp.buffer_mappings.normal_mode["gr"] = {
     "<cmd>lua vim.lsp.buf.references({ includeDeclaration = false })<cr>",
@@ -226,6 +224,13 @@ function M.setup_zenmode()
   mapx.nnoremap("<leader>zt", "<cmd>Twilight<cr>", "Toggle Twilight")
 end
 
+function M.setup_dap()
+  mapx.vname("<leader>d", "Debug")
+  mapx.vnoremap("<leader>de", "<Cmd>lua require('dapui').eval()<cr>", "Eval Expression")
+  mapx.nnoremap("<leader>df", "<Cmd>lua require('dapui').float_element()<cr>", "Float Element")
+  mapx.nnoremap("<leader>dT", "<cmd>lua require('dapui').toggle()<cr>", "Toggle UI")
+end
+
 function M.post_setup()
   -- NOTE: run with VimEnter
   Log:debug "Keymaps post_setup"
@@ -242,5 +247,6 @@ M.setup_gitsigns()
 M.setup_asynctasks()
 M.setup_sniprun()
 M.setup_zenmode()
+M.setup_dap()
 
 return M
