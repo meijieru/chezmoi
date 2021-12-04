@@ -78,3 +78,5 @@
 	options = --highlight --line-numbers
 [pull]
 	rebase = true
+[fetch]
+	prune = true
