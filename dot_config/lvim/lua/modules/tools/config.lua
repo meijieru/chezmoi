@@ -55,9 +55,10 @@ end
 
 function config.filtype()
   require("filetype").setup {
-    function_literal = {
-      -- TODO(meijieru): set template ft
-      -- template = function () end
+    overrides = {
+      extensions = {
+        tl = "teal",
+      },
     },
   }
 end
