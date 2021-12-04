@@ -137,7 +137,6 @@ function M.setup_lvim()
     n = { "<cmd>lua require('telescope').extensions.notify.notify()<cr>", "Notifications" },
     r = { "<cmd>Telescope frecency<cr>", "Open Recent File" },
     R = { "<cmd>Telescope registers<cr>", "Registers" },
-    g = { "<cmd>Telescope live_grep<cr>", "Grep" },
     k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
     C = { "<cmd>Telescope commands<cr>", "Commands" },
     P = { "<cmd>Telescope projects<cr>", "Projects" },
@@ -146,6 +145,7 @@ function M.setup_lvim()
     l = { "<cmd>lua require('telescope.builtin').loclist()<cr>", "Find Loclist" },
     q = { "<cmd>lua require('telescope.builtin').quickfix()<cr>", "Find QuickFix" },
   }
+  mapx.nnoremap('<leader>fg', "'<cmd>Telescope live_grep<cr>' . expand('<cword>')", mapx.expr, "Grep")
 
   lvim.builtin.which_key.mappings.g.j = nil
   lvim.builtin.which_key.mappings.g.k = nil
