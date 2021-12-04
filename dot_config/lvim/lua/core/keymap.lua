@@ -150,8 +150,6 @@ function M.setup_lvim()
   lvim.builtin.which_key.mappings.g.j = nil
   lvim.builtin.which_key.mappings.g.k = nil
   lvim.builtin.which_key.mappings.g.d = nil
-  lvim.builtin.which_key.mappings.g.v = { "<cmd>Gtabedit <Bar>Gdiffsplit<CR>", "Git Diff" }
-  lvim.builtin.which_key.mappings.g.g = { "<cmd>call auxlib#toggle_fugitive()<cr>", "Toggle git status" }
 
   lvim.builtin.which_key.mappings["u"] = { "<cmd>UndotreeToggle<cr>", "Undotree" }
 
@@ -236,6 +234,20 @@ function M.post_setup()
   Log:debug "Keymaps post_setup"
 end
 
+function M.setup_git()
+  local function git_diff()
+    local wininfo = vim.fn.getwininfo()
+    if #wininfo == 1 then
+      vim.cmd "Gvdiff"
+    else
+      vim.cmd "Gtabedit | Gdiffsplit"
+    end
+  end
+
+  mapx.nnoremap("<leader>gd", git_diff, "Git Diff")
+  mapx.nnoremap("<leader>gg", "<cmd>call auxlib#toggle_fugitive()<cr>", "Toggle Status")
+end
+
 M.setup_lvim()
 M.setup_basic()
 M.setup_trouble()
@@ -248,5 +260,6 @@ M.setup_asynctasks()
 M.setup_sniprun()
 M.setup_zenmode()
 M.setup_dap()
+M.setup_git()
 
 return M
