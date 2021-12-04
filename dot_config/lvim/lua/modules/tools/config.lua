@@ -67,6 +67,12 @@ function config.telescope_frecency()
   require("telescope").load_extension "frecency"
 end
 
+local function setup_drop()
+  vim.fn.setenv("VIM_EXE", "lvim")
+  vim.g.terminal_edit = "edit"
+end
+
+setup_drop()
 require("modules.tools.lvim").setup()
 
 return config
