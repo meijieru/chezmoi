@@ -67,8 +67,9 @@
 [merge]
 	# Include summaries of merged commits in newly created merge commit messages
 	log = true
-[mergetool]
-	path = nvim
+	tool = nvimmerge
+[mergetool "nvimmerge"]
+	cmd = lvim -d "$LOCAL" "$MERGED" "$REMOTE" -c 'wincmd w' -c 'wincmd J'
 [push]
 	default = matching
 [init]
