@@ -7,9 +7,9 @@ function config.lsp_signature()
       -- border = "rounded",
       border = "none",
     },
-    floating_window = false, -- show hint in a floating window, set to false for virtual text only mode
+    floating_window = true, -- show hint in a floating window, set to false for virtual text only mode
     floating_window_above_cur_line = true, -- try to place the floating above the current line when possible Note:
-    hint_enable = true, -- virtual hint enable
+    hint_enable = false, -- virtual hint enable
     hint_prefix = "🐼 ", -- Panda for parameter
 
     doc_lines = 0,
