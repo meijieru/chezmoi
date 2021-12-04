@@ -77,4 +77,4 @@
 [icdiff]
 	options = --highlight --line-numbers
 [pull]
-	ff = only
+	rebase = true
