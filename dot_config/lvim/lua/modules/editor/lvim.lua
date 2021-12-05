@@ -57,6 +57,9 @@ function M.setup()
   lvim.builtin.treesitter.rainbow.enable = true
 
   lvim.builtin.autopairs.on_config_done = function(autopairs)
+    -- endwise from: https://github.com/windwp/nvim-autopairs/wiki/Endwise
+    -- autopairs.add_rules(require('nvim-autopairs.rules.endwise-lua'))
+
     -- Pick from: https://github.com/windwp/nvim-autopairs/wiki/Custom-rules#add-spaces-between-parentheses
     local Rule = require "nvim-autopairs.rule"
     autopairs.add_rules {
