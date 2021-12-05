@@ -60,7 +60,7 @@ tools["dstein64/vim-startuptime"] = {
 tools["michaelb/sniprun"] = {
   run = { "bash install.sh" },
   keys = { "<Plug>SnipRun", "<Plug>SnipRunOperator" },
-  cmd = { "SnipRun", "'<,'>SnipRun" },
+  cmd = { "SnipRun" },
   config = conf.sniprun,
   disable = false,
 }
@@ -71,7 +71,7 @@ tools["norcalli/nvim-colorizer.lua"] = {
   disable = false,
 }
 
-tools["wakatime/vim-wakatime"] = {}
+tools["wakatime/vim-wakatime"] = { event = "BufRead" }
 tools["nathom/filetype.nvim"] = {
   config = conf.filtype,
 }

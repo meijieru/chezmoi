@@ -8,7 +8,6 @@ editor["machakann/vim-sandwich"] = { keys = { "s" }, disable = true }
 editor["tpope/vim-sleuth"] = {}
 editor["tpope/vim-rsi"] = {}
 editor["tpope/vim-eunuch"] = {}
-editor["p00f/nvim-ts-rainbow"] = {}
 editor["bronson/vim-visual-star-search"] = {}
 
 editor["phaazon/hop.nvim"] = {
@@ -55,10 +54,12 @@ editor["junegunn/vim-easy-align"] = {
   cmd = "EasyAlign",
 }
 editor["andymass/vim-matchup"] = {
+  event = "CursorMoved",
   config = conf.matchup,
 }
 
 editor["ethanholz/nvim-lastplace"] = {
+  event = "BufRead",
   config = conf.lastplace,
   disable = false,
 }
@@ -69,10 +70,22 @@ editor["rcarriga/nvim-dap-ui"] = {
   requires = { "mfussenegger/nvim-dap" },
 }
 
-editor["nvim-treesitter/nvim-treesitter-textobjects"] = {}
-editor["p00f/nvim-ts-rainbow"] = {}
-editor["nvim-treesitter/playground"] = { event = "BufRead" }
-editor["RRethy/nvim-treesitter-textsubjects"] = {}
+editor["nvim-treesitter/nvim-treesitter-textobjects"] = {
+  event = "BufRead",
+  after = "nvim-treesitter",
+}
+editor["p00f/nvim-ts-rainbow"] = {
+  event = "BufRead",
+  after = "nvim-treesitter",
+}
+editor["nvim-treesitter/playground"] = {
+  cmd = { "TSPlaygroundToggle", "TSHighlightCapturesUnderCursor" },
+  after = "nvim-treesitter",
+}
+editor["RRethy/nvim-treesitter-textsubjects"] = {
+  event = "BufRead",
+  after = "nvim-treesitter",
+}
 
 editor["b0o/mapx.nvim"] = {}
 
