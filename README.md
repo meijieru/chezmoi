@@ -8,6 +8,11 @@ chezmoi init --apply ${REPO}
 ```
 
 To preview the change,
+
 ```sh
 chezmoi apply --dry-run --verbose
 ```
+
+## Neovim
+
+Check [doc](./dot_config/lvim/doc/nvim.md)
