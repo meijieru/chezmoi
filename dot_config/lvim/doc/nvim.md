@@ -24,8 +24,8 @@ To check `packer_compiled.lua`
 To check `opening buffers`, though no time info
 ```vim
 " optional verbose
-:autocmd BufRead,BufReadPre,BufReadPost
-:autocmd BufEnter,BufWinEnter
+:autocmd BufRead,BufEnter
+:autocmd BufWinEnter
 ```
 
 For manually loaded packages using `require("core.utils").load_pack`
