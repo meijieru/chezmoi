@@ -142,9 +142,9 @@ function M.setup_lvim()
     lvim.builtin.which_key.mappings[key] = nil
   end
 
-  lvim.builtin.which_key.mappings.g.j = nil
-  lvim.builtin.which_key.mappings.g.k = nil
-  lvim.builtin.which_key.mappings.g.d = nil
+  for _, key in ipairs { "d", "j", "k" } do
+    lvim.builtin.which_key.mappings.g[key] = nil
+  end
 
   -- lsp
   lvim.builtin.which_key.mappings.l.s = nil

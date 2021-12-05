@@ -1,12 +1,6 @@
 local M = {}
 
-function M.setup()
-  lvim.builtin.project.active = true
-  lvim.builtin.project.patterns = myvim.root_markers
-  lvim.builtin.project.silent_chdir = true
-  -- NOTE(meijieru): lsp sometimes is annoying
-  lvim.builtin.project.detection_methods = { "pattern", "lsp" }
-
+function M.setup_treesitter()
   lvim.builtin.treesitter.highlight.additional_vim_regex_highlighting = false
   lvim.builtin.treesitter.ensure_installed = myvim.plugins.treesitter.ensure_installed
   lvim.builtin.treesitter.incremental_selection = {
@@ -64,7 +58,9 @@ function M.setup()
   }
   lvim.builtin.treesitter.playground.enable = true
   lvim.builtin.treesitter.rainbow.enable = true
+end
 
+function M.setup_autopair()
   lvim.builtin.autopairs.on_config_done = function(autopairs)
     -- endwise from: https://github.com/windwp/nvim-autopairs/wiki/Endwise
     -- autopairs.add_rules(require('nvim-autopairs.rules.endwise-lua'))
@@ -102,6 +98,20 @@ function M.setup()
         :use_key "]",
     }
   end
+end
+
+function M.setup_project()
+  lvim.builtin.project.active = true
+  lvim.builtin.project.patterns = myvim.root_markers
+  lvim.builtin.project.silent_chdir = true
+  -- NOTE(meijieru): lsp sometimes is annoying
+  lvim.builtin.project.detection_methods = { "pattern", "lsp" }
+end
+
+function M.setup()
+  M.setup_treesitter()
+  M.setup_autopair()
+  M.setup_project()
 end
 
 return M
