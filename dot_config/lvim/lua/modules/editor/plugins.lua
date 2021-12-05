@@ -36,6 +36,7 @@ editor["mg979/vim-visual-multi"] = {
 }
 editor["simrat39/symbols-outline.nvim"] = {
   cmd = { "SymbolsOutline", "SymbolsOulineOpen" },
+  setup = conf.symbols_outline,
 }
 
 editor["kana/vim-textobj-user"] = {}
