@@ -96,6 +96,7 @@ end
 function M.setup_lsp()
   mapx.nnoremap("gm", format_range_operator, "Range Format")
   mapx.vnoremap("gm", format_range_operator, "Range Format")
+  mapx.nnoremap("<leader>lt", "<cmd>lua require('modules.completion.lsp').toggle_diagnostics()<cr>", "Toggle Diagnostic")
 end
 
 function M.setup_gitsigns()
@@ -122,9 +123,6 @@ function M.setup_lvim()
   lvim.builtin.which_key.mappings["f"] = {
     name = "Find",
     b = { "<cmd>lua require('telescope.builtin').buffers()<cr>", "Find Buffer" },
-    -- FIXME(meijieru): function, bufTag
-    d = { "<cmd>Telescope lsp_document_symbols<cr>", "Symbols" },
-    w = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Workspace Symbols" },
     c = { "<cmd>Telescope command_history<cr>", "Find Commands History" },
     s = { "<cmd>Telescope search_history<cr>", "Find Search History" },
     S = {

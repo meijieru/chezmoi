@@ -1,4 +1,6 @@
-local M = {}
+local M = {
+  _diagnostics_active = true,
+}
 
 local Log = require "lvim.core.log"
 
@@ -21,6 +23,16 @@ function M.lsp_config(server_name, automatic_servers_installation)
     end
   else
     Log:info(server_name .. " not available")
+  end
+end
+
+function M.toggle_diagnostics()
+  if M._diagnostics_active then
+    vim.diagnostic.disable(0)
+    M._diagnostics_active = false
+  else
+    vim.diagnostic.enable(0)
+    M._diagnostics_active = true
   end
 end
 
