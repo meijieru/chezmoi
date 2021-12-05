@@ -20,5 +20,7 @@ _G.myvim = {
     },
 
     imtoggle = { active = false },
+
+    dressing = { active = true },
   },
 }
