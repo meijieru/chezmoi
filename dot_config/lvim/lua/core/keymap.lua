@@ -132,7 +132,6 @@ function M.setup_lvim()
       "Find snippets",
     },
     f = { "<cmd>Telescope find_files<cr>", "Find File" },
-    h = { "<cmd>Telescope help_tags<cr>", "Find Help" },
     M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
     n = { "<cmd>lua require('telescope').extensions.notify.notify()<cr>", "Notifications" },
     r = { "<cmd>Telescope frecency<cr>", "Open Recent File" },
@@ -146,6 +145,7 @@ function M.setup_lvim()
     q = { "<cmd>lua require('telescope.builtin').quickfix()<cr>", "Find QuickFix" },
   }
   mapx.nnoremap('<leader>fg', "'<cmd>Telescope live_grep<cr>' . expand('<cword>')", mapx.expr, "Grep")
+  mapx.nnoremap('<leader>fh', "'<cmd>Telescope help_tags<cr>' . expand('<cword>')", mapx.expr, "Find Help")
 
   lvim.builtin.which_key.mappings.g.j = nil
   lvim.builtin.which_key.mappings.g.k = nil
