@@ -70,12 +70,14 @@ function M.setup_hop()
   }
   which_key.register(mappings, opts)
 
+  -- stylua: ignore start
   mapx.nnoremap('f', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>")
   mapx.nnoremap('F', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>")
   mapx.onoremap('f', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, inclusive_jump = true })<cr>")
   mapx.onoremap('F', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, inclusive_jump = true })<cr>")
   mapx.onoremap('t', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>")
   mapx.onoremap('T', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>")
+  -- stylua: ignore end
 end
 
 -- https://github.com/neovim/nvim-lspconfig/wiki/User-contributed-tips#range-formatting-with-a-motion
@@ -94,7 +96,11 @@ end
 function M.setup_lsp()
   mapx.nnoremap("gm", format_range_operator, "Range Format")
   mapx.vnoremap("gm", format_range_operator, "Range Format")
-  mapx.nnoremap("<leader>lt", "<cmd>lua require('modules.completion.lsp').toggle_diagnostics()<cr>", "Toggle Diagnostic")
+  mapx.nnoremap(
+    "<leader>lt",
+    "<cmd>lua require('modules.completion.lsp').toggle_diagnostics()<cr>",
+    "Toggle Diagnostic"
+  )
 end
 
 function M.setup_gitsigns()
@@ -140,8 +146,8 @@ function M.setup_lvim()
     l = { "<cmd>lua require('telescope.builtin').loclist()<cr>", "Find Loclist" },
     q = { "<cmd>lua require('telescope.builtin').quickfix()<cr>", "Find QuickFix" },
   }
-  mapx.nnoremap('<leader>fg', "'<cmd>Telescope live_grep<cr>' . expand('<cword>')", mapx.expr, "Grep")
-  mapx.nnoremap('<leader>fh', "'<cmd>Telescope help_tags<cr>' . expand('<cword>')", mapx.expr, "Find Help")
+  mapx.nnoremap("<leader>fg", "'<cmd>Telescope live_grep<cr>' . expand('<cword>')", mapx.expr, "Grep")
+  mapx.nnoremap("<leader>fh", "'<cmd>Telescope help_tags<cr>' . expand('<cword>')", mapx.expr, "Find Help")
 
   lvim.builtin.which_key.mappings.g.j = nil
   lvim.builtin.which_key.mappings.g.k = nil
