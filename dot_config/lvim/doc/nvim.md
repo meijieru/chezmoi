@@ -12,7 +12,7 @@ First run
 :let g:startuptime_exe_args=["-u", expand("~") . "/lib/LunarVim/init.lua", "/etc/fstab"]
 ```
 It will generate the following 
-![image](./utils/media/vim-startuptime.png)
+![image](../utils/media/vim-startuptime.png)
 
 To check `packer_compiled.lua`
 ```vim
