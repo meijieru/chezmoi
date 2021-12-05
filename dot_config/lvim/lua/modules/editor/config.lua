@@ -89,6 +89,46 @@ function config.symbols_outline()
   }
 end
 
+-- TODO: maybe telescope integration
+-- TODO: maybe lualine integration
+function config.aerial()
+  lvim.lsp.on_attach_callback = function(client, bufnr)
+    require("aerial").on_attach(client, bufnr)
+  end
+
+  local opts = {
+    -- Priority list of preferred backends for aerial
+    backends = { "lsp", "treesitter", "markdown" },
+    max_width = 40,
+    min_width = 30,
+
+    lsp = {
+      -- Set to false to not update the symbols when there are LSP errors
+      update_when_errors = false,
+    },
+
+    -- A list of all symbols to display. Set to false to display all symbols.
+    filter_kind = {
+      "Class",
+      "Constructor",
+      "Enum",
+      "Function",
+      "Interface",
+      "Method",
+      "Struct",
+    },
+  }
+
+  local icons = { Collapsed = "" }
+  for _, name in ipairs(opts.filter_kind) do
+    icons[name] = myvim.kind_icons[name]
+    icons[name .. "Collapsed"] = string.format("%s %s", myvim.kind_icons[name], icons.Collapsed)
+  end
+  opts.icons = icons
+
+  vim.g.aerial = opts
+end
+
 require("modules.editor.lvim").setup()
 
 return config

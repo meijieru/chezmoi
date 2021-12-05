@@ -34,9 +34,15 @@ editor["mg979/vim-visual-multi"] = {
   -- keys = { "<Plug>(VM-Find-Under)" },
   config = conf.visual_multi,
 }
+
 editor["simrat39/symbols-outline.nvim"] = {
   cmd = { "SymbolsOutline", "SymbolsOulineOpen" },
   setup = conf.symbols_outline,
+  disable = true,
+}
+editor["stevearc/aerial.nvim"] = {
+  cmd = { "AerialToggle", "AerialPrev", "AerialNext", "AerialPrevUp", "AerialNextUp" },
+  config = conf.aerial,
 }
 
 editor["kana/vim-textobj-user"] = {}

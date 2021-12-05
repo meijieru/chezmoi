@@ -6,7 +6,7 @@ lvim.autocommands.custom_groups = {
   -- { "VimEnter", "*", "lua require('core.keymap').post_setup()" },
 
   -- disable fold
-  { "FileType", "alpha,lspinfo", "setlocal nofoldenable" },
+  { "FileType", "alpha,lspinfo,aerial", "setlocal nofoldenable" },
 
   -- https://github.com/tpope/vim-fugitive/issues/1451#issuecomment-770310789
   { "User", " FugitiveIndex", "nmap <buffer> dt :Gtabedit <Plug><cfile><Bar>Gdiffsplit<CR>" },
