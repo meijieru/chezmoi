@@ -51,4 +51,36 @@ function M.chezmoi_apply()
   ]]
 end
 
+function M.load_pack(package, opts)
+  vim.validate {
+    package = { package, "string" },
+    opts = { opts, "table", true },
+  }
+  opts = opts or {}
+  local profile = myvim.profile.enable or (opts.profile or false)
+  local disable_packer_check = opts.disable_packer_check or false
+
+  -- NOTE: According to the following doc, must be after `packer_compiled.lua` is loaded
+  -- https://github.com/wbthomason/packer.nvim/blob/db3c3e3379613443d94e677a6ac3f61278e36e47/README.md#checking-plugin-statuses
+  if not disable_packer_check and packer_plugins[package] == nil then
+    Log:warn(package .. " doens't exist")
+    return false
+  end
+  if myvim.profile.infos[package] and myvim.profile.infos[package].loaded then
+    Log:debug(package .. " already loaded")
+    return true
+  end
+
+  local infos = { loaded = true }
+  if profile then
+    local start = vim.loop.hrtime()
+    vim.cmd("packadd " .. package)
+    infos["load_time"] = (vim.loop.hrtime() - start) / 1e6
+  else
+    vim.cmd("packadd " .. package)
+  end
+  myvim.profile.infos[package] = infos
+  return true
+end
+
 return M

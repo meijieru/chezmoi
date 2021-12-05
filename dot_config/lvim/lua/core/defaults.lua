@@ -4,6 +4,10 @@ _G.myvim = {
     buftype = { "quickfix", "nofile", "help", "terminal" },
     filetype = { "gitcommit", "gitrebase", "svn", "hgcommit" },
   },
+  profile = {
+    enable = false,
+    infos = {},
+  },
 
   colorscheme_enable_italic = false,
   colorscheme_enable_italic_comment = true,

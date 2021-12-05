@@ -1,15 +1,15 @@
 local M = {}
 
 local Log = require "lvim.core.log"
-local safe_load = require("core.utils").safe_load
+local utils = require "core.utils"
 
-vim.cmd [[packadd which-key.nvim]]
-local status_ok, which_key = safe_load "which-key"
+utils.load_pack("which-key.nvim", { disable_packer_check = true })
+local status_ok, which_key = utils.safe_load "which-key"
 if not status_ok then
   return M
 end
 
-local status_ok, mapx = safe_load "mapx"
+local status_ok, mapx = utils.safe_load "mapx"
 if not status_ok then
   return M
 end
@@ -21,9 +21,7 @@ end
 
 -- HACK
 local function enhance_align()
-  if not packer_plugins["vim-easy-align"].loaded then
-    vim.cmd [[packadd vim-easy-align]]
-  end
+  utils.load_pack "vim-easy-align"
   return escape "<Plug>(EasyAlign)"
 end
 
