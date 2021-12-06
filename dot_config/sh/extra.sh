@@ -27,6 +27,13 @@ elif [[ $(uname -r) =~ WSL2$ ]]; then
 
     # otherwise opengl program may failed
     export LIBGL_ALWAYS_INDIRECT=0
+
+    # xdg-open
+    if [[ -z $BROWSER ]]; then
+        export BROWSER=wsl-open
+    else
+        export BROWSER=$BROWSER:wsl-open
+    fi
 fi
 
 # load torch

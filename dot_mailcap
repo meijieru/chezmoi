@@ -1,0 +1,2 @@
+image/png; wsl-open '%s'
+image/jpeg; wsl-open '%s'
