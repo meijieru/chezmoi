@@ -137,7 +137,7 @@ function M.setup_lvim()
     f = { "<cmd>Telescope find_files<cr>", "Find File" },
     M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
     n = { "<cmd>lua require('telescope').extensions.notify.notify()<cr>", "Notifications" },
-    r = { "<cmd>Telescope frecency<cr>", "Open Recent File" },
+    -- r = { "<cmd>Telescope frecency<cr>", "Open Recent File" },
     R = { "<cmd>Telescope registers<cr>", "Registers" },
     k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
     C = { "<cmd>Telescope commands<cr>", "Commands" },
@@ -149,6 +149,12 @@ function M.setup_lvim()
   }
   mapx.nnoremap("<leader>fg", "'<cmd>Telescope live_grep<cr>' . expand('<cword>')", mapx.expr, "Grep")
   mapx.nnoremap("<leader>fh", "'<cmd>Telescope help_tags<cr>' . expand('<cword>')", mapx.expr, "Find Help")
+  local _keymap, _label = "<leader>fr", "Open Recent File"
+  if myvim.plugins.telescope_frecency.active then
+    mapx.nnoremap(_keymap, "<cmd>Telescope frecency<cr>", _label)
+  else
+    mapx.nnoremap(_keymap, "<cmd>Telescope oldfiles<cr>", _label)
+  end
 
   lvim.builtin.which_key.mappings.g.j = nil
   lvim.builtin.which_key.mappings.g.k = nil

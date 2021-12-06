@@ -54,5 +54,7 @@ _G.myvim = {
     dressing = { active = true },
 
     aerial = { active = true },
+
+    telescope_frecency = { active = false },
   },
 }

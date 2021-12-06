@@ -82,7 +82,7 @@ tools["skywind3000/gutentags_plus"] = { disable = true }
 tools["nvim-telescope/telescope-frecency.nvim"] = {
   config = conf.telescope_frecency,
   requires = { "tami5/sqlite.lua" },
-  disable = false,
+  disable = not myvim.plugins.telescope_frecency.active,
 }
 
 tools["glacambre/firenvim"] = {
