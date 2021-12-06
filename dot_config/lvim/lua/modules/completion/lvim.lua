@@ -9,6 +9,23 @@ function M.setup_cmp()
     select = false,
   }
   lvim.builtin.cmp.formatting.kind_icons = myvim.kind_icons
+
+  local template, source_names =
+    "(%s)", {
+      nvim_lsp = "LSP",
+      emoji = "Emoji",
+      path = "Path",
+      calc = "Calc",
+      cmp_tabnine = "TabN",
+      vsnip = "Snip",
+      luasnip = "Snip",
+      buffer = "Buf",
+      nvim_lua = "Nlua",
+      copilot = "Copl",
+    }
+  lvim.builtin.cmp.formatting.source_names = vim.tbl_map(function(val)
+    return string.format(template, val)
+  end, source_names)
 end
 
 function M.setup_trouble()
