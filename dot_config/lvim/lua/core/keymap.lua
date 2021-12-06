@@ -15,7 +15,25 @@ if not status_ok then
 end
 mapx.setup { global = false, whichkey = true, debug = false }
 
-local function ensure_loaded_wrapper(package, command)
+-- wait for https://github.com/b0o/mapx.nvim/issues/3
+function M.chain(...)
+  local cmds = { ... }
+  local function exe(cmd)
+    if type(cmd) == "function" then
+      cmd()
+    elseif type(cmd) == "string" then
+      vim.cmd(cmd)
+    else
+      Log:error("Unknown cmd type: " .. type(cmd))
+    end
+  end
+
+  return function()
+    vim.tbl_map(exe, cmds)
+  end
+end
+
+function M.ensure_loaded_wrapper(package, command)
   return function()
     utils.load_pack(package)
     return vim.api.nvim_replace_termcodes(command, true, true, true)
@@ -24,7 +42,7 @@ end
 
 function M.setup_easy_align()
   local label = "EasyAlign"
-  local func = ensure_loaded_wrapper("vim-easy-align", "<Plug>(EasyAlign)")
+  local func = M.ensure_loaded_wrapper("vim-easy-align", "<Plug>(EasyAlign)")
   mapx.nmap("ga", func, mapx.expr, label)
   mapx.xmap("ga", func, mapx.expr, label)
 end
@@ -98,7 +116,7 @@ function M.setup_lsp()
   local _keymap = "<leader>ls"
   local _doc = "Document Symbols"
   if myvim.plugins.aerial.active then
-    mapx.nnoremap(_keymap, ensure_loaded_wrapper("aerial.nvim", "<cmd>Telescope aerial<cr>"), mapx.expr, _doc)
+    mapx.nnoremap(_keymap, M.ensure_loaded_wrapper("aerial.nvim", "<cmd>Telescope aerial<cr>"), mapx.expr, _doc)
   else
     mapx.nnoremap(_keymap, "<cmd>Telescope lsp_document_symbols<cr>", _doc)
   end
