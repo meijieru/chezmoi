@@ -143,37 +143,6 @@ function M.setup_lvim()
   lvim.builtin.which_key.mappings["s"] = nil
   lvim.builtin.which_key.mappings["b"] = nil
 
-  lvim.builtin.which_key.mappings["f"] = {
-    name = "Find",
-    b = { "<cmd>lua require('telescope.builtin').buffers()<cr>", "Find Buffer" },
-    c = { "<cmd>Telescope command_history<cr>", "Find Commands History" },
-    s = { "<cmd>Telescope search_history<cr>", "Find Search History" },
-    S = {
-      "<cmd>lua require'telescope'.extensions.luasnip.luasnip{}<cr>",
-      "Find snippets",
-    },
-    f = { "<cmd>Telescope find_files<cr>", "Find File" },
-    M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
-    n = { "<cmd>lua require('telescope').extensions.notify.notify()<cr>", "Notifications" },
-    -- r = { "<cmd>Telescope frecency<cr>", "Open Recent File" },
-    R = { "<cmd>Telescope registers<cr>", "Registers" },
-    k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
-    C = { "<cmd>Telescope commands<cr>", "Commands" },
-    P = { "<cmd>Telescope projects<cr>", "Projects" },
-    p = { "<cmd>lua require('telescope.builtin').resume()<cr>", "Find Previous" },
-    t = { "<cmd>lua require('telescope').extensions.asynctasks.all()<cr>", "Find Tasks" },
-    l = { "<cmd>lua require('telescope.builtin').loclist()<cr>", "Find Loclist" },
-    q = { "<cmd>lua require('telescope.builtin').quickfix()<cr>", "Find QuickFix" },
-  }
-  mapx.nnoremap("<leader>fg", "'<cmd>Telescope live_grep<cr>' . expand('<cword>')", mapx.expr, "Grep")
-  mapx.nnoremap("<leader>fh", "'<cmd>Telescope help_tags<cr>' . expand('<cword>')", mapx.expr, "Find Help")
-  local _keymap, _label = "<leader>fr", "Open Recent File"
-  if myvim.plugins.telescope_frecency.active then
-    mapx.nnoremap(_keymap, "<cmd>Telescope frecency<cr>", _label)
-  else
-    mapx.nnoremap(_keymap, "<cmd>Telescope oldfiles<cr>", _label)
-  end
-
   lvim.builtin.which_key.mappings.g.j = nil
   lvim.builtin.which_key.mappings.g.k = nil
   lvim.builtin.which_key.mappings.g.d = nil
@@ -184,6 +153,47 @@ function M.setup_lvim()
     "<cmd>lua vim.lsp.buf.references({ includeDeclaration = false })<cr>",
     "Goto References",
   }
+end
+
+function M.setup_find()
+  local function smart_default(cmd, expr)
+    return function()
+      local word = vim.fn.expand(expr or "<cword>")
+      if #word > 1 then
+        -- meaningful word
+        vim.cmd(string.format("Telescope %s default_text=%s", cmd, word))
+      else
+        vim.cmd("Telescope " .. cmd)
+      end
+    end
+  end
+
+  mapx.nname("<leader>f", "Find")
+  mapx.nnoremap("<leader>fC", "<cmd>Telescope commands<cr>", "Commands")
+  mapx.nnoremap("<leader>fM", "<cmd>Telescope man_pages<cr>", "Man Pages")
+  mapx.nnoremap("<leader>fP", "<cmd>Telescope projects<cr>", "Projects")
+  mapx.nnoremap("<leader>fR", "<cmd>Telescope registers<cr>", "Registers")
+  mapx.nnoremap("<leader>fS", "<cmd>lua require'telescope'.extensions.luasnip.luasnip{}<cr>", "Find snippets")
+  mapx.nnoremap("<leader>fb", "<cmd>Telescope buffers<cr>", "Find Buffer")
+  mapx.nnoremap("<leader>fc", "<cmd>Telescope command_history<cr>", "Find Commands History")
+  mapx.nnoremap("<leader>ff", "<cmd>Telescope find_files<cr>", "Find File")
+  mapx.nnoremap("<leader>fg", smart_default "live_grep", "Grep")
+  mapx.nnoremap("<leader>fh", smart_default "help_tags", "Find Help")
+  mapx.nnoremap("<leader>fk", "<cmd>Telescope keymaps<cr>", "Keymaps")
+  mapx.nnoremap("<leader>fl", "<cmd>Telescope loclist<cr>", "Find Loclist")
+  mapx.nnoremap("<leader>fn", "<cmd>Telescope notify<cr>", "Notifications")
+  mapx.nnoremap("<leader>fp", "<cmd>Telescope resume<cr>", "Find Previous")
+  mapx.nnoremap("<leader>fq", "<cmd>Telescope quickfix<cr>", "Find QuickFix")
+  mapx.nnoremap("<leader>fs", "<cmd>Telescope search_history<cr>", "Find Search History")
+  mapx.nnoremap("<leader>ft", "<cmd>lua require('telescope').extensions.asynctasks.all()<cr>", "Find Tasks")
+
+  mapx.vnoremap("<leader>*", '"zy:Telescope live_grep default_text=<C-r>z<cr>', "Grep")
+  local _keymap, _label = "<leader>fr", "Open Recent File"
+  if myvim.plugins.telescope_frecency.active then
+    mapx.nnoremap(_keymap, "<cmd>Telescope frecency<cr>", _label)
+  else
+    mapx.nnoremap(_keymap, "<cmd>Telescope oldfiles<cr>", _label)
+  end
 end
 
 function M.setup_asynctasks()
@@ -296,5 +306,6 @@ M.setup_sniprun()
 M.setup_zenmode()
 M.setup_dap()
 M.setup_git()
+M.setup_find()
 
 return M
