@@ -99,6 +99,14 @@ function M.setup_lsp()
     "<cmd>lua require('modules.completion.lsp').toggle_diagnostics()<cr>",
     "Toggle Diagnostic"
   )
+
+  local _keymap = "<leader>ls"
+  local _doc = "Document Symbols"
+  if myvim.plugins.aerial.active then
+    mapx.nnoremap(_keymap, ensure_loaded_wrapper("aerial.nvim", "<cmd>Telescope aerial<cr>"), mapx.expr, _doc)
+  else
+    mapx.nnoremap(_keymap, "<cmd>Telescope lsp_document_symbols<cr>", _doc)
+  end
 end
 
 function M.setup_gitsigns()
@@ -154,6 +162,7 @@ function M.setup_lvim()
   lvim.builtin.which_key.mappings["u"] = { "<cmd>UndotreeToggle<cr>", "Undotree" }
 
   -- lsp
+  lvim.builtin.which_key.mappings.l.s = nil
   lvim.lsp.buffer_mappings.normal_mode["gr"] = {
     "<cmd>lua vim.lsp.buf.references({ includeDeclaration = false })<cr>",
     "Goto References",

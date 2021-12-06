@@ -89,13 +89,8 @@ function config.symbols_outline()
   }
 end
 
--- TODO: maybe telescope integration
 -- TODO: maybe lualine integration
 function config.aerial()
-  lvim.lsp.on_attach_callback = function(client, bufnr)
-    require("aerial").on_attach(client, bufnr)
-  end
-
   local opts = {
     -- Priority list of preferred backends for aerial
     backends = { "lsp", "treesitter", "markdown" },
@@ -118,15 +113,18 @@ function config.aerial()
       "Struct",
     },
   }
-
   local icons = { Collapsed = "" }
   for _, name in ipairs(opts.filter_kind) do
     icons[name] = myvim.kind_icons[name]
     icons[name .. "Collapsed"] = string.format("%s %s", myvim.kind_icons[name], icons.Collapsed)
   end
   opts.icons = icons
-
   vim.g.aerial = opts
+
+  lvim.lsp.on_attach_callback = function(client, bufnr)
+    require("aerial").on_attach(client, bufnr)
+  end
+  require("telescope").load_extension "aerial"
 end
 
 require("modules.editor.lvim").setup()

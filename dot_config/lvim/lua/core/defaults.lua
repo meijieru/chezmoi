@@ -52,5 +52,7 @@ _G.myvim = {
     imtoggle = { active = false },
 
     dressing = { active = true },
+
+    aerial = { active = true },
   },
 }

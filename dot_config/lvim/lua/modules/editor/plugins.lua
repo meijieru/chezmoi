@@ -43,6 +43,7 @@ editor["simrat39/symbols-outline.nvim"] = {
 editor["stevearc/aerial.nvim"] = {
   cmd = { "AerialToggle", "AerialPrev", "AerialNext", "AerialPrevUp", "AerialNextUp" },
   config = conf.aerial,
+  disable = not myvim.plugins.aerial.active,
 }
 
 editor["kana/vim-textobj-user"] = {}
