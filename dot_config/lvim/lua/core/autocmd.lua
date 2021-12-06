@@ -7,7 +7,4 @@ lvim.autocommands.custom_groups = {
 
   -- disable fold
   { "FileType", "alpha,lspinfo,aerial", "setlocal nofoldenable" },
-
-  -- https://github.com/tpope/vim-fugitive/issues/1451#issuecomment-770310789
-  { "User", " FugitiveIndex", "nmap <buffer> dt :Gtabedit <Plug><cfile><Bar>Gdiffsplit<CR>" },
 }
