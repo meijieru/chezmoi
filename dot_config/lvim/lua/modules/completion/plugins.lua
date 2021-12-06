@@ -32,7 +32,7 @@ completion["hrsh7th/cmp-cmdline"] = {
 }
 
 completion["ray-x/lsp_signature.nvim"] = {
-  event = "InsertEnter",
+  event = "BufRead",
   config = conf.lsp_signature,
   after = "nvim-lspconfig",
 }
