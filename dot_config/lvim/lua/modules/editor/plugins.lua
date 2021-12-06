@@ -48,7 +48,7 @@ editor["stevearc/aerial.nvim"] = {
 editor["kana/vim-textobj-user"] = {}
 editor["kana/vim-textobj-indent"] = {}
 editor["jceb/vim-textobj-uri"] = {}
-editor["sgur/vim-textobj-parameter"] = { ft = { "lua" }, enable = false }
+editor["sgur/vim-textobj-parameter"] = { ft = { "lua" }, disable = false }
 
 editor["junegunn/vim-easy-align"] = {
   cmd = "EasyAlign",
