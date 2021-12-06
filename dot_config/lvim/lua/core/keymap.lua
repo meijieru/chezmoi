@@ -3,7 +3,7 @@ local M = {}
 local Log = require "lvim.core.log"
 local utils = require "core.utils"
 
-utils.load_pack("which-key.nvim", { disable_packer_check = true })
+utils.load_pack("which-key.nvim", { skip_packer = true })
 local status_ok, which_key = utils.safe_load "which-key"
 if not status_ok then
   return M
@@ -15,20 +15,18 @@ if not status_ok then
 end
 mapx.setup { global = false, whichkey = true, debug = false }
 
-local function escape(str)
-  return vim.api.nvim_replace_termcodes(str, true, true, true)
-end
-
--- HACK
-local function enhance_align()
-  utils.load_pack "vim-easy-align"
-  return escape "<Plug>(EasyAlign)"
+local function ensure_loaded_wrapper(package, command)
+  return function()
+    utils.load_pack(package)
+    return vim.api.nvim_replace_termcodes(command, true, true, true)
+  end
 end
 
 function M.setup_easy_align()
   local label = "EasyAlign"
-  mapx.nmap("ga", enhance_align, mapx.expr, label)
-  mapx.xmap("ga", enhance_align, mapx.expr, label)
+  local func = ensure_loaded_wrapper("vim-easy-align", "<Plug>(EasyAlign)")
+  mapx.nmap("ga", func, mapx.expr, label)
+  mapx.xmap("ga", func, mapx.expr, label)
 end
 
 function _G.set_terminal_keymaps()
