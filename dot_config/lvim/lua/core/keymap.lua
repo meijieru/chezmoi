@@ -94,11 +94,6 @@ end
 function M.setup_lsp()
   mapx.nnoremap("gm", format_range_operator, "Range Format")
   mapx.vnoremap("gm", format_range_operator, "Range Format")
-  mapx.nnoremap(
-    "<leader>lt",
-    "<cmd>lua require('modules.completion.lsp').toggle_diagnostics()<cr>",
-    "Toggle Diagnostic"
-  )
 
   local _keymap = "<leader>ls"
   local _doc = "Document Symbols"
@@ -159,8 +154,6 @@ function M.setup_lvim()
   lvim.builtin.which_key.mappings.g.k = nil
   lvim.builtin.which_key.mappings.g.d = nil
 
-  lvim.builtin.which_key.mappings["u"] = { "<cmd>UndotreeToggle<cr>", "Undotree" }
-
   -- lsp
   lvim.builtin.which_key.mappings.l.s = nil
   lvim.lsp.buffer_mappings.normal_mode["gr"] = {
@@ -175,7 +168,6 @@ function M.setup_asynctasks()
     ["<F6>"] = { "<cmd>AsyncTask file-build<cr>", "File Build" },
     ["<f7>"] = { "<cmd>AsyncTask project-run<cr>", "Project Run" },
     ["<f8>"] = { "<cmd>AsyncTask project-build<cr>", "Project Build" },
-    ["<f10>"] = { "<cmd>call QuickFixToggle()<cr>", "Toggle Quickfix" },
   }
   which_key.register(mappings, { silent = true })
 end
@@ -238,11 +230,6 @@ function M.setup_dap()
   mapx.nnoremap("<leader>dT", "<cmd>lua require('dapui').toggle()<cr>", "Toggle UI")
 end
 
-function M.post_setup()
-  -- NOTE: run with VimEnter
-  Log:debug "Keymaps post_setup"
-end
-
 function M.setup_git()
   local function git_diff()
     local wininfo = vim.fn.getwininfo()
@@ -257,9 +244,24 @@ function M.setup_git()
   mapx.nnoremap("<leader>gg", "<cmd>call auxlib#toggle_fugitive()<cr>", "Toggle Status")
 end
 
+-- NOTE: run with VimEnter
+function M.post_setup()
+  Log:warn "Keymaps post_setup is deprecated"
+end
+
+function M.setup_toggle()
+  mapx.vname("<leader>t", "Toggle")
+  mapx.nnoremap("<leader>tq", "<cmd>call QuickFixToggle()<cr>", "Quickfix")
+  mapx.nnoremap("<leader>tl", "<cmd>call auxlib#toggle_loclist()<cr>", "LocList")
+  mapx.nnoremap("<leader>te", "<cmd>lua require('modules.completion.lsp').toggle_diagnostics()<cr>", "Diagnostic")
+  mapx.nnoremap("<leader>ta", "<cmd>AerialToggle!<cr>", "Aerial")
+  mapx.nnoremap("<leader>tu", "<cmd>UndotreeToggle<cr>", "Undotree")
+end
+
 M.setup_lvim()
 M.setup_basic()
-M.setup_trouble()
+-- M.setup_trouble()
+M.setup_toggle()
 M.setup_easy_align()
 M.setup_terminal()
 M.setup_hop()
