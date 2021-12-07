@@ -59,6 +59,12 @@ function config.filtype()
       extensions = {
         tl = "teal",
       },
+      literal = {
+        [".tasks"] = "dosini",
+      },
+      complex = {
+        -- [".git/index"] = "fugitive",
+      },
     },
   }
 end
