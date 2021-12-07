@@ -50,7 +50,14 @@ function config.sniprun()
 end
 
 function config.colorizer()
-  require("colorizer").setup()
+  require("colorizer").setup({
+    "*", -- Highlight all files, but customize some others.
+    css = { rgb_fn = true }, -- Enable parsing rgb(...) functions in css.
+    lua = { names = false }, -- Disable parsing "names" like Blue or Gray
+  }, {
+    -- default_options
+    mode = "background",
+  })
 end
 
 function config.filtype()
