@@ -85,6 +85,20 @@ tools["nvim-telescope/telescope-frecency.nvim"] = {
   disable = not myvim.plugins.telescope_frecency.active,
 }
 
+tools["rcarriga/vim-ultest"] = {
+  requires = { "vim-test/vim-test", setup = conf.vim_test },
+  cmd = { "Ultest", "UltestNearest" },
+  run = function()
+    vim.cmd [[packadd vim-ultest]]
+    vim.cmd [[UpdateRemotePlugins]]
+  end,
+  setup = conf.vim_ultest,
+  -- config = function()
+  --   vim.cmd [[UpdateRemotePlugins]]
+  -- end,
+  disable = true,
+}
+
 tools["glacambre/firenvim"] = {
   -- FIXME(meijieru): doesn't work now
   run = function()

@@ -80,6 +80,21 @@ function config.telescope_frecency()
   require("telescope").load_extension "frecency"
 end
 
+function config.vim_test()
+  local strategy = "neovim"
+  -- FIXME: doesn't take effect
+  vim.g["test#strategy"] = { nearest = strategy, file = strategy, suite = strategy }
+  vim.g["test#neovim#term_position"] = "vert botright 60"
+end
+
+function config.vim_ultest()
+  vim.g.ultest_use_pty = 1
+  vim.g.ultest_pass_sign = ""
+  vim.g.ultest_fail_sign = ""
+  vim.g.ultest_running_sign = ""
+  vim.g.ultest_not_run_sign = ""
+end
+
 local function setup_drop()
   vim.fn.setenv("VIM_EXE", "lvim")
   vim.g.terminal_edit = "edit"

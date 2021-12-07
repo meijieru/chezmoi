@@ -72,6 +72,11 @@ editor["rcarriga/nvim-dap-ui"] = {
   -- module = { "dapui" },  --affect open_on_start
   requires = { "mfussenegger/nvim-dap" },
 }
+editor["nvim-telescope/telescope-dap.nvim"] = {
+  config = conf.dap,
+  -- cmd = "Telescope",
+  disable = true,  -- TODO: revisit later
+}
 
 editor["nvim-treesitter/nvim-treesitter-textobjects"] = {
   event = "BufRead",
