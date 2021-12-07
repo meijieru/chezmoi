@@ -42,6 +42,9 @@ ui["kevinhwang91/nvim-bqf"] = {
 
 ui["vimpostor/vim-tpipeline"] = {}
 ui["mbbill/undotree"] = { cmd = { "UndotreeToggle" } }
-ui["stevearc/dressing.nvim"] = { disable = not myvim.plugins.dressing.active }
+ui["stevearc/dressing.nvim"] = {
+  config = conf.dressing,
+  disable = not myvim.plugins.dressing.active,
+}
 
 return ui

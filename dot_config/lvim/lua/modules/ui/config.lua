@@ -74,6 +74,34 @@ function config.bqf()
   }
 end
 
+function config.dressing()
+  require("dressing").setup {
+    input = {
+      -- Default prompt string
+      -- default_prompt = "> ",
+
+      -- When true, <Esc> will close the modal
+      insert_only = true,
+
+      -- These are passed to nvim_open_win
+      border = "rounded",
+
+      -- These can be integers or a float between 0 and 1 (e.g. 0.4 for 40%)
+      prefer_width = 40,
+      max_width = nil,
+      min_width = 20,
+    },
+    select = {
+      -- Priority list of preferred vim.select implementations
+      backend = { "telescope", "fzf", "builtin", "nui" },
+
+      telescope = {
+        theme = "dropdown",
+      },
+    },
+  }
+end
+
 require("modules.ui.lvim").setup()
 
 return config
