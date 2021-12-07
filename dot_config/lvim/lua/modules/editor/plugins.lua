@@ -85,6 +85,7 @@ editor["nvim-treesitter/playground"] = {
 editor["RRethy/nvim-treesitter-textsubjects"] = {
   event = "BufRead",
   after = "nvim-treesitter",
+  disable = true,
 }
 
 editor["b0o/mapx.nvim"] = {}
