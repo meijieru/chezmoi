@@ -47,4 +47,10 @@ ui["stevearc/dressing.nvim"] = {
   disable = not myvim.plugins.dressing.active,
 }
 
+ui["sidebar-nvim/sidebar.nvim"] = {
+  -- branch = "dev",
+  conf = conf.sidebar,
+  disable = not myvim.plugins.sidebar.active,
+}
+
 return ui

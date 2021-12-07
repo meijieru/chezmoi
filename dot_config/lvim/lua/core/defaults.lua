@@ -50,11 +50,11 @@ _G.myvim = {
     },
 
     imtoggle = { active = false },
-
-    dressing = { active = false },
-
-    aerial = { active = true },
-
     telescope_frecency = { active = false },
+
+    -- ui
+    aerial = { active = true },
+    sidebar = { active = false },
+    dressing = { active = false },
   },
 }

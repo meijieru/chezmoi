@@ -1,23 +1,6 @@
-local config = {}
+local M = {}
 
-vim.g.gruvbox_material_palette = "origin"
-vim.g.gruvbox_material_background = "medium"
-vim.g.gruvbox_material_enable_italic = myvim.colorscheme_enable_italic
-vim.g.gruvbox_material_disable_italic_comment = not myvim.colorscheme_enable_italic_comment
-vim.g.gruvbox_material_show_eob = 1
-vim.g.gruvbox_material_better_performance = 1
-
-vim.g.edge_enable_italic = myvim.colorscheme_enable_italic
-vim.g.edge_disable_italic_comment = not myvim.colorscheme_enable_italic_comment
-vim.g.edge_show_eob = 1
-vim.g.edge_better_performance = 1
-
-vim.g.everforest_enable_italic = myvim.colorscheme_enable_italic
-vim.g.everforest_disable_italic_comment = not myvim.colorscheme_enable_italic_comment
-vim.g.everforest_show_eob = 1
-vim.g.everforest_better_performance = 1
-
-function config.indent_blankline()
+function M.indent_blankline()
   require("indent_blankline").setup {
     char = "|",
     buftype_exclude = myvim.ignores.buftype,
@@ -45,15 +28,15 @@ function config.indent_blankline()
   }
 end
 
-function config.zen_mode()
+function M.zen_mode()
   require("zen-mode").setup {}
 end
 
-function config.twilight()
+function M.twilight()
   require("twilight").setup {}
 end
 
-function config.neoscroll()
+function M.neoscroll()
   require("neoscroll").setup {
     -- All these keys will be mapped to their corresponding default scrolling animation
     mappings = { "<C-u>", "<C-d>", "<C-b>", "<C-f>", "<C-y>", "<C-e>", "zt", "zz", "zb" },
@@ -68,13 +51,13 @@ function config.neoscroll()
   }
 end
 
-function config.bqf()
+function M.bqf()
   require("bqf").setup {
     auto_resize_height = false,
   }
 end
 
-function config.dressing()
+function M.dressing()
   require("dressing").setup {
     input = {
       -- Default prompt string
@@ -102,6 +85,27 @@ function config.dressing()
   }
 end
 
+function M.sidebar()
+  require("sidebar-nvim").setup()
+end
+
+vim.g.gruvbox_material_palette = "origin"
+vim.g.gruvbox_material_background = "medium"
+vim.g.gruvbox_material_enable_italic = myvim.colorscheme_enable_italic
+vim.g.gruvbox_material_disable_italic_comment = not myvim.colorscheme_enable_italic_comment
+vim.g.gruvbox_material_show_eob = 1
+vim.g.gruvbox_material_better_performance = 1
+
+vim.g.edge_enable_italic = myvim.colorscheme_enable_italic
+vim.g.edge_disable_italic_comment = not myvim.colorscheme_enable_italic_comment
+vim.g.edge_show_eob = 1
+vim.g.edge_better_performance = 1
+
+vim.g.everforest_enable_italic = myvim.colorscheme_enable_italic
+vim.g.everforest_disable_italic_comment = not myvim.colorscheme_enable_italic_comment
+vim.g.everforest_show_eob = 1
+vim.g.everforest_better_performance = 1
+
 require("modules.ui.lvim").setup()
 
-return config
+return M
