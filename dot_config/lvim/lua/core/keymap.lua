@@ -137,11 +137,9 @@ function M.setup_lvim()
   for _, key in ipairs { "/" } do
     lvim.builtin.which_key.vmappings[key] = nil
   end
-  for _, key in ipairs { "w", "q", "/", "c", "f", "h" } do
+  for _, key in ipairs { "w", "q", "/", "c", "f", "h", "s", "b", "T" } do
     lvim.builtin.which_key.mappings[key] = nil
   end
-  lvim.builtin.which_key.mappings["s"] = nil
-  lvim.builtin.which_key.mappings["b"] = nil
 
   lvim.builtin.which_key.mappings.g.j = nil
   lvim.builtin.which_key.mappings.g.k = nil
@@ -292,6 +290,13 @@ function M.setup_toggle()
   mapx.nnoremap("<leader>tu", "<cmd>UndotreeToggle<cr>", "Undotree")
 end
 
+function M.setup_treesitter()
+  mapx.vname("<leader>T", "Treesitter")
+  mapx.nnoremap("<leader>Tc", "<cmd>TSConfigInfo<cr>", "Config Info")
+  mapx.nnoremap("<leader>Tm", "<cmd>TSModuleInfo<cr>", "Module Info")
+  mapx.nnoremap("<leader>Tp", "<cmd>TSPlaygroundToggle<cr>", "Playground")
+end
+
 M.setup_lvim()
 M.setup_basic()
 -- M.setup_trouble()
@@ -307,5 +312,6 @@ M.setup_zenmode()
 M.setup_dap()
 M.setup_git()
 M.setup_find()
+M.setup_treesitter()
 
 return M
