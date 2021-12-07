@@ -9,6 +9,7 @@ lang["iamcco/markdown-preview.nvim"] = {
   run = "cd app && npm install",
   ft = "markdown",
   setup = conf.markdown_preview,
+  disable = true,
 }
 
 lang["jbyuki/one-small-step-for-vimkind"] = { ft = { "lua" } }

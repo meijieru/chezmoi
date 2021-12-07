@@ -25,6 +25,7 @@ parser_configs.markdown = {
 
 function config.markdown_preview()
   vim.g.mkdp_auto_start = 0
+  vim.g.mkdp_browser='wsl-open'
 end
 
 return config
