@@ -14,6 +14,6 @@ lang["iamcco/markdown-preview.nvim"] = {
 lang["jbyuki/one-small-step-for-vimkind"] = { ft = { "lua" } }
 lang["lervag/vimtex"] = { ft = { "tex" }, disable = true }
 lang["teal-language/vim-teal"] = { ft = { "teal" } }
-lang["MTDL9/vim-log-highlighting"] = {}
+lang["MTDL9/vim-log-highlighting"] = { ft = { "log" } }
 
 return lang
