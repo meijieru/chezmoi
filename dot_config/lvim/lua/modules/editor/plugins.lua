@@ -50,6 +50,9 @@ editor["kana/vim-textobj-indent"] = {}
 editor["jceb/vim-textobj-uri"] = {}
 editor["sgur/vim-textobj-parameter"] = { ft = { "lua" }, disable = true }
 
+editor["dhruvasagar/vim-table-mode"] = {
+  cmd = "TableModeToggle",
+}
 editor["junegunn/vim-easy-align"] = {
   cmd = "EasyAlign",
 }
