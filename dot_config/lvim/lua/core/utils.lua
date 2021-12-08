@@ -51,6 +51,12 @@ function M.chezmoi_apply()
   ]]
 end
 
+--- Load package.
+--- @param package string #Dirname of the package.
+--- @param opts any #table|nil Additional options
+---    - skip_packer (boolean|nil) #Use packer if true.
+---    - profile (boolean|nil) #Profile if true.
+--- @return boolean #true if success.
 function M.load_pack(package, opts)
   vim.validate {
     package = { package, "string" },
