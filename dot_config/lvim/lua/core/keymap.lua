@@ -4,13 +4,13 @@ local Log = require "lvim.core.log"
 local utils = require "core.utils"
 
 utils.load_pack("which-key.nvim", { skip_packer = true })
-local status_ok, which_key = utils.safe_load "which-key"
-if not status_ok then
+local status_whichkey_ok, which_key = utils.safe_load "which-key"
+if not status_whichkey_ok then
   return M
 end
 
-local status_ok, mapx = utils.safe_load "mapx"
-if not status_ok then
+local status_mapx_ok, mapx = utils.safe_load "mapx"
+if not status_mapx_ok then
   return M
 end
 mapx.setup { global = false, whichkey = true, debug = false }
@@ -265,7 +265,11 @@ end
 
 function M.setup_git()
   local function git_diff()
-    local wininfo = vim.fn.getwininfo()
+    -- find all window in current tab, ignoring floating_window
+    local tabnr = vim.fn.tabpagenr()
+    local wininfo = vim.tbl_filter(function(info)
+      return vim.api.nvim_win_get_config(info.winid).relative == "" and info.tabnr == tabnr
+    end, vim.fn.getwininfo())
     if #wininfo == 1 then
       vim.cmd "Gvdiff"
     else
