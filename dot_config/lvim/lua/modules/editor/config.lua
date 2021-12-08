@@ -1,16 +1,16 @@
-local config = {}
+local M = {}
 
-function config.hop()
+function M.hop()
   require("hop").setup()
 end
 
-function config.matchup()
+function M.matchup()
   vim.g.matchup_matchparen_offscreen = { method = "popup" }
   -- enable ds%, cs%
   vim.g.matchup_surround_enabled = true
 end
 
-function config.lastplace()
+function M.lastplace()
   require("nvim-lastplace").setup {
     lastplace_ignore_buftype = myvim.ignores.buftype,
     lastplace_ignore_filetype = myvim.ignores.filetype,
@@ -18,7 +18,7 @@ function config.lastplace()
   }
 end
 
-function config.dapui()
+function M.dapui()
   local dap, dapui = require "dap", require "dapui"
   dap.listeners.after.event_initialized["dapui_config"] = function()
     dapui.open()
@@ -33,7 +33,7 @@ function config.dapui()
   require("dapui").setup {}
 end
 
-function config.visual_multi()
+function M.visual_multi()
   local vm_maps = {}
   vm_maps["Select Operator"] = ""
   vm_maps["Undo"] = "u"
@@ -50,7 +50,7 @@ function config.visual_multi()
   vim.g.VM_maps = vm_maps
 end
 
-function config.symbols_outline()
+function M.symbols_outline()
   vim.g.symbols_outline = {
     width = 40,
     show_guides = false,
@@ -90,7 +90,7 @@ function config.symbols_outline()
 end
 
 -- TODO: maybe lualine integration
-function config.aerial()
+function M.aerial()
   local opts = {
     -- Priority list of preferred backends for aerial
     backends = { "lsp", "treesitter", "markdown" },
@@ -127,6 +127,10 @@ function config.aerial()
   require("telescope").load_extension "aerial"
 end
 
+function M.neogen()
+  require("neogen").setup { enabled = true }
+end
+
 require("modules.editor.lvim").setup()
 
-return config
+return M

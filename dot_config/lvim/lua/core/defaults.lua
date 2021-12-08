@@ -48,6 +48,7 @@ _G.myvim = {
     treesitter = {
       ensure_installed = {},
     },
+    neogen = { active = true },
 
     imtoggle = { active = false },
     telescope_frecency = { active = false },

@@ -120,6 +120,7 @@ function M.setup_lsp()
   else
     mapx.nnoremap(_keymap, "<cmd>Telescope lsp_document_symbols<cr>", _doc)
   end
+  mapx.nnoremap("<leader>lg", "<cmd>lua require('neogen').generate()<cr>", "Generate Doc")
 end
 
 function M.setup_gitsigns()

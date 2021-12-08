@@ -75,7 +75,7 @@ editor["rcarriga/nvim-dap-ui"] = {
 editor["nvim-telescope/telescope-dap.nvim"] = {
   config = conf.dap,
   -- cmd = "Telescope",
-  disable = true,  -- TODO: revisit later
+  disable = true, -- TODO: revisit later
 }
 
 editor["nvim-treesitter/nvim-treesitter-textobjects"] = {
@@ -94,6 +94,14 @@ editor["RRethy/nvim-treesitter-textsubjects"] = {
   event = "BufRead",
   after = "nvim-treesitter",
   disable = true,
+}
+
+editor["danymat/neogen"] = {
+  -- event = "BufRead",
+  module = { "neogen" },
+  requires = { "nvim-treesitter" },
+  config = conf.neogen,
+  disable = not myvim.plugins.neogen.active,
 }
 
 editor["b0o/mapx.nvim"] = {}

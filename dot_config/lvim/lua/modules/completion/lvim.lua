@@ -1,7 +1,16 @@
 local M = {}
 
+local safe_load = require("core.utils").safe_load
+
 function M.setup_cmp()
-  local cmp = require "cmp"
+  local status_cmp_ok, cmp = safe_load "cmp"
+  if not status_cmp_ok then
+    return
+  end
+  local status_luasnip_ok, luasnip = safe_load "luasnip"
+  if not status_luasnip_ok then
+    return
+  end
 
   lvim.builtin.cmp.formatting.duplicates.buffer = 0
   lvim.builtin.cmp.confirm_opts = {
@@ -26,6 +35,38 @@ function M.setup_cmp()
   lvim.builtin.cmp.formatting.source_names = vim.tbl_map(function(val)
     return string.format(template, val)
   end, source_names)
+
+  local function load_neogen()
+    if myvim.plugins.neogen.active then
+      local _, neogen = safe_load "neogen"
+      return neogen
+    end
+    return nil
+  end
+  local map_modes = { "i", "s" }
+
+  -- we don't use tab for cmp
+  local methods = require("lvim.core.cmp").methods
+  lvim.builtin.cmp.mapping["<Tab>"] = cmp.mapping(function(fallback)
+    local neogen = load_neogen()
+    if luasnip.expandable() then
+      luasnip.expand()
+    elseif methods.jumpable() then
+      luasnip.jump(1)
+    elseif neogen and neogen.jumpable() then
+      neogen.jump_next()
+    elseif methods.check_backspace() then
+      fallback()
+    end
+  end, map_modes)
+  lvim.builtin.cmp.mapping["<S-Tab>"] = cmp.mapping(function(fallback)
+    -- TODO(meijieru): neogen, wait for https://github.com/danymat/neogen/issues/13
+    if methods.jumpable(-1) then
+      luasnip.jump(-1)
+    else
+      fallback()
+    end
+  end, map_modes)
 end
 
 function M.setup_trouble()
