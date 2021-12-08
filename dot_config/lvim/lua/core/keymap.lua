@@ -158,8 +158,8 @@ function M.setup_find()
   local function smart_default(cmd, expr)
     return function()
       local word = vim.fn.expand(expr or "<cword>")
-      if #word > 1 then
-        -- meaningful word
+      if #word > 1 and not (vim.tbl_contains({ 2, 3 }, #word) and string.find(word, '[",()]')) then
+        -- meaningful word, exclude word with short len & contains [,()]
         vim.cmd(string.format("Telescope %s default_text=%s", cmd, word))
       else
         vim.cmd("Telescope " .. cmd)
