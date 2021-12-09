@@ -2,6 +2,7 @@ local tools = {}
 local conf = require "modules.tools.config"
 
 tools["meijieru/imtoggle.nvim"] = {
+  event = "InsertEnter",
   config = conf.imtoggle,
   disable = not myvim.plugins.imtoggle.active,
 }
