@@ -45,6 +45,7 @@ _G.myvim = {
   plugins = {
     -- completion
     tabnine = { active = false },
+    cmp_treesitter = { active = true },
 
     -- tool
     treesitter = {

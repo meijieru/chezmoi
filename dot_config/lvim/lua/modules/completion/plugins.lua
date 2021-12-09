@@ -30,6 +30,10 @@ completion["hrsh7th/cmp-cmdline"] = {
   config = conf.cmp_cmdline,
   after = "nvim-cmp",
 }
+completion["ray-x/cmp-treesitter"] = {
+  ft = { "teal" },
+  disable = not myvim.plugins.cmp_treesitter.active,
+}
 
 completion["ray-x/lsp_signature.nvim"] = {
   event = "BufRead",

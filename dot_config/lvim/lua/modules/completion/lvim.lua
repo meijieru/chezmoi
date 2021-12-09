@@ -12,7 +12,12 @@ function M.setup_cmp()
     return
   end
 
-  lvim.builtin.cmp.formatting.duplicates.buffer = 0
+  lvim.builtin.cmp.formatting.duplicates = {
+    nvim_lsp = 1,
+    luasnip = 1,
+    copilot = 1,
+    cmp_tabnine = 0,
+  }
   lvim.builtin.cmp.confirm_opts = {
     behavior = cmp.ConfirmBehavior.Insert,
     select = false,
@@ -31,10 +36,19 @@ function M.setup_cmp()
       buffer = "Buf",
       nvim_lua = "Nlua",
       copilot = "Copl",
+      treesitter = "TS",
     }
   lvim.builtin.cmp.formatting.source_names = vim.tbl_map(function(val)
     return string.format(template, val)
   end, source_names)
+  lvim.builtin.cmp.sources = {
+    { name = "nvim_lsp" },
+    { name = "path" },
+    { name = "luasnip" },
+    { name = "cmp_tabnine" },
+    { name = "buffer" },
+    { name = "treesitter" },
+  }
 
   local function load_neogen()
     if myvim.plugins.neogen.active then
