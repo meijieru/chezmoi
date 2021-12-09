@@ -43,8 +43,10 @@ _G.myvim = {
   colorscheme_enable_italic_comment = true,
 
   plugins = {
+    -- completion
     tabnine = { active = false },
 
+    -- tool
     treesitter = {
       ensure_installed = {},
     },
@@ -57,5 +59,6 @@ _G.myvim = {
     aerial = { active = true },
     sidebar = { active = false },
     dressing = { active = false },
+    notify = { active = true },
   },
 }
