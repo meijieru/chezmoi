@@ -28,9 +28,11 @@ editor["phaazon/hop.nvim"] = {
   disable = false,
 }
 editor["mg979/vim-visual-multi"] = {
-  -- TODO(meijieru): lazy load
-  -- TODO(meijieru): fix https://github.com/mg979/vim-visual-multi/issues/121
-  -- keys = { "<Plug>(VM-Find-Under)" },
+  keys = {
+    "<Plug>(VM-Find-Under)",
+    "<Plug>(VM-Add-Cursor-Down)",
+    "<Plug>(VM-Add-Cursor-Up)",
+  },
   config = conf.visual_multi,
 }
 

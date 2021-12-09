@@ -38,8 +38,6 @@ function M.visual_multi()
   vm_maps["Select Operator"] = ""
   vm_maps["Undo"] = "u"
   vm_maps["Redo"] = "<C-r>"
-  vm_maps["Add Cursor Down"] = "<C-Down>"
-  vm_maps["Add Cursor Up"] = "<C-Up>"
   vm_maps["Reselect Last"] = "gS"
   -- useful default mappings
   -- \\z for normal everywhere

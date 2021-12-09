@@ -303,6 +303,12 @@ function M.setup_treesitter()
   mapx.nnoremap("<leader>Tp", "<cmd>TSPlaygroundToggle<cr>", "Playground")
 end
 
+function M.setup_visual_multi()
+ mapx.nmap("<C-Down>", "<Plug>(VM-Add-Cursor-Down)", "VM Add Cursor Down")
+ mapx.nmap("<C-Up>", "<Plug>(VM-Add-Cursor-Up)", "VM Add Cursor Up")
+ mapx.nmap("<C-n>", "<Plug>(VM-Find-Under)", "VM Find Under")
+end
+
 M.setup_lvim()
 M.setup_basic()
 -- M.setup_trouble()
@@ -319,5 +325,6 @@ M.setup_dap()
 M.setup_git()
 M.setup_find()
 M.setup_treesitter()
+M.setup_visual_multi()
 
 return M
