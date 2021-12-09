@@ -225,6 +225,7 @@ function M.setup_basic()
   mapx.nnoremap("<F1>", "<cmd>lua require('modules.ui.utils').toggle_colorcolumn()<cr>", "Toggle Colorcolumn")
   mapx.nnoremap("m<space>", "<cmd>delmarks!<cr>", "Delete All Marks")
   mapx.nnoremap("-", "<cmd>NvimTreeOpen<cr>", "Open Directory")
+  mapx.nnoremap("g?", "<cmd>WhichKey<cr>", "WhichKey")
 
   mapx.vnoremap("<", "<gv")
   mapx.vnoremap(">", ">gv")
