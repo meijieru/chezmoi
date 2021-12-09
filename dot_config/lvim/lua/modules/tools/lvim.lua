@@ -1,6 +1,9 @@
 local M = {}
 
 function M.setup_telescope()
+  lvim.builtin.telescope.defaults.mappings.i["<C-w>"] = function()
+    vim.cmd [[normal! bcw]]
+  end
   lvim.builtin.telescope.defaults.mappings.i["<C-h>"] = "which_key"
   lvim.builtin.telescope.defaults.mappings.n["g?"] = "which_key"
   lvim.builtin.telescope.defaults.layout_config.width = 0.95
