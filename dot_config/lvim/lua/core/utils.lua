@@ -94,4 +94,12 @@ function M.load_pack(package, opts)
   return true
 end
 
+--- Get plugin base dir.
+--- @param url string
+--- @return string
+function M.get_plugin_dir(url)
+  local parts = vim.fn.split(url, "/")
+  return parts[#parts]
+end
+
 return M

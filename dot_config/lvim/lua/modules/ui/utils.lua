@@ -1,9 +1,14 @@
 local M = {}
 
-function M.is_used_colorschemes(colors)
-  return function()
-    return vim.tbl_contains(colors, lvim.colorscheme)
-  end
+local utils = require "core.utils"
+local Log = require "lvim.core.log"
+
+local function is_used_colorschemes(colors)
+  return vim.tbl_contains(colors, lvim.colorscheme)
+end
+
+local function load_colorscheme(url)
+  utils.load_pack(utils.get_plugin_dir(url), { skip_packer = true })
 end
 
 function M.use_colorschemes(plugins, url, colors, extras)
@@ -13,11 +18,26 @@ function M.use_colorschemes(plugins, url, colors, extras)
     extras = { extras, "table", true },
   }
 
-  local opts = {}
+  local opts = { opt = true }
   if extras then
     opts = vim.tbl_extend("error", opts, extras)
   end
+
   plugins[url] = opts
+  if is_used_colorschemes(colors) then
+    for _, dep in ipairs(opts.requires or {}) do
+      load_colorscheme(dep)
+    end
+    load_colorscheme(url)
+
+    -- packer always call the setup
+    -- if opts.setup then
+    --   opts.setup()
+    -- end
+    if opts.config then
+      Log:warn "Config not called"
+    end
+  end
 end
 
 local function range(lhs, rhs)
