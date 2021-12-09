@@ -32,6 +32,8 @@ tools["tpope/vim-fugitive"] = {
 }
 
 tools["TimUntersberger/neogit"] = {
+  cmd = { "Neogit" },
+  module = { "neogit" },
   requires = { "nvim-lua/plenary.nvim" },
   config = conf.neogit,
   disable = true,
@@ -76,9 +78,6 @@ tools["wakatime/vim-wakatime"] = { event = "BufRead" }
 tools["nathom/filetype.nvim"] = {
   config = conf.filtype,
 }
-
-tools["ludovicchabant/vim-gutentags"] = { disable = true }
-tools["skywind3000/gutentags_plus"] = { disable = true }
 
 tools["nvim-telescope/telescope-frecency.nvim"] = {
   config = conf.telescope_frecency,

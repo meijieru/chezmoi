@@ -2,12 +2,16 @@ local editor = {}
 local conf = require "modules.editor.config"
 
 -- editor["tpope/vim-unimpaired"] = {}
-editor["tpope/vim-repeat"] = {}
-editor["tpope/vim-surround"] = {}
+editor["tpope/vim-surround"] = {
+  requires = { { "tpope/vim-repeat", opt = true } },
+  event = "CursorMoved",
+  -- keys = { "cs", "ds", "ys" }, -- cause delay dd
+  after = "vim-repeat",
+}
 editor["machakann/vim-sandwich"] = { keys = { "s" }, disable = true }
-editor["tpope/vim-sleuth"] = {}
-editor["tpope/vim-rsi"] = {}
-editor["tpope/vim-eunuch"] = {}
+editor["tpope/vim-sleuth"] = { event = "BufRead" }
+editor["tpope/vim-rsi"] = { event = { "CmdlineEnter", "InsertEnter" } }
+editor["tpope/vim-eunuch"] = { event = "BufRead" }
 editor["bronson/vim-visual-star-search"] = {}
 
 editor["phaazon/hop.nvim"] = {
@@ -47,9 +51,9 @@ editor["stevearc/aerial.nvim"] = {
   disable = not myvim.plugins.aerial.active,
 }
 
-editor["kana/vim-textobj-user"] = {}
-editor["kana/vim-textobj-indent"] = {}
-editor["jceb/vim-textobj-uri"] = {}
+editor["kana/vim-textobj-user"] = { event = "BufRead" }
+editor["kana/vim-textobj-indent"] = { event = "BufRead" }
+editor["jceb/vim-textobj-uri"] = { event = "BufRead" }
 editor["sgur/vim-textobj-parameter"] = { ft = { "lua" }, disable = true }
 
 editor["dhruvasagar/vim-table-mode"] = {
@@ -77,7 +81,7 @@ editor["rcarriga/nvim-dap-ui"] = {
 editor["nvim-telescope/telescope-dap.nvim"] = {
   config = conf.dap,
   -- cmd = "Telescope",
-  disable = true, -- TODO: revisit later
+  disable = true,
 }
 
 editor["nvim-treesitter/nvim-treesitter-textobjects"] = {
