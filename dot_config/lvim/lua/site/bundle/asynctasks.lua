@@ -23,13 +23,11 @@ function M.reset()
   M._asynctask_mapping = nil
 end
 
--- TODO(meijieru): honor more options?
--- silent, close, hidden
-function M.runner(cmd, dir, mapping)
+function M.runner(opts, mapping)
   M.reset()
   M._asynctask_term = terminal:new {
-    cmd = cmd,
-    dir = dir,
+    cmd = opts.cmd,
+    dir = opts.cwd,
     close_on_exit = false,
     hidden = true,
     on_open = function(_)
@@ -41,7 +39,9 @@ function M.runner(cmd, dir, mapping)
     M._asynctask_term:toggle()
   end
 
-  M._asynctask_term_toggle()
+  if not opts.silent then
+    M._asynctask_term_toggle()
+  end
   M._asynctask_mapping = mapping or M.settings.mapping
   vim.api.nvim_set_keymap(
     "n",

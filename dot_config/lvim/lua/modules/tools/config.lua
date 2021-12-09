@@ -16,10 +16,9 @@ function config.asynctasks()
   vim.g.asyncrun_open = 10
   vim.g.asyncrun_status = ""
 
-  -- TODO(meijieru): convert to lua
   vim.cmd [[
     function! s:toggle_term_runner(opts)
-      lua require("site.bundle.asynctasks").runner(vim.fn.eval("a:opts.cmd"), vim.fn.eval("a:opts.cwd"))
+      lua require("site.bundle.asynctasks").runner(vim.fn.eval("a:opts"))
     endfunction
 
     let g:asyncrun_runner = get(g:, 'asyncrun_runner', {})
