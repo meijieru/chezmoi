@@ -48,7 +48,6 @@ function M.setup_easy_align()
 end
 
 function _G.set_terminal_keymaps()
-  -- TODO(meijieru): `vim-terminal-help` like `drop`
   local opts = { noremap = true, buffer = 0 }
   mapx.tnoremap("<M-q>", [[<C-\><C-n>]], opts)
   mapx.tnoremap("<M-h>", [[<C-\><C-n><C-W>h]], opts)

@@ -28,7 +28,6 @@ tools["tpope/vim-fugitive"] = {
   ft = { "fugitive" },
   fn = { "FugitiveGitDir" },
   disable = false,
-  -- TODO(meijieru): close info buf when diff
 }
 
 tools["TimUntersberger/neogit"] = {
