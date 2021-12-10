@@ -45,7 +45,7 @@
 [difftool]
 	prompt = true
 [difftool "nvimdiff"]
-	cmd = "lvim -d \"$LOCAL\" \"$REMOTE\""
+	cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
 [difftool "diffsitter"]
 	cmd = diffsitter "$LOCAL" "$REMOTE"
 [color]
@@ -69,7 +69,7 @@
 	log = true
 	tool = nvimmerge
 [mergetool "nvimmerge"]
-	cmd = lvim -d "$LOCAL" "$MERGED" "$REMOTE" -c 'wincmd w' -c 'wincmd J'
+	cmd = nvim -d "$LOCAL" "$MERGED" "$REMOTE" -c 'wincmd w' -c 'wincmd J'
 [push]
 	default = matching
 [init]

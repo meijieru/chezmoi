@@ -61,9 +61,6 @@ if [ -x "$(command -v nvim)" ]; then
     alias vi='nvim'
     alias vimdiff='nvim -d'
 fi
-if [ -x "$(command -v lvim)" ]; then
-    alias nvim='lvim'
-fi
 if [ -x "$(command -v fdfind)" ]; then
     alias fd='fdfind'
 fi

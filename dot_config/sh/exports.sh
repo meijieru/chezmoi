@@ -2,9 +2,7 @@
 # http://mths.be/dotfiles
 
 # Make vim the default editor
-if [ -x "$(command -v lvim)" ]; then
-    export EDITOR="lvim"
-elif [ -x "$(command -v nvim)" ]; then
+if [ -x "$(command -v nvim)" ]; then
     export EDITOR="nvim"
 else
     export EDITOR="vim"
