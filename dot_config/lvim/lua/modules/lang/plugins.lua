@@ -12,7 +12,7 @@ lang["iamcco/markdown-preview.nvim"] = {
   disable = true,
 }
 
-lang["jbyuki/one-small-step-for-vimkind"] = { ft = { "lua" } }
+lang["jbyuki/one-small-step-for-vimkind"] = { module = "osv" }
 lang["lervag/vimtex"] = { ft = { "tex" }, disable = true }
 lang["teal-language/vim-teal"] = { ft = { "teal" } }
 lang["MTDL9/vim-log-highlighting"] = { ft = { "log" } }
