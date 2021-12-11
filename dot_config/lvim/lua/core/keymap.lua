@@ -240,6 +240,8 @@ function M.setup_basic()
   mapx.nnoremap("[q", ":cprev<CR>", "Previous Quickfix")
   mapx.nnoremap("]l", ":lnext<CR>", "Next Loclist")
   mapx.nnoremap("[l", ":lprev<CR>", "Previous Loclist")
+  mapx.nnoremap("]b", ":bprevious<CR>", "Next Buffer")
+  mapx.nnoremap("[b", ":bnext<CR>", "Previous Buffer")
 
   mapx.nnoremap("<F1>", "<cmd>lua require('modules.ui.utils').toggle_colorcolumn()<cr>", "Toggle Colorcolumn")
   mapx.nnoremap("m<space>", "<cmd>delmarks!<cr>", "Delete All Marks")
