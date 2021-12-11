@@ -2,7 +2,7 @@ local M = {}
 
 function M.setup_telescope()
   lvim.builtin.telescope.defaults.mappings.i["<C-w>"] = function()
-    vim.cmd [[normal! bcw]]
+    vim.cmd [[normal! b"zcw]]
   end
   lvim.builtin.telescope.defaults.mappings.i["<C-h>"] = "which_key"
   lvim.builtin.telescope.defaults.mappings.n["g?"] = "which_key"
