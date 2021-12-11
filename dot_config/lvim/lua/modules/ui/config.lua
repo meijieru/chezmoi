@@ -89,6 +89,8 @@ function M.sidebar()
   require("sidebar-nvim").setup()
 end
 
+vim.g.tpipeline_fillcentre = true
+
 vim.g.gruvbox_material_palette = "origin"
 vim.g.gruvbox_material_background = "medium"
 vim.g.gruvbox_material_enable_italic = myvim.colorscheme_enable_italic
