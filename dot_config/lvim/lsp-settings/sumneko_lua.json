@@ -1,7 +1,7 @@
 {
   "Lua.runtime.version": "LuaJIT",
   "Lua.diagnostics.enable": true,
-  "Lua.diagnostics.globals": [],
+  "Lua.diagnostics.globals": ["packer_plugins"],
   "Lua.diagnostics.disable": [],
   "Lua.completion.callSnippet": "Both",
   "Lua.completion.keywordSnippet": "Both"
