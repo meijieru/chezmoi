@@ -80,3 +80,6 @@
 	rebase = true
 [fetch]
 	prune = true
+[pager]
+	; log = nvimpager
+	lg = less
