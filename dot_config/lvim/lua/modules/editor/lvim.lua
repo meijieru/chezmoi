@@ -8,7 +8,7 @@ function M.setup_treesitter()
     keymaps = {
       -- init_selection = "gnn",
       node_incremental = ".",
-      scope_incremental = ">",
+      scope_incremental = ";",
       node_decremental = ",",
     },
   }

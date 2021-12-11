@@ -310,6 +310,7 @@ function M.setup_toggle()
   mapx.nnoremap("<leader>te", "<cmd>lua require('modules.completion.lsp').toggle_diagnostics()<cr>", "Diagnostic")
   mapx.nnoremap("<leader>ta", "<cmd>AerialToggle!<cr>", "Aerial")
   mapx.nnoremap("<leader>tu", "<cmd>UndotreeToggle<cr>", "Undotree")
+  mapx.nnoremap("<leader>tc", "<cmd>ColorizerToggle<cr>", "Colorizer")
 end
 
 function M.setup_treesitter()
@@ -317,6 +318,7 @@ function M.setup_treesitter()
   mapx.nnoremap("<leader>Tc", "<cmd>TSConfigInfo<cr>", "Config Info")
   mapx.nnoremap("<leader>Tm", "<cmd>TSModuleInfo<cr>", "Module Info")
   mapx.nnoremap("<leader>Tp", "<cmd>TSPlaygroundToggle<cr>", "Playground")
+  mapx.nnoremap("<leader>Th", "<cmd>TSHighlightCapturesUnderCursor<cr>", "Highlight Info")
 end
 
 function M.setup_visual_multi()
