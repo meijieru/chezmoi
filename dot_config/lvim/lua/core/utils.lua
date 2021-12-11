@@ -1,6 +1,6 @@
 local M = {}
 
-local Log = require "lvim.core.log"
+local Log = require "core.log"
 
 function M.load_vimscript(path)
   vim.cmd("source " .. vim.fn.expand "~/.config/lvim/" .. path)

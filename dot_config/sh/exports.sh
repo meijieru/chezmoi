@@ -25,7 +25,12 @@ export LC_ALL="en_US.UTF-8"
 export LESS_TERMCAP_md="$ORANGE"
 
 # Don’t clear the screen after quitting a manual page
-export MANPAGER="less -X"
+if [ -x "$(command -v nvimpager)" ]; then
+    export PAGER=nvimpager
+else
+    export PAGER="less -X"
+fi
+export MANPAGER=$PAGER
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"

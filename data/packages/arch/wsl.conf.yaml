@@ -57,3 +57,4 @@ yay:
   - stylua
   - cmake-format
   - diffsitter-bin
+  - nvimpager

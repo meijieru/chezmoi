@@ -2,7 +2,7 @@ local M = {
   _diagnostics_active = true,
 }
 
-local Log = require "lvim.core.log"
+local Log = require "core.log"
 
 function M.root_dir(fname)
   return require("lspconfig.util").root_pattern(unpack(myvim.root_markers))(fname) or vim.fn.getcwd()

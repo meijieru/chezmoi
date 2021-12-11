@@ -1,6 +1,6 @@
 local M = {}
 
-local Log = require "lvim.core.log"
+local Log = require "core.log"
 local utils = require "core.utils"
 
 utils.load_pack("which-key.nvim", { skip_packer = true })
@@ -68,22 +68,18 @@ function M.setup_sniprun()
 end
 
 function M.setup_hop()
-  mapx.nname("<leader><leader>", "Hop")
+  local prefix = "<leader><leader>"
+  mapx.nname(prefix, "Hop")
   local mappings = {
-    w = { ":HopWordAC<CR>", "Forward Words" },
-    b = { ":HopWordBC<CR>", "Backward Words" },
-    j = { ":HopLineStartAC<CR>", "Forward Lines" },
-    k = { ":HopLineStartBC<CR>", "Backward Lines" },
-    s = { ":HopPattern<CR>", "Search Patterns" },
+    w = { "<cmd>HopWordAC<CR>", "Forward Words" },
+    b = { "<cmd>HopWordBC<CR>", "Backward Words" },
+    j = { "<cmd>HopLineStartAC<CR>", "Forward Lines" },
+    k = { "<cmd>HopLineStartBC<CR>", "Backward Lines" },
+    s = { "<cmd>HopPattern<CR>", "Search Patterns" },
   }
-  local opts = {
-    mode = "n",
-    prefix = "<leader><leader>",
-    silent = true,
-    noremap = true,
-    nowait = true,
-  }
-  which_key.register(mappings, opts)
+  for key, val in pairs(mappings) do
+    mapx.nnoremap(prefix .. key, val[1], mapx.silent, val[2])
+  end
 
   -- stylua: ignore start
   mapx.nnoremap('f', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>")
@@ -305,11 +301,6 @@ function M.setup_git()
   mapx.nnoremap("<leader>gg", "<cmd>call auxlib#toggle_fugitive()<cr>", "Toggle Status")
 end
 
--- NOTE: run with VimEnter
-function M.post_setup()
-  Log:warn "Keymaps post_setup is deprecated"
-end
-
 function M.setup_toggle()
   mapx.vname("<leader>t", "Toggle")
   mapx.nnoremap("<leader>tq", "<cmd>call QuickFixToggle()<cr>", "Quickfix")
@@ -332,22 +323,29 @@ function M.setup_visual_multi()
   mapx.nmap("<C-n>", "<Plug>(VM-Find-Under)", "VM Find Under")
 end
 
-M.setup_lvim()
-M.setup_basic()
--- M.setup_trouble()
-M.setup_toggle()
-M.setup_easy_align()
-M.setup_terminal()
-M.setup_hop()
-M.setup_lsp()
-M.setup_gitsigns()
-M.setup_asynctasks()
-M.setup_sniprun()
-M.setup_zenmode()
-M.setup_dap()
-M.setup_git()
-M.setup_find()
-M.setup_treesitter()
-M.setup_visual_multi()
+function M.setup()
+  M.setup_lvim()
+  M.setup_basic()
+  -- M.setup_trouble()
+  M.setup_toggle()
+  M.setup_easy_align()
+  M.setup_terminal()
+  M.setup_hop()
+  M.setup_lsp()
+  M.setup_gitsigns()
+  M.setup_asynctasks()
+  M.setup_sniprun()
+  M.setup_zenmode()
+  M.setup_dap()
+  M.setup_git()
+  M.setup_find()
+  M.setup_treesitter()
+  M.setup_visual_multi()
+end
+
+-- NOTE: run with VimEnter
+function M.post_setup()
+  Log:warn "Keymaps post_setup is deprecated"
+end
 
 return M

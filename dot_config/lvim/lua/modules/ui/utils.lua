@@ -1,7 +1,7 @@
 local M = {}
 
 local utils = require "core.utils"
-local Log = require "lvim.core.log"
+local Log = require "core.log"
 
 local function is_used_colorschemes(colors)
   return vim.tbl_contains(colors, lvim.colorscheme)

@@ -1,6 +1,8 @@
 ## Neovim
 
-### How to Profile
+### How to
+
+#### Profile
 
 First run
 
@@ -39,6 +41,13 @@ Check the result
 
 ```vim
 :lua print(vim.inspect(myvim.profile.infos))
+```
+
+#### Debug
+
+View source order
+```sh
+nvim -V
 ```
 
 ### Resources

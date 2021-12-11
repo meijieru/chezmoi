@@ -1,6 +1,6 @@
 local M = {}
 
-local Log = require "lvim.core.log"
+local Log = require "core.log"
 local utils = require "core.utils"
 
 function M.setup_lualine()
