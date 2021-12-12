@@ -11,7 +11,7 @@ local function notify_wrapper(method)
   end
 end
 
-for _, method in ipairs { "info", "warn", "error", "debug" } do
+for _, method in ipairs { "info", "warn", "error", "debug", "trace" } do
   M[method] = notify_wrapper(method)
 end
 return M

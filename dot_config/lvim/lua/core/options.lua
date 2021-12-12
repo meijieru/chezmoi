@@ -17,7 +17,7 @@ vim.o.grepprg = [[rg --hidden --glob "!.git" --no-heading --smart-case --vimgrep
 vim.o.grepformat = "%f:%l:%c:%m"
 
 -- lvim
-lvim.log.level = "warn"
+lvim.log.level = "info"
 lvim.format_on_save = false
 lvim.leader = "space"
 vim.o.background = "light"
