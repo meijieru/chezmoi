@@ -55,6 +55,8 @@ nvim -V
 #### Coding
 
 - [lua-async](https://github.com/ms-jpq/lua-async-await)
+- [Learn X in Y minutes](https://learnxinyminutes.com/docs/lua/)
+- [nvim-lua-guide](https://github.com/nanotee/nvim-lua-guide)
 
 ### Lvim
 
