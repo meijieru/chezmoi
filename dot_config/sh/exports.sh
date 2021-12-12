@@ -39,8 +39,8 @@ export MANPAGER=$PAGER
 export TERM="xterm-256color"
 
 # Customize to your needs...
-export PATH=$HOME/.local/bin/:$PATH
-export LD_LIBRARY_PATH=$HOME/.local/lib:$LD_LIBRARY_PATH
+export -U PATH=$HOME/.local/bin/:$PATH
+export -U LD_LIBRARY_PATH=$HOME/.local/lib:$LD_LIBRARY_PATH
 
 export GTAGSLABEL='native-pygments'
 export GTAGSCONF=$HOME/.config/gtags.conf
