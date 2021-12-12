@@ -59,7 +59,7 @@ _G.myvim = {
     -- ui
     aerial = { active = true },
     sidebar = { active = false },
-    dressing = { active = false },
+    dressing = { active = true },
     notify = { active = true },
   },
 }
