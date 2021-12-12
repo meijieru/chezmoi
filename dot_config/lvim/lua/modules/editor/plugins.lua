@@ -37,7 +37,7 @@ editor["mg979/vim-visual-multi"] = {
     "<Plug>(VM-Add-Cursor-Down)",
     "<Plug>(VM-Add-Cursor-Up)",
   },
-  config = conf.visual_multi,
+  setup = conf.visual_multi,
 }
 
 editor["simrat39/symbols-outline.nvim"] = {

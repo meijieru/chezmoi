@@ -38,7 +38,7 @@ function M.visual_multi()
   vm_maps["Select Operator"] = ""
   vm_maps["Undo"] = "u"
   vm_maps["Redo"] = "<C-r>"
-  vm_maps["Reselect Last"] = "gS"
+  vm_maps["Reselect Last"] = "gs"
   -- useful default mappings
   -- \\z for normal everywhere
   -- ] for goto next

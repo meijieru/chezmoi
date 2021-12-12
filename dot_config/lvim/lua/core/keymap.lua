@@ -155,6 +155,8 @@ function M.setup_lvim()
   for _, key in ipairs { "j", "k", "s" } do
     lvim.builtin.which_key.mappings.g[key] = nil
   end
+  -- lsp_signature.nvim already did it
+  lvim.lsp.buffer_mappings.normal_mode["gs"] = nil
   lvim.lsp.buffer_mappings.normal_mode["gd"] = {
     "<cmd>lua require('telescope.builtin').lsp_definitions()<cr>",
     "Goto Definition",
