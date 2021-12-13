@@ -8,7 +8,7 @@ fi
 
 function rg() {
     if [ -t 1 ]; then
-        command $EDITOR -q <(rg --vimgrep "$@")
+        command $EDITOR -q <(rg --vimgrep "$@") +copen
         # command rg -p "$@" | less -RMFXK
     else
         command rg "$@"
