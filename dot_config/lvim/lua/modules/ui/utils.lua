@@ -65,8 +65,8 @@ function M.toggle_colorcolumn(first_column, second_column)
   end
 end
 
--- https://github.com/kevinhwang91/nvim-bqf#format-new-quickfix
-function _G.qftf(info)
+-- modified from https://github.com/kevinhwang91/nvim-bqf#format-new-quickfix
+function _G.qftf(info, method)
   local items
   local ret = {}
   if info.quickfix == 1 then
@@ -89,12 +89,18 @@ function _G.qftf(info)
         else
           fname = fname:gsub("^" .. vim.env.HOME, "~")
         end
-        -- char in fname may occur more than 1 width, ignore this issue in order to keep performance
-        if #fname <= limit then
-          fname = fname_fmt1:format(fname)
-        else
-          fname = fname_fmt2:format(fname:sub(1 - limit))
+        if #fname > limit then
+          if method == "shorten" then
+            fname = utils.shorten_path(fname, limit)
+          elseif method == "trunc" then
+            -- char in fname may occur more than 1 width, ignore this issue in order to keep performance
+            fname = fname_fmt2:format(fname:sub(1 - limit))
+          elseif method == "none" then
+          else
+            Log:error(string.format("Unknow path shorten method: %s", method))
+          end
         end
+        fname = fname_fmt1:format(fname)
       end
       local lnum = e.lnum > 99999 and -1 or e.lnum
       local col = e.col > 999 and -1 or e.col
@@ -108,6 +114,6 @@ function _G.qftf(info)
   return ret
 end
 
-vim.o.qftf = "{info -> v:lua._G.qftf(info)}"
+vim.o.qftf = "{info -> v:lua._G.qftf(info, 'shorten')}"
 
 return M

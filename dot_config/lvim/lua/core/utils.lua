@@ -102,4 +102,28 @@ function M.get_plugin_dir(url)
   return parts[#parts]
 end
 
+local function shorten_path_step(path, sep)
+  -- ('([^/])[^/]+%/', '%1/', 1)
+  return path:gsub(string.format("([^%s])[^%s]+%%%s", sep, sep, sep), "%1" .. sep, 1)
+end
+
+--- shortens path by turning apple/banana/orange -> a/b/orange
+--- @param path string
+--- @param len_target number
+--- @return string
+function M.shorten_path(path, len_target)
+  local function count(base, pattern)
+    return select(2, string.gsub(base, pattern, ""))
+  end
+
+  local data = path
+  local path_separator = package.config:sub(1, 1)
+  for _ = 0, count(data, path_separator) do
+    if #data > len_target then
+      data = shorten_path_step(data, path_separator)
+    end
+  end
+  return data
+end
+
 return M
