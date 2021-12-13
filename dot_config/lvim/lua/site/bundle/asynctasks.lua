@@ -2,7 +2,7 @@ local terminal = require("toggleterm.terminal").Terminal
 
 local M = {
   settings = {
-    mapping = "<leader>ta",
+    mapping = "<leader>tt",
   },
 }
 
