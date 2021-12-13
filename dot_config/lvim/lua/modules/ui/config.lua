@@ -29,7 +29,14 @@ function M.indent_blankline()
 end
 
 function M.zen_mode()
-  require("zen-mode").setup {}
+  require("zen-mode").setup {
+    plugins = {
+      twilight = { enabled = true },
+      gitsigns = { enabled = true }, -- hide the gitsigns
+      diagnostics = { enabled = true },
+      tmux = { enabled = false },
+    },
+  }
 end
 
 function M.twilight()
