@@ -4,7 +4,9 @@ function M.setup_telescope()
   lvim.builtin.telescope.defaults.mappings.i["<C-w>"] = function()
     vim.cmd [[normal! b"zcw]]
   end
-  lvim.builtin.telescope.defaults.mappings.i["<C-h>"] = "which_key"
+  -- useful defalt:
+  -- <C-/> Show mappings for picker actions (insert mode)
+  -- ? Show mappings for picker actions (normal mode)
   lvim.builtin.telescope.defaults.mappings.n["g?"] = "which_key"
   lvim.builtin.telescope.defaults.layout_config.width = 0.95
   lvim.builtin.telescope.on_config_done = function()
