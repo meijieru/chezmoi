@@ -13,16 +13,6 @@ end
 
 require("modules.lang.lvim").setup()
 
--- TODO(meijieru): wait for https://github.com/nvim-treesitter/nvim-treesitter/issues/872
-local parser_configs = require("nvim-treesitter.parsers").get_parser_configs()
-parser_configs.markdown = {
-  install_info = {
-    url = "https://github.com/ikatyang/tree-sitter-markdown",
-    files = { "src/parser.c", "src/scanner.cc" },
-  },
-  filetype = "markdown",
-}
-
 function config.markdown_preview()
   vim.g.mkdp_auto_start = 0
   vim.g.mkdp_browser='wsl-open'
