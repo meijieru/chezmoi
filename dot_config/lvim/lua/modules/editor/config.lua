@@ -30,7 +30,29 @@ function M.dapui()
   --   dapui.close()
   -- end
 
-  require("dapui").setup {}
+  require("dapui").setup {
+    sidebar = {
+      -- You can change the order of elements in the sidebar
+      elements = {
+        -- Provide as ID strings or tables with "id" and "size" keys
+        { id = "watches", size = 0.18 },
+        { id = "stacks", size = 0.20 },
+        { id = "breakpoints", size = 0.20 },
+        { id = "scopes", size = 0.42 },
+      },
+      size = 45,
+      position = "left", -- Can be "left", "right", "top", "bottom"
+    },
+    floating = {
+      border = "rounded", -- Border style. Can be "single", "double" or "rounded"
+    },
+  }
+end
+
+function M.dap_virtual_text()
+  require("nvim-dap-virtual-text").setup {
+    enabled = true,
+  }
 end
 
 function M.visual_multi()

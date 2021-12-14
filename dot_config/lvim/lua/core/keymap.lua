@@ -285,6 +285,7 @@ function M.setup_dap()
   mapx.vnoremap("<leader>de", "<Cmd>lua require('dapui').eval()<cr>", "Eval Expression")
   mapx.nnoremap("<leader>df", "<Cmd>lua require('dapui').float_element()<cr>", "Float Element")
   mapx.nnoremap("<leader>dT", "<cmd>lua require('dapui').toggle()<cr>", "Toggle UI")
+  mapx.nnoremap("<leader>dv", "<Cmd>DapVirtualTextToggle<cr>", "Toggle Virtual Text")
 end
 
 function M.setup_git()

@@ -9,5 +9,5 @@ lvim.autocommands.custom_groups = {
   -- { "VimEnter", "*", "lua require('core.keymap').post_setup()" },
 
   -- disable fold
-  { "FileType", "alpha,lspinfo,aerial", "setlocal nofoldenable" },
+  { "FileType", "alpha,lspinfo,aerial,dapui_scopes", "setlocal nofoldenable" },
 }

@@ -51,8 +51,6 @@ _G.myvim = {
     treesitter = {
       ensure_installed = {},
     },
-    neogen = { active = true },
-
     imtoggle = { active = false },
     telescope_frecency = { active = false },
 
@@ -61,5 +59,9 @@ _G.myvim = {
     sidebar = { active = false },
     dressing = { active = true },
     notify = { active = true },
+
+    -- editor
+    dap_virtual_text = { active = false },
+    neogen = { active = true },
   },
 }

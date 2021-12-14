@@ -74,9 +74,15 @@ editor["ethanholz/nvim-lastplace"] = {
 }
 
 editor["rcarriga/nvim-dap-ui"] = {
-  config = conf.dapui,
   -- module = { "dapui" },  --affect open_on_start
   requires = { "mfussenegger/nvim-dap" },
+  config = conf.dapui,
+}
+editor["theHamsta/nvim-dap-virtual-text"] = {
+  requires = { "mfussenegger/nvim-dap", "nvim-treesitter/nvim-treesitter" },
+  cmd = { "DapVirtualTextToggle" },
+  config = conf.dap_virtual_text,
+  disable = not myvim.plugins.dap_virtual_text.active,
 }
 editor["nvim-telescope/telescope-dap.nvim"] = {
   config = conf.dap,
