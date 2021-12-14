@@ -12,6 +12,7 @@ utils.use_colorschemes(
 utils.use_colorschemes(ui, "sainnhe/gruvbox-material", { "gruvbox-material" })
 utils.use_colorschemes(ui, "sainnhe/edge", { "edge" })
 utils.use_colorschemes(ui, "sainnhe/everforest", { "everforest" })
+utils.use_colorschemes(ui, "shaunsingh/nord.nvim", { "nord" })
 
 ui["lukas-reineke/indent-blankline.nvim"] = {
   event = "BufRead",

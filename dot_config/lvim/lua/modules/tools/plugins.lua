@@ -73,7 +73,10 @@ tools["norcalli/nvim-colorizer.lua"] = {
   disable = false,
 }
 
-tools["wakatime/vim-wakatime"] = { event = "BufRead" }
+tools["wakatime/vim-wakatime"] = {
+  -- FIXME(meijieru): wait for https://github.com/wbthomason/packer.nvim/issues/8
+  event = "BufRead",
+}
 tools["nathom/filetype.nvim"] = {
   config = conf.filtype,
 }
@@ -95,6 +98,12 @@ tools["rcarriga/vim-ultest"] = {
   -- config = function()
   --   vim.cmd [[UpdateRemotePlugins]]
   -- end,
+  disable = true,
+}
+
+tools["alker0/chezmoi.vim"] = { disable = true }
+tools["Pocco81/AutoSave.nvim"] = {
+  event = { "BufRead" },
   disable = true,
 }
 
