@@ -11,7 +11,7 @@ First run
 ```
 
 It will generate the following
-![image](../utils/media/vim-startuptime.png)
+![image](../assets/images/vim-startuptime.png)
 
 To check `packer_compiled.lua`
 

@@ -15,4 +15,4 @@ chezmoi apply --dry-run --verbose
 
 ## Neovim
 
-Check [doc](./dot_config/lvim/doc/nvim.md)
+Check [doc](./doc/nvim.md)
