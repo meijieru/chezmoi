@@ -147,6 +147,10 @@ function M.aerial()
   require("telescope").load_extension "aerial"
 end
 
+function M.spellsitter()
+  require("spellsitter").setup()
+end
+
 function M.neogen()
   require("neogen").setup { enabled = true }
 end
