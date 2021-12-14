@@ -94,6 +94,17 @@ function M.load_pack(package, opts)
   return true
 end
 
+--- Ensure package is loaded before func
+--- @param package string
+--- @param func function
+--- @return any
+function M.ensure_loaded_wrapper(package, func)
+  return function(...)
+    M.load_pack(package)
+    return func(...)
+  end
+end
+
 --- Get plugin base dir.
 --- @param url string
 --- @return string

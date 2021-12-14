@@ -79,20 +79,23 @@ function M.setup_lualine()
 end
 
 function M.setup_nvimtree()
-  local safe_load = require("core.utils").safe_load
-  local status_ok, nvim_tree_config = safe_load "nvim-tree.config"
-  if not status_ok then
-    return
-  end
-  local tree_cb = nvim_tree_config.nvim_tree_callback
+  -- local trash_callback = utils.ensure_loaded_wrapper("nvim-tree.lua", function()
+  --   local tree_cb = require("nvim-tree.config").nvim_tree_callback
+  --   local cmd = tree_cb "trash"
+  --   vim.validate { cmd = { cmd, "string" } }
+  --   vim.cmd(cmd)
+  -- end)
 
   lvim.builtin.nvimtree.show_icons.git = 1
   lvim.builtin.nvimtree.quit_on_open = 1
 
   lvim.builtin.nvimtree.setup.view.side = "left"
-  lvim.builtin.nvimtree.setup.view.mappings.list = {
-    { key = "d", cb = tree_cb "trash" },
-  }
+  -- FIXME(meijieru): revisit after https://github.com/neovim/neovim/pull/16594
+  -- lvim.builtin.nvimtree.setup.view.mappings.list = {
+  --   { key = "d", cb = trash_callback },
+  --   { key = "gtf", cb = "<cmd>lua require'lvim.core.nvimtree'.start_telescope('find_files')<cr>" },
+  --   { key = "gtg", cb = "<cmd>lua require'lvim.core.nvimtree'.start_telescope('live_grep')<cr>" },
+  -- }
 
   local trash_cmd = "trash-put"
   if vim.fn.executable(trash_cmd) then

@@ -9,6 +9,7 @@ if not status_whichkey_ok then
   return M
 end
 
+utils.load_pack("mapx.nvim", { skip_packer = true })
 local status_mapx_ok, mapx = utils.safe_load "mapx"
 if not status_mapx_ok then
   return M
@@ -33,7 +34,7 @@ function M.chain(...)
   end
 end
 
-function M.ensure_loaded_wrapper(package, command)
+local function _ensure_package_command(package, command)
   return function()
     utils.load_pack(package)
     return vim.api.nvim_replace_termcodes(command, true, true, true)
@@ -42,7 +43,7 @@ end
 
 function M.setup_easy_align()
   local label = "EasyAlign"
-  local func = M.ensure_loaded_wrapper("vim-easy-align", "<Plug>(EasyAlign)")
+  local func = _ensure_package_command("vim-easy-align", "<Plug>(EasyAlign)")
   mapx.nmap("ga", func, mapx.expr, label)
   mapx.xmap("ga", func, mapx.expr, label)
 end
@@ -111,7 +112,7 @@ function M.setup_lsp()
   local _keymap = "<leader>ls"
   local _doc = "Document Symbols"
   if myvim.plugins.aerial.active then
-    mapx.nnoremap(_keymap, M.ensure_loaded_wrapper("aerial.nvim", "<cmd>Telescope aerial<cr>"), mapx.expr, _doc)
+    mapx.nnoremap(_keymap, _ensure_package_command("aerial.nvim", "<cmd>Telescope aerial<cr>"), mapx.expr, _doc)
   else
     mapx.nnoremap(_keymap, "<cmd>Telescope lsp_document_symbols<cr>", _doc)
   end

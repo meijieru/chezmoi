@@ -116,6 +116,6 @@ editor["danymat/neogen"] = {
   disable = not myvim.plugins.neogen.active,
 }
 
-editor["b0o/mapx.nvim"] = {}
+editor["b0o/mapx.nvim"] = { module = "mapx" }
 
 return editor
