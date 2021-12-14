@@ -1,5 +1,6 @@
 apt:
   # - tldr
+  - neofetch
   - git
   - etckeeper
   - trash-cli
