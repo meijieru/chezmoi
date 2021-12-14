@@ -87,6 +87,7 @@ vim.cmd("colorscheme edge_lush")
 vim.g.loaded_tpipeline = 1
 
 --- keymap
+load_pack("mapx.nvim")
 local mapx = require("mapx")
 local function setup_hop()
   local prefix = "<leader><leader>"
