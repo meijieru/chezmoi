@@ -65,6 +65,7 @@ function config.filtype()
     overrides = {
       extensions = {
         tl = "teal",
+        tex = "tex",
       },
       literal = {
         [".tasks"] = "dosini",
