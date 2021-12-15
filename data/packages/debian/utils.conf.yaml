@@ -1,5 +1,9 @@
 apt:
+  - fuse
+  - cifs-utils
+
   # - tldr
+  - rsync
   - neofetch
   - git
   - etckeeper
@@ -12,6 +16,7 @@ apt:
   - fzf
   - neovim
   - python3-pip
+  - lua5.4
 
   - make
   - sqlite3
