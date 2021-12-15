@@ -107,7 +107,11 @@ editor["RRethy/nvim-treesitter-textsubjects"] = {
   after = "nvim-treesitter",
   disable = true,
 }
-editor["lewis6991/spellsitter.nvim"] = { event = "BufRead", config = conf.spellsitter }
+editor["lewis6991/spellsitter.nvim"] = {
+  event = "BufRead", -- use filetype instead
+  config = conf.spellsitter,
+  disable = not myvim.plugins.spellsitter.active,
+}
 
 editor["danymat/neogen"] = {
   -- event = "BufRead",
