@@ -15,7 +15,7 @@ completion["folke/trouble.nvim"] = {
   --   "trouble.providers.telescope",
   -- },
   config = conf.trouble,
-  disable = true,
+  disable = not myvim.plugins.trouble.active,
 }
 
 completion["tzachar/cmp-tabnine"] = {

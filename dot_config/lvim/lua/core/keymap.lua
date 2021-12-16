@@ -261,6 +261,9 @@ function M.setup_basic()
 end
 
 function M.setup_trouble()
+  if not myvim.plugins.trouble.active then
+    return
+  end
   lvim.builtin.which_key.mappings["t"] = {
     name = "Diagnostics",
     t = { "<cmd>TroubleToggle<cr>", "Toggle" },
@@ -334,7 +337,7 @@ end
 function M.setup()
   M.setup_lvim()
   M.setup_basic()
-  -- M.setup_trouble()
+  M.setup_trouble()
   M.setup_toggle()
   M.setup_easy_align()
   M.setup_terminal()
