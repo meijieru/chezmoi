@@ -9,8 +9,9 @@ local function load_pack(dir)
   vim.cmd("packadd " .. dir)
 end
 
-local XDG_CONFIG_HOME = os.getenv("XDG_CONFIG_HOME")
-local XDG_DATA_HOME = os.getenv("XDG_DATA_HOME")
+local HOME = os.getenv("HOME")
+local XDG_CONFIG_HOME = os.getenv("XDG_CONFIG_HOME") or join_paths(HOME, ".config")
+local XDG_DATA_HOME = os.getenv("XDG_DATA_HOME") or join_paths(HOME, ".local/share")
 local base_dir = join_paths(XDG_DATA_HOME, "lunarvim/site")
 local package_root = base_dir .. "/pack"
 local nvimpager_dir = join_paths(XDG_CONFIG_HOME, "nvimpager")
