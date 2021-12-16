@@ -16,15 +16,6 @@ function config.asynctasks()
   vim.g.asyncrun_rootmarks = myvim.root_markers
   vim.g.asyncrun_open = 10
   vim.g.asyncrun_status = ""
-
-  vim.cmd [[
-    function! s:toggle_term_runner(opts)
-      lua require("site.bundle.asynctasks").runner(vim.fn.eval("a:opts"))
-    endfunction
-
-    let g:asyncrun_runner = get(g:, 'asyncrun_runner', {})
-    let g:asyncrun_runner.toggleterm = function('s:toggle_term_runner')
-  ]]
 end
 
 function config.startuptime()
