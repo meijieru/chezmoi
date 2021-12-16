@@ -15,12 +15,16 @@ from typing import Dict, Final, List
 # Expects a file of the format output by sha256sum (text mode)
 CHECKSUM_FILE: Final = "data/tmp/local_checksum"
 
-# Global mapping between files/scripts
+# Global mapping between files/dirs & scripts
 DEPENDENCIES_MAPS = [
     {
-        "script": "./tools/install_packages.sh.tmpl",
+        "script": "./tools/install_package/archlinux.sh",
+        "dependent_dirs": ["./data/packages/arch"],
         # "dependent_files": [],
-        "dependent_dirs": ["./data/packages"],
+    },
+    {
+        "script": "./tools/install_package/debian.sh",
+        "dependent_dirs": ["./data/packages/debian"],
     },
 ]
 
