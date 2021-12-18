@@ -80,8 +80,6 @@ function M.dressing()
       prefer_width = 40,
       max_width = nil,
       min_width = 20,
-
-      prompt_buffer = true,
     },
     select = {
       -- Priority list of preferred vim.select implementations
