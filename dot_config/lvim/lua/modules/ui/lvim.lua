@@ -90,12 +90,12 @@ function M.setup_nvimtree()
   lvim.builtin.nvimtree.quit_on_open = 1
 
   lvim.builtin.nvimtree.setup.view.side = "left"
-  -- FIXME(meijieru): revisit after https://github.com/neovim/neovim/pull/16594
-  -- lvim.builtin.nvimtree.setup.view.mappings.list = {
-  --   { key = "d", cb = trash_callback },
-  --   { key = "gtf", cb = "<cmd>lua require'lvim.core.nvimtree'.start_telescope('find_files')<cr>" },
-  --   { key = "gtg", cb = "<cmd>lua require'lvim.core.nvimtree'.start_telescope('live_grep')<cr>" },
-  -- }
+  lvim.builtin.nvimtree.setup.view.mappings.list = {
+    -- FIXME(meijieru): revisit after https://github.com/neovim/neovim/pull/16594
+    -- { key = "d", cb = trash_callback },
+    { key = "<leader>ff", cb = "<cmd>lua require'lvim.core.nvimtree'.start_telescope('find_files')<cr>" },
+    { key = "<leader>fg", cb = "<cmd>lua require'lvim.core.nvimtree'.start_telescope('live_grep')<cr>" },
+  }
 
   local trash_cmd = "trash-put"
   if vim.fn.executable(trash_cmd) then
