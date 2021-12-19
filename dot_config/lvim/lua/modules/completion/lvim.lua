@@ -97,9 +97,14 @@ function M.setup_trouble()
   lvim.builtin.telescope.defaults.mappings.n["<C-t>"] = _open_with_trouble
 end
 
+function M.setup_lsp()
+  lvim.lsp.popup_border = "rounded"
+end
+
 function M.setup()
   M.setup_trouble()
   M.setup_cmp()
+  M.setup_lsp()
 end
 
 return M

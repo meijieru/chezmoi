@@ -119,12 +119,12 @@ function M.setup_lsp()
   mapx.nnoremap("<leader>lg", "<cmd>lua require('neogen').generate()<cr>", "Generate Doc")
   mapx.nnoremap(
     "]e",
-    "<cmd>lua vim.diagnostic.goto_next { popup_opts = { border = lvim.lsp.popup_border } }<cr>",
+    "<cmd>lua vim.diagnostic.goto_next { float = { border = lvim.lsp.popup_border } }<cr>",
     "Next Diagnostic"
   )
   mapx.nnoremap(
     "[e",
-    "<cmd>lua vim.diagnostic.goto_prev { popup_opts = { border = lvim.lsp.popup_border } }<cr>",
+    "<cmd>lua vim.diagnostic.goto_prev { float = { border = lvim.lsp.popup_border } }<cr>",
     "Prev Diagnostic"
   )
 end
