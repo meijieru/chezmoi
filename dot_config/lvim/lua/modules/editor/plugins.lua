@@ -13,6 +13,14 @@ editor["tpope/vim-sleuth"] = { event = "BufRead" }
 editor["tpope/vim-rsi"] = { event = { "CmdlineEnter", "InsertEnter" } }
 editor["tpope/vim-eunuch"] = { event = "BufRead" }
 editor["bronson/vim-visual-star-search"] = {}
+editor["ojroques/vim-oscyank"] = {
+  -- cmd = { "OSCYank", "OSCYankReg" },
+  -- keys = { "<Plug>OSCYank" },
+  config = conf.oscyank,
+  cond = function()
+    return os.getenv "SSH_TTY" ~= nil
+  end,
+}
 
 editor["phaazon/hop.nvim"] = {
   cmd = {

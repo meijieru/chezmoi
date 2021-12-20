@@ -155,6 +155,12 @@ function M.neogen()
   require("neogen").setup { enabled = true }
 end
 
+function M.oscyank()
+  vim.cmd [[
+    autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '+' | execute 'OSCYankReg +' | endif
+  ]]
+end
+
 require("modules.editor.lvim").setup()
 
 return M
