@@ -122,7 +122,7 @@ function M.setup()
   lvim.builtin.bufferline.active = false
 
   -- lvim.builtin.dashboard.active = true
-  lvim.builtin.alpha.mode = "startify"
+  -- lvim.builtin.alpha.mode = "startify"
   lvim.builtin.terminal.active = true
 
   lvim.builtin.gitsigns.opts.signs.delete.text = "▎"
