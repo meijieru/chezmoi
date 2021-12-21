@@ -115,4 +115,9 @@ tools["glacambre/firenvim"] = {
   disable = true,
 }
 
+tools["rktjmp/shipwright.nvim"] = {
+  cmd = { "Shipwright" },
+  disable = not myvim.plugins.shipwright.active,
+}
+
 return tools
