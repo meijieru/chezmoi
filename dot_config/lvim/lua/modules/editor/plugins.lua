@@ -131,4 +131,19 @@ editor["danymat/neogen"] = {
 
 editor["b0o/mapx.nvim"] = { module = "mapx" }
 
+editor["rmagatti/auto-session"] = {
+  event = "VimEnter",
+  config = conf.auto_session,
+  disable = not myvim.plugins.auto_session.active,
+}
+editor["rmagatti/session-lens"] = {
+  module = "telescope._extensions.session-lens",
+  requires = {
+    "auto-session",
+    "telescope.nvim",
+  },
+  config = conf.session_lens,
+  disable = not (myvim.plugins.auto_session.active and myvim.plugins.telescope.active),
+}
+
 return editor

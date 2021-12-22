@@ -68,5 +68,6 @@ _G.myvim = {
     dap_virtual_text = { active = false },
     neogen = { active = true },
     spellsitter = { active = false },
+    auto_session = { active = true },
   },
 }

@@ -162,6 +162,16 @@ function M.oscyank()
   ]]
 end
 
+function M.auto_session()
+  require("auto-session").setup {
+    log_level = "info",
+    auto_session_suppress_dirs = { "~/" },
+  }
+end
+function M.session_lens()
+  require("session-lens").setup {}
+end
+
 require("modules.editor.lvim").setup()
 
 return M

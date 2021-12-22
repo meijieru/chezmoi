@@ -15,6 +15,7 @@ vim.o.lazyredraw = true
 vim.o.colorcolumn = ""
 vim.o.grepprg = [[rg --hidden --glob "!.git" --no-heading --smart-case --vimgrep --follow $*]]
 vim.o.grepformat = "%f:%l:%c:%m"
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal"
 
 -- lvim
 lvim.log.level = "info"

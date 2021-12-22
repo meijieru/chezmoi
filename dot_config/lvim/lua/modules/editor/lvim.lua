@@ -104,7 +104,6 @@ function M.setup_project()
   lvim.builtin.project.active = true
   lvim.builtin.project.patterns = myvim.root_markers
   lvim.builtin.project.silent_chdir = true
-  -- NOTE(meijieru): lsp sometimes is annoying
   lvim.builtin.project.detection_methods = { "pattern", "lsp" }
 end
 
