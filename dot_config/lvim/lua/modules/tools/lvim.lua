@@ -1,6 +1,11 @@
 local M = {}
 
 function M.setup_telescope()
+  lvim.builtin.telescope.active = myvim.plugins.telescope.active
+  if not myvim.plugins.telescope.active then
+    return
+  end
+
   lvim.builtin.telescope.defaults.mappings.i["<C-w>"] = function()
     vim.cmd [[normal! b"zcw]]
   end

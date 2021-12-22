@@ -48,7 +48,7 @@ tools["skywind3000/asynctasks.vim"] = {
       "GustavoKatel/telescope-asynctasks.nvim",
 
       module = "telescope._extensions.asynctasks", -- if you wish to lazy-load
-      disable = not lvim.builtin.telescope.active,
+      disable = not myvim.plugins.telescope.active,
     },
   },
   setup = conf.asynctasks,

@@ -84,7 +84,7 @@ function M.setup_cmp()
 end
 
 function M.setup_trouble()
-  if not lvim.builtin.telescope.active or not myvim.plugins.trouble.active then
+  if not myvim.plugins.telescope.active or not myvim.plugins.trouble.active then
     return
   end
   local function _open_with_trouble(prompt_bufnr, _mode)
