@@ -62,6 +62,7 @@ _G.myvim = {
     sidebar = { active = false },
     dressing = { active = true },
     notify = { active = true },
+    alpha = { active = false },
 
     -- editor
     dap_virtual_text = { active = false },
