@@ -62,12 +62,12 @@ _G.myvim = {
     sidebar = { active = false },
     dressing = { active = true },
     notify = { active = true },
-    alpha = { active = false },
+    alpha = { active = true },
 
     -- editor
     dap_virtual_text = { active = false },
     neogen = { active = true },
     spellsitter = { active = false },
-    auto_session = { active = true },
+    auto_session = { active = false },
   },
 }
