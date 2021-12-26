@@ -117,16 +117,8 @@ function M.setup_lsp()
     mapx.nnoremap(_keymap, "<cmd>Telescope lsp_document_symbols<cr>", _doc)
   end
   mapx.nnoremap("<leader>lg", "<cmd>lua require('neogen').generate()<cr>", "Generate Doc")
-  mapx.nnoremap(
-    "]e",
-    "<cmd>lua vim.diagnostic.goto_next { float = { border = lvim.lsp.popup_border } }<cr>",
-    "Next Diagnostic"
-  )
-  mapx.nnoremap(
-    "[e",
-    "<cmd>lua vim.diagnostic.goto_prev { float = { border = lvim.lsp.popup_border } }<cr>",
-    "Prev Diagnostic"
-  )
+  mapx.nnoremap("]e", "<cmd>lua vim.diagnostic.goto_next()<cr>", "Next Diagnostic")
+  mapx.nnoremap("[e", "<cmd>lua vim.diagnostic.goto_prev()<cr>", "Prev Diagnostic")
 end
 
 function M.setup_gitsigns()

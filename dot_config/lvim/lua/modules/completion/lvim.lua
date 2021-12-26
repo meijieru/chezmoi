@@ -98,7 +98,7 @@ function M.setup_trouble()
 end
 
 function M.setup_lsp()
-  lvim.lsp.popup_border = "rounded"
+  lvim.lsp.float.border = "rounded"
 end
 
 function M.setup()
