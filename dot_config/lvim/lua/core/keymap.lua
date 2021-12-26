@@ -222,6 +222,15 @@ function M.setup_asynctasks()
 end
 
 function M.setup_basic()
+  local function system_open()
+    local cfile = vim.fn.expand "<cfile>"
+    if vim.fn.filereadable(cfile) == 1 or string.match(cfile, "[a-z]*://[^ >,;]*") ~= nil then
+      vim.cmd(string.format("silent !xdg-open %s", cfile))
+      return
+    end
+    vim.notify(string.format("url %s invalid", cfile), "error")
+  end
+
   mapx.inoremap("<C-k>", "<Up>")
   mapx.inoremap("<C-j>", "<Down>")
   mapx.inoremap("<C-h>", "<Left>")
@@ -244,6 +253,7 @@ function M.setup_basic()
   mapx.nnoremap("m<space>", "<cmd>delmarks!<cr>", "Delete All Marks")
   mapx.nnoremap("-", "<cmd>NvimTreeOpen<cr>", "Open Directory")
   mapx.nnoremap("g?", "<cmd>WhichKey<cr>", "WhichKey")
+  mapx.nnoremap("gx", system_open, "Open the file under cursor with system app")
 
   mapx.vnoremap("<", "<gv")
   mapx.vnoremap(">", ">gv")
