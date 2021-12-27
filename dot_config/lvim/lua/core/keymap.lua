@@ -182,6 +182,12 @@ function M.setup_find()
       end
     end
   end
+  local function visual_search()
+    vim.cmd 'normal "zy'
+    local content = vim.fn.getreg "z"
+    local command = string.format("Telescope live_grep default_text=%s", content:gsub(" ", "\\ "))
+    vim.cmd(command)
+  end
 
   mapx.nname("<leader>f", "Find")
   mapx.nnoremap("<leader>fC", "<cmd>Telescope commands<cr>", "Commands")
@@ -202,7 +208,7 @@ function M.setup_find()
   mapx.nnoremap("<leader>fs", "<cmd>Telescope search_history<cr>", "Find Search History")
   mapx.nnoremap("<leader>ft", "<cmd>lua require('telescope').extensions.asynctasks.all()<cr>", "Find Tasks")
 
-  mapx.vnoremap("<leader>*", '"zy:Telescope live_grep default_text=<C-r>z<cr>', "Grep")
+  mapx.vnoremap("<leader>*", visual_search, "Grep")
   local _keymap, _label = "<leader>fr", "Open Recent File"
   if myvim.plugins.telescope_frecency.active then
     mapx.nnoremap(_keymap, "<cmd>Telescope frecency<cr>", _label)
