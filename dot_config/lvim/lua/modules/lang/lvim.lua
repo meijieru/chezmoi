@@ -13,7 +13,7 @@ function M.setup_null_ls()
 end
 
 function M.setup()
-  lvim.builtin.dap.active = true
+  lvim.builtin.dap.active = myvim.plugins.dap.active
 
   lvim.builtin.treesitter.highlight.is_supported = function(lang)
     return require("nvim-treesitter.query").has_highlights(lang)

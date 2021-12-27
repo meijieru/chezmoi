@@ -63,11 +63,17 @@ _G.myvim = {
     dressing = { active = true },
     notify = { active = true },
     alpha = { active = true },
+    terminal = { active = true },
+    bufferline = { active = false },
 
     -- editor
     dap_virtual_text = { active = false },
     neogen = { active = true },
     spellsitter = { active = false },
     auto_session = { active = false },
+    project = { active = true },
+
+    -- lang
+    dap = { active = true },
   },
 }

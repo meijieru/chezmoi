@@ -109,7 +109,10 @@ function M.setup_nvimtree()
 end
 
 function M.setup_notify()
-  lvim.builtin.notify.active = true
+  if not myvim.plugins.notify.active then
+    return
+  end
+  lvim.builtin.notify.active = myvim.plugins.notify.active
   lvim.builtin.notify.opts.stages = "fade_in_slide_out"
   local status_ok, notify = utils.safe_load "notify"
   if not status_ok then
@@ -119,11 +122,10 @@ function M.setup_notify()
 end
 
 function M.setup()
-  lvim.builtin.bufferline.active = false
+  lvim.builtin.bufferline.active = myvim.plugins.bufferline.active
 
-  -- lvim.builtin.dashboard.active = true
   -- lvim.builtin.alpha.mode = "startify"
-  lvim.builtin.terminal.active = true
+  lvim.builtin.terminal.active = myvim.plugins.terminal.active
 
   lvim.builtin.gitsigns.opts.signs.delete.text = "▎"
   lvim.builtin.gitsigns.opts.signs.topdelete.text = "▔"
