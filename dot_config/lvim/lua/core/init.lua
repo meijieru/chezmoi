@@ -56,6 +56,7 @@ function M.setup()
   require "core.machine_specific"
   require "core.options"
   require "core.autocmd"
+  require "core.command"
 
   M.disable_distribution_plugins()
 
