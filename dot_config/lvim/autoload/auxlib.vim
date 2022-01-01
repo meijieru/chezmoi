@@ -87,3 +87,7 @@ function! auxlib#terminal_edit(bid, arglist)
     silent exec cmd . ' ' . fnameescape(name)
     return ''
 endfunc
+
+function! auxlib#url_open(url)
+    silent exec '!xdg-open ' . a:url
+endfunction

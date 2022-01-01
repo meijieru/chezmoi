@@ -19,7 +19,8 @@ require("modules.lang.lvim").setup()
 
 function config.markdown_preview()
   vim.g.mkdp_auto_start = 0
-  vim.g.mkdp_browser = "wsl-open"
+  -- vim.g.mkdp_browser = "msedge"
+  vim.g.mkdp_browserfunc = "auxlib#url_open"
 end
 
 return config

@@ -9,7 +9,7 @@ lang["iamcco/markdown-preview.nvim"] = {
   run = "cd app && npm install",
   ft = "markdown",
   setup = conf.markdown_preview,
-  disable = true,
+  disable = not myvim.plugins.markdown_preview.active,
 }
 
 lang["jbyuki/one-small-step-for-vimkind"] = { module = "osv" }

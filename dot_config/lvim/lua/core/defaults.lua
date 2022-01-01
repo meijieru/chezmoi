@@ -75,5 +75,6 @@ _G.myvim = {
 
     -- lang
     dap = { active = true },
+    markdown_preview = { active = true },
   },
 }
