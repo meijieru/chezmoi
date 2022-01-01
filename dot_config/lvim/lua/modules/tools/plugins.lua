@@ -30,6 +30,17 @@ tools["tpope/vim-fugitive"] = {
   disable = false,
 }
 
+tools["sindrets/diffview.nvim"] = {
+  cmd = {
+    "DiffviewOpen",
+    "DiffviewFileHistory",
+    "DiffviewFocusFiles",
+    "DiffviewToggleFiles",
+    "DiffviewRefresh",
+  },
+  config = conf.diffview,
+}
+
 tools["TimUntersberger/neogit"] = {
   cmd = { "Neogit" },
   module = { "neogit" },
