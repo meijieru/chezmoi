@@ -138,10 +138,11 @@ function M.setup_lvim()
   for _, key in ipairs { "/" } do
     lvim.builtin.which_key.vmappings[key] = nil
   end
-  for _, key in ipairs { "w", "q", "/", "c", "f", "h", "s", "b", "T" } do
+  for _, key in ipairs { "w", "q", "/", ";", "c", "f", "h", "s", "b", "T" } do
     lvim.builtin.which_key.mappings[key] = nil
   end
 
+  -- git
   for _, key in ipairs { "d", "j", "k" } do
     lvim.builtin.which_key.mappings.g[key] = nil
   end
