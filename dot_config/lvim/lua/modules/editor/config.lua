@@ -113,7 +113,8 @@ end
 function M.aerial()
   local opts = {
     -- Priority list of preferred backends for aerial
-    backends = { "lsp", "treesitter", "markdown" },
+    -- backends = { "lsp", "treesitter", "markdown" },
+    backends = { "treesitter", "markdown", "lsp" },
     max_width = 40,
     min_width = 40,
 
@@ -139,11 +140,12 @@ function M.aerial()
     icons[name .. "Collapsed"] = string.format("%s %s", myvim.kind_icons[name], icons.Collapsed)
   end
   opts.icons = icons
-  vim.g.aerial = opts
+  require("aerial").setup(opts)
 
-  lvim.lsp.on_attach_callback = function(client, bufnr)
-    require("aerial").on_attach(client, bufnr)
-  end
+  -- NOTE: doesn't take effect as this func is called after lsp setup
+  -- lvim.lsp.on_attach_callback = function(client, bufnr)
+  --   require("aerial").on_attach(client, bufnr)
+  -- end
   require("telescope").load_extension "aerial"
 end
 
