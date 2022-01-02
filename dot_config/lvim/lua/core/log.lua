@@ -5,6 +5,9 @@ end
 
 local M = {}
 
+--- Wrap logging method
+--- @param method string
+--- @return function
 local function notify_wrapper(method)
   return function(self, msg, ...)
     vim.notify(msg, method, ...)

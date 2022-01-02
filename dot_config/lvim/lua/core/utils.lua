@@ -2,10 +2,15 @@ local M = {}
 
 local Log = require "core.log"
 
+--- Source vimscript relative to cur dir
+--- @param path string
 function M.load_vimscript(path)
   vim.cmd("source " .. vim.fn.expand "~/.config/lvim/" .. path)
 end
 
+--- Try load package, logging if failed
+--- @param name string
+--- @return table tuple of status & module
 function M.safe_load(name)
   local status_ok, module = pcall(require, name)
   if not status_ok then
@@ -14,6 +19,9 @@ function M.safe_load(name)
   return status_ok, module
 end
 
+--- Check whether dap debugger installed
+--- @param name string
+--- @return boolean
 function M.is_dap_debugger_installed(name)
   if not lvim.builtin.dap.active then
     return false
@@ -34,6 +42,8 @@ function M.is_dap_debugger_installed(name)
   return true
 end
 
+--- AsyncrRun customized notify hook
+--- @param prefix string
 function M.asyncrun_notify(prefix)
   prefix = prefix or ""
   local status = vim.g.asyncrun_status
