@@ -54,6 +54,7 @@ end
 function M.setup()
   require "core.defaults"
   require "core.machine_specific"
+  require "core.env_specific"
   require "core.options"
   require "core.autocmd"
   require "core.command"

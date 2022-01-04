@@ -57,6 +57,7 @@ _G.myvim = {
     telescope = { active = true },
     telescope_frecency = { active = false },
     shipwright = { active = true },
+    wakatime = { active = true },
 
     -- ui
     aerial = { active = true },

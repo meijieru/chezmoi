@@ -87,6 +87,7 @@ tools["norcalli/nvim-colorizer.lua"] = {
 tools["wakatime/vim-wakatime"] = {
   -- FIXME(meijieru): wait for https://github.com/wbthomason/packer.nvim/issues/8
   event = "BufRead",
+  disable = not myvim.plugins.wakatime.active,
 }
 tools["nathom/filetype.nvim"] = {
   config = conf.filtype,

@@ -128,7 +128,7 @@ local function shorten_path_step(path, sep)
   return path:gsub(string.format("([^%s])[^%s]+%%%s", sep, sep, sep), "%1" .. sep, 1)
 end
 
---- shortens path by turning apple/banana/orange -> a/b/orange
+--- Shortens path by turning apple/banana/orange -> a/b/orange
 --- @param path string
 --- @param len_target number
 --- @return string
@@ -145,6 +145,12 @@ function M.shorten_path(path, len_target)
     end
   end
   return data
+end
+
+--- Check is in vscode gui
+--- @return boolean
+function M.is_vscode()
+  return vim.g.vscode ~= nil
 end
 
 return M
