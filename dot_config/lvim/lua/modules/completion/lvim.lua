@@ -3,6 +3,11 @@ local M = {}
 local safe_load = require("core.utils").safe_load
 
 function M.setup_cmp()
+  lvim.builtin.cmp.active = myvim.plugins.cmp.active
+  if not myvim.plugins.cmp.active then
+    return
+  end
+
   local status_cmp_ok, cmp = safe_load "cmp"
   if not status_cmp_ok then
     return

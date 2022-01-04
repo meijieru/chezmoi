@@ -22,17 +22,18 @@ completion["tzachar/cmp-tabnine"] = {
   run = "./install.sh",
   event = "InsertEnter",
   config = conf.tabnine,
-  disable = not myvim.plugins.tabnine.active,
+  disable = not (myvim.plugins.tabnine.active and myvim.plugins.cmp.active),
   after = "nvim-cmp",
 }
 completion["hrsh7th/cmp-cmdline"] = {
   event = "CmdlineEnter",
   config = conf.cmp_cmdline,
   after = "nvim-cmp",
+  disable = not myvim.plugins.cmp.active,
 }
 completion["ray-x/cmp-treesitter"] = {
   ft = { "teal" },
-  disable = not myvim.plugins.cmp_treesitter.active,
+  disable = not (myvim.plugins.cmp_treesitter.active and myvim.plugins.cmp.active),
 }
 
 completion["ray-x/lsp_signature.nvim"] = {
