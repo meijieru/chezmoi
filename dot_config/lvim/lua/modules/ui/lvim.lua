@@ -109,10 +109,10 @@ function M.setup_nvimtree()
 end
 
 function M.setup_notify()
+  lvim.builtin.notify.active = myvim.plugins.notify.active
   if not myvim.plugins.notify.active then
     return
   end
-  lvim.builtin.notify.active = myvim.plugins.notify.active
   lvim.builtin.notify.opts.stages = "fade_in_slide_out"
   local status_ok, notify = utils.safe_load "notify"
   if not status_ok then

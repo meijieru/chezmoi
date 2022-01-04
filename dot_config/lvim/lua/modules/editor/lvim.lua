@@ -101,10 +101,10 @@ function M.setup_autopair()
 end
 
 function M.setup_project()
+  lvim.builtin.project.active = myvim.plugins.project.active
   if not myvim.plugins.project.active then
     return
   end
-  lvim.builtin.project.active = myvim.plugins.project.active
   lvim.builtin.project.patterns = myvim.root_markers
   lvim.builtin.project.silent_chdir = true
   lvim.builtin.project.detection_methods = { "pattern", "lsp" }
