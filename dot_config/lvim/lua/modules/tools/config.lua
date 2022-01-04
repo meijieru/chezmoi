@@ -7,7 +7,9 @@ function config.diffview()
 end
 
 function config.imtoggle()
-  require("imtoggle").setup { enable = false }
+  require("imtoggle").setup {
+    enable = true,
+  }
 end
 
 function config.neogit()
