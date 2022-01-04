@@ -23,7 +23,10 @@ function! MyFoldText()
     else
         let str = indentation . startLineText . " ... " . spaces
     endif
-    return ">" . str
+    if stridx(str, " ") == 0
+        return ">" . str[1:]
+    endif
+    return str
 endfunction
 
 " Custom display for text when folding
