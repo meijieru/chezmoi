@@ -17,6 +17,9 @@ vim.o.grepprg = [[rg --hidden --glob "!.git" --no-heading --smart-case --vimgrep
 vim.o.grepformat = "%f:%l:%c:%m"
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal"
 
+_G.qftf = require("core.utils.ui").qftf
+vim.o.qftf = "{info -> v:lua._G.qftf(info, 'shorten')}"
+
 -- lvim
 lvim.log.level = "info"
 lvim.format_on_save = false
