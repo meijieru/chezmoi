@@ -210,6 +210,7 @@ function M.setup_find()
   mapx.nnoremap("<leader>fs", "<cmd>Telescope search_history<cr>", "Find Search History")
   mapx.nnoremap("<leader>ft", "<cmd>lua require('telescope').extensions.asynctasks.all()<cr>", "Find Tasks")
 
+  mapx.vname("<leader>f", "Find")
   mapx.vnoremap({ "<leader>fg", "<leader>*" }, visual_search "live_grep", "Grep")
   mapx.vnoremap("<leader>fh", visual_search "help_tags", "Find Help")
   local _keymap, _label = "<leader>fr", "Open Recent File"
@@ -324,7 +325,7 @@ function M.setup_git()
 end
 
 function M.setup_toggle()
-  mapx.vname("<leader>t", "Toggle")
+  mapx.nname("<leader>t", "Toggle")
   mapx.nnoremap("<leader>tq", "<cmd>call QuickFixToggle()<cr>", "Quickfix")
   mapx.nnoremap("<leader>tl", "<cmd>call auxlib#toggle_loclist()<cr>", "LocList")
   mapx.nnoremap("<leader>te", "<cmd>lua require('modules.completion.lsp').toggle_diagnostics()<cr>", "Diagnostic")
@@ -334,7 +335,7 @@ function M.setup_toggle()
 end
 
 function M.setup_treesitter()
-  mapx.vname("<leader>T", "Treesitter")
+  mapx.nname("<leader>T", "Treesitter")
   mapx.nnoremap("<leader>Tc", "<cmd>TSConfigInfo<cr>", "Config Info")
   mapx.nnoremap("<leader>Tm", "<cmd>TSModuleInfo<cr>", "Module Info")
   mapx.nnoremap("<leader>Tp", "<cmd>TSPlaygroundToggle<cr>", "Playground")
