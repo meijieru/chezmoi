@@ -98,6 +98,10 @@ editor["nvim-telescope/telescope-dap.nvim"] = {
   -- cmd = "Telescope",
   disable = true,
 }
+editor["mfussenegger/nvim-dap-python"] = {
+  ft = { "python" },
+  disable = not myvim.plugins.dap.active,
+}
 
 editor["nvim-treesitter/nvim-treesitter-textobjects"] = {
   event = "BufRead",

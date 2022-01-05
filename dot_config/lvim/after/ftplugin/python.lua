@@ -1,33 +1,34 @@
-local function dap_install_config()
-  if not require("core.utils").is_dap_debugger_installed "python" then
+local utils = require "core.utils"
+local Log = require "core.log"
+
+local function dap_config()
+  if not utils.is_dap_debugger_installed "python" then
+    return
+  end
+  local status_dap_python_ok = utils.load_pack "nvim-dap-python"
+  if not status_dap_python_ok then
     return
   end
 
-  local dap_install = require "dap-install"
-  local opt = {
-    -- https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation#python
-    configurations = {
-      {
-        type = "python",
-        request = "launch",
-        name = "Launch file",
-        program = "${file}",
-        pythonPath = function()
-          local venv_path = os.getenv "VIRTUAL_ENV"
-          if venv_path then
-            local util_sys = require "dap-install.utils.sys"
-            if util_sys.is_windows() then
-              return venv_path .. "\\Scripts\\python.exe"
-            end
-            return venv_path .. "/bin/python"
-          end
-
-          return "python3"
-        end,
-      },
-    },
-  }
-  dap_install.config("python", opt)
+  if require("dap").configurations.python ~= nil then
+    Log:debug "python dap already loaded"
+    return
+  end
+  local dbg_path = require("dap-install.config.settings").options["installation_path"] .. "python/bin/python"
+  require("dap-python").setup(dbg_path, {
+    console = nil,
+    pythonPath = function()
+      local venv_path = os.getenv "VIRTUAL_ENV"
+      if venv_path then
+        local util_sys = require "dap-install.utils.sys"
+        if util_sys.is_windows() then
+          return venv_path .. "\\Scripts\\python.exe"
+        end
+        return venv_path .. "/bin/python"
+      end
+      return "python3"
+    end,
+  })
 end
 
 local function null_ls_config()
@@ -40,5 +41,5 @@ local function null_ls_config()
   }
 end
 
-dap_install_config()
+dap_config()
 null_ls_config()
