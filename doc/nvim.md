@@ -46,6 +46,7 @@ Check the result
 #### Debug
 
 View source order
+
 ```sh
 nvim -V
 ```
@@ -57,6 +58,11 @@ nvim -V
 - [lua-async](https://github.com/ms-jpq/lua-async-await)
 - [Learn X in Y minutes](https://learnxinyminutes.com/docs/lua/)
 - [nvim-lua-guide](https://github.com/nanotee/nvim-lua-guide)
+
+### Tricks
+
+- When use telescope, [fzf syntax](https://github.com/nvim-telescope/telescope-fzf-native.nvim#telescope-fzf-nativenvim) is supported
+- `:lua ={{expr}}` for pretty print
 
 ### Lvim
 
