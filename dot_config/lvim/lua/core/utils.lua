@@ -123,11 +123,6 @@ function M.get_plugin_dir(url)
   return parts[#parts]
 end
 
-local function shorten_path_step(path, sep)
-  -- ('([^/])[^/]+%/', '%1/', 1)
-  return path:gsub(string.format("([^%s])[^%s]+%%%s", sep, sep, sep), "%1" .. sep, 1)
-end
-
 --- Shortens path by turning apple/banana/orange -> a/b/orange
 --- @param path string
 --- @param len_target number
@@ -135,6 +130,10 @@ end
 function M.shorten_path(path, len_target)
   local function count(base, pattern)
     return select(2, string.gsub(base, pattern, ""))
+  end
+  local function shorten_path_step(path, sep)
+    -- ('([^/])[^/]+%/', '%1/', 1)
+    return path:gsub(string.format("([^%s])[^%s]+%%%s", sep, sep, sep), "%1" .. sep, 1)
   end
 
   local data = path
@@ -151,6 +150,26 @@ end
 --- @return boolean
 function M.is_vscode()
   return vim.g.vscode ~= nil
+end
+
+--- Get content of current visual selection
+--- @return string
+function M.get_visual_selection()
+  -- https://github.com/neovim/neovim/pull/13896
+  local visual_modes = {
+    v = true,
+    V = true,
+    -- [t'<C-v>'] = true, -- Visual block does not seem to be supported by vim.region
+  }
+  -- Return if not in visual mode
+  if visual_modes[vim.api.nvim_get_mode().mode] == nil then
+    Log:error "not in visual mode"
+    return
+  end
+
+  vim.cmd 'normal "zy'
+  local content = vim.fn.getreg "z"
+  return content
 end
 
 return M
