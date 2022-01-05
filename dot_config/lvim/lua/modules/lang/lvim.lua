@@ -13,7 +13,6 @@ function M.setup_null_ls()
 end
 
 function M.setup()
-  lvim.builtin.dap.active = myvim.plugins.dap.active
   M.setup_null_ls()
 end
 

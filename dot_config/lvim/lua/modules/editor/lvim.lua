@@ -110,10 +110,23 @@ function M.setup_project()
   lvim.builtin.project.detection_methods = { "pattern", "lsp" }
 end
 
+function M.setup_dap()
+  lvim.builtin.dap.active = myvim.plugins.dap.active
+  if not myvim.plugins.dap.active then
+    return
+  end
+  lvim.builtin.dap.on_config_done = function()
+    local dap = require "dap"
+    dap.defaults.fallback.terminal_win_cmd = "botright 50vsplit new"
+    require("dap.ext.vscode").load_launchjs()
+  end
+end
+
 function M.setup()
   M.setup_treesitter()
   M.setup_autopair()
   M.setup_project()
+  M.setup_dap()
 end
 
 return M

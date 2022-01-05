@@ -23,7 +23,7 @@ end
 --- @param name string
 --- @return boolean
 function M.is_dap_debugger_installed(name)
-  if not lvim.builtin.dap.active then
+  if not myvim.plugins.dap.active then
     return false
   end
 

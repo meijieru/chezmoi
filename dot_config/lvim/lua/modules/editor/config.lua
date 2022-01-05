@@ -20,6 +20,7 @@ end
 
 function M.dapui()
   local dap, dapui = require "dap", require "dapui"
+  -- TODO(meijieru): disable diagnostics when debugging
   dap.listeners.after.event_initialized["dapui_config"] = function()
     dapui.open()
   end
