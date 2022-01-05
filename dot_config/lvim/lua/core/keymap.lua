@@ -304,6 +304,13 @@ function M.setup_dap()
   mapx.nnoremap("<leader>df", "<Cmd>lua require('dapui').float_element()<cr>", "Float Element")
   mapx.nnoremap("<leader>dT", "<cmd>lua require('dapui').toggle()<cr>", "Toggle UI")
   mapx.nnoremap("<leader>dv", "<Cmd>DapVirtualTextToggle<cr>", "Toggle Virtual Text")
+  mapx.nnoremap("<leader>dd", "<cmd>lua require'dap'.run_to_cursor()<cr>", "Run To Cursor")
+  mapx.nnoremap("<leader>dD", "<cmd>lua require'dap'.disconnect()<cr>", "Disconnect")
+  if myvim.plugins.dap_telescope.active then
+    mapx.nnoremap("<leader>ds", "<Cmd>Telescope dap configurations<cr>", "Start")
+    mapx.nnoremap("<leader>dC", "<Cmd>Telescope dap commands<cr>", "Commands")
+    mapx.nnoremap("<leader>dl", "<Cmd>Telescope dap list_breakpoints<cr>", "List Breakpoints")
+  end
 end
 
 function M.setup_git()

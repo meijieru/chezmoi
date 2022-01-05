@@ -94,11 +94,12 @@ editor["theHamsta/nvim-dap-virtual-text"] = {
   disable = not (myvim.plugins.dap_virtual_text.active and myvim.plugins.dap.active),
 }
 editor["nvim-telescope/telescope-dap.nvim"] = {
-  config = conf.dap,
-  -- cmd = "Telescope",
-  disable = true,
+  requires = { "mfussenegger/nvim-dap" },
+  module = "telescope._extensions.dap",
+  disable = not (myvim.plugins.dap_telescope.active and myvim.plugins.dap.active and myvim.plugins.telescope.active),
 }
 editor["mfussenegger/nvim-dap-python"] = {
+  requires = { "mfussenegger/nvim-dap" },
   ft = { "python" },
   disable = not myvim.plugins.dap.active,
 }

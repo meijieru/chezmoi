@@ -69,14 +69,15 @@ _G.myvim = {
     bufferline = { active = false },
 
     -- editor
+    dap = { active = true },
     dap_virtual_text = { active = false },
+    dap_telescope = { active = true },
     neogen = { active = true },
     spellsitter = { active = false },
     auto_session = { active = false },
     project = { active = true },
 
     -- lang
-    dap = { active = true },
     markdown_preview = { active = true },
   },
 }
