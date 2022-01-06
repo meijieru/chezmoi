@@ -36,6 +36,8 @@ elif [[ $(uname -r) =~ WSL2$ ]]; then
     fi
 fi
 
-# load torch
-export TORCH_HOME=$HOME/lib/torch
-[ -f $TORCH_HOME/install/bin/torch-activate ] && \. $TORCH_HOME/install/bin/torch-activate
+# load anaconda
+if [[ -f $HOME/lib/anaconda/bin/conda ]]; then
+    export ANACONDA_HOME=${HOME}/lib/anaconda
+    eval "$(${ANACONDA_HOME}/bin/conda shell.$(echo "$SHELL" | sed "s/.*\///") hook)"
+fi
