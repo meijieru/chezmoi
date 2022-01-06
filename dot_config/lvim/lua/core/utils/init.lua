@@ -97,7 +97,11 @@ function M.load_pack(package, opts)
     vim.cmd(packadd_cmd .. package)
     infos["load_time"] = (vim.loop.hrtime() - start) / 1e6
   else
-    vim.cmd(packadd_cmd .. package)
+    local status = pcall(vim.cmd, packadd_cmd .. package)
+    if not status then
+      Log:warn(package .. " fails to load")
+      return false
+    end
   end
   myvim.profile.infos[package] = infos
   Log:debug(package .. " loaded")

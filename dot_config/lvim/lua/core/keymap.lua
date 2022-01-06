@@ -380,4 +380,6 @@ function M.post_setup()
   Log:warn "Keymaps post_setup is deprecated"
 end
 
+M.setup()
+
 return M

@@ -65,7 +65,7 @@ function M.setup()
   -- Additional Plugins
   lvim.plugins = M.load_plugins()
 
-  require("core.keymap").setup()
+  require "core.keymap"
 end
 
 return M
