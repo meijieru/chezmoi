@@ -10,7 +10,7 @@ local function dap_config()
     return
   end
 
-  if require("dap").configurations.python ~= nil then
+  if require("dap").adapters.python ~= nil then
     Log:debug "python dap already loaded"
     return
   end
