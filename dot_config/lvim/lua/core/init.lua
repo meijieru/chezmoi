@@ -1,6 +1,6 @@
 local M = {}
 
-function M.disable_distribution_plugins()
+function M.setup_distribution_plugins()
   vim.g.loaded_gzip = 1
   vim.g.loaded_tar = 1
   vim.g.loaded_tarPlugin = 1
@@ -19,7 +19,10 @@ function M.disable_distribution_plugins()
   vim.g.loaded_netrwPlugin = 1
   vim.g.loaded_netrwSettings = 1
   vim.g.loaded_netrwFileHandlers = 1
-  vim.g.did_load_filetypes = 1
+  if vim.filetype then
+    vim.g.did_load_filetypes = 0
+    vim.g.do_filetype_lua = 1
+  end
 end
 
 function M.load_plugins()
@@ -59,7 +62,7 @@ function M.setup()
   require "core.autocmd"
   require "core.command"
 
-  M.disable_distribution_plugins()
+  M.setup_distribution_plugins()
 
   -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
   -- Additional Plugins

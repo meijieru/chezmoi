@@ -89,9 +89,6 @@ tools["wakatime/vim-wakatime"] = {
   event = "BufRead",
   disable = not myvim.plugins.wakatime.active,
 }
-tools["nathom/filetype.nvim"] = {
-  config = conf.filtype,
-}
 
 tools["nvim-telescope/telescope-frecency.nvim"] = {
   config = conf.telescope_frecency,

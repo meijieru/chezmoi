@@ -58,23 +58,6 @@ function config.colorizer()
   })
 end
 
-function config.filtype()
-  require("filetype").setup {
-    overrides = {
-      extensions = {
-        tl = "teal",
-        tex = "tex",
-      },
-      literal = {
-        [".tasks"] = "dosini",
-      },
-      complex = {
-        -- [".git/index"] = "fugitive",
-      },
-    },
-  }
-end
-
 function config.telescope_frecency()
   require("telescope").load_extension "frecency"
 end
