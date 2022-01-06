@@ -18,12 +18,12 @@ CHECKSUM_FILE: Final = "data/tmp/local_checksum"
 # Global mapping between files/dirs & scripts
 DEPENDENCIES_MAPS = [
     {
-        "script": "./tools/install_package/archlinux.sh",
+        "script": "./tools/install_package/archlinux.sh.tmpl",
         "dependent_dirs": ["./data/packages/arch"],
         # "dependent_files": [],
     },
     {
-        "script": "./tools/install_package/debian.sh",
+        "script": "./tools/install_package/debian.sh.tmpl",
         "dependent_dirs": ["./data/packages/debian"],
     },
 ]
