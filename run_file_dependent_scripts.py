@@ -26,6 +26,10 @@ DEPENDENCIES_MAPS = [
         "script": "./tools/install_package/debian.sh.tmpl",
         "dependent_dirs": ["./data/packages/debian"],
     },
+    {
+        "script": "./tools/install_package/ubuntu.sh.tmpl",
+        "dependent_dirs": ["./data/packages/ubuntu"],
+    },
 ]
 
 
