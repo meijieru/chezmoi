@@ -126,21 +126,26 @@ function M.setup_whichkey()
   -- lvim.builtin.which_key.setup.plugins.presets.text_objects = true
 end
 
-function M.setup()
-  lvim.builtin.bufferline.active = myvim.plugins.bufferline.active
-
-  -- lvim.builtin.alpha.mode = "startify"
-  lvim.builtin.terminal.active = myvim.plugins.terminal.active
-
+function M.setup_gitsigns()
+  lvim.builtin.gitsigns.active = myvim.plugins.gitsigns.active
+  if not myvim.plugins.gitsigns.active then
+    return
+  end
   lvim.builtin.gitsigns.opts.signs.delete.text = "▎"
   lvim.builtin.gitsigns.opts.signs.topdelete.text = "▔"
+end
 
+function M.setup()
+  lvim.builtin.bufferline.active = myvim.plugins.bufferline.active
+  -- lvim.builtin.alpha.mode = "startify"
+  lvim.builtin.terminal.active = myvim.plugins.terminal.active
   lvim.builtin.terminal.execs = {}
 
   M.setup_whichkey()
   M.setup_lualine()
   M.setup_nvimtree()
   M.setup_notify()
+  M.setup_gitsigns()
 end
 
 return M

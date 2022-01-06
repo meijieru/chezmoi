@@ -67,6 +67,7 @@ _G.myvim = {
     alpha = { active = true },
     terminal = { active = true },
     bufferline = { active = false },
+    gitsigns = { active = true },
 
     -- editor
     dap = { active = true },
