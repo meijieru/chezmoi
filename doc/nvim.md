@@ -2,6 +2,10 @@
 
 ### How to
 
+#### Setup
+
+- [tabnine](https://github.com/neoclide/coc-tabnine#magic-strings)
+
 #### Profile
 
 First run
