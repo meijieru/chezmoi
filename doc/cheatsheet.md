@@ -7,3 +7,7 @@
 ### Lua
 
 [link](https://devhints.io/lua)
+
+### Bash
+
+[link](https://devhints.io/bash)
