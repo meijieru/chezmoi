@@ -79,9 +79,11 @@ function M.setup_cmp()
     end
   end, map_modes)
   lvim.builtin.cmp.mapping["<S-Tab>"] = cmp.mapping(function(fallback)
-    -- TODO(meijieru): neogen, wait for https://github.com/danymat/neogen/issues/13
+    local neogen = load_neogen()
     if methods.jumpable(-1) then
       luasnip.jump(-1)
+    elseif neogen and neogen.jumpable(-1) then
+      neogen.jump_prev()
     else
       fallback()
     end
