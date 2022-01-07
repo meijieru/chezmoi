@@ -2,7 +2,6 @@ local config = {}
 local Log = require "core.log"
 
 function config.diffview()
-  local cb = require("diffview.config").diffview_callback
   require("diffview").setup {}
 end
 

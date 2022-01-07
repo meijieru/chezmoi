@@ -82,14 +82,15 @@ function M.setup_hop()
     mapx.nnoremap(prefix .. key, val[1], mapx.silent, val[2])
   end
 
-  -- stylua: ignore start
-  mapx.nnoremap('f', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>")
-  mapx.nnoremap('F', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>")
-  mapx.onoremap('f', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, inclusive_jump = true })<cr>")
-  mapx.onoremap('F', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, inclusive_jump = true })<cr>")
-  mapx.onoremap('t', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>")
-  mapx.onoremap('T', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>")
-  -- stylua: ignore end
+  local function hint_char1(opts)
+    return string.format("<cmd>lua require'hop'.hint_char1({%s, current_line_only = True})<cr>", opts)
+  end
+  mapx.nnoremap("f", hint_char1 "direction = require'hop.hint'.HintDirection.AFTER_CURSOR")
+  mapx.nnoremap("F", hint_char1 "direction = require'hop.hint'.HintDirection.BEFORE_CURSOR")
+  mapx.onoremap("f", hint_char1 "direction = require'hop.hint'.HintDirection.AFTER_CURSOR, inclusive_jump = true")
+  mapx.onoremap("F", hint_char1 "direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, inclusive_jump = true")
+  mapx.onoremap("t", hint_char1 "direction = require'hop.hint'.HintDirection.AFTER_CURSOR")
+  mapx.onoremap("T", hint_char1 "direction = require'hop.hint'.HintDirection.BEFORE_CURSOR")
 end
 
 -- https://github.com/neovim/nvim-lspconfig/wiki/User-contributed-tips#range-formatting-with-a-motion
@@ -132,7 +133,7 @@ end
 
 function M.setup_lvim()
   -- disable some defaults mappings
-  for _, key in ipairs { "insert_mode", "normal_mode", "term_mode", "visual_mode", "visual_block_mode", "command_mode" } do
+  for key, _ in pairs(lvim.keys) do
     lvim.keys[key] = {}
   end
   for _, key in ipairs { "/" } do

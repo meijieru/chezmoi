@@ -10,7 +10,7 @@ function M.setup_lualine()
 
   local function _sainnhe_palettes(name)
     name = name:gsub("-", "_")
-    local palette = nil
+    local palette
     local configuration = vim.fn[name .. "#get_configuration"]()
     if name == "gruvbox_material" then
       palette = vim.fn[name .. "#get_palette"](background, configuration.palette)

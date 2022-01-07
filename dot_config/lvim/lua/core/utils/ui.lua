@@ -59,6 +59,7 @@ function M.qftf(info, method)
             -- char in fname may occur more than 1 width, ignore this issue in order to keep performance
             fname = fname_fmt2:format(fname:sub(1 - limit))
           elseif method == "none" then
+            Log:error("NotImplementedError")
           else
             Log:error(string.format("Unknow path shorten method: %s", method))
           end

@@ -56,9 +56,11 @@ function M.asyncrun_notify(prefix)
 end
 
 function M.chezmoi_apply()
+  -- luacheck: push ignore 631
   vim.cmd [[
     AsyncRun -post=lua\ require("core.utils").asyncrun_notify("Chezmoi\ apply:\ ") -silent -raw=1 chezmoi apply --source-path %
   ]]
+  -- luacheck: pop
 end
 
 --- Load package.
@@ -77,7 +79,6 @@ function M.load_pack(package, opts)
   local skip_packer = opts.skip_packer or false
 
   -- NOTE: According to the following doc, must be after `packer_compiled.lua` is loaded
-  -- https://github.com/wbthomason/packer.nvim/blob/db3c3e3379613443d94e677a6ac3f61278e36e47/README.md#checking-plugin-statuses
   if not skip_packer and packer_plugins[package] == nil then
     Log:warn(package .. " doens't exist")
     return false
@@ -135,9 +136,9 @@ function M.shorten_path(path, len_target)
   local function count(base, pattern)
     return select(2, string.gsub(base, pattern, ""))
   end
-  local function shorten_path_step(path, sep)
+  local function shorten_path_step(_path, sep)
     -- ('([^/])[^/]+%/', '%1/', 1)
-    return path:gsub(string.format("([^%s])[^%s]+%%%s", sep, sep, sep), "%1" .. sep, 1)
+    return _path:gsub(string.format("([^%s])[^%s]+%%%s", sep, sep, sep), "%1" .. sep, 1)
   end
 
   local data = path

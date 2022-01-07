@@ -9,7 +9,7 @@ local M = {}
 --- @param method string
 --- @return function
 local function notify_wrapper(method)
-  return function(self, msg, ...)
+  return function(_, msg, ...)
     vim.notify(msg, method, ...)
   end
 end
