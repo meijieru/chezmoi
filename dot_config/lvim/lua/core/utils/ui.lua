@@ -59,7 +59,7 @@ function M.qftf(info, method)
             -- char in fname may occur more than 1 width, ignore this issue in order to keep performance
             fname = fname_fmt2:format(fname:sub(1 - limit))
           elseif method == "none" then
-            Log:error("NotImplementedError")
+            Log:error "NotImplementedError"
           else
             Log:error(string.format("Unknow path shorten method: %s", method))
           end
@@ -76,6 +76,53 @@ function M.qftf(info, method)
     table.insert(ret, str)
   end
   return ret
+end
+
+local function _sainnhe_palettes(name)
+  name = name:gsub("-", "_")
+  local palette
+  local configuration = vim.fn[name .. "#get_configuration"]()
+
+  if name == "gruvbox_material" then
+    local background = vim.opt.background:get()
+    palette = vim.fn[name .. "#get_palette"](background, configuration.palette)
+    return {
+      bg = palette.bg1[1],
+      fg = palette.fg1[1],
+    }
+  elseif name == "edge" then
+    palette = vim.fn[name .. "#get_palette"](configuration.style)
+    return { bg = palette.bg1[1], fg = palette.fg[1] }
+  elseif name == "everforest" then
+    palette = vim.fn[name .. "#get_palette"](configuration.background)
+    return { bg = palette.bg1[1], fg = palette.fg[1] }
+  end
+end
+
+local function _my_palettes(name)
+  if name == "edge_lush" then
+    local palette = require "edge_lush.palette"
+    return vim.tbl_map(function(hsl)
+      return tostring(hsl):lower()
+    end, { bg = palette.bg1, fg = palette.grey_dim })
+  end
+end
+
+--- Get palette for scroll bar
+--- @param name string colorscheme
+--- @return table | nil
+function M.get_scroll_bar_color(name)
+  local status, value
+  if name == "edge_lush" then
+    status, value = pcall(_my_palettes, name)
+  else
+    status, value = pcall(_sainnhe_palettes, name)
+  end
+  if status then
+    return value
+  else
+    return nil
+  end
 end
 
 return M
