@@ -21,7 +21,7 @@ _G.qftf = require("core.utils.ui").qftf
 vim.o.qftf = "{info -> v:lua._G.qftf(info, 'shorten')}"
 
 -- lvim
-lvim.log.level = myvim.log.level
+lvim.log = vim.tbl_deep_extend("force", lvim.log, myvim.log)
 lvim.format_on_save = false
 lvim.leader = "space"
 vim.o.background = "light"

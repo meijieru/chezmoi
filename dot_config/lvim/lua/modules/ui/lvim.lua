@@ -71,11 +71,6 @@ function M.setup_notify()
     return
   end
   lvim.builtin.notify.opts.stages = "fade_in_slide_out"
-  local status_ok, notify = utils.safe_load "notify"
-  if not status_ok then
-    return
-  end
-  vim.notify = notify
 end
 
 function M.setup_whichkey()
