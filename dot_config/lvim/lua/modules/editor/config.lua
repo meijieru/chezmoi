@@ -71,7 +71,6 @@ function M.visual_multi()
   vim.g.VM_maps = vm_maps
 end
 
--- TODO: maybe lualine integration
 function M.aerial()
   local opts = {
     -- Priority list of preferred backends for aerial
