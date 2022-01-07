@@ -48,11 +48,6 @@ editor["mg979/vim-visual-multi"] = {
   setup = conf.visual_multi,
 }
 
-editor["simrat39/symbols-outline.nvim"] = {
-  cmd = { "SymbolsOutline", "SymbolsOulineOpen" },
-  setup = conf.symbols_outline,
-  disable = true,
-}
 editor["stevearc/aerial.nvim"] = {
   cmd = { "AerialToggle", "AerialPrev", "AerialNext", "AerialPrevUp", "AerialNextUp" },
   config = conf.aerial,

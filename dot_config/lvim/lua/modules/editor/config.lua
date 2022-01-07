@@ -71,45 +71,6 @@ function M.visual_multi()
   vim.g.VM_maps = vm_maps
 end
 
-function M.symbols_outline()
-  vim.g.symbols_outline = {
-    width = 40,
-    show_guides = false,
-    preview_bg_highlight = "Normal",
-    symbols = {
-      -- use lvim.builtin.cmp.formatting.kind_icons
-      File = { icon = "", hl = "TSURI" },
-      Module = { icon = "", hl = "TSNamespace" },
-      Package = { icon = "", hl = "TSNamespace" },
-      Class = { icon = "ﴯ", hl = "TSType" },
-      Method = { icon = "", hl = "TSMethod" },
-      Property = { icon = "ﰠ", hl = "TSMethod" },
-      Field = { icon = "ﰠ", hl = "TSField" },
-      Constructor = { icon = "", hl = "TSConstructor" },
-      Enum = { icon = "", hl = "TSType" },
-      Function = { icon = "", hl = "TSFunction" },
-      Variable = { icon = "", hl = "TSVariable" },
-      Constant = { icon = "", hl = "TSConstant" },
-      Struct = { icon = "פּ", hl = "TSType" },
-      Event = { icon = "", hl = "TSType" },
-      Operator = { icon = "", hl = "TSOperator" },
-      TypeParameter = { icon = "", hl = "TSParameter" },
-
-      -- TODO: override
-      -- Namespace = { icon = "", hl = "TSNamespace" },
-      -- Interface = { icon = "ﰮ", hl = "TSType" },
-      -- String = { icon = "𝓐", hl = "TSString" },
-      -- Number = { icon = "#", hl = "TSNumber" },
-      -- Boolean = { icon = "⊨", hl = "TSBoolean" },
-      -- Array = { icon = "", hl = "TSConstant" },
-      -- Object = { icon = "⦿", hl = "TSType" },
-      -- Key = { icon = "🔐", hl = "TSType" },
-      -- Null = { icon = "NULL", hl = "TSType" },
-      -- EnumMember = { icon = "", hl = "TSField" },
-    },
-  }
-end
-
 -- TODO: maybe lualine integration
 function M.aerial()
   local opts = {
