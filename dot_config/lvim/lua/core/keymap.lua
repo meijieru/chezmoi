@@ -234,9 +234,17 @@ end
 
 function M.setup_basic()
   local function system_open()
+    local function is_github(str)
+      local comps = vim.split(str, "/")
+      return #comps == 2
+    end
+
     local cfile = vim.fn.expand "<cfile>"
     if vim.fn.filereadable(cfile) == 1 or string.match(cfile, "[a-z]*://[^ >,;]*") ~= nil then
       vim.cmd(string.format("silent !xdg-open %s", cfile))
+      return
+    elseif is_github(cfile) then
+      vim.cmd(string.format("silent !xdg-open https://github.com/%s", cfile))
       return
     end
     vim.notify(string.format("url %s invalid", cfile), "error")
