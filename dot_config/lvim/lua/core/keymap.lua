@@ -340,6 +340,7 @@ function M.setup_toggle()
   mapx.nnoremap("<leader>ta", "<cmd>AerialToggle!<cr>", "Aerial")
   mapx.nnoremap("<leader>tu", "<cmd>UndotreeToggle<cr>", "Undotree")
   mapx.nnoremap("<leader>tc", "<cmd>ColorizerToggle<cr>", "Colorizer")
+  mapx.nnoremap("<leader>tb", "<cmd>TableModeToggle<cr>", "Table Mode")
 end
 
 function M.setup_treesitter()
