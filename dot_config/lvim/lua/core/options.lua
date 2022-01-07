@@ -1,7 +1,7 @@
 vim.o.ruler = false
 vim.o.cmdheight = 1
-vim.o.foldmethod = "indent"
-vim.o.foldexpr = ""
+vim.o.foldmethod = "expr"
+vim.o.foldexpr = "nvim_treesitter#foldexpr()"
 vim.o.mouse = ""
 vim.o.showtabline = 1
 vim.o.splitbelow = false

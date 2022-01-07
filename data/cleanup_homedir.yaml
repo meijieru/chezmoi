@@ -37,6 +37,7 @@ delete:
   - .config/lvim/lua/modules/completion/lsp.lua
   - .config/lvim/lua/modules/ui/utils.lua
   - .config/lvim/lua/core/utils.lua
+  - .config/lvim/plugin/folding.vim
 
 move:
   .wget-hsts: $XDG_STATE_HOME/wget-hsts

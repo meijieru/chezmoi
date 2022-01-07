@@ -21,6 +21,10 @@ editor["ojroques/vim-oscyank"] = {
     return os.getenv "SSH_TTY" ~= nil
   end,
 }
+editor["anuvyklack/pretty-fold.nvim"] = {
+  event = "BufRead",
+  config = conf.pretty_fold,
+}
 
 editor["phaazon/hop.nvim"] = {
   cmd = {

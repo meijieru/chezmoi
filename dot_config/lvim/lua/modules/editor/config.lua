@@ -126,6 +126,31 @@ function M.oscyank()
   ]]
 end
 
+function M.pretty_fold()
+  require("pretty-fold").setup {
+    fill_char = " ",
+    sections = {
+      left = {
+        "content",
+        "",
+        -- "...",
+      },
+      right = {
+        " ",
+        "number_of_folded_lines",
+        ": ",
+        "percentage",
+        " ",
+        function(config)
+          return config.fill_char:rep(3)
+        end,
+      },
+      -- right =  nil,
+    },
+  }
+  require("pretty-fold.preview").setup_keybinding "l"
+end
+
 function M.auto_session()
   require("auto-session").setup {
     log_level = "info",
