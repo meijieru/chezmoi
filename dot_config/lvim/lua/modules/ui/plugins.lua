@@ -5,7 +5,7 @@ local utils = require "core.utils"
 local Log = require "core.log"
 
 local function is_used_colorschemes(colors)
-  return vim.tbl_contains(colors, lvim.colorscheme)
+  return vim.tbl_contains(colors, myvim.colorscheme)
 end
 local function load_colorscheme(url)
   utils.load_pack(utils.get_plugin_dir(url), { skip_packer = true })
@@ -69,6 +69,11 @@ ui["folke/twilight.nvim"] = {
 ui["karb94/neoscroll.nvim"] = {
   event = "WinScrolled",
   config = conf.neoscroll,
+}
+ui["petertriho/nvim-scrollbar"] = {
+  event = "BufRead",
+  config = conf.scrollbar,
+  disable = not myvim.plugins.scrollbar.active,
 }
 
 ui["kevinhwang91/nvim-bqf"] = {

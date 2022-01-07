@@ -1,4 +1,6 @@
 _G.myvim = {
+  log = { level = "info" },
+  colorscheme = "edge_lush",
   root_markers = { ".git", ".root", ".project", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json" },
 
   ignores = {
@@ -68,6 +70,7 @@ _G.myvim = {
     terminal = { active = true },
     bufferline = { active = false },
     gitsigns = { active = true },
+    scrollbar = { active = true },
 
     -- editor
     dap = { active = true },

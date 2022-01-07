@@ -58,6 +58,15 @@ function M.neoscroll()
   }
 end
 
+function M.scrollbar()
+  require("scrollbar").setup {
+    handle = {
+      text = " ",
+      color = require("core.utils.ui").get_scroll_bar_color(myvim.colorscheme).fg,
+    },
+  }
+end
+
 function M.bqf()
   require("bqf").setup {
     auto_resize_height = false,

@@ -12,7 +12,7 @@ function M.setup_lualine()
     shorting_target = 150,
   })
   lvim.builtin.lualine.sections.lualine_b = { components.branch, filename }
-  scrollbar.color = ui.get_scroll_bar_color(lvim.colorscheme) or scrollbar.color
+  scrollbar.color = ui.get_scroll_bar_color(myvim.colorscheme) or scrollbar.color
   lvim.builtin.lualine.sections.lualine_z = { scrollbar }
 
   local diff = components.diff

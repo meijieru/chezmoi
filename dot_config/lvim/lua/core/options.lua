@@ -21,9 +21,9 @@ _G.qftf = require("core.utils.ui").qftf
 vim.o.qftf = "{info -> v:lua._G.qftf(info, 'shorten')}"
 
 -- lvim
-lvim.log.level = "info"
+lvim.log.level = myvim.log.level
 lvim.format_on_save = false
 lvim.leader = "space"
 vim.o.background = "light"
-lvim.colorscheme = "edge_lush"
+lvim.colorscheme = myvim.colorscheme
 -- lvim.transparent_window = true
