@@ -31,6 +31,7 @@ editor["phaazon/hop.nvim"] = {
     "HopLineStart",
     "HopLineStartAC",
     "HopLineStartBC",
+    "HopLineStartMW",
     "HopWord",
     "HopWordAC",
     "HopWordBC",

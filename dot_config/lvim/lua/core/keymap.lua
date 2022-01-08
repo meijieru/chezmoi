@@ -77,6 +77,7 @@ function M.setup_hop()
     j = { "<cmd>HopLineStartAC<CR>", "Forward Lines" },
     k = { "<cmd>HopLineStartBC<CR>", "Backward Lines" },
     s = { "<cmd>HopPattern<CR>", "Search Patterns" },
+    l = { "<cmd>HopLineStartMW<CR>", "Windows Lines" },
   }
   for key, val in pairs(mappings) do
     mapx.nnoremap(prefix .. key, val[1], mapx.silent, val[2])
