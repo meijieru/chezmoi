@@ -41,7 +41,7 @@ editor["phaazon/hop.nvim"] = {
   module = { "hop" },
   -- event = "BufRead",
   config = conf.hop,
-  disable = false,
+  disable = not myvim.plugins.hop.active,
 }
 editor["mg979/vim-visual-multi"] = {
   keys = {

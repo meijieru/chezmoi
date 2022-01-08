@@ -82,15 +82,17 @@ function M.setup_hop()
     mapx.nnoremap(prefix .. key, val[1], mapx.silent, val[2])
   end
 
-  local function hint_char1(opts)
-    return string.format("<cmd>lua require'hop'.hint_char1({%s, current_line_only = true})<cr>", opts)
+  if myvim.plugins.hop.enable_ft then
+    local function hint_char1(opts)
+      return string.format("<cmd>lua require'hop'.hint_char1({%s, current_line_only = true})<cr>", opts)
+    end
+    mapx.nnoremap("f", hint_char1 "direction = require'hop.hint'.HintDirection.AFTER_CURSOR")
+    mapx.nnoremap("F", hint_char1 "direction = require'hop.hint'.HintDirection.BEFORE_CURSOR")
+    mapx.onoremap("f", hint_char1 "direction = require'hop.hint'.HintDirection.AFTER_CURSOR, inclusive_jump = true")
+    mapx.onoremap("F", hint_char1 "direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, inclusive_jump = true")
+    mapx.onoremap("t", hint_char1 "direction = require'hop.hint'.HintDirection.AFTER_CURSOR")
+    mapx.onoremap("T", hint_char1 "direction = require'hop.hint'.HintDirection.BEFORE_CURSOR")
   end
-  mapx.nnoremap("f", hint_char1 "direction = require'hop.hint'.HintDirection.AFTER_CURSOR")
-  mapx.nnoremap("F", hint_char1 "direction = require'hop.hint'.HintDirection.BEFORE_CURSOR")
-  mapx.onoremap("f", hint_char1 "direction = require'hop.hint'.HintDirection.AFTER_CURSOR, inclusive_jump = true")
-  mapx.onoremap("F", hint_char1 "direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, inclusive_jump = true")
-  mapx.onoremap("t", hint_char1 "direction = require'hop.hint'.HintDirection.AFTER_CURSOR")
-  mapx.onoremap("T", hint_char1 "direction = require'hop.hint'.HintDirection.BEFORE_CURSOR")
 end
 
 -- https://github.com/neovim/nvim-lspconfig/wiki/User-contributed-tips#range-formatting-with-a-motion

@@ -83,6 +83,10 @@ _G.myvim = {
     spellsitter = { active = false },
     auto_session = { active = false },
     project = { active = true },
+    hop = {
+      active = true,
+      enable_ft = false,
+    },
 
     -- lang
     markdown_preview = { active = true },
