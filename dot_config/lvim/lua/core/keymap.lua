@@ -83,7 +83,7 @@ function M.setup_hop()
   end
 
   local function hint_char1(opts)
-    return string.format("<cmd>lua require'hop'.hint_char1({%s, current_line_only = True})<cr>", opts)
+    return string.format("<cmd>lua require'hop'.hint_char1({%s, current_line_only = true})<cr>", opts)
   end
   mapx.nnoremap("f", hint_char1 "direction = require'hop.hint'.HintDirection.AFTER_CURSOR")
   mapx.nnoremap("F", hint_char1 "direction = require'hop.hint'.HintDirection.BEFORE_CURSOR")
