@@ -114,6 +114,9 @@ class PackageManager(Action):
         proc = subprocess.Popen(
             cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT
         )
+        if proc.stdout is None:
+            logging.warning("Failed to fetch stdout")
+            return PkgStatus.NOT_SURE
         out = proc.stdout.read()
         proc.stdout.close()
 
