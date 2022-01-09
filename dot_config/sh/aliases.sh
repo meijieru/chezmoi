@@ -45,6 +45,9 @@ alias -s tgz='tar -xzvf'
 alias -s zip='unzip'
 alias -s bz2='tar -xjvf'
 
+alias tp='trash-put'
+alias tl='trash-list'
+
 # TODO(meijieru): macos compatible
 alias copytoclipboard='xclip -selection c'
 alias pastefromclipboard='xclip -o -selection c'
