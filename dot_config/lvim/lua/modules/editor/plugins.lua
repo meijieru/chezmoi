@@ -59,7 +59,7 @@ editor["stevearc/aerial.nvim"] = {
   disable = not myvim.plugins.aerial.active,
 }
 
-editor["kana/vim-textobj-user"] = { event = "BufRead" }
+editor["kana/vim-textobj-user"] = { fn = { "textobj#user#*" } }
 editor["kana/vim-textobj-indent"] = { event = "BufRead" }
 editor["jceb/vim-textobj-uri"] = { event = "BufRead" }
 editor["sgur/vim-textobj-parameter"] = { ft = { "lua" }, disable = true }
