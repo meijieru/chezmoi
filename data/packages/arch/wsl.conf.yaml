@@ -17,6 +17,7 @@ pacman:
   - glances
   - fzf
   - git
+  - git-extras
   - tokei
   - tree
   - ripgrep
