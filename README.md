@@ -30,3 +30,7 @@ Check [doc](./doc/win10.md), still work in progress.
 ## Neovim
 
 Check [doc](./doc/nvim.md)
+
+### Cheatsheets
+
+Check [doc](./cheatsheet.md)
