@@ -34,6 +34,10 @@ function M.chain(...)
   end
 end
 
+function M.not_impl(msg)
+  vim.notify(msg or "Not Implementation PlaceHolder", vim.log.levels.ERROR)
+end
+
 local function _ensure_package_command(package, command)
   return function()
     utils.load_pack(package)
@@ -276,6 +280,7 @@ function M.setup_basic()
   mapx.nnoremap("-", "<cmd>NvimTreeOpen<cr>", "Open Directory")
   mapx.nnoremap("g?", "<cmd>WhichKey<cr>", "WhichKey")
   mapx.nnoremap("gx", system_open, "Open the file under cursor with system app")
+  mapx.nnoremap("dg", "&diff ? '<cmd>diffget<cr>' : '<cmd>lua require\"core.keymap\".not_impl()<CR>'", mapx.expr, "Diff Get")
 
   mapx.vnoremap("<", "<gv")
   mapx.vnoremap(">", ">gv")
