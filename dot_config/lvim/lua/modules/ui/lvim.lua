@@ -70,7 +70,7 @@ function M.setup_notify()
   if not myvim.plugins.notify.active then
     return
   end
-  lvim.builtin.notify.opts.stages = "fade_in_slide_out"
+  lvim.builtin.notify.opts.stages = "fade"
 end
 
 function M.setup_whichkey()
