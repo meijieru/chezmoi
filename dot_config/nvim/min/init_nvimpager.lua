@@ -30,7 +30,7 @@ local _, packer = pcall(require, "packer")
 packer.startup({
   function(use)
     use({
-      "https://gitea.meijieru.com/meijieru/edge_lush",
+      "meijieru/edge.nvim",
       opt = true,
       requires = { "rktjmp/lush.nvim", opt = true },
     })

@@ -41,7 +41,7 @@ end
 
 use_colorschemes(
   ui,
-  "https://gitea.meijieru.com/meijieru/edge_lush",
+  "meijieru/edge.nvim",
   { "edge_lush" },
   { requires = { "rktjmp/lush.nvim" } }
 )
