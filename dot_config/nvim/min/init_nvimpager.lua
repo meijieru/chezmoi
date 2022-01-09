@@ -81,7 +81,7 @@ vim.g.mapleader = " "
 -- vim.o.sidescrolloff = 8
 
 load_pack("lush.nvim")
-load_pack("edge_lush")
+load_pack("edge.nvim")
 vim.cmd("colorscheme edge_lush")
 
 -- prevent load tpipeline
