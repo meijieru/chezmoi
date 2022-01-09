@@ -5,6 +5,19 @@ function config.diffview()
   require("diffview").setup {}
 end
 
+function config.gitlinker()
+  require("gitlinker").setup {
+    callbacks = {
+      ["direct.meijieru.com"] = function(url_data)
+        url_data.host = "gitea.meijieru.com"
+        return require("gitlinker.hosts").get_gitea_type_url(url_data)
+      end,
+    },
+    -- https://github.com/ruifm/gitlinker.nvim/issues/48
+    -- mappings = nil,
+  }
+end
+
 function config.imtoggle()
   require("imtoggle").setup {
     enable = true,

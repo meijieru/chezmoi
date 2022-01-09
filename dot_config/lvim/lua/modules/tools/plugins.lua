@@ -29,7 +29,12 @@ tools["tpope/vim-fugitive"] = {
   fn = { "FugitiveGitDir" },
   disable = false,
 }
-
+tools["ruifm/gitlinker.nvim"] = {
+  module = { "gitlinker" },
+  requires = "nvim-lua/plenary.nvim",
+  config = conf.gitlinker,
+  disable = not myvim.plugins.gitlinker.active,
+}
 tools["sindrets/diffview.nvim"] = {
   cmd = {
     "DiffviewOpen",

@@ -280,7 +280,12 @@ function M.setup_basic()
   mapx.nnoremap("-", "<cmd>NvimTreeOpen<cr>", "Open Directory")
   mapx.nnoremap("g?", "<cmd>WhichKey<cr>", "WhichKey")
   mapx.nnoremap("gx", system_open, "Open the file under cursor with system app")
-  mapx.nnoremap("dg", "&diff ? '<cmd>diffget<cr>' : '<cmd>lua require\"core.keymap\".not_impl()<CR>'", mapx.expr, "Diff Get")
+  mapx.nnoremap(
+    "dg",
+    "&diff ? '<cmd>diffget<cr>' : '<cmd>lua require\"core.keymap\".not_impl()<CR>'",
+    mapx.expr,
+    "Diff Get"
+  )
 
   mapx.vnoremap("<", "<gv")
   mapx.vnoremap(">", ">gv")
@@ -344,8 +349,11 @@ function M.setup_git()
     end
   end
 
+  mapx.vname("<leader>g", "Git")
   mapx.nnoremap("<leader>gd", git_diff, "Git Diff")
   mapx.nnoremap("<leader>gg", "<cmd>call auxlib#toggle_fugitive()<cr>", "Toggle Status")
+  mapx.nnoremap("<leader>gy", "<cmd>lua require'gitlinker'.get_buf_range_url('n')<cr>", "Copy Permanent Link")
+  mapx.vnoremap("<leader>gy", "<cmd>lua require'gitlinker'.get_buf_range_url('v')<cr>", "Copy Permanent Link")
 end
 
 function M.setup_toggle()

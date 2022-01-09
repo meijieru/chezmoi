@@ -73,6 +73,7 @@ _G.myvim = {
     terminal = { active = true },
     bufferline = { active = false },
     gitsigns = { active = true },
+    gitlinker = { active = true },
     scrollbar = { active = true },
 
     -- editor
