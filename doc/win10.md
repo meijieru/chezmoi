@@ -44,6 +44,8 @@ Optional
 - [Search](https://rasa.github.io/scoop-directory/search) from [scoop-directory](https://github.com/rasa/scoop-directory)
 
 ```ps1
+scoop install git
+
 scoop bucket add extras
 scoop bucket add nonportable
 scoop bucket add dorado https://github.com/chawyehsu/dorado
