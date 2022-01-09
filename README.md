@@ -3,7 +3,7 @@
 ## Deploy
 
 ```bash
-# manually install chezmoi if needed 
+# manually install chezmoi if needed
 mkdir -p ~/.local/bin
 cd ~/.local
 sh -c "$(curl -fsLS git.io/chezmoi)"
@@ -22,6 +22,10 @@ chezmoi apply --dry-run --verbose
 ## Setup remote server
 
 Check [doc](./doc/server_setup.md)
+
+## Setup win10
+
+Check [doc](./doc/win10.md), still work in progress.
 
 ## Neovim
 

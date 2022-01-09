@@ -2,7 +2,8 @@
 
 ### Vim
 
-![vim](../assets/images/cheatsheet/vim_cheatsheet.png)
+- ![picture](../assets/images/cheatsheet/vim_cheatsheet.png)
+- [link](https://devhints.io/vim)
 
 ### Lua
 
