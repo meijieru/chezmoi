@@ -4,6 +4,7 @@ Chezmoi script to run scripts based on dependent files changing.
 
 Modified from https://gist.github.com/karlwbrown/7e48ebfdc3c14b3c879880d88bd77f66
 """
+import argparse
 import collections
 import hashlib
 import logging
@@ -123,6 +124,12 @@ def verify_checksums(
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser(description="Run on deps changes.")
+    parser.add_argument(
+        "--skip_install", action="store_true", help="update checksum only"
+    )
+    args = parser.parse_args()
+
     logging.basicConfig(
         format="%(asctime)s [%(levelname)-5.5s] [%(process)d] (%(name)s) %(message)s",
         level=logging.INFO,
@@ -145,7 +152,11 @@ def main() -> None:
         logging.info("Checksum file not found. Will create at the end...")
 
     deps = get_dependencies()
-    checksum_refresh = verify_checksums(existing_checksum_map, deps)
+    if args.skip_install:
+        logging.info("Skip deps check, force update checksum")
+        checksum_refresh = True
+    else:
+        checksum_refresh = verify_checksums(existing_checksum_map, deps)
 
     # Refresh checksums if needed
     if checksum_refresh:
