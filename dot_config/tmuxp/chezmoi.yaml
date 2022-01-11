@@ -1,0 +1,27 @@
+session_name: chezmoi
+start_directory: ~/.local/share/chezmoi
+# before_script: ./.tmuxp-before-script.sh
+# shell_command_before:
+#   - "[ -f .venv/bin/activate ] && source .venv/bin/activate && reset"
+windows:
+  - window_name: chezmoi
+    focus: True
+    layout: main-horizontal
+    options:
+      main-pane-height: 35
+    panes:
+      - focus: true
+  - window_name: lvim
+    layout: main-horizontal
+    options:
+      main-pane-height: 35
+    start_directory: dot_config/lvim/
+    panes:
+      - focus: true
+  - window_name: LunarVim
+    layout: main-horizontal
+    options:
+      main-pane-height: 35
+    start_directory: ~/lib/LunarVim/
+    panes:
+      - focus: true
