@@ -124,7 +124,7 @@ function M.setup_lsp()
   else
     mapx.nnoremap(_keymap, "<cmd>Telescope lsp_document_symbols<cr>", _doc)
   end
-  mapx.nnoremap("<leader>lg", "<cmd>lua require('neogen').generate()<cr>", "Generate Doc")
+  mapx.nnoremap("<leader>lg", "<cmd>Neogen<cr>", "Generate Doc")
   mapx.nnoremap("<leader>ld", "<cmd>Telescope diagnostics bufnr=0<cr>", "Document Diagnostics")
   mapx.nnoremap("<leader>lw", "<cmd>Telescope diagnostics<cr>", "Workspace Diagnostics")
   mapx.nnoremap("]e", "<cmd>lua vim.diagnostic.goto_next()<cr>", "Next Diagnostic")

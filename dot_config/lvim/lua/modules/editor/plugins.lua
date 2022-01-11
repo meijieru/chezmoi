@@ -128,7 +128,7 @@ editor["lewis6991/spellsitter.nvim"] = {
 }
 
 editor["danymat/neogen"] = {
-  -- event = "BufRead",
+  cmd = { "Neogen" },
   module = { "neogen" },
   requires = { "nvim-treesitter" },
   config = conf.neogen,
