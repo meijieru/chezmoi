@@ -33,4 +33,4 @@ Check [doc](./doc/nvim.md)
 
 ### Cheatsheets
 
-Check [doc](./cheatsheet.md)
+Check [doc](./doc/cheatsheet.md)
