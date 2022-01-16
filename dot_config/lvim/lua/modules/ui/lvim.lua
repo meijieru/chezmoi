@@ -85,6 +85,8 @@ function M.setup_gitsigns()
   end
   lvim.builtin.gitsigns.opts.signs.delete.text = "▎"
   lvim.builtin.gitsigns.opts.signs.topdelete.text = "▔"
+  lvim.builtin.gitsigns.opts.show_deleted = false
+  lvim.builtin.gitsigns.opts.word_diff = true
 end
 
 function M.setup()
