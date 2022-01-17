@@ -41,3 +41,13 @@ if [[ -f $HOME/lib/anaconda/bin/conda ]]; then
     export ANACONDA_HOME=${HOME}/lib/anaconda
     eval "$(${ANACONDA_HOME}/bin/conda shell.$(echo "$SHELL" | sed "s/.*\///") hook)"
 fi
+
+# google
+# source the common Brain bashrc (go/brain-bashrc)
+if [ -r /google/data/ro/teams/brain-frameworks/config/ml_bashrc ]; then
+    source /google/data/ro/teams/brain-frameworks/config/ml_bashrc
+fi
+if [[ -f /etc/bash_completion.d/g4d ]]; then
+    . /etc/bash_completion.d/p4
+    . /etc/bash_completion.d/g4d
+fi
