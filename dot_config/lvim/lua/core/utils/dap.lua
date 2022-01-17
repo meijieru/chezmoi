@@ -1,7 +1,7 @@
 local M = {}
-local breakpoints = require "dap.breakpoints"
 
 function M.store()
+  local breakpoints = require "dap.breakpoints"
   local bps = {}
   local breakpoints_by_buf = breakpoints.get()
   for buf, buf_bps in pairs(breakpoints_by_buf) do
@@ -13,6 +13,7 @@ function M.store()
 end
 
 function M.load()
+  local breakpoints = require "dap.breakpoints"
   local fp = io.open("/tmp/breakpoints.json", "r")
   local content = fp:read "*a"
   local bps = vim.json.decode(content)
