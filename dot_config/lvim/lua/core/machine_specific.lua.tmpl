@@ -18,3 +18,10 @@ myvim.plugins.imtoggle.active = true
 myvim.plugins.gitsigns.active = false
 {{ end }}
 {{ end }}
+
+{{ if eq .chezmoi.username "jierumei" }}
+-- google specific
+myvim.plugins.lsp.ciderlsp = true
+myvim.plugins.treesitter.ensure_installed = "maintained"
+{{ end }}
+

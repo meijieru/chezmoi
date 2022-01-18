@@ -157,6 +157,12 @@ function M.is_vscode()
   return vim.g.vscode ~= nil
 end
 
+--- Check whether in google env
+--- @return boolean
+function M.is_google()
+  return vim.fn.filereadable "/google/bin/releases/cider/ciderlsp/ciderlsp" == 1
+end
+
 --- Get content of current visual selection
 --- @return string
 function M.get_visual_selection()

@@ -53,6 +53,7 @@ _G.myvim = {
     cmp = { active = true },
     cmp_treesitter = { active = true },
     trouble = { active = false },
+    lsp = { ciderlsp = false },
 
     -- tool
     treesitter = {

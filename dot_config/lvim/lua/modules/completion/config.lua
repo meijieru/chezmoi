@@ -1,5 +1,7 @@
 local config = {}
 
+local Log = require "core.log"
+
 function config.lsp_signature()
   require("lsp_signature").setup {
     bind = true, -- This is mandatory, otherwise border config won't get registered.
@@ -57,6 +59,21 @@ function config.tabnine()
     sort = true,
     -- run_on_every_keystroke = true;
     -- snippet_placeholder = '..';
+  }
+end
+
+if myvim.plugins.lsp.ciderlsp then
+  Log:debug "Enable ciderlsp"
+
+  local nvim_lsp = require "lspconfig"
+  local configs = require "lspconfig.configs"
+  configs.ciderlsp = {
+    default_config = {
+      cmd = { "/google/bin/releases/cider/ciderlsp/ciderlsp", "--tooltag=nvim-lsp", "--noforward_sync_responses" },
+      filetypes = { "c", "cpp", "java", "proto", "textproto", "go", "python", "bzl" },
+      root_dir = nvim_lsp.util.root_pattern "BUILD",
+      settings = {},
+    },
   }
 end
 
