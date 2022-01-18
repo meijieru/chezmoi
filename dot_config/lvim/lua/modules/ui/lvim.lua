@@ -36,6 +36,10 @@ function M.setup_lualine()
 end
 
 function M.setup_nvimtree()
+  lvim.builtin.nvimtree.active = myvim.plugins.nvimtree.active
+  if not myvim.plugins.nvimtree.active then
+    return
+  end
   -- local trash_callback = utils.ensure_loaded_wrapper("nvim-tree.lua", function()
   --   local tree_cb = require("nvim-tree.config").nvim_tree_callback
   --   local cmd = tree_cb "trash"
