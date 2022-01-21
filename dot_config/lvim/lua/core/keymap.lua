@@ -218,6 +218,7 @@ function M.setup_find()
   mapx.nnoremap("<leader>fq", "<cmd>Telescope quickfix<cr>", "Find QuickFix")
   mapx.nnoremap("<leader>fs", "<cmd>Telescope search_history<cr>", "Find Search History")
   mapx.nnoremap("<leader>ft", "<cmd>lua require('telescope').extensions.asynctasks.all()<cr>", "Find Tasks")
+  mapx.nnoremap("<leader>fj", "<cmd>Telescope jumplist<cr>", "Find JumpList")
 
   mapx.vname("<leader>f", "Find")
   mapx.vnoremap({ "<leader>fg", "<leader>*" }, visual_search "live_grep", "Grep")
