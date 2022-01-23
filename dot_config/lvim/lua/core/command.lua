@@ -1,6 +1,6 @@
 local Log = require "core.log"
 if vim.api.nvim_add_user_command == nil then
-  Log:info "Skip my command define"
+  Log:info "Skip customized commands"
   return
 end
 
