@@ -136,7 +136,7 @@ function M.setup_gitsigns()
   mapx.nnoremap("[c", "&diff ? '[c' : '<cmd>lua require\"gitsigns.actions\".prev_hunk()<CR>'", mapx.expr, "Prev Hunk")
   mapx.onoremap("ih", ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>', "Hunk")
   mapx.xnoremap("ih", ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>', "Hunk")
-  mapx.nnoremap("<leader>gt", '<cmd>Gitsigns toggle_deleted<CR>', "Toggle Inline Diff")
+  mapx.nnoremap("<leader>gt", M.chain("Gitsigns toggle_deleted", "Gitsigns toggle_word_diff"), "Toggle Inline Diff")
 end
 
 function M.setup_lvim()
