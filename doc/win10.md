@@ -77,7 +77,7 @@ echo "Check the optional packages"
 - Ditto
   - Set the `General/Database Path = C:\Users\meiji\OneDrive\应用程序\ditto\Ditto.db`
 - PotPlayer
-  - enable {Bluesky frame rate converter}(https://bluesky-soft.com/en/BlueskyFRC.html)
+  - enable [Bluesky frame rate converter](https://bluesky-soft.com/en/BlueskyFRC.html)
 
 **TODO: Reinstall**
 
