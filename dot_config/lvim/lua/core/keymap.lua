@@ -248,7 +248,7 @@ function M.setup_basic()
       return #comps == 2
     end
 
-    local cfile = vim.fn.expand "<cfile>"
+    local cfile = vim.fn.fnameescape(vim.fn.expand "<cfile>")
     if vim.fn.filereadable(cfile) == 1 or string.match(cfile, "[a-z]*://[^ >,;]*") ~= nil then
       vim.cmd(string.format("silent !xdg-open %s", cfile))
       return
