@@ -277,7 +277,9 @@ function M.setup_basic()
   mapx.nnoremap("]b", ":bprevious<CR>", "Next Buffer")
   mapx.nnoremap("[b", ":bnext<CR>", "Previous Buffer")
 
-  mapx.nnoremap("<F1>", "<cmd>lua require('core.utils.ui').toggle_colorcolumn()<cr>", "Toggle Colorcolumn")
+  for _, func in ipairs { mapx.nnoremap, mapx.inoremap } do
+    func("<F1>", "<cmd>lua require('core.utils.ui').toggle_colorcolumn()<cr>", "Toggle Colorcolumn")
+  end
   mapx.nnoremap("m<space>", "<cmd>delmarks!<cr>", "Delete All Marks")
   mapx.nnoremap("-", "<cmd>NvimTreeOpen<cr>", "Open Directory")
   mapx.nnoremap("g?", "<cmd>WhichKey<cr>", "WhichKey")
