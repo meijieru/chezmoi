@@ -21,16 +21,20 @@ chezmoi apply --dry-run --verbose
 
 ## Setup remote server
 
-Check [doc](./doc/server_setup.md)
+Check [doc](./doc/server_setup.md).
 
 ## Setup win10
 
 Check [doc](./doc/win10.md), still work in progress.
 
+## Setup NAS
+
+Check [wiki](https://gitea.meijieru.com/meijieru/nas_management/wiki/?action=_pages).
+
 ## Neovim
 
-Check [doc](./doc/nvim.md)
+Check [doc](./doc/nvim.md).
 
 ### Cheatsheets
 
-Check [doc](./doc/cheatsheet.md)
+Check [doc](./doc/cheatsheet.md).
