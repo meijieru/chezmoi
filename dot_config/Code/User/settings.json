@@ -1,0 +1,76 @@
+{
+  "workbench.colorTheme": "Edge Light",
+
+  "editor.fontSize": 17,
+  "editor.fontFamily": "JetBrainsMono NF, FiraCode NF, Consolas, 'Courier New', monospace",
+  "editor.wordWrap": "on",
+
+  "vim.incsearch": true,
+  "vim.useSystemClipboard": true,
+  "vim.useCtrlKeys": true,
+  "vim.hlsearch": true,
+  "vim.insertModeKeyBindings": [
+    {
+      "before": ["j", "j"],
+      "after": ["<Esc>"]
+    }
+  ],
+  "vim.leader": "<space>",
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<C-l>"],
+      "commands": [":nohl"]
+    },
+    {
+      "before": ["g", "r"],
+      "commands": ["editor.action.goToReferences"]
+    },
+    {
+      "before": ["g", "I"],
+      "commands": ["editor.action.goToImplementation"]
+    },
+    {
+      "before": ["g", "x"],
+      "commands": ["editor.action.openLink"]
+    },
+    {
+      "before": ["<leader>", "f", "f"],
+      "commands": ["editor.action.find"]
+    },
+    {
+      "before": ["<leader>", "f", "g"],
+      "commands": ["workbench.action.findInFiles"]
+    },
+    {
+      "before": ["<leader>", "*"],
+      "commands": ["workbench.action.findInFiles"]
+    },
+    {
+      "before": ["<leader>", "f", "f"],
+      "commands": ["workbench.action.quickOpen"]
+    },
+    {
+      "before": ["<leader>", "f", "P"],
+      "commands": ["workbench.action.openRecent"]
+    },
+    {
+      "before": ["<leader>", "l", "f"],
+      "commands": ["editor.action.format"]
+    }
+  ],
+  "vim.handleKeys": {
+    "<C-a>": false,
+    "<C-f>": false
+  },
+  "vim.visualstar": true,
+  "vim.highlightedyank.enable": true,
+  "vim.easymotion": true,
+  "vim.sneak": false,
+
+  "tabnine.experimentalAutoImports": true,
+  "security.workspace.trust.untrustedFiles": "open",
+
+  "vscode-neovim.useWSL": true,
+  "vscode-neovim.neovimExecutablePaths.linux": "/usr/sbin/nvim",
+  "vscode-neovim.neovimInitVimPaths.linux": "/home/jmei/.config/vscode_neovim/init.lua"
+}
