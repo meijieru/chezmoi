@@ -56,6 +56,10 @@
     {
       "before": ["<leader>", "l", "f"],
       "commands": ["editor.action.format"]
+    },
+    {
+      "before": ["<leader>", "l", "r"],
+      "commands": ["editor.action.rename"]
     }
   ],
   "vim.handleKeys": {
