@@ -42,6 +42,10 @@
       "commands": ["editor.action.openLink"]
     },
     {
+      "before": ["K"],
+      "commands": ["editor.action.showHover"]
+    },
+    {
       "before": ["<leader>", "f", "f"],
       "commands": ["editor.action.find"]
     },
