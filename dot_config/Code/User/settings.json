@@ -18,6 +18,14 @@
   "vim.leader": "<space>",
   "vim.normalModeKeyBindingsNonRecursive": [
     {
+      "before": ["u"],
+      "commands": ["undo"]
+    },
+    {
+      "before": ["<C-r>"],
+      "commands": ["redo"]
+    },
+    {
       "before": ["<C-l>"],
       "commands": [":nohl"]
     },
