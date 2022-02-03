@@ -46,6 +46,14 @@
       "commands": ["editor.action.showHover"]
     },
     {
+      "before": ["<A-h>"],
+      "commands": ["workbench.action.focusLeftGroup"]
+    },
+    {
+      "before": ["<A-l>"],
+      "commands": ["workbench.action.focusRightGroup"]
+    },
+    {
       "before": ["<leader>", "f", "f"],
       "commands": ["editor.action.find"]
     },
