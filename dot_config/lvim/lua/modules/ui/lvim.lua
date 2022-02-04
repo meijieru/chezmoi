@@ -6,29 +6,16 @@ local ui = require "core.utils.ui"
 
 function M.setup_lualine()
   local components = require "lvim.core.lualine.components"
-  local scrollbar = components.scrollbar
   local filename = vim.tbl_extend("force", components.filename, {
     path = 1,
     shorting_target = 150,
   })
   lvim.builtin.lualine.sections.lualine_b = { components.branch, filename }
+
+  local scrollbar = components.scrollbar
   scrollbar.color = ui.get_scroll_bar_color(myvim.colorscheme) or scrollbar.color
   lvim.builtin.lualine.sections.lualine_z = { scrollbar }
 
-  local diff = components.diff
-  -- the original symbol behaves wired
-  diff.symbols = { added = "  ", modified = " ", removed = " " }
-  lvim.builtin.lualine.sections.lualine_c = { diff, components.python_env }
-  -- table.insert(lvim.builtin.lualine.sections.lualine_x, components.encoding)
-
-  local lsp = components.lsp
-  lsp.color = {}
-  lvim.builtin.lualine.sections.lualine_x = {
-    components.diagnostics,
-    components.treesitter,
-    lsp,
-    components.filetype,
-  }
   lvim.builtin.lualine.sections.lualine_y = { "encoding" }
 
   lvim.builtin.lualine.style = "lvim"
