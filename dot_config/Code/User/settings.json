@@ -2,7 +2,7 @@
   "workbench.colorTheme": "Edge Light",
 
   "editor.fontSize": 17,
-  "editor.fontFamily": "JetBrainsMono NF, FiraCode NF, Consolas, 'Courier New', monospace",
+  "editor.fontFamily": "'JetBrains Mono', 'Fira Code', Consolas, 'Courier New', monospace",
   "editor.wordWrap": "on",
 
   "vim.incsearch": true,
@@ -17,6 +17,14 @@
   ],
   "vim.leader": "<space>",
   "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["]", "c"],
+      "commands": ["workbench.action.editor.nextChange"]
+    },
+    {
+      "before": ["[", "c"],
+      "commands": ["workbench.action.editor.previousChange"]
+    },
     {
       "before": ["u"],
       "commands": ["undo"]
