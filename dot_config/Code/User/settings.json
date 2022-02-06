@@ -62,6 +62,10 @@
       "commands": ["workbench.action.focusRightGroup"]
     },
     {
+      "before": ["<leader>", "e"],
+      "commands": ["workbench.action.toggleSidebarVisibility"]
+    },
+    {
       "before": ["<leader>", "f", "f"],
       "commands": ["editor.action.find"]
     },
