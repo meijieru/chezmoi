@@ -39,12 +39,7 @@ local function use_colorschemes(plugins, url, colors, extras)
   end
 end
 
-use_colorschemes(
-  ui,
-  "meijieru/edge.nvim",
-  { "edge_lush" },
-  { requires = { "rktjmp/lush.nvim" } }
-)
+use_colorschemes(ui, "meijieru/edge.nvim", { "edge_lush" }, { requires = { "rktjmp/lush.nvim" } })
 use_colorschemes(ui, "sainnhe/gruvbox-material", { "gruvbox-material" })
 use_colorschemes(ui, "sainnhe/edge", { "edge" })
 use_colorschemes(ui, "sainnhe/everforest", { "everforest" })
@@ -82,7 +77,7 @@ ui["kevinhwang91/nvim-bqf"] = {
   disable = false,
 }
 
-ui["vimpostor/vim-tpipeline"] = {}
+ui["vimpostor/vim-tpipeline"] = { disable = not myvim.plugins.tpipeline.active }
 ui["mbbill/undotree"] = { cmd = { "UndotreeToggle" } }
 ui["stevearc/dressing.nvim"] = {
   config = conf.dressing,

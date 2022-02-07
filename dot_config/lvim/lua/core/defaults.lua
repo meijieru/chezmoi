@@ -77,6 +77,7 @@ _G.myvim = {
     gitlinker = { active = true },
     scrollbar = { active = true },
     nvimtree = { active = true },
+    tpipeline = { active = false },
 
     -- editor
     dap = { active = true },
