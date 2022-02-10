@@ -1,3 +1,10 @@
+"""Install package.
+
+Usage:
+    python install-package.py ${config_path}
+"""
+from typing import Any, MutableMapping
+
 import abc
 import argparse
 import enum
@@ -5,18 +12,15 @@ import logging
 import os
 import subprocess
 import time
-import typing
 
 import requests
 import yaml
 
 
-class Action(object):
+class Action(abc.ABC):
     """Base class for difference actions."""
 
-    __metaclass__ = abc.ABCMeta
-
-    def __init__(self, context: typing.Dict, verbose=False):
+    def __init__(self, context: MutableMapping[str, Any], verbose=False):
         self._context = context
         self._verbose = verbose
 
@@ -25,7 +29,8 @@ class Action(object):
         raise NotImplementedError()
 
     @abc.abstractclassmethod
-    def is_usable(cls, config: dict) -> bool:
+    def is_usable(cls, config: MutableMapping[str, Any]) -> bool:
+        del config
         raise NotImplementedError()
 
 
@@ -48,9 +53,9 @@ class PackageManager(Action):
 
     def __init__(
         self,
-        context: dict,
+        context: MutableMapping[str, Any],
         command_template: str,
-        strings: typing.Dict[PkgStatus, str],
+        strings: MutableMapping[PkgStatus, str],
     ):
         super().__init__(context)
         self._strings = {}
@@ -58,7 +63,7 @@ class PackageManager(Action):
         self._strings = strings
 
     @classmethod
-    def is_usable(cls, config: dict) -> bool:
+    def is_usable(cls, config: MutableMapping[str, Any]) -> bool:
         return any([val in config for val in cls._keys])
 
     def deploy(self) -> None:
@@ -153,7 +158,7 @@ class Apt(PackageManager):
 
     _keys = ["apt"]
 
-    def __init__(self, context: dict):
+    def __init__(self, context: MutableMapping[str, Any]):
         strings = {
             PkgStatus.NOT_FOUND: "Unable to locate package",
             PkgStatus.INSTALLED: "",
@@ -171,7 +176,7 @@ class Pip(PackageManager):
 
     _keys = ["pip"]
 
-    def __init__(self, context: dict):
+    def __init__(self, context: MutableMapping[str, Any]):
         strings = {
             PkgStatus.NOT_FOUND: "No matching distribution found",
             PkgStatus.INSTALLED: "Successfully installed",
@@ -193,7 +198,7 @@ class Wget(Action):
         super(Wget, self).__init__(*args, **kwargs)
 
     @classmethod
-    def is_usable(cls, config: dict) -> bool:
+    def is_usable(cls, config: MutableMapping[str, Any]) -> bool:
         return cls._key in config
 
     def chmod_digit(self, file_path: str, perms: int = 755) -> None:
@@ -215,13 +220,13 @@ class Wget(Action):
             self.download_file(fname_abs, url)
             self.chmod_digit(fname_abs)
 
-    def download_file(self, fname: typing.AnyStr, url: typing.AnyStr) -> None:
+    def download_file(self, fname: str, url: str) -> None:
         with open(fname, "wb") as f:
             r = requests.get(url, allow_redirects=True)
             f.write(r.content)
 
 
-def guess_type(config: typing.Dict) -> Action:
+def guess_type(config: MutableMapping[str, Any]) -> Action:
     for cls in [Wget, Yay, Apt, Pip]:
         if cls.is_usable(config):
             logging.info("Use action: {}".format(cls.__name__))

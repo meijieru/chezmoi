@@ -1,9 +1,16 @@
 #!/usr/bin/env python3
-"""
-Chezmoi script to run scripts based on dependent files changing.
+"""Chezmoi script to run scripts based on dependent files changing.
+
+Usage:
+    ./run_file_dependent_scripts.py
+
+Update checksum without installing:
+    ./run_file_dependent_scripts.py --skip_install
 
 Modified from https://gist.github.com/karlwbrown/7e48ebfdc3c14b3c879880d88bd77f66
 """
+from typing import Dict, Final, List
+
 import argparse
 import collections
 import hashlib
@@ -11,7 +18,7 @@ import logging
 import os
 import subprocess
 import tempfile
-from typing import Dict, Final, List
+
 
 # Expects a file of the format output by sha256sum (text mode)
 CHECKSUM_FILE: Final = "data/tmp/local_checksum"
