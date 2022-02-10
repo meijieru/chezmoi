@@ -21,7 +21,8 @@ myvim.plugins.gitsigns.active = false
 
 {{ if eq .chezmoi.username "jierumei" }}
 -- google specific
-myvim.plugins.lsp.ciderlsp = true
+myvim.lsp.ciderlsp = true
+vim.list_extend(myvim.lsp.lvim.override, { "pyright" })
 myvim.plugins.treesitter.ensure_installed = "maintained"
 {{ end }}
 

@@ -44,6 +44,6 @@ end
 dap_config()
 null_ls_config()
 
-if myvim.plugins.lsp.ciderlsp then
+if myvim.lsp.ciderlsp then
   require("lvim.lsp.manager").setup "ciderlsp"
 end

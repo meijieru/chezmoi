@@ -4,6 +4,8 @@ _G.myvim = {
     override_notify = true,
   },
   colorscheme = "edge_lush",
+  colorscheme_enable_italic = false,
+  colorscheme_enable_italic_comment = true,
   root_markers = { ".git", ".root", ".project", "BUILD", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json" },
 
   ignores = {
@@ -44,8 +46,12 @@ _G.myvim = {
     TypeParameter = "",
   },
 
-  colorscheme_enable_italic = false,
-  colorscheme_enable_italic_comment = true,
+  lsp = {
+    ciderlsp = false,
+    lvim = {
+      overrides = {},
+    },
+  },
 
   plugins = {
     -- completion
@@ -53,7 +59,6 @@ _G.myvim = {
     cmp = { active = true },
     cmp_treesitter = { active = true },
     trouble = { active = false },
-    lsp = { ciderlsp = false },
 
     -- tool
     treesitter = {

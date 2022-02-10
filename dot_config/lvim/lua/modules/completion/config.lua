@@ -62,7 +62,7 @@ function config.tabnine()
   }
 end
 
-if myvim.plugins.lsp.ciderlsp then
+if myvim.lsp.ciderlsp then
   Log:debug "Enable ciderlsp"
 
   local nvim_lsp = require "lspconfig"

@@ -106,6 +106,7 @@ end
 
 function M.setup_lsp()
   lvim.lsp.float.border = "rounded"
+  vim.list_extend(lvim.lsp.override, myvim.lsp.lvim.overrides)
 end
 
 function M.setup()
