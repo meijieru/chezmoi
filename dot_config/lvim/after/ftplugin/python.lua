@@ -37,7 +37,7 @@ local function null_ls_config()
     -- order matters
     { exe = "black" },
     -- { exe = "yapf" },
-    { exe = "isort", extra_args = { "--profile", "black" } },
+    { exe = "isort", extra_args = { "--profile", "black", "--force_sort_within_sections" } },
   }
 end
 
