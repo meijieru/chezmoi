@@ -96,6 +96,7 @@ _G.myvim = {
       active = true,
       enable_ft = false,
     },
+    hlslens = { active = false },
 
     -- lang
     markdown_preview = { active = true },
