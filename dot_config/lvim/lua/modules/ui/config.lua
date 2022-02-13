@@ -64,10 +64,6 @@ function M.scrollbar()
       text = " ",
       color = require("core.utils.ui").get_scroll_bar_color(myvim.colorscheme).fg,
     },
-    handlers = {
-      diagnostic = true,
-      search = myvim.plugins.hlslens.active,
-    },
   }
 end
 

@@ -26,10 +26,6 @@ editor["anuvyklack/pretty-fold.nvim"] = {
   config = conf.pretty_fold,
 }
 
-editor["kevinhwang91/nvim-hlslens"] = {
-  disable = not myvim.plugins.hlslens.active
-}
-
 editor["phaazon/hop.nvim"] = {
   cmd = {
     "HopLineStart",
