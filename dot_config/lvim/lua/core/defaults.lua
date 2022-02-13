@@ -100,5 +100,6 @@ _G.myvim = {
 
     -- lang
     markdown_preview = { active = true },
+    rust_tools = { active = false },
   },
 }
