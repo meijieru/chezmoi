@@ -26,6 +26,14 @@
       "commands": ["workbench.action.editor.previousChange"]
     },
     {
+      "before": ["]", "b"],
+      "commands": ["workbench.action.nextEditor"]
+    },
+    {
+      "before": ["[", "b"],
+      "commands": ["workbench.action.previousEditor"]
+    },
+    {
       "before": ["]", "e"],
       "commands": ["editor.action.marker.nextInFiles"]
     },
