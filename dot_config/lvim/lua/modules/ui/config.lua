@@ -95,9 +95,7 @@ function M.dressing()
       -- Priority list of preferred vim.select implementations
       backend = { "telescope", "fzf", "builtin", "nui" },
 
-      telescope = {
-        theme = "dropdown",
-      },
+      telescope = nil,
     },
   }
 end

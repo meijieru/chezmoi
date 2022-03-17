@@ -35,7 +35,7 @@ function M.setup_nvimtree()
   -- end)
 
   lvim.builtin.nvimtree.show_icons.git = 1
-  lvim.builtin.nvimtree.quit_on_open = 1
+  lvim.builtin.nvimtree.setup.actions.open_file.quit_on_open = true
 
   lvim.builtin.nvimtree.setup.view.side = "left"
   lvim.builtin.nvimtree.setup.view.mappings.list = {
