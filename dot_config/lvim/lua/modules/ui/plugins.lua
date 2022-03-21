@@ -90,10 +90,4 @@ ui["sidebar-nvim/sidebar.nvim"] = {
   disable = not myvim.plugins.sidebar.active,
 }
 
-ui["goolord/alpha-nvim"] = {
-  event = "BufWinEnter",
-  config = conf.alpha,
-  disable = not myvim.plugins.alpha.active,
-}
-
 return ui

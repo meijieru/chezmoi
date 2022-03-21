@@ -104,15 +104,6 @@ function M.sidebar()
   require("sidebar-nvim").setup()
 end
 
-function M.alpha()
-  local startify = require "alpha.themes.startify"
-  startify.mru_opts.ignore = function(path, ext)
-    local default_mru_ignore = { "gitcommit" }
-    return (string.find(path, ".git/")) or (vim.tbl_contains(default_mru_ignore, ext))
-  end
-  require("alpha").setup(startify.opts)
-end
-
 vim.g.tpipeline_fillcentre = true
 
 vim.g.gruvbox_material_palette = "origin"

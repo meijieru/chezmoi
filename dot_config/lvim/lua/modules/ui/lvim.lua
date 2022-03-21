@@ -81,9 +81,16 @@ function M.setup_gitsigns()
   lvim.builtin.gitsigns.opts.word_diff = false
 end
 
+function M.setup_alpha()
+  lvim.builtin.alpha.active = myvim.plugins.alpha.active
+  if not myvim.plugins.alpha.active then
+    return
+  end
+  lvim.builtin.alpha.mode = "startify"
+end
+
 function M.setup()
   lvim.builtin.bufferline.active = myvim.plugins.bufferline.active
-  -- lvim.builtin.alpha.mode = "startify"
   lvim.builtin.terminal.active = myvim.plugins.terminal.active
   lvim.builtin.terminal.execs = {}
 
@@ -92,6 +99,7 @@ function M.setup()
   M.setup_nvimtree()
   M.setup_notify()
   M.setup_gitsigns()
+  M.setup_alpha()
 end
 
 return M
