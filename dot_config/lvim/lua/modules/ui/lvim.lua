@@ -20,6 +20,7 @@ function M.setup_lualine()
 
   lvim.builtin.lualine.style = "lvim"
   lvim.builtin.lualine.options.disabled_filetypes = { "toggleterm", "dashboard", "terminal", "NvimTree", "Outline" }
+  lvim.builtin.lualine.options.globalstatus = true
 end
 
 function M.setup_nvimtree()
