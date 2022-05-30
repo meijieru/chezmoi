@@ -24,6 +24,7 @@ editor["ojroques/vim-oscyank"] = {
 editor["anuvyklack/pretty-fold.nvim"] = {
   event = "BufRead",
   config = conf.pretty_fold,
+  disable = not myvim.plugins.pretty_fold.active,
 }
 
 editor["phaazon/hop.nvim"] = {

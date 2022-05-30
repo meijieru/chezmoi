@@ -96,6 +96,7 @@ _G.myvim = {
       active = true,
       enable_ft = false,
     },
+    pretty_fold = { active = false },
 
     -- lang
     markdown_preview = { active = true },
