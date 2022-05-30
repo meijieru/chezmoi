@@ -22,6 +22,7 @@ editor["ojroques/vim-oscyank"] = {
   end,
 }
 editor["anuvyklack/pretty-fold.nvim"] = {
+  requires = "anuvyklack/nvim-keymap-amend", -- only for preview
   event = "BufRead",
   config = conf.pretty_fold,
   disable = not myvim.plugins.pretty_fold.active,

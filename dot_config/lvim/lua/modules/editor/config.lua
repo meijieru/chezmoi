@@ -144,10 +144,15 @@ function M.pretty_fold()
           return config.fill_char:rep(3)
         end,
       },
-      -- right =  nil,
     },
   }
-  require("pretty-fold.preview").setup_keybinding "l"
+  require("pretty-fold.preview").setup {
+    default_keybindings = true, -- Set to false to disable default keybindings
+    border = "none",
+  }
+  local keymap_amend = require "keymap-amend"
+  local mapping = require("pretty-fold.preview").mapping
+  keymap_amend("n", "l", mapping.show_close_preview_open_fold)
 end
 
 function M.auto_session()
@@ -156,6 +161,7 @@ function M.auto_session()
     auto_session_suppress_dirs = { "~/" },
   }
 end
+
 function M.session_lens()
   require("session-lens").setup {}
 end
