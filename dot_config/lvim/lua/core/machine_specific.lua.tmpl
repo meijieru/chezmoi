@@ -3,12 +3,13 @@
 
 {{ if eq .chezmoi.hostname "Jieru-PC" }}
 myvim.plugins.tabnine.active = true
-myvim.plugins.treesitter.ensure_installed = "maintained"
+myvim.plugins.treesitter.ensure_installed = "all"
 myvim.plugins.imtoggle.active = true
 {{ end }}
 
 {{ if eq .chezmoi.hostname "JIERUMEI-NB0" }}
-myvim.plugins.treesitter.ensure_installed = "maintained"
+myvim.plugins.treesitter.ensure_installed = "all"
+-- myvim.plugins.treesitter.ensure_installed = {"c", "lua"}
 myvim.plugins.imtoggle.active = true
 {{ end }}
 
@@ -23,6 +24,6 @@ myvim.plugins.gitsigns.active = false
 -- google specific
 myvim.lsp.ciderlsp = true
 vim.list_extend(myvim.lsp.lvim.overrides, { "pyright" })
-myvim.plugins.treesitter.ensure_installed = "maintained"
+myvim.plugins.treesitter.ensure_installed = "all"
 {{ end }}
 
