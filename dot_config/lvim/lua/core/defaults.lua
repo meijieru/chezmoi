@@ -49,7 +49,7 @@ _G.myvim = {
   lsp = {
     ciderlsp = false,
     lvim = {
-      overrides = {},
+      skipped_servers = {},
     },
   },
 
