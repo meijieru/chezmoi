@@ -35,10 +35,7 @@ function M.setup_nvimtree()
   --   vim.cmd(cmd)
   -- end)
 
-  lvim.builtin.nvimtree.show_icons.git = 1
   lvim.builtin.nvimtree.setup.actions.open_file.quit_on_open = true
-
-  lvim.builtin.nvimtree.setup.view.side = "left"
   lvim.builtin.nvimtree.setup.view.mappings.list = {
     -- FIXME(meijieru): revisit after https://github.com/neovim/neovim/pull/16594
     -- { key = "d", cb = trash_callback },
