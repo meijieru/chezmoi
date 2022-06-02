@@ -23,7 +23,7 @@ pacman:
   - tree
   - ripgrep
   - fd
-  - neovim-git
+  - neovim
   - python-neovim
   - nodejs
   - yarn
