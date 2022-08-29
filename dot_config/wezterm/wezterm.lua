@@ -1,4 +1,5 @@
 local wezterm = require("wezterm")
+local mux = wezterm.mux
 
 local mykeys = {
   { key = "{", mods = "SHIFT|ALT", action = wezterm.action({ ActivateTabRelative = -1 }) },
@@ -13,15 +14,6 @@ for i = 1, 8 do
   })
 end
 
-local function tbl_contains(t, value)
-  for _, v in ipairs(t) do
-    if v == value then
-      return true
-    end
-  end
-  return false
-end
-
 local function font_with_fallback(fonts, params)
   if #fonts ~= 1 then
     error("Only support one")
@@ -34,6 +26,11 @@ local function font_with_fallback(fonts, params)
 
   return wezterm.font_with_fallback(names, params)
 end
+
+wezterm.on("gui-startup", function(cmd)
+  local _, _, window = mux.spawn_window(cmd or {})
+  window:gui_window():maximize()
+end)
 
 return {
   hide_tab_bar_if_only_one_tab = true,
