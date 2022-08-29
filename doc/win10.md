@@ -46,6 +46,7 @@ Optional
 ```ps1
 scoop install git
 
+scoop bucket add main
 scoop bucket add extras
 scoop bucket add nonportable
 scoop bucket add dorado https://github.com/chawyehsu/dorado
@@ -53,7 +54,7 @@ scoop bucket add user_carrot https://github.com/huangnauh/carrot.git  # for chez
 
 scoop install 7zip aria2 git
 scoop install vscode wezterm
-scoop install AutoHotKey sharpkeys everything powertoys ditto chezmoi
+scoop install autohotkey2 sharpkeys everything powertoys ditto chezmoi
 scoop install fsviewer LICEcap potplayer
 scoop install nextcloud zoom rufus teamviewer freedownloadmanager
 
@@ -102,6 +103,7 @@ echo "Check the optional packages"
 - [Office](TODO)
 - [Auto Dark Mode X](https://github.com/AutoDarkMode/Windows-Auto-Night-Mode/releases)
 - [Bluesky Frame Rate Converter](TODO)
+- [Huawei Store](TODO)
 
 Optional
 
