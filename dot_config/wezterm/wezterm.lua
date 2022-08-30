@@ -20,7 +20,7 @@ local function font_with_fallback(fonts, params)
   end
   local names = {
     fonts[1],
-    "JetBrainsMono NF",
+    -- "JetBrainsMono NF",
     "Microsoft Yahei",
   }
 
