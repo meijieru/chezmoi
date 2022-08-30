@@ -1,7 +1,14 @@
 vim.o.ruler = false
 vim.o.cmdheight = 1
-vim.o.foldmethod = "expr"
-vim.o.foldexpr = "nvim_treesitter#foldexpr()"
+if myvim.plugins.ufo.active then
+  vim.o.foldcolumn = "1"
+  vim.o.foldlevel = 99
+  vim.o.foldlevelstart = -1
+  vim.o.foldenable = true
+else
+  vim.o.foldmethod = "expr"
+  vim.o.foldexpr = "nvim_treesitter#foldexpr()"
+end
 vim.o.mouse = ""
 vim.o.showtabline = 1
 vim.o.splitbelow = false

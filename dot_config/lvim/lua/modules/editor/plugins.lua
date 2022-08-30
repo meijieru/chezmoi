@@ -21,11 +21,11 @@ editor["ojroques/vim-oscyank"] = {
     return os.getenv "SSH_TTY" ~= nil
   end,
 }
-editor["anuvyklack/pretty-fold.nvim"] = {
-  requires = "anuvyklack/nvim-keymap-amend", -- only for preview
-  event = "BufRead",
-  config = conf.pretty_fold,
-  disable = not myvim.plugins.pretty_fold.active,
+editor["kevinhwang91/nvim-ufo"] = {
+  event = { "BufReadPre" },
+  requires = "kevinhwang91/promise-async",
+  config = conf.ufo,
+  disable = not myvim.plugins.ufo.active,
 }
 
 editor["phaazon/hop.nvim"] = {

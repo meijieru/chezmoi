@@ -125,34 +125,38 @@ function M.oscyank()
   ]]
 end
 
-function M.pretty_fold()
-  require("pretty-fold").setup {
-    fill_char = " ",
-    sections = {
-      left = {
-        "content",
-        "",
-        -- "...",
-      },
-      right = {
-        " ",
-        "number_of_folded_lines",
-        ": ",
-        "percentage",
-        " ",
-        function(config)
-          return config.fill_char:rep(3)
-        end,
-      },
-    },
+function M.ufo()
+  local handler = function(virtText, lnum, endLnum, width, truncate)
+    local newVirtText = {}
+    local suffix = ("  %d "):format(endLnum - lnum)
+    local sufWidth = vim.fn.strdisplaywidth(suffix)
+    local targetWidth = width - sufWidth
+    local curWidth = 0
+    for _, chunk in ipairs(virtText) do
+      local chunkText = chunk[1]
+      local chunkWidth = vim.fn.strdisplaywidth(chunkText)
+      if targetWidth > curWidth + chunkWidth then
+        table.insert(newVirtText, chunk)
+      else
+        chunkText = truncate(chunkText, targetWidth - curWidth)
+        local hlGroup = chunk[2]
+        table.insert(newVirtText, { chunkText, hlGroup })
+        chunkWidth = vim.fn.strdisplaywidth(chunkText)
+        -- str width returned from truncate() may less than 2nd argument, need padding
+        if curWidth + chunkWidth < targetWidth then
+          suffix = suffix .. (" "):rep(targetWidth - curWidth - chunkWidth)
+        end
+        break
+      end
+      curWidth = curWidth + chunkWidth
+    end
+    table.insert(newVirtText, { suffix, "MoreMsg" })
+    return newVirtText
+  end
+
+  require("ufo").setup {
+    fold_virt_text_handler = handler,
   }
-  require("pretty-fold.preview").setup {
-    default_keybindings = true, -- Set to false to disable default keybindings
-    border = "none",
-  }
-  local keymap_amend = require "keymap-amend"
-  local mapping = require("pretty-fold.preview").mapping
-  keymap_amend("n", "l", mapping.show_close_preview_open_fold)
 end
 
 function M.auto_session()

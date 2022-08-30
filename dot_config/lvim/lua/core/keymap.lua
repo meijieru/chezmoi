@@ -385,6 +385,25 @@ function M.setup_visual_multi()
   mapx.nmap("<C-n>", "<Plug>(VM-Find-Under)", "VM Find Under")
 end
 
+function M.setup_ufo()
+  if not myvim.plugins.ufo.active then
+    return
+  end
+
+  local key_to_function_names = {
+    zR = { "openAllFolds", "Open all folds" },
+    zM = { "closeAllFolds", "Close all folds" },
+    zr = { "openFoldsExceptKinds", "Fold less" },
+    zm = { "closeFoldsWith", "Fold more" },
+  }
+  for key, info in pairs(key_to_function_names) do
+    local fname, desc = unpack(info, 1, 2)
+    vim.keymap.set("n", key, function()
+      require("ufo")[fname]()
+    end, { desc = desc })
+  end
+end
+
 function M.setup()
   M.setup_lvim()
   M.setup_basic()
@@ -403,6 +422,7 @@ function M.setup()
   M.setup_find()
   M.setup_treesitter()
   M.setup_visual_multi()
+  M.setup_ufo()
 end
 
 -- NOTE: run with VimEnter
