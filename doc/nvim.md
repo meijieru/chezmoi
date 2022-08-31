@@ -68,6 +68,7 @@ nvim -V
 - When use telescope, [fzf syntax](https://github.com/nvim-telescope/telescope-fzf-native.nvim#telescope-fzf-nativenvim) is supported
 - `:lua ={{expr}}` for pretty print
 - In dap-repl, omnifunc is set. So we can use `<c-x><c-o>` for completion
+- `vim.lsp.buf.hover()` twice to jump to the hover window and scroll
 
 ### Lvim
 
