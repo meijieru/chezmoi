@@ -19,10 +19,6 @@ function M.setup_distribution_plugins()
   vim.g.loaded_netrwPlugin = 1
   vim.g.loaded_netrwSettings = 1
   vim.g.loaded_netrwFileHandlers = 1
-  if vim.filetype then
-    vim.g.did_load_filetypes = 0
-    vim.g.do_filetype_lua = 1
-  end
 end
 
 function M.load_plugins()
