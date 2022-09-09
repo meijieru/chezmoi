@@ -377,6 +377,7 @@ function M.setup_treesitter()
   mapx.nnoremap("<leader>Tm", "<cmd>TSModuleInfo<cr>", "Module Info")
   mapx.nnoremap("<leader>Tp", "<cmd>TSPlaygroundToggle<cr>", "Playground")
   mapx.nnoremap("<leader>Th", "<cmd>TSHighlightCapturesUnderCursor<cr>", "Highlight Info")
+  mapx.nnoremap("<leader>Ts", "<cmd>TSUpdate<cr>", "Update Treesitter Parser")
 end
 
 function M.setup_visual_multi()
