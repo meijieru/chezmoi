@@ -22,7 +22,8 @@ editor["ojroques/vim-oscyank"] = {
   end,
 }
 editor["kevinhwang91/nvim-ufo"] = {
-  event = { "BufReadPre" },
+  -- NOTE(meijieru): `BufReadPre` cause problem.
+  event = { "BufRead" },
   requires = "kevinhwang91/promise-async",
   config = conf.ufo,
   disable = not myvim.plugins.ufo.active,
