@@ -5,6 +5,7 @@ if myvim.plugins.ufo.active then
   vim.o.foldlevel = 99
   vim.o.foldlevelstart = -1
   vim.o.foldenable = true
+  vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 else
   vim.o.foldmethod = "expr"
   vim.o.foldexpr = "nvim_treesitter#foldexpr()"
