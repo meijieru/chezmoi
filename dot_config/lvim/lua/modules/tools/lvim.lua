@@ -7,7 +7,7 @@ function M.setup_telescope()
   end
 
   lvim.builtin.telescope.defaults.mappings.i["<C-w>"] = function()
-    vim.cmd [[normal! b"zcw]]
+    vim.cmd.normal { 'b"zcw', bang = true }
   end
   -- useful defalt:
   -- <C-/> Show mappings for picker actions (insert mode)
@@ -20,7 +20,7 @@ function M.setup_telescope()
       local func = actions[func_name]
       return function(...)
         func(...)
-        vim.cmd "checktime"
+        vim.cmd.checktime()
       end
     end
     -- checktime to refresh the content

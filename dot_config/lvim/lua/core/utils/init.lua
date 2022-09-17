@@ -5,7 +5,7 @@ local Log = require "core.log"
 --- Source vimscript relative to cur dir
 --- @param path string
 function M.load_vimscript(path)
-  vim.cmd("source " .. vim.fn.expand "~/.config/lvim/" .. path)
+  vim.cmd.source(vim.fn.expand "~/.config/lvim/" .. path)
 end
 
 --- Try load package, logging if failed
@@ -88,17 +88,17 @@ function M.load_pack(package, opts)
     return true
   end
 
-  local packadd_cmd = "PackerLoad "
+  local packadd_func = vim.cmd.PackerLoad
   if skip_packer then
-    packadd_cmd = "packadd "
+    packadd_func = vim.cmd.packadd
   end
   local infos = { loaded = true }
   if profile then
     local start = vim.loop.hrtime()
-    vim.cmd(packadd_cmd .. package)
+    packadd_func(package)
     infos["load_time"] = (vim.loop.hrtime() - start) / 1e6
   else
-    local status = pcall(vim.cmd, packadd_cmd .. package)
+    local status = pcall(packadd_func, package)
     if not status then
       Log:warn(package .. " fails to load")
       return false
@@ -178,7 +178,7 @@ function M.get_visual_selection()
     return
   end
 
-  vim.cmd 'normal "zy'
+  vim.cmd.normal { '"zy', bang = true }
   local content = vim.fn.getreg "z"
   return content
 end

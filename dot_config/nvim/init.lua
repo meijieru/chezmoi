@@ -8,4 +8,4 @@ for key, val in pairs(envs) do
 end
 
 local lvim_init = envs.LUNARVIM_RUNTIME_DIR .. "/lvim/init.lua"
-vim.cmd("source " .. lvim_init)
+vim.cmd.source(lvim_init)
