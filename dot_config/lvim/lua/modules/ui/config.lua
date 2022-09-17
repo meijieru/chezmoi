@@ -86,10 +86,14 @@ function M.dressing()
       border = "rounded",
       winhighlight = "NormalFloat:Normal",
 
+      -- Window transparency (0-100)
+      winblend = 10,
+
       -- These can be integers or a float between 0 and 1 (e.g. 0.4 for 40%)
       prefer_width = 40,
-      max_width = nil,
-      min_width = 20,
+      width = nil,
+      max_width = { 140, 0.9 },
+      min_width = { 20, 0.2 },
     },
     select = {
       -- Priority list of preferred vim.select implementations
