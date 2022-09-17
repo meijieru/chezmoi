@@ -101,20 +101,6 @@ tools["nvim-telescope/telescope-frecency.nvim"] = {
   disable = not myvim.plugins.telescope_frecency.active,
 }
 
-tools["rcarriga/vim-ultest"] = {
-  requires = { "vim-test/vim-test", setup = conf.vim_test },
-  cmd = { "Ultest", "UltestNearest" },
-  run = function()
-    vim.cmd [[packadd vim-ultest]]
-    vim.cmd [[UpdateRemotePlugins]]
-  end,
-  setup = conf.vim_ultest,
-  -- config = function()
-  --   vim.cmd [[UpdateRemotePlugins]]
-  -- end,
-  disable = true,
-}
-
 tools["alker0/chezmoi.vim"] = { disable = true }
 tools["Pocco81/AutoSave.nvim"] = {
   event = { "BufRead" },
