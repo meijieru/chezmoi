@@ -1,5 +1,5 @@
 vim.o.ruler = false
-vim.o.cmdheight = 1
+vim.o.cmdheight = 0
 if myvim.plugins.ufo.active then
   vim.o.foldcolumn = "1"
   vim.o.foldlevel = 99
