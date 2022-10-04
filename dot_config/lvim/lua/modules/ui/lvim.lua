@@ -12,11 +12,13 @@ function M.setup_lualine()
   })
   lvim.builtin.lualine.sections.lualine_b = { components.branch, filename }
 
-  local scrollbar = components.scrollbar
-  scrollbar.color = ui.get_scroll_bar_color(myvim.colorscheme) or scrollbar.color
-  lvim.builtin.lualine.sections.lualine_z = { scrollbar }
+  -- local scrollbar = components.scrollbar
+  -- scrollbar.color = ui.get_scroll_bar_color(myvim.colorscheme) or scrollbar.color
+  -- lvim.builtin.lualine.sections.lualine_z = { scrollbar }
+  -- lvim.builtin.lualine.sections.lualine_y = { "encoding" }
 
-  lvim.builtin.lualine.sections.lualine_y = { "encoding" }
+  lvim.builtin.lualine.sections.lualine_y = {}
+  lvim.builtin.lualine.sections.lualine_z = { "location" }
 
   lvim.builtin.lualine.style = "lvim"
   lvim.builtin.lualine.options.disabled_filetypes = { "toggleterm", "dashboard", "terminal", "NvimTree", "Outline" }
