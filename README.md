@@ -3,14 +3,7 @@
 ## Deploy
 
 ```bash
-# manually install chezmoi if needed
-mkdir -p ~/.local/bin
-cd ~/.local
-sh -c "$(curl -fsLS git.io/chezmoi)"
-export -U PATH=$HOME/.local/bin/:$PATH
-
-export REPO=ssh://git@direct.meijieru.com:2222/meijieru/chezmoi.git
-chezmoi init --apply ${REPO}
+bash tools/chezmoi_init.sh
 ```
 
 To preview the change,
