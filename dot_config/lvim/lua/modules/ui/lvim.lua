@@ -88,6 +88,16 @@ function M.setup_alpha()
   lvim.builtin.alpha.mode = "startify"
 end
 
+function M.setup_indent_blankline()
+  lvim.builtin.indentlines.active = myvim.plugins.indentlines.active
+  if not myvim.plugins.indentlines.active then
+    return
+  end
+  lvim.builtin.indentlines.options.char = nil
+  lvim.builtin.indentlines.options.buftype_exclude = myvim.ignores.buftype
+  lvim.builtin.indentlines.options.filetype_exclude = myvim.ignores.filetype
+end
+
 function M.setup()
   lvim.builtin.bufferline.active = myvim.plugins.bufferline.active
   lvim.builtin.terminal.active = myvim.plugins.terminal.active
@@ -99,6 +109,7 @@ function M.setup()
   M.setup_notify()
   M.setup_gitsigns()
   M.setup_alpha()
+  M.setup_indent_blankline()
 end
 
 return M

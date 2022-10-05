@@ -71,6 +71,7 @@ _G.myvim = {
     wakatime = { active = true },
 
     -- ui
+    indentlines = { active = true },
     aerial = { active = true },
     sidebar = { active = false },
     dressing = { active = true },
