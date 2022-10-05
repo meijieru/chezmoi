@@ -54,6 +54,19 @@ ui["folke/twilight.nvim"] = {
   module = "twilight",
   config = conf.twilight,
 }
+ui["folke/noice.nvim"] = {
+  event = "VimEnter",
+  config = function()
+    require("noice").setup()
+  end,
+  requires = {
+    -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+    "MunifTanjim/nui.nvim",
+    "rcarriga/nvim-notify",
+    "hrsh7th/nvim-cmp",
+  },
+  disable = not myvim.plugins.noice.active,
+}
 
 ui["karb94/neoscroll.nvim"] = {
   event = "WinScrolled",
