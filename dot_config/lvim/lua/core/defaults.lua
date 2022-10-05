@@ -83,7 +83,7 @@ _G.myvim = {
     scrollbar = { active = true },
     nvimtree = { active = true },
     tpipeline = { active = false },
-    noice = { active = true },
+    noice = { active = false },
 
     -- editor
     dap = { active = true },
