@@ -12,7 +12,6 @@ editor["machakann/vim-sandwich"] = { keys = { "s" }, disable = true }
 editor["tpope/vim-sleuth"] = { event = "BufRead" }
 editor["tpope/vim-rsi"] = { event = { "CmdlineEnter", "InsertEnter" } }
 editor["tpope/vim-eunuch"] = { event = "BufRead" }
-editor["bronson/vim-visual-star-search"] = {}
 editor["ojroques/vim-oscyank"] = {
   -- cmd = { "OSCYank", "OSCYankReg" },
   -- keys = { "<Plug>OSCYank" },
