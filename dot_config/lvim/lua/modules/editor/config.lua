@@ -18,38 +18,6 @@ function M.lastplace()
   }
 end
 
-function M.dapui()
-  local dap, dapui = require "dap", require "dapui"
-  -- TODO(meijieru): disable diagnostics when debugging
-  dap.listeners.after.event_initialized["dapui_config"] = function()
-    dapui.open()
-  end
-  -- dap.listeners.before.event_terminated["dapui_config"] = function()
-  --   dapui.close()
-  -- end
-  -- dap.listeners.before.event_exited["dapui_config"] = function()
-  --   dapui.close()
-  -- end
-
-  require("dapui").setup {
-    layouts = {
-      -- You can change the order of elements in the sidebar
-      elements = {
-        -- Provide as ID strings or tables with "id" and "size" keys
-        { id = "watches", size = 0.18 },
-        { id = "stacks", size = 0.20 },
-        { id = "breakpoints", size = 0.20 },
-        { id = "scopes", size = 0.42 },
-      },
-      size = 45,
-      position = "left", -- Can be "left", "right", "top", "bottom"
-    },
-    floating = {
-      border = "rounded", -- Border style. Can be "single", "double" or "rounded"
-    },
-  }
-end
-
 function M.dap_virtual_text()
   require("nvim-dap-virtual-text").setup {
     enabled = true,
