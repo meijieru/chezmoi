@@ -8,16 +8,6 @@ completion["benfowler/telescope-luasnip.nvim"] = {
   after = "telescope.nvim",
 }
 
-completion["folke/trouble.nvim"] = {
-  -- FIXME(meijieru): lazy load
-  -- cmd = { "Trouble", "TroubleToggle", "TroubleRefresh" },
-  -- module = {
-  --   "trouble.providers.telescope",
-  -- },
-  config = conf.trouble,
-  disable = not myvim.plugins.trouble.active,
-}
-
 completion["tzachar/cmp-tabnine"] = {
   run = "./install.sh",
   event = "InsertEnter",

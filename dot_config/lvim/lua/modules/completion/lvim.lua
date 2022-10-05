@@ -90,27 +90,12 @@ function M.setup_cmp()
   end, map_modes)
 end
 
-function M.setup_trouble()
-  if not myvim.plugins.telescope.active or not myvim.plugins.trouble.active then
-    return
-  end
-  local function _open_with_trouble(prompt_bufnr, _mode)
-    -- defer trouble loading
-    local trouble = require "trouble.providers.telescope"
-    return trouble.open_with_trouble(prompt_bufnr, _mode)
-  end
-
-  lvim.builtin.telescope.defaults.mappings.i["<C-t>"] = _open_with_trouble
-  lvim.builtin.telescope.defaults.mappings.n["<C-t>"] = _open_with_trouble
-end
-
 function M.setup_lsp()
   lvim.lsp.float.border = "rounded"
   vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, myvim.lsp.lvim.skipped_servers)
 end
 
 function M.setup()
-  M.setup_trouble()
   M.setup_cmp()
   M.setup_lsp()
 end

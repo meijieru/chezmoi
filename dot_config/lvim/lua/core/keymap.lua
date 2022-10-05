@@ -300,24 +300,6 @@ function M.setup_basic()
   mapx.cnoremap("<C-l>", "<Right>")
 end
 
-function M.setup_trouble()
-  if not myvim.plugins.trouble.active then
-    return
-  end
-  lvim.builtin.which_key.mappings["t"] = {
-    name = "Diagnostics",
-    t = { "<cmd>TroubleToggle<cr>", "Toggle" },
-    w = { "<cmd>TroubleToggle lsp_workspace_diagnostics<cr>", "Workspace" },
-    d = { "<cmd>TroubleToggle lsp_document_diagnostics<cr>", "Document" },
-    q = { "<cmd>TroubleToggle quickfix<cr>", "Quickfix" },
-    l = { "<cmd>TroubleToggle loclist<cr>", "Loclist" },
-    r = { "<cmd>TroubleRefresh<cr>", "Refresh" },
-  }
-
-  mapx.nnoremap("]t", '<cmd>lua require("trouble").next({skip_groups = true, jump = true})<CR>', "Next Trouble")
-  mapx.nnoremap("[t", '<cmd>lua require("trouble").previous({skip_groups = true, jump = true})<CR>', "Previous Trouble")
-end
-
 function M.setup_zenmode()
   mapx.nname("<leader>z", "ZenMode")
   mapx.nnoremap("<leader>zz", "<cmd>ZenMode<cr>", "Toggle ZenMode")
@@ -410,7 +392,6 @@ end
 function M.setup()
   M.setup_lvim()
   M.setup_basic()
-  M.setup_trouble()
   M.setup_toggle()
   M.setup_easy_align()
   M.setup_terminal()

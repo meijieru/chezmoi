@@ -24,12 +24,6 @@ function config.telescope_luasnip()
   require("telescope").load_extension "luasnip"
 end
 
-function config.trouble()
-  require("trouble").setup {
-    use_lsp_diagnostic_signs = true,
-  }
-end
-
 function config.cmp_cmdline()
   local cmp = require "cmp"
 
