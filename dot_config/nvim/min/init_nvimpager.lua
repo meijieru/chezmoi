@@ -6,7 +6,7 @@ local function join_paths(...)
 end
 
 local function load_pack(dir)
-  vim.cmd("packadd " .. dir)
+  vim.cmd.packadd(dir)
 end
 
 local HOME = os.getenv("HOME")
@@ -23,8 +23,8 @@ for _, dir in ipairs(runtimes) do
   end
 end
 
-vim.cmd([[let &packpath = &runtimepath]])
-vim.cmd([[packadd packer.nvim]])
+vim.o.packpath = vim.o.runtimepath
+vim.cmd.packadd("packer.nvim")
 
 local _, packer = pcall(require, "packer")
 packer.startup({
@@ -82,7 +82,7 @@ vim.g.mapleader = " "
 
 load_pack("lush.nvim")
 load_pack("edge.nvim")
-vim.cmd("colorscheme edge_lush")
+vim.cmd.colorscheme("edge_lush")
 
 -- prevent load tpipeline
 vim.g.loaded_tpipeline = 1
@@ -116,9 +116,11 @@ end
 setup_hop()
 
 --- autocmd
-vim.cmd([[
-    augroup LuaHighlight
-        autocmd!
-        autocmd TextYankPost * lua require('vim.highlight').on_yank({higroup = 'Search', timeout = 200})
-    augroup END
-]])
+local gid = vim.api.nvim_create_augroup("lua_highlight", {})
+vim.api.nvim_create_autocmd("TextYankPost", {
+  group = gid,
+  pattern = { "*" },
+  callback = function()
+    require("vim.highlight").on_yank({ higroup = "Search", timeout = 200 })
+  end,
+})
