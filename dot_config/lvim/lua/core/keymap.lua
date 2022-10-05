@@ -313,7 +313,7 @@ function M.setup_dap()
     mapx.nnoremap("<leader>dC", "<Cmd>Telescope dap commands<cr>", "Commands")
     mapx.nnoremap("<leader>dl", "<Cmd>Telescope dap list_breakpoints<cr>", "List Breakpoints")
   end
-  if myvim.plugins.dap_virtual_text then
+  if myvim.plugins.dap_virtual_text.active then
     mapx.nnoremap("<leader>dV", "<Cmd>DapVirtualTextToggle<cr>", "Toggle Virtual Text")
   end
 end
