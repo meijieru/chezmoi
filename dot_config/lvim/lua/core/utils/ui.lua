@@ -104,7 +104,10 @@ local function _my_palettes(name)
     local palette = require "edge_lush.palette"
     return vim.tbl_map(function(hsl)
       return tostring(hsl):lower()
-    end, { bg = palette.bg1, fg = palette.grey_dim })
+    end, {
+      bg = palette.bg1,
+      fg = palette.grey_dim,
+    })
   end
 end
 

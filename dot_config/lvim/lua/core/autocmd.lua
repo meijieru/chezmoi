@@ -8,7 +8,7 @@ create_autocmd("BufWritePost", {
   callback = function()
     require("core.utils").chezmoi_apply()
   end,
-  desc="Trigger chezmoi apply"
+  desc = "Trigger chezmoi apply",
 })
 
 -- disable fold
