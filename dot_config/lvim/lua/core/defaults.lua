@@ -65,7 +65,7 @@ _G.myvim = {
       ensure_installed = {},
     },
     imtoggle = { active = false },
-    telescope = { active = true },
+    telescope = { active = true, theme = nil },
     telescope_frecency = { active = false },
     shipwright = { active = true },
     wakatime = { active = true },
