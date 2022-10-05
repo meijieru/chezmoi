@@ -75,7 +75,7 @@ _G.myvim = {
     sidebar = { active = false },
     dressing = { active = true },
     notify = { active = true },
-    alpha = { active = true },
+    alpha = { active = true, theme = "theta" },
     terminal = { active = true },
     bufferline = { active = false },
     gitsigns = { active = true },

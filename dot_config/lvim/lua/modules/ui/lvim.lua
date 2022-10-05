@@ -85,7 +85,33 @@ function M.setup_alpha()
   if not myvim.plugins.alpha.active then
     return
   end
-  lvim.builtin.alpha.mode = "startify"
+
+  -- completely override lvim setup
+  require("lvim.core.alpha").setup = function()
+    local alpha = require "alpha"
+    local theme_name = myvim.plugins.alpha.theme
+    local theme = require("alpha.themes." .. theme_name)
+
+    if theme.mru_opts ~= nil then
+      theme.mru_opts.ignore = function(path, ext)
+        local default_mru_ignore = { "gitcommit" }
+        return (string.find(path, ".git/")) or (vim.tbl_contains(default_mru_ignore, ext))
+      end
+    end
+
+    if theme_name == "theta" then
+      local dashboard = require "alpha.themes.dashboard"
+      local buttons_val = vim.list_slice(theme.buttons.val, 1, 3)
+      vim.list_extend(buttons_val, {
+        dashboard.button("SPC f f", "  Find file"),
+        dashboard.button("SPC f g", "  Live grep"),
+        dashboard.button("SPC f P", "  Find project"),
+        dashboard.button("q", "  Quit", "<cmd>qa<CR>"),
+      })
+      theme.buttons.val = buttons_val
+    end
+    alpha.setup(theme.config)
+  end
 end
 
 function M.setup_indent_blankline()
