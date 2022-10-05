@@ -195,7 +195,7 @@ function M.setup_find()
   local function visual_search(cmd)
     return function()
       local content = utils.get_visual_selection()
-      local command = string.format("Telescope %s default_text=%s", cmd, content:gsub(" ", "\\ "))
+      local command = string.format("Telescope %s default_text=%s", cmd, vim.fn.escape(content, " ()"))
       vim.cmd(command)
     end
   end
