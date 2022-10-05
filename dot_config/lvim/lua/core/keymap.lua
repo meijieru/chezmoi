@@ -52,18 +52,13 @@ function M.setup_easy_align()
   mapx.xmap("ga", func, mapx.expr, label)
 end
 
-function _G.set_terminal_keymaps()
-  local opts = { noremap = true, buffer = 0 }
+function M.setup_terminal()
+  local opts = { noremap = true }
   mapx.tnoremap("<M-q>", [[<C-\><C-n>]], opts)
   mapx.tnoremap("<M-h>", [[<C-\><C-n><C-W>h]], opts)
   mapx.tnoremap("<M-j>", [[<C-\><C-n><C-W>j]], opts)
   mapx.tnoremap("<M-k>", [[<C-\><C-n><C-W>k]], opts)
   mapx.tnoremap("<M-l>", [[<C-\><C-n><C-W>l]], opts)
-end
-
--- if you only want these mappings for toggle term use term://*toggleterm#* instead
-function M.setup_terminal()
-  vim.cmd "autocmd! TermOpen term://* lua set_terminal_keymaps()"
 end
 
 function M.setup_sniprun()
