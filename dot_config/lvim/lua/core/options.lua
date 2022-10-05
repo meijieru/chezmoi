@@ -10,7 +10,7 @@ else
   vim.o.foldmethod = "expr"
   vim.o.foldexpr = "nvim_treesitter#foldexpr()"
 end
-vim.o.mouse = ""
+-- vim.o.mouse = ""
 vim.o.showtabline = 1
 vim.o.splitbelow = false
 vim.o.splitright = false
