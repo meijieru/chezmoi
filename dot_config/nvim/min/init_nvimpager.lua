@@ -66,7 +66,7 @@ packer.startup({
   config = {
     package_root = package_root,
     compile_path = compile_path,
-    log = { level = "debug" },
+    log = { level = "warn" },
   },
 })
 if vim.fn.filereadable(compile_path) == 0 then
