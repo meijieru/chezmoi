@@ -40,6 +40,9 @@ delete:
   - .config/lvim/plugin/folding.vim
   - .config/lvim/package.json
 
+  - .local/share/nvim/dapinstall
+  - .local/share/nvim/lsp_servers
+
 move:
   .wget-hsts: $XDG_STATE_HOME/wget-hsts
   .zlua: $XDG_STATE_HOME/zlua
