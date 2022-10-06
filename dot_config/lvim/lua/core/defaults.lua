@@ -84,6 +84,7 @@ _G.myvim = {
     nvimtree = { active = true },
     tpipeline = { active = false },
     noice = { active = false },
+    breadcrumbs = { active = false },
 
     -- editor
     dap = { active = true },

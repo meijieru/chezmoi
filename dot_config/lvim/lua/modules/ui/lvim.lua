@@ -124,6 +124,10 @@ function M.setup_indent_blankline()
   lvim.builtin.indentlines.options.filetype_exclude = myvim.ignores.filetype
 end
 
+function M.setup_breadcrumbs()
+  lvim.builtin.breadcrumbs.active = myvim.plugins.breadcrumbs.active
+end
+
 function M.setup()
   lvim.builtin.bufferline.active = myvim.plugins.bufferline.active
   lvim.builtin.terminal.active = myvim.plugins.terminal.active
@@ -136,6 +140,7 @@ function M.setup()
   M.setup_gitsigns()
   M.setup_alpha()
   M.setup_indent_blankline()
+  M.setup_breadcrumbs()
 end
 
 return M
