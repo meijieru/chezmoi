@@ -27,14 +27,15 @@ function M.is_dap_debugger_installed(name)
     return false
   end
 
-  local status, _ = M.safe_load "dap-install"
+  local status, _ = M.safe_load "mason"
   if not status then
-    Log:info "Plugin dap_install not installed"
+    Log:info "Plugin mason not installed"
     return false
   end
 
-  local dbg_list = require("dap-install.api.debuggers").get_installed_debuggers()
-  if not vim.tbl_contains(dbg_list, name) then
+  local mason_registry = require "mason-registry"
+  local status, _ = pcall(mason_registry.get_package, name)
+  if not status then
     Log:info("Debugger " .. name .. " not installed")
     return false
   end

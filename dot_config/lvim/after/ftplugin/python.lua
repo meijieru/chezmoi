@@ -2,7 +2,8 @@ local utils = require "core.utils"
 local Log = require "core.log"
 
 local function dap_config()
-  if not utils.is_dap_debugger_installed "python" then
+  local debugger_name = "debugpy"
+  if not utils.is_dap_debugger_installed(debugger_name) then
     return
   end
   local status_dap_python_ok = utils.load_pack "nvim-dap-python"
@@ -14,14 +15,16 @@ local function dap_config()
     Log:debug "python dap already loaded"
     return
   end
-  local dbg_path = require("dap-install.config.settings").options["installation_path"] .. "python/bin/python"
+
+  local dbg_path = require("mason-registry").get_package(debugger_name):get_install_path() .. "/venv/bin/python"
+  Log:debug("python dap use: " .. dbg_path)
   require("dap-python").setup(dbg_path, {
     console = nil,
     pythonPath = function()
       local venv_path = os.getenv "VIRTUAL_ENV"
       if venv_path then
-        local util_sys = require "dap-install.utils.sys"
-        if util_sys.is_windows() then
+        local is_windows = vim.loop.os_uname().version:match "Windows"
+        if is_windows then
           return venv_path .. "\\Scripts\\python.exe"
         end
         return venv_path .. "/bin/python"
