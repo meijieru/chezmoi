@@ -1,8 +1,6 @@
 local M = {}
 
 local Log = require "core.log"
-local utils = require "core.utils"
-local ui = require "core.utils.ui"
 
 function M.setup_lualine()
   local components = require "lvim.core.lualine.components"
@@ -12,11 +10,7 @@ function M.setup_lualine()
   })
   lvim.builtin.lualine.sections.lualine_b = { components.branch, filename }
 
-  -- local scrollbar = components.scrollbar
-  -- scrollbar.color = ui.get_scroll_bar_color(myvim.colorscheme) or scrollbar.color
-  -- lvim.builtin.lualine.sections.lualine_z = { scrollbar }
   -- lvim.builtin.lualine.sections.lualine_y = { "encoding" }
-
   lvim.builtin.lualine.sections.lualine_y = {}
   lvim.builtin.lualine.sections.lualine_z = { "location" }
 
@@ -30,19 +24,30 @@ function M.setup_nvimtree()
   if not myvim.plugins.nvimtree.active then
     return
   end
-  -- local trash_callback = utils.ensure_loaded_wrapper("nvim-tree.lua", function()
-  --   local tree_cb = require("nvim-tree.config").nvim_tree_callback
-  --   local cmd = tree_cb "trash"
-  --   vim.validate { cmd = { cmd, "string" } }
-  --   vim.cmd(cmd)
-  -- end)
 
   lvim.builtin.nvimtree.setup.actions.open_file.quit_on_open = true
   lvim.builtin.nvimtree.setup.view.mappings.list = {
-    -- FIXME(meijieru): revisit after https://github.com/neovim/neovim/pull/16594
-    -- { key = "d", cb = trash_callback },
-    { key = "<leader>ff", cb = "<cmd>lua require'lvim.core.nvimtree'.start_telescope('find_files')<cr>" },
-    { key = "<leader>fg", cb = "<cmd>lua require'lvim.core.nvimtree'.start_telescope('live_grep')<cr>" },
+    {
+      key = "d",
+      action = "trash",
+      action_cb = function(node)
+        require("nvim-tree.actions.fs.trash").fn(node)
+      end,
+    },
+    {
+      key = "<leader>ff",
+      action = "telescope_find_files",
+      action_cb = function(_)
+        require("lvim.core.nvimtree").start_telescope "find_files"
+      end,
+    },
+    {
+      key = "<leader>fg",
+      action = "telescope_live_grep",
+      action_cb = function(_)
+        require("lvim.core.nvimtree").start_telescope "live_grep"
+      end,
+    },
   }
 
   local trash_cmd = "trash-put"
