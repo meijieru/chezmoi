@@ -4,11 +4,15 @@ local Log = require "core.log"
 
 function M.setup_lualine()
   local components = require "lvim.core.lualine.components"
-  local filename = vim.tbl_extend("force", components.filename, {
-    path = 1,
-    shorting_target = 150,
-  })
-  lvim.builtin.lualine.sections.lualine_b = { components.branch, filename }
+
+  lvim.builtin.lualine.sections.lualine_b = { components.branch }
+  if not myvim.plugins.breadcrumbs.active then
+    local filename = vim.tbl_extend("force", components.filename, {
+      path = 1,
+      shorting_target = 150,
+    })
+    table.insert(lvim.builtin.lualine.sections.lualine_b, filename)
+  end
 
   -- lvim.builtin.lualine.sections.lualine_y = { "encoding" }
   lvim.builtin.lualine.sections.lualine_y = {}
