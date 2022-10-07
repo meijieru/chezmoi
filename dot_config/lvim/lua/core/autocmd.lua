@@ -16,3 +16,13 @@ create_autocmd(
   "FileType",
   { pattern = { "alpha", "lspinfo", "aerial", "dapui_scopes" }, command = "setlocal nofoldenable" }
 )
+
+-- diable lvim autocmds
+local autocmds = vim.api.nvim_get_autocmds {
+  group = "_filetype_settings",
+  event = { "FileType" },
+  pattern = { "alpha" },
+}
+for _, autocmd in ipairs(autocmds) do
+  vim.api.nvim_del_autocmd(autocmd.id)
+end
