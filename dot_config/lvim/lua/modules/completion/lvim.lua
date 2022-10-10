@@ -13,15 +13,16 @@ function M.setup_cmp()
     return
   end
 
-  -- TODO(meijieru): revisit once cmp-cmdline merged in 
+  -- TODO(meijieru): revisit once cmp-cmdline merged in
   lvim.builtin.cmp.cmdline.enable = false
 
-  lvim.builtin.cmp.formatting.duplicates = {
+  lvim.builtin.cmp.formatting.duplicates = vim.tbl_extend("force", lvim.builtin.cmp.formatting.duplicates, {
     nvim_lsp = 1,
-    luasnip = 1,
     copilot = 1,
     cmp_tabnine = 0,
-  }
+    path = 0,
+    buffer = 0,
+  })
   lvim.builtin.cmp.confirm_opts = {
     behavior = cmp.ConfirmBehavior.Insert,
     select = false,
@@ -45,14 +46,6 @@ function M.setup_cmp()
   lvim.builtin.cmp.formatting.source_names = vim.tbl_map(function(val)
     return string.format(template, val)
   end, source_names)
-  lvim.builtin.cmp.sources = {
-    { name = "nvim_lsp" },
-    { name = "path" },
-    { name = "luasnip" },
-    { name = "cmp_tabnine" },
-    { name = "buffer" },
-    { name = "treesitter" },
-  }
 
   local function load_neogen()
     if myvim.plugins.neogen.active then
@@ -71,8 +64,8 @@ function M.setup_cmp()
   local methods = require("lvim.core.cmp").methods
   lvim.builtin.cmp.mapping["<Tab>"] = cmp.mapping(function(fallback)
     local neogen = load_neogen()
-    if luasnip.expandable() then
-      luasnip.expand()
+    if luasnip.expand_or_locally_jumpable() then
+      luasnip.expand_or_jump()
     elseif methods.jumpable() then
       luasnip.jump(1)
     elseif neogen and neogen.jumpable() then
