@@ -12,10 +12,9 @@ function M.setup_cmp()
   if not status_cmp_ok then
     return
   end
-  local status_luasnip_ok, luasnip = safe_load "luasnip"
-  if not status_luasnip_ok then
-    return
-  end
+
+  -- TODO(meijieru): revisit once cmp-cmdline merged in 
+  lvim.builtin.cmp.cmdline.enable = false
 
   lvim.builtin.cmp.formatting.duplicates = {
     nvim_lsp = 1,
@@ -65,6 +64,10 @@ function M.setup_cmp()
   local map_modes = { "i", "s" }
 
   -- we don't use tab for cmp
+  local status_luasnip_ok, luasnip = safe_load "luasnip"
+  if not status_luasnip_ok then
+    return
+  end
   local methods = require("lvim.core.cmp").methods
   lvim.builtin.cmp.mapping["<Tab>"] = cmp.mapping(function(fallback)
     local neogen = load_neogen()
