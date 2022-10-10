@@ -11,7 +11,7 @@ function M.setup_null_ls()
     {
       name = "gitsigns",
       -- TODO(meijieru): wait for https://github.com/jose-elias-alvarez/null-ls.nvim/issues/428
-      disabled_filetypes = { "cpp" },
+      disabled_filetypes = { "cpp", "proto" },
     },
   }
 end
