@@ -95,23 +95,7 @@ function M.setup_hop()
   end
 end
 
--- https://github.com/neovim/nvim-lspconfig/wiki/User-contributed-tips#range-formatting-with-a-motion
-local function format_range_operator()
-  local old_func = vim.go.operatorfunc
-  _G.op_func_formatting = function()
-    local start = vim.api.nvim_buf_get_mark(0, "[")
-    local finish = vim.api.nvim_buf_get_mark(0, "]")
-    vim.lsp.buf.range_formatting({}, start, finish)
-    vim.go.operatorfunc = old_func
-    _G.op_func_formatting = nil
-  end
-  vim.go.operatorfunc = "v:lua.op_func_formatting"
-  vim.api.nvim_feedkeys("g@", "n", false)
-end
 function M.setup_lsp()
-  mapx.nnoremap("gm", format_range_operator, "Range Format")
-  mapx.vnoremap("gm", format_range_operator, "Range Format")
-
   local _keymap = "<leader>ls"
   local _doc = "Document Symbols"
   if myvim.plugins.aerial.active then
