@@ -5,4 +5,3 @@ end
 
 vim.wo.wrap = true
 null_ls_config()
--- require("core.utils.lsp").lsp_config("ltex", false)
