@@ -128,7 +128,7 @@ function M.setup_indent_blankline()
   if not myvim.plugins.indentlines.active then
     return
   end
-  lvim.builtin.indentlines.options.char = nil
+  lvim.builtin.indentlines.options.char = "│"
   lvim.builtin.indentlines.options.buftype_exclude = myvim.ignores.buftype
   lvim.builtin.indentlines.options.filetype_exclude = myvim.ignores.filetype
 end
