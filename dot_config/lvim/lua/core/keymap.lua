@@ -131,7 +131,7 @@ function M.setup_lvim()
   end
 
   -- git
-  for _, key in ipairs { "d", "j", "k" } do
+  for _, key in ipairs { "d", "j", "k", "g" } do
     lvim.builtin.which_key.mappings.g[key] = nil
   end
 
