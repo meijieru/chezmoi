@@ -65,14 +65,6 @@ function M.setup_nvimtree()
   end
 end
 
-function M.setup_notify()
-  lvim.builtin.notify.active = myvim.plugins.notify.active
-  if not myvim.plugins.notify.active then
-    return
-  end
-  lvim.builtin.notify.opts.stages = "fade"
-end
-
 function M.setup_whichkey()
   lvim.builtin.which_key.setup.window.border = "rounded"
   -- lvim.builtin.which_key.setup.plugins.presets.text_objects = true
@@ -149,7 +141,6 @@ function M.setup()
   M.setup_whichkey()
   M.setup_lualine()
   M.setup_nvimtree()
-  M.setup_notify()
   M.setup_gitsigns()
   M.setup_alpha()
   M.setup_indent_blankline()
