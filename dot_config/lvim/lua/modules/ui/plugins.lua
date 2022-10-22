@@ -67,6 +67,10 @@ ui["folke/noice.nvim"] = {
   },
   disable = not myvim.plugins.noice.active,
 }
+ui["rcarriga/nvim-notify"] = {
+  config = conf.notify,
+  disable = not myvim.plugins.notify.active
+}
 
 ui["karb94/neoscroll.nvim"] = {
   event = "WinScrolled",

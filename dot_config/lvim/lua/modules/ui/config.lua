@@ -1,5 +1,29 @@
 local M = {}
 
+function M.notify()
+  local notify = require "notify"
+  vim.notify = notify
+
+  local opts = {
+    stages = "fade",
+    icons = {
+      ERROR = lvim.icons.diagnostics.Error,
+      WARN = lvim.icons.diagnostics.Warning,
+      INFO = lvim.icons.diagnostics.Information,
+      DEBUG = lvim.icons.diagnostics.Debug,
+      TRACE = lvim.icons.diagnostics.Trace,
+    },
+  }
+  notify.setup(opts)
+
+  if myvim.plugins.telescope.active then
+    require("telescope").load_extension "notify"
+  end
+
+  local lvim_log = require "lvim.core.log"
+  lvim_log:configure_notifications(notify)
+end
+
 function M.zen_mode()
   require("zen-mode").setup {
     plugins = {
