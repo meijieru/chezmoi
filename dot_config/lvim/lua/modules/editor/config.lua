@@ -44,8 +44,11 @@ function M.aerial()
     -- Priority list of preferred backends for aerial
     -- backends = { "lsp", "treesitter", "markdown" },
     backends = { "treesitter", "markdown", "lsp" },
-    max_width = 40,
-    min_width = 40,
+
+    layout = {
+      max_width = 40,
+      min_width = 40,
+    },
 
     lsp = {
       -- Set to false to not update the symbols when there are LSP errors
