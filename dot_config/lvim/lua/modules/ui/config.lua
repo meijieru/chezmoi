@@ -80,10 +80,12 @@ function M.dressing()
 
       -- These are passed to nvim_open_win
       border = "rounded",
-      winhighlight = "NormalFloat:Normal",
 
-      -- Window transparency (0-100)
-      winblend = 10,
+      win_options = {
+        -- Window transparency (0-100)
+        winblend = 10,
+        winhighlight = "NormalFloat:Normal",
+      },
 
       -- These can be integers or a float between 0 and 1 (e.g. 0.4 for 40%)
       prefer_width = 40,
