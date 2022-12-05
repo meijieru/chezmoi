@@ -50,6 +50,7 @@ pacman:
   - python-torchvision
   - python-pytorch
   - python-timm
+  - python-einops
 
   - adobe-source-han-sans-cn-fonts
   - noto-fonts-emoji
