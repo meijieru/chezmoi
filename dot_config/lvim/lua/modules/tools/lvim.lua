@@ -13,10 +13,10 @@ function M.setup_telescope()
   -- <C-/> Show mappings for picker actions (insert mode)
   -- ? Show mappings for picker actions (normal mode)
   lvim.builtin.telescope.defaults.mappings.n["g?"] = "which_key"
-  lvim.builtin.telescope.defaults.layout_config.width = 0.8
-  for _, picker in pairs(lvim.builtin.telescope.pickers) do
-    picker.theme = myvim.plugins.telescope.theme
-  end
+  lvim.builtin.telescope.defaults.layout_config = {
+    width = 0.8,
+  }
+  lvim.builtin.telescope.theme = myvim.plugins.telescope.theme
 end
 
 function M.setup()
