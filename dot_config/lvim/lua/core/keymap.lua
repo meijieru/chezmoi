@@ -340,7 +340,11 @@ function M.setup_treesitter()
   mapx.nnoremap("<leader>Tc", "<cmd>TSConfigInfo<cr>", "Config Info")
   mapx.nnoremap("<leader>Tm", "<cmd>TSModuleInfo<cr>", "Module Info")
   mapx.nnoremap("<leader>Tp", "<cmd>TSPlaygroundToggle<cr>", "Playground")
-  mapx.nnoremap("<leader>Th", "<cmd>TSHighlightCapturesUnderCursor<cr>", "Highlight Info")
+  if vim.inspect_pos ~= nil then
+    mapx.nnoremap("<leader>Th", "<cmd>Inspect<cr>", "Highlight Info")
+  else
+    mapx.nnoremap("<leader>Th", "<cmd>TSHighlightCapturesUnderCursor<cr>", "Highlight Info")
+  end
   mapx.nnoremap("<leader>Ts", "<cmd>TSUpdate<cr>", "Update Treesitter Parser")
 end
 
