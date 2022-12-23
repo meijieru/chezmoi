@@ -12,6 +12,7 @@ editor["machakann/vim-sandwich"] = { keys = { "s" }, disable = true }
 editor["tpope/vim-sleuth"] = { event = "BufRead" }
 editor["tpope/vim-rsi"] = { event = { "CmdlineEnter", "InsertEnter" } }
 editor["tpope/vim-eunuch"] = { event = "BufRead" }
+
 editor["ojroques/vim-oscyank"] = {
   -- cmd = { "OSCYank", "OSCYankReg" },
   -- keys = { "<Plug>OSCYank" },
@@ -19,7 +20,13 @@ editor["ojroques/vim-oscyank"] = {
   cond = function()
     return os.getenv "SSH_TTY" ~= nil
   end,
+  disable = not myvim.plugins.oscyank.active,
 }
+editor["ibhagwan/smartyank.nvim"] = {
+  config = conf.smartyank,
+  disable = not myvim.plugins.smartyank.active,
+}
+
 editor["kevinhwang91/nvim-ufo"] = {
   -- NOTE(meijieru): `BufReadPre` cause problem.
   event = { "BufRead" },

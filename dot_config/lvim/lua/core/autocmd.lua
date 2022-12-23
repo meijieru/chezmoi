@@ -18,11 +18,20 @@ create_autocmd(
 )
 
 -- diable lvim autocmds
-local autocmds = vim.api.nvim_get_autocmds {
-  group = "_filetype_settings",
-  event = { "FileType" },
-  pattern = { "alpha" },
+local autocmds_to_disable = {
+  {
+    group = "_filetype_settings",
+    event = { "FileType" },
+    pattern = { "alpha" },
+  },
+  {
+    group = "_general_settings",
+    event = "TextYankPost",
+  },
 }
-for _, autocmd in ipairs(autocmds) do
-  vim.api.nvim_del_autocmd(autocmd.id)
+for _, params in ipairs(autocmds_to_disable) do
+  local autocmds = vim.api.nvim_get_autocmds(params)
+  for _, autocmd in ipairs(autocmds) do
+    vim.api.nvim_del_autocmd(autocmd.id)
+  end
 end

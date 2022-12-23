@@ -99,6 +99,8 @@ _G.myvim = {
       enable_ft = false,
     },
     ufo = { active = true },
+    oscyank = { active = false },
+    smartyank = { active = true },
 
     -- lang
     markdown_preview = { active = true },
