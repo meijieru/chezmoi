@@ -16,9 +16,6 @@ completion["tzachar/cmp-tabnine"] = {
   after = "nvim-cmp",
 }
 completion["hrsh7th/cmp-cmdline"] = {
-  event = "CmdlineEnter",
-  config = conf.cmp_cmdline,
-  after = "nvim-cmp",
   disable = not myvim.plugins.cmp.active,
 }
 completion["ray-x/cmp-treesitter"] = {

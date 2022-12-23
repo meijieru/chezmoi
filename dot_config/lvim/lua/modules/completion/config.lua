@@ -24,28 +24,6 @@ function config.telescope_luasnip()
   require("telescope").load_extension "luasnip"
 end
 
-function config.cmp_cmdline()
-  local cmp = require "cmp"
-
-  -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-  cmp.setup.cmdline("/", {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = {
-      { name = "buffer" },
-    },
-  })
-
-  -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-  cmp.setup.cmdline(":", {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = cmp.config.sources({
-      { name = "path" },
-    }, {
-      { name = "cmdline" },
-    }),
-  })
-end
-
 function config.tabnine()
   local tabnine = require "cmp_tabnine.config"
 

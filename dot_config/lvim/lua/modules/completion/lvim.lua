@@ -13,8 +13,7 @@ function M.setup_cmp()
     return
   end
 
-  -- TODO(meijieru): revisit once cmp-cmdline merged in
-  lvim.builtin.cmp.cmdline.enable = false
+  lvim.builtin.cmp.cmdline.enable = true
 
   lvim.builtin.cmp.formatting.duplicates = vim.tbl_extend("force", lvim.builtin.cmp.formatting.duplicates, {
     nvim_lsp = 1,
