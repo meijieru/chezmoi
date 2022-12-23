@@ -83,6 +83,10 @@ function M.setup_cmp()
       fallback()
     end
   end, map_modes)
+  -- disable keymap
+  for _, key in ipairs { "<C-J>", "<C-K>", "<Down>", "<Up>" } do
+    lvim.builtin.cmp.mapping[key] = nil
+  end
 end
 
 function M.setup_lsp()
