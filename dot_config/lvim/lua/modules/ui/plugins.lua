@@ -45,6 +45,8 @@ use_colorschemes(ui, "sainnhe/edge", { "edge" })
 use_colorschemes(ui, "sainnhe/everforest", { "everforest" })
 use_colorschemes(ui, "shaunsingh/nord.nvim", { "nord" })
 
+ui["romainl/vim-cool"] = {}
+
 ui["folke/zen-mode.nvim"] = {
   cmd = "ZenMode",
   config = conf.zen_mode,
