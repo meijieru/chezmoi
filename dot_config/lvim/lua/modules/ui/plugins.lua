@@ -71,7 +71,7 @@ ui["folke/noice.nvim"] = {
 }
 ui["rcarriga/nvim-notify"] = {
   config = conf.notify,
-  disable = not myvim.plugins.notify.active
+  disable = not myvim.plugins.notify.active,
 }
 
 ui["karb94/neoscroll.nvim"] = {
@@ -97,10 +97,14 @@ ui["stevearc/dressing.nvim"] = {
   disable = not myvim.plugins.dressing.active,
 }
 
-ui["sidebar-nvim/sidebar.nvim"] = {
-  -- branch = "dev",
-  conf = conf.sidebar,
-  disable = not myvim.plugins.sidebar.active,
+ui["stevearc/oil.nvim"] = {
+  config = conf.oil,
+  disable = not myvim.plugins.oil.active,
+}
+
+ui["stevearc/oil.nvim"] = {
+  config = conf.oil,
+  disable = not myvim.plugins.oil.active,
 }
 
 return ui

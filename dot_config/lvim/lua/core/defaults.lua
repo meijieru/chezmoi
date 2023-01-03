@@ -72,7 +72,6 @@ _G.myvim = {
     -- ui
     indentlines = { active = true },
     aerial = { active = true },
-    sidebar = { active = false },
     dressing = { active = true },
     notify = { active = true },
     alpha = { active = true, theme = "theta" },
@@ -81,7 +80,8 @@ _G.myvim = {
     gitsigns = { active = true },
     gitlinker = { active = true },
     scrollbar = { active = true },
-    nvimtree = { active = true },
+    nvimtree = { active = false },
+    oil = { active = true },
     tpipeline = { active = false },
     noice = { active = false },
     breadcrumbs = { active = true },

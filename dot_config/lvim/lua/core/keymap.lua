@@ -261,7 +261,6 @@ function M.setup_basic()
     func("<F1>", "<cmd>lua require('core.utils.ui').toggle_colorcolumn()<cr>", "Toggle Colorcolumn")
   end
   mapx.nnoremap("m<space>", "<cmd>delmarks!<cr>", "Delete All Marks")
-  mapx.nnoremap("-", "<cmd>NvimTreeOpen<cr>", "Open Directory")
   mapx.nnoremap("g?", "<cmd>WhichKey<cr>", "WhichKey")
   mapx.nnoremap("gx", system_open, "Open the file under cursor with system app")
   -- mapx.nnoremap(
@@ -373,6 +372,18 @@ function M.setup_ufo()
   end
 end
 
+function M.setup_explorer()
+  if myvim.plugins.oil.active then
+    vim.keymap.set("n", "-", function()
+      require("oil").open()
+    end, { desc = "Open parent directory" })
+  end
+
+  if not myvim.plugins.nvimtree.active then
+    lvim.builtin.which_key.mappings.e = nil
+  end
+end
+
 function M.setup()
   M.setup_lvim()
   M.setup_basic()
@@ -391,6 +402,7 @@ function M.setup()
   M.setup_treesitter()
   M.setup_visual_multi()
   M.setup_ufo()
+  M.setup_explorer()
 end
 
 -- NOTE: run with VimEnter

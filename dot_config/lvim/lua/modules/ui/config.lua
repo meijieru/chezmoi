@@ -102,8 +102,22 @@ function M.dressing()
   }
 end
 
-function M.sidebar()
-  require("sidebar-nvim").setup()
+function M.oil()
+  require("oil").setup {
+    view_options = {
+      -- Show files and directories that start with "."
+      show_hidden = true,
+    },
+  }
+end
+
+function M.oil()
+  require("oil").setup {
+    view_options = {
+      -- Show files and directories that start with "."
+      show_hidden = true,
+    },
+  }
 end
 
 vim.g.tpipeline_fillcentre = true
