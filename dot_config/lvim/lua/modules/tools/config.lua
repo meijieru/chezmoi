@@ -30,11 +30,18 @@ end
 
 function config.asynctasks()
   vim.g.asynctasks_term_reuse = 1
-  vim.g.asynctasks_term_pos = "toggleterm"
+  vim.g.asynctasks_term_pos = "toggleterm2"
 
   vim.g.asyncrun_rootmarks = myvim.root_markers
   vim.g.asyncrun_open = 10
   vim.g.asyncrun_status = ""
+end
+
+function config.asyncrun()
+  require("asyncrun_toggleterm").setup {
+    mapping = "<leader>tt",
+    start_in_insert = true,
+  }
 end
 
 function config.startuptime()

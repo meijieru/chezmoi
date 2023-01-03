@@ -59,7 +59,7 @@ tools["skywind3000/asynctasks.vim"] = {
   fn = { "asynctasks#source" },
   after = { "asyncrun.vim" },
   requires = {
-    { "skywind3000/asyncrun.vim", opt = true, cmd = { "AsyncRun" } },
+    { "skywind3000/asyncrun.vim", cmd = { "AsyncRun" }, config = conf.asyncrun },
     {
       "GustavoKatel/telescope-asynctasks.nvim",
 
