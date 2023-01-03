@@ -158,6 +158,12 @@ function M.is_vscode()
   return vim.g.vscode ~= nil
 end
 
+--- Check is in neovide gui
+--- @return boolean
+function M.is_neovide()
+  return vim.g.neovide ~= nil
+end
+
 --- Check whether in google env
 --- @return boolean
 function M.is_google()

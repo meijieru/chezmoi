@@ -7,3 +7,8 @@ if utils.is_vscode() then
   myvim.plugins.imtoggle.active = false
   myvim.plugins.cmp.active = false
 end
+
+if utils.is_neovide() then
+  Log:info "In neovide frontend"
+  vim.o.guifont = "JetBrainsMono Nerd Font Mono:h13"
+end
