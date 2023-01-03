@@ -77,6 +77,7 @@ ui["rcarriga/nvim-notify"] = {
 ui["karb94/neoscroll.nvim"] = {
   event = "WinScrolled",
   config = conf.neoscroll,
+  disable = not myvim.plugins.neoscroll.active,
 }
 ui["petertriho/nvim-scrollbar"] = {
   event = "BufRead",
