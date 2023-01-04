@@ -96,7 +96,7 @@ _G.myvim = {
     auto_session = { active = false },
     project = { active = true },
     hop = {
-      active = true,
+      active = false,
       enable_ft = false,
     },
     ufo = { active = true },

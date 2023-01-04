@@ -68,6 +68,9 @@ function M.setup_sniprun()
 end
 
 function M.setup_hop()
+  if not myvim.plugins.hop.active then
+    return
+  end
   local prefix = "<leader><leader>"
   mapx.nname(prefix, "Hop")
   local mappings = {
