@@ -3,7 +3,7 @@ local conf = require "modules.editor.config"
 
 -- editor["tpope/vim-unimpaired"] = {}
 editor["tpope/vim-surround"] = {
-  requires = { { "tpope/vim-repeat", opt = true } },
+  requires = { { "tpope/vim-repeat" } },
   event = "CursorMoved",
   -- keys = { "cs", "ds", "ys" }, -- cause delay dd
   after = "vim-repeat",
