@@ -23,7 +23,8 @@ function M.setup_lualine()
   lvim.builtin.lualine.options.globalstatus = true
 end
 
-function M.setup_nvimtree()
+function M.setup_explorer()
+  lvim.builtin.lir.active = false
   lvim.builtin.nvimtree.active = myvim.plugins.nvimtree.active
   if not myvim.plugins.nvimtree.active then
     return
@@ -143,7 +144,7 @@ function M.setup()
 
   M.setup_whichkey()
   M.setup_lualine()
-  M.setup_nvimtree()
+  M.setup_explorer()
   M.setup_gitsigns()
   M.setup_alpha()
   M.setup_indent_blankline()
