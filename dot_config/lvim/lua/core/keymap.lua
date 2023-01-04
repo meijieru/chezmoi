@@ -405,11 +405,6 @@ function M.setup()
   M.setup_explorer()
 end
 
--- NOTE: run with VimEnter
-function M.post_setup()
-  Log:warn "Keymaps post_setup is deprecated"
-end
-
 M.setup()
 
 return M
