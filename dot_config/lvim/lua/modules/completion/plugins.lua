@@ -19,7 +19,6 @@ completion["hrsh7th/cmp-cmdline"] = {
   disable = not myvim.plugins.cmp.active,
 }
 completion["ray-x/cmp-treesitter"] = {
-  ft = { "teal" },
   disable = not (myvim.plugins.cmp_treesitter.active and myvim.plugins.cmp.active),
 }
 

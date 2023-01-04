@@ -14,7 +14,6 @@ lang["iamcco/markdown-preview.nvim"] = {
 
 lang["jbyuki/one-small-step-for-vimkind"] = { module = "osv" }
 lang["lervag/vimtex"] = { ft = { "tex" }, disable = true }
-lang["teal-language/vim-teal"] = { ft = { "teal" } }
 lang["MTDL9/vim-log-highlighting"] = { ft = { "log" } }
 lang["simrat39/rust-tools.nvim"] = {
   ft = { "rust" },
