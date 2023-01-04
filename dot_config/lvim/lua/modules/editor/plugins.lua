@@ -53,6 +53,11 @@ editor["phaazon/hop.nvim"] = {
   config = conf.hop,
   disable = not myvim.plugins.hop.active,
 }
+editor["ggandor/leap.nvim"] = {
+  config = conf.leap,
+  disable = not myvim.plugins.leap.active,
+}
+
 editor["mg979/vim-visual-multi"] = {
   keys = {
     "<Plug>(VM-Find-Under)",

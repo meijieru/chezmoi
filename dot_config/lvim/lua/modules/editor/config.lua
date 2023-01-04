@@ -4,6 +4,10 @@ function M.hop()
   require("hop").setup()
 end
 
+function M.leap()
+  require("leap").add_default_mappings()
+end
+
 function M.matchup()
   vim.g.matchup_matchparen_offscreen = { method = "popup" }
   -- enable ds%, cs%
