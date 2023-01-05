@@ -59,6 +59,8 @@ function M.setup_terminal()
   mapx.tnoremap("<M-j>", [[<C-\><C-n><C-W>j]], opts)
   mapx.tnoremap("<M-k>", [[<C-\><C-n><C-W>k]], opts)
   mapx.tnoremap("<M-l>", [[<C-\><C-n><C-W>l]], opts)
+
+  lvim.builtin.terminal.open_mapping = "<C-t>"
 end
 
 function M.setup_sniprun()
