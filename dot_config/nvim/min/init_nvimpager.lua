@@ -45,21 +45,9 @@ packer.startup({
     })
     use({ "bronson/vim-visual-star-search" })
     use({
-      "phaazon/hop.nvim",
-      cmd = {
-        "HopLineStart",
-        "HopLineStartAC",
-        "HopLineStartBC",
-        "HopWord",
-        "HopWordAC",
-        "HopWordBC",
-        "HopPattern",
-        "HopChar1",
-        "HopChar2",
-      },
-      module = { "hop" },
+      "ggandor/leap.nvim",
       config = function()
-        require("hop").setup()
+        require("leap").add_default_mappings()
       end,
     })
   end,
@@ -88,32 +76,6 @@ vim.cmd.colorscheme("edge_lush")
 vim.g.loaded_tpipeline = 1
 
 --- keymap
-load_pack("mapx.nvim")
-local mapx = require("mapx")
-local function setup_hop()
-  local prefix = "<leader><leader>"
-  mapx.nname(prefix, "Hop")
-  local mappings = {
-    w = { "<cmd>HopWordAC<CR>", "Forward Words" },
-    b = { "<cmd>HopWordBC<CR>", "Backward Words" },
-    j = { "<cmd>HopLineStartAC<CR>", "Forward Lines" },
-    k = { "<cmd>HopLineStartBC<CR>", "Backward Lines" },
-    s = { "<cmd>HopPattern<CR>", "Search Patterns" },
-  }
-  for key, val in pairs(mappings) do
-    mapx.nnoremap(prefix .. key, val[1], mapx.silent, val[2])
-  end
-
-  -- stylua: ignore start
-  mapx.nnoremap('f', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>")
-  mapx.nnoremap('F', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>")
-  mapx.onoremap('f', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, inclusive_jump = true })<cr>")
-  mapx.onoremap('F', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, inclusive_jump = true })<cr>")
-  mapx.onoremap('t', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>")
-  mapx.onoremap('T', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>")
-  -- stylua: ignore end
-end
-setup_hop()
 
 --- autocmd
 local gid = vim.api.nvim_create_augroup("lua_highlight", {})
