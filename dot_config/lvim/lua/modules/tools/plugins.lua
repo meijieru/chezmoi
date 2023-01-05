@@ -80,7 +80,7 @@ tools["michaelb/sniprun"] = {
   keys = { "<Plug>SnipRun", "<Plug>SnipRunOperator" },
   cmd = { "SnipRun" },
   config = conf.sniprun,
-  disable = false,
+  disable = not myvim.plugins.sniprun.active,
 }
 
 tools["norcalli/nvim-colorizer.lua"] = {

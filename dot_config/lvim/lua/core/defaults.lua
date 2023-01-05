@@ -68,6 +68,7 @@ _G.myvim = {
     telescope_frecency = { active = false },
     shipwright = { active = true },
     wakatime = { active = true },
+    sniprun = { active = false },
 
     -- ui
     indentlines = { active = true },

@@ -62,6 +62,9 @@ function M.setup_terminal()
 end
 
 function M.setup_sniprun()
+  if not myvim.plugins.sniprun.active then
+    return
+  end
   mapx.vmap("gr", "<Plug>SnipRun", mapx.silent, "SnipRun")
   mapx.nmap("<leader>r", "<Plug>SnipRunOperator", mapx.silent, "SnipRun")
   mapx.nmap("<leader>rr", "<Plug>SnipRun", mapx.silent, "SnipRun")
