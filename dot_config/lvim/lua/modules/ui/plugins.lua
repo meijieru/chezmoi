@@ -5,7 +5,7 @@ local utils = require "core.utils"
 local Log = require "core.log"
 
 local function is_used_colorschemes(colors)
-  return vim.tbl_contains(colors, myvim.colorscheme)
+  return vim.tbl_contains(colors, myvim.colorscheme.name)
 end
 local function load_colorscheme(url)
   utils.load_pack(utils.get_plugin_dir(url), { skip_packer = true })

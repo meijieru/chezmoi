@@ -105,17 +105,24 @@ local function _sainnhe_palettes(name)
   local configuration = vim.fn[name .. "#get_configuration"]()
 
   if name == "gruvbox_material" then
-    local background = vim.opt.background:get()
-    palette = vim.fn[name .. "#get_palette"](background, configuration.palette)
+    palette = vim.fn[name .. "#get_palette"](
+      configuration.background,
+      configuration.foreground,
+      configuration.colors_override
+    )
     return {
       bg = palette.bg1[1],
       fg = palette.fg1[1],
     }
   elseif name == "edge" then
-    palette = vim.fn[name .. "#get_palette"](configuration.style)
+    palette = vim.fn[name .. "#get_palette"](
+      configuration.style,
+      configuration.dim_foreground,
+      configuration.colors_override
+    )
     return { bg = palette.bg1[1], fg = palette.fg[1] }
   elseif name == "everforest" then
-    palette = vim.fn[name .. "#get_palette"](configuration.background)
+    palette = vim.fn[name .. "#get_palette"](configuration.background, configuration.colors_override)
     return { bg = palette.bg1[1], fg = palette.fg[1] }
   end
 end

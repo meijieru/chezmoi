@@ -34,5 +34,5 @@ lvim.log = vim.tbl_deep_extend("force", lvim.log, myvim.log)
 lvim.format_on_save = false
 lvim.leader = "space"
 vim.o.background = "light"
-lvim.colorscheme = myvim.colorscheme
+lvim.colorscheme = myvim.colorscheme.name
 -- lvim.transparent_window = true

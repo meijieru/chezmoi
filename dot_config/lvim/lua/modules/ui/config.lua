@@ -58,7 +58,7 @@ function M.scrollbar()
   require("scrollbar").setup {
     handle = {
       text = " ",
-      color = require("core.utils.ui").get_scroll_bar_color(myvim.colorscheme).fg,
+      color = require("core.utils.ui").get_scroll_bar_color(myvim.colorscheme.name).fg,
     },
   }
 end
@@ -120,24 +120,21 @@ function M.oil()
   }
 end
 
+function M.sainnhe_colorscheme(name)
+  vim.g[name .. "_enable_italic"] = myvim.colorscheme.enable_italic
+  vim.g[name .. "_disable_italic_comment"] = not myvim.colorscheme.enable_italic_comment
+  vim.g[name .. "_show_eob"] = myvim.colorscheme.show_eob
+  vim.g[name .. "_dim_inactive_windows"] = myvim.colorscheme.dim_inactive_windows
+  vim.g[name .. "_diagnostic_virtual_text"] = myvim.colorscheme.diagnostic_virtual_text
+  vim.g[name .. "_better_performance"] = true
+end
+
+local sainnhe_colorscheme_names = { "gruvbox_material", "edge", "everforest" }
+for _, colorscheme in ipairs(sainnhe_colorscheme_names) do
+  M.sainnhe_colorscheme(colorscheme)
+end
+
 vim.g.tpipeline_fillcentre = true
-
-vim.g.gruvbox_material_palette = "origin"
-vim.g.gruvbox_material_background = "medium"
-vim.g.gruvbox_material_enable_italic = myvim.colorscheme_enable_italic
-vim.g.gruvbox_material_disable_italic_comment = not myvim.colorscheme_enable_italic_comment
-vim.g.gruvbox_material_show_eob = 1
-vim.g.gruvbox_material_better_performance = 1
-
-vim.g.edge_enable_italic = myvim.colorscheme_enable_italic
-vim.g.edge_disable_italic_comment = not myvim.colorscheme_enable_italic_comment
-vim.g.edge_show_eob = 1
-vim.g.edge_better_performance = 1
-
-vim.g.everforest_enable_italic = myvim.colorscheme_enable_italic
-vim.g.everforest_disable_italic_comment = not myvim.colorscheme_enable_italic_comment
-vim.g.everforest_show_eob = 1
-vim.g.everforest_better_performance = 1
 
 require("modules.ui.lvim").setup()
 

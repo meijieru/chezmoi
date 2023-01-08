@@ -3,9 +3,14 @@ _G.myvim = {
     level = "info",
     override_notify = true,
   },
-  colorscheme = "edge_lush",
-  colorscheme_enable_italic = false,
-  colorscheme_enable_italic_comment = true,
+  colorscheme = {
+    name = "everforest",
+    enable_italic = true,
+    enable_italic_comment = true,
+    dim_inactive_windows = false,
+    diagnostic_virtual_text = "grey",
+    show_eob = false,
+  },
   root_markers = { ".git", ".root", ".project", "BUILD", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json" },
 
   ignores = {
