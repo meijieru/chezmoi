@@ -44,6 +44,7 @@ use_colorschemes(ui, "sainnhe/gruvbox-material", { "gruvbox-material" })
 use_colorschemes(ui, "sainnhe/edge", { "edge" })
 use_colorschemes(ui, "sainnhe/everforest", { "everforest" })
 use_colorschemes(ui, "shaunsingh/nord.nvim", { "nord" })
+use_colorschemes(ui, "catppuccin/nvim", { "catppuccin" }, { as = "catppuccin" })
 
 ui["romainl/vim-cool"] = {}
 
