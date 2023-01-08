@@ -71,6 +71,7 @@ function M.setup_whichkey()
   lvim.builtin.which_key.setup.plugins.marks = true
   lvim.builtin.which_key.setup.plugins.registers = true
   lvim.builtin.which_key.setup.plugins.presets.windows = true
+  lvim.builtin.which_key.setup.icons.group = "+"
   -- lvim.builtin.which_key.setup.plugins.presets.text_objects = true
 end
 
