@@ -92,6 +92,13 @@ end
 function M.setup_lsp()
   lvim.lsp.float.border = "rounded"
   vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, myvim.lsp.lvim.skipped_servers)
+  lvim.lsp.automatic_configuration.skipped_servers = vim.tbl_filter(function(val)
+    if vim.tbl_contains(myvim.lsp.lvim.ensured_servers, val) then
+      return false
+    else
+      return true
+    end
+  end, lvim.lsp.automatic_configuration.skipped_servers)
 end
 
 function M.setup()

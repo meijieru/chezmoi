@@ -50,6 +50,7 @@ _G.myvim = {
     ciderlsp = false,
     lvim = {
       skipped_servers = {},
+      ensured_servers = { "ruff_lsp" },
     },
   },
 
