@@ -125,7 +125,7 @@ end
 --- @param url string
 --- @return string
 function M.get_plugin_dir(url)
-  local parts = vim.fn.split(url, "/")
+  local parts = vim.split(url, "/")
   return parts[#parts]
 end
 

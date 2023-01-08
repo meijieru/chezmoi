@@ -313,7 +313,7 @@ end
 function M.setup_git()
   local function git_diff()
     -- find all window in current tab, ignoring floating_window
-    local tabnr = vim.fn.tabpagenr()
+    local tabnr = vim.api.nvim_get_current_tabpage()
     local wininfo = vim.tbl_filter(function(info)
       return vim.api.nvim_win_get_config(info.winid).relative == "" and info.tabnr == tabnr
     end, vim.fn.getwininfo())

@@ -82,14 +82,14 @@ function config.telescope_frecency()
 end
 
 local function setup_drop()
-  vim.fn.setenv("VIM_EXE", "nvim")
+  vim.loop.os_setenv("VIM_EXE", "nvim")
   vim.g.terminal_edit = "edit"
 
   local bin_dir = join_paths(get_config_dir(), "bin")
   local PATH = os.getenv "PATH"
   if not string.find(PATH, bin_dir) then
     Log:debug(string.format("Append %s to $PATH", bin_dir))
-    vim.fn.setenv("PATH", PATH .. ":" .. bin_dir)
+    vim.loop.os_setenv("PATH", PATH .. ":" .. bin_dir)
   end
 end
 

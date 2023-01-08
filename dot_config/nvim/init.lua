@@ -4,7 +4,7 @@ local envs = {
   LUNARVIM_RUNTIME_DIR = home_dir .. "/.local/share/lunarvim",
 }
 for key, val in pairs(envs) do
-  vim.fn.setenv(key, val)
+  vim.loop.os_setenv(key, val)
 end
 
 local lvim_init = envs.LUNARVIM_RUNTIME_DIR .. "/lvim/init.lua"
