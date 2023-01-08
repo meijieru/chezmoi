@@ -28,6 +28,27 @@ function M.toggle_colorcolumn(first_column, second_column)
   end
 end
 
+function M.toggle_fugitive()
+  local win_ids = vim.api.nvim_list_wins()
+  local wins_to_close = {}
+  for _, win_id in ipairs(win_ids) do
+    local buf_id = vim.api.nvim_win_get_buf(win_id)
+    if vim.startswith(vim.api.nvim_buf_get_name(buf_id), "fugitive://") then
+      vim.api.nvim_win_close(win_id, false)
+      return
+    end
+
+    if vim.bo[buf_id].buftype == "nofile" then
+      wins_to_close[#wins_to_close + 1] = win_id
+    end
+  end
+
+  vim.cmd "Git"
+  for _, win_id in ipairs(wins_to_close) do
+    vim.api.nvim_win_close(win_id, false)
+  end
+end
+
 -- modified from https://github.com/kevinhwang91/nvim-bqf#format-new-quickfix
 function M.qftf(info, method)
   local items

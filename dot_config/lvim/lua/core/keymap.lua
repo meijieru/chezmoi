@@ -324,11 +324,32 @@ function M.setup_git()
     end
   end
 
-  mapx.vname("<leader>g", "Git")
-  mapx.nnoremap("<leader>gd", git_diff, "Git Diff")
-  mapx.nnoremap("<leader>gg", "<cmd>call auxlib#toggle_fugitive()<cr>", "Toggle Status")
-  mapx.nnoremap("<leader>gy", "<cmd>lua require'gitlinker'.get_buf_range_url('n')<cr>", "Copy Permanent Link")
-  mapx.vnoremap("<leader>gy", "<cmd>lua require'gitlinker'.get_buf_range_url('v')<cr>", "Copy Permanent Link")
+  which_key.register {
+    ["<leader>g"] = {
+      name = "Git",
+      d = { git_diff, "Git Diff" },
+      g = { require("core.utils.ui").toggle_fugitive, "Toggle Status" },
+      y = {
+        function()
+          require("gitlinker").get_buf_range_url "n"
+        end,
+        "Copy Permanent Link",
+      },
+    },
+  }
+  which_key.register({
+    ["<leader>g"] = {
+      name = "Git",
+      y = {
+        function()
+          require("gitlinker").get_buf_range_url "v"
+        end,
+        "Copy Permanent Link",
+      },
+    },
+  }, {
+    mode = "v",
+  })
 end
 
 function M.setup_toggle()
