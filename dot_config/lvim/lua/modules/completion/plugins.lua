@@ -21,6 +21,11 @@ completion["hrsh7th/cmp-cmdline"] = {
 completion["ray-x/cmp-treesitter"] = {
   disable = not (myvim.plugins.cmp_treesitter.active and myvim.plugins.cmp.active),
 }
+completion["rcarriga/cmp-dap"] = {
+  config = conf.cmp_dap,
+  disable = not (myvim.plugins.cmp.active and myvim.plugins.dap.active and myvim.plugins.cmp_dap.active),
+  after = "nvim-cmp",
+}
 
 completion["ray-x/lsp_signature.nvim"] = {
   event = "BufRead",

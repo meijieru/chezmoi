@@ -59,6 +59,7 @@ _G.myvim = {
     tabnine = { active = false },
     cmp = { active = true },
     cmp_treesitter = { active = true },
+    cmp_dap = { active = true },
 
     -- tool
     treesitter = {
