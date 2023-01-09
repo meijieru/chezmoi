@@ -181,36 +181,55 @@ function M.setup_find()
     end
   end
 
-  mapx.nname("<leader>f", "Find")
-  mapx.nnoremap("<leader>fC", "<cmd>Telescope commands<cr>", "Commands")
-  mapx.nnoremap("<leader>fM", "<cmd>Telescope man_pages<cr>", "Man Pages")
-  mapx.nnoremap("<leader>fP", "<cmd>Telescope projects<cr>", "Projects")
-  mapx.nnoremap("<leader>fR", "<cmd>Telescope registers<cr>", "Registers")
-  mapx.nnoremap("<leader>fS", "<cmd>lua require'telescope'.extensions.luasnip.luasnip{}<cr>", "Find snippets")
-  mapx.nnoremap("<leader>fb", "<cmd>Telescope buffers<cr>", "Find Buffer")
-  mapx.nnoremap("<leader>fc", "<cmd>Telescope command_history<cr>", "Find Commands History")
-  mapx.nnoremap("<leader>ff", "<cmd>Telescope find_files<cr>", "Find File")
-  mapx.nnoremap("<leader>*", smart_default "live_grep", "Grep")
-  mapx.nnoremap("<leader>fh", smart_default "help_tags", "Find Help")
-  mapx.nnoremap("<leader>fk", "<cmd>Telescope keymaps<cr>", "Keymaps")
-  mapx.nnoremap("<leader>fl", "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Grep Buffer")
-  mapx.nnoremap("<leader>fL", "<cmd>Telescope loclist<cr>", "Find Loclist")
-  mapx.nnoremap("<leader>fn", "<cmd>Telescope notify<cr>", "Notifications")
-  mapx.nnoremap("<leader>fp", "<cmd>Telescope resume<cr>", "Find Previous")
-  mapx.nnoremap("<leader>fq", "<cmd>Telescope quickfix<cr>", "Find QuickFix")
-  mapx.nnoremap("<leader>fs", "<cmd>Telescope search_history<cr>", "Find Search History")
-  mapx.nnoremap("<leader>ft", "<cmd>lua require('telescope').extensions.asynctasks.all()<cr>", "Find Tasks")
-  mapx.nnoremap("<leader>fj", "<cmd>Telescope jumplist<cr>", "Find JumpList")
+  which_key.register {
+    ["<leader>"] = {
+      -- trick: <c-space> convert it as fuzzy
+      ["*"] = { smart_default "live_grep", "Grep" },
+      b = { "<cmd>Telescope buffers<cr>", "Find Buffer" },
+      ["/"] = { "<cmd>Telescope search_history<cr>", "Find Search History" },
+      f = {
+        name = "Find",
+        s = { "<cmd>lua require'telescope'.extensions.luasnip.luasnip{}<cr>", "Find snippets" },
+        c = { "<cmd>Telescope command_history<cr>", "Find Commands History" },
+        C = { "<cmd>Telescope commands<cr>", "Commands" },
+        f = { "<cmd>Telescope find_files<cr>", "Find File" },
+        h = { smart_default "help_tags", "Find Help" },
+        m = { smart_default "man_pages", "Man Pages" },
+        k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
+        b = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Grep Buffer" },
+        l = { "<cmd>Telescope loclist<cr>", "Find Loclist" },
+        n = { "<cmd>Telescope notify<cr>", "Notifications" },
+        p = { "<cmd>Telescope resume<cr>", "Find Previous" },
+        P = { "<cmd>Telescope projects<cr>", "Projects" },
+        q = { "<cmd>Telescope quickfix<cr>", "Find QuickFix" },
+        t = { "<cmd>lua require('telescope').extensions.asynctasks.all()<cr>", "Find Tasks" },
+        j = { "<cmd>Telescope jumplist<cr>", "Find JumpList" },
+        r = {
+          function()
+            if myvim.plugins.telescope_frecency.active then
+              vim.cmd "Telescope frecency"
+            else
+              vim.cmd "Telescope oldfiles"
+            end
+          end,
+          "Open Recent File",
+        },
+        R = { "<cmd>Telescope registers<cr>", "Registers" },
+      },
+    },
+  }
 
-  mapx.vname("<leader>f", "Find")
-  mapx.vnoremap("<leader>*", visual_search "live_grep", "Grep")
-  mapx.vnoremap("<leader>fh", visual_search "help_tags", "Find Help")
-  local _keymap, _label = "<leader>fr", "Open Recent File"
-  if myvim.plugins.telescope_frecency.active then
-    mapx.nnoremap(_keymap, "<cmd>Telescope frecency<cr>", _label)
-  else
-    mapx.nnoremap(_keymap, "<cmd>Telescope oldfiles<cr>", _label)
-  end
+  which_key.register({
+    ["<leader>"] = {
+      ["*"] = { visual_search "live_grep", "Grep" },
+      f = {
+        name = "Find",
+        h = { visual_search "help_tags", "Find Help" },
+      },
+    },
+  }, {
+    mode = "v",
+  })
 end
 
 function M.setup_asynctasks()
