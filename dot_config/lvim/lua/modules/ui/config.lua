@@ -1,5 +1,7 @@
 local M = {}
 
+local Log = require "core.log"
+
 function M.notify()
   local notify = require "notify"
   vim.notify = notify
@@ -55,10 +57,16 @@ function M.neoscroll()
 end
 
 function M.scrollbar()
+  local scroll_bar_color = require("core.utils.ui").get_scroll_bar_color(myvim.colorscheme.name)
+  local fg = nil
+  if scroll_bar_color == nil then
+    Log:info "scrollbar color not available"
+  else
+    fg = scroll_bar_color.fg
+  end
   require("scrollbar").setup {
     handle = {
-      text = " ",
-      color = require("core.utils.ui").get_scroll_bar_color(myvim.colorscheme.name).fg,
+      color = fg,
     },
   }
 end

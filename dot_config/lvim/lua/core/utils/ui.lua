@@ -123,7 +123,7 @@ local function _sainnhe_palettes(name)
     return { bg = palette.bg1[1], fg = palette.fg[1] }
   elseif name == "everforest" then
     palette = vim.fn[name .. "#get_palette"](configuration.background, configuration.colors_override)
-    return { bg = palette.bg1[1], fg = palette.fg[1] }
+    return { bg = palette.bg1[1], fg = palette.bg5[1] }
   end
 end
 
