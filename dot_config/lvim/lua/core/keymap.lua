@@ -104,67 +104,61 @@ function M.setup_hop()
 end
 
 function M.setup_lsp()
-  local _keymap = "<leader>ls"
-  local _doc = "Document Symbols"
-  if myvim.plugins.aerial.active then
-    mapx.nnoremap(_keymap, _ensure_package_command("aerial.nvim", "<cmd>Telescope aerial<cr>"), mapx.expr, _doc)
-  else
-    mapx.nnoremap(_keymap, "<cmd>Telescope lsp_document_symbols<cr>", _doc)
+  for _, key in ipairs { "gs", "gl" } do
+    lvim.lsp.buffer_mappings.normal_mode[key] = nil
   end
-  mapx.nnoremap("<leader>lg", "<cmd>Neogen<cr>", "Generate Doc")
-  mapx.nnoremap("<leader>ld", "<cmd>Telescope diagnostics bufnr=0<cr>", "Document Diagnostics")
-  mapx.nnoremap("<leader>lw", "<cmd>Telescope diagnostics<cr>", "Workspace Diagnostics")
-  mapx.nnoremap("]e", "<cmd>lua vim.diagnostic.goto_next()<cr>", "Next Diagnostic")
-  mapx.nnoremap("[e", "<cmd>lua vim.diagnostic.goto_prev()<cr>", "Prev Diagnostic")
-end
-
-function M.setup_gitsigns()
-  mapx.nnoremap("]c", "&diff ? ']c' : '<cmd>lua require\"gitsigns.actions\".next_hunk()<CR>'", mapx.expr, "Next Hunk")
-  mapx.nnoremap("[c", "&diff ? '[c' : '<cmd>lua require\"gitsigns.actions\".prev_hunk()<CR>'", mapx.expr, "Prev Hunk")
-  mapx.onoremap("ih", ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>', "Hunk")
-  mapx.xnoremap("ih", ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>', "Hunk")
-  mapx.nnoremap("<leader>gt", M.chain("Gitsigns toggle_deleted", "Gitsigns toggle_word_diff"), "Toggle Inline Diff")
-end
-
-function M.setup_lvim()
-  -- disable some defaults mappings
-  for key, _ in pairs(lvim.keys) do
-    lvim.keys[key] = {}
-  end
-  for _, key in ipairs { "/" } do
-    lvim.builtin.which_key.vmappings[key] = nil
-  end
-  for _, key in ipairs { "w", "q", "/", ";", "c", "f", "h", "s", "b", "T" } do
-    lvim.builtin.which_key.mappings[key] = nil
-  end
-
-  -- git
-  for _, key in ipairs { "d", "j", "k", "g" } do
-    lvim.builtin.which_key.mappings.g[key] = nil
-  end
-
-  -- lsp
-  for _, key in ipairs { "j", "k", "s", "d", "w" } do
-    lvim.builtin.which_key.mappings.l[key] = nil
-  end
-  -- lsp_signature.nvim already did it
-  lvim.lsp.buffer_mappings.normal_mode["gs"] = nil
   lvim.lsp.buffer_mappings.normal_mode["gd"] = {
-    "<cmd>lua require('telescope.builtin').lsp_definitions()<cr>",
+    function()
+      require("telescope.builtin").lsp_definitions()
+    end,
     "Goto Definition",
   }
   lvim.lsp.buffer_mappings.normal_mode["gr"] = {
-    "<cmd>lua require('telescope.builtin').lsp_references()<cr>",
+    function()
+      require("telescope.builtin").lsp_references()
+    end,
     "Goto References",
   }
   lvim.lsp.buffer_mappings.normal_mode["gI"] = {
-    "<cmd>lua require('telescope.builtin').lsp_implementations()<cr>",
+    function()
+      require("telescope.builtin").lsp_implementations()
+    end,
     "Goto Implementation",
   }
-  -- lvim.lsp.buffer_mappings.normal_mode["gD"] = {
-  --   "<cmd>lua require('telescope.builtin').lsp_type_definitions()<cr>",
-  --   "Goto Type Definitions",
-  -- }
+  lvim.lsp.buffer_mappings.normal_mode["gt"] = {
+    function()
+      require("telescope.builtin").lsp_type_definitions()
+    end,
+    "Goto Type Definitions",
+  }
+
+  for _, key in ipairs { "j", "k", "s", "d", "w", "e", "i", "I", "q" } do
+    lvim.builtin.which_key.mappings.l[key] = nil
+  end
+  which_key.register {
+    ["<leader>l"] = {
+      ["g"] = { "<cmd>Neogen<cr>", "Generate Doc" },
+      ["d"] = { "<cmd>Telescope diagnostics bufnr=0<cr>", "Document Diagnostics" },
+      ["D"] = { "<cmd>Telescope diagnostics<cr>", "Workspace Diagnostics" },
+      ["s"] = {
+        function()
+          if myvim.plugins.aerial.active then
+            utils.load_pack "aerial.nvim"
+            require("telescope").extensions.aerial.aerial()
+          else
+            require("telescope.builtin").lsp_document_symbols()
+          end
+        end,
+        "Document Symbols",
+      },
+    },
+  }
+end
+
+function M.setup_gitsigns()
+  mapx.onoremap("ih", ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>', "Hunk")
+  mapx.xnoremap("ih", ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>', "Hunk")
+  mapx.nnoremap("<leader>gt", M.chain("Gitsigns toggle_deleted", "Gitsigns toggle_word_diff"), "Toggle Inline Diff")
 end
 
 function M.setup_find()
@@ -196,7 +190,7 @@ function M.setup_find()
   mapx.nnoremap("<leader>fb", "<cmd>Telescope buffers<cr>", "Find Buffer")
   mapx.nnoremap("<leader>fc", "<cmd>Telescope command_history<cr>", "Find Commands History")
   mapx.nnoremap("<leader>ff", "<cmd>Telescope find_files<cr>", "Find File")
-  mapx.nnoremap({ "<leader>fg", "<leader>*" }, smart_default "live_grep", "Grep")
+  mapx.nnoremap("<leader>*", smart_default "live_grep", "Grep")
   mapx.nnoremap("<leader>fh", smart_default "help_tags", "Find Help")
   mapx.nnoremap("<leader>fk", "<cmd>Telescope keymaps<cr>", "Keymaps")
   mapx.nnoremap("<leader>fl", "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Grep Buffer")
@@ -209,7 +203,7 @@ function M.setup_find()
   mapx.nnoremap("<leader>fj", "<cmd>Telescope jumplist<cr>", "Find JumpList")
 
   mapx.vname("<leader>f", "Find")
-  mapx.vnoremap({ "<leader>fg", "<leader>*" }, visual_search "live_grep", "Grep")
+  mapx.vnoremap("<leader>*", visual_search "live_grep", "Grep")
   mapx.vnoremap("<leader>fh", visual_search "help_tags", "Find Help")
   local _keymap, _label = "<leader>fr", "Open Recent File"
   if myvim.plugins.telescope_frecency.active then
@@ -230,6 +224,17 @@ function M.setup_asynctasks()
 end
 
 function M.setup_basic()
+  -- disable some defaults mappings
+  for key, _ in pairs(lvim.keys) do
+    lvim.keys[key] = {}
+  end
+  for _, key in ipairs { "/" } do
+    lvim.builtin.which_key.vmappings[key] = nil
+  end
+  for _, key in ipairs { "w", "q", "/", ";", "c", "f", "h", "s", "b", "T" } do
+    lvim.builtin.which_key.mappings[key] = nil
+  end
+
   local function system_open()
     local function is_github(str)
       local comps = vim.split(str, "/")
@@ -258,12 +263,56 @@ function M.setup_basic()
   mapx.nnoremap("<A-k>", "<C-w>k", "Up Window")
   mapx.nnoremap("<A-l>", "<C-w>l", "Right Window")
 
-  mapx.nnoremap("]q", ":cnext<CR>", "Next Quickfix")
-  mapx.nnoremap("[q", ":cprev<CR>", "Previous Quickfix")
-  mapx.nnoremap("]l", ":lnext<CR>", "Next Loclist")
-  mapx.nnoremap("[l", ":lprev<CR>", "Previous Loclist")
-  mapx.nnoremap("]b", ":bprevious<CR>", "Next Buffer")
-  mapx.nnoremap("[b", ":bnext<CR>", "Previous Buffer")
+  which_key.register {
+    ["]"] = {
+      name = "Next",
+      ["e"] = {
+        function()
+          vim.diagnostic.goto_next { severity = vim.diagnostic.severity.ERROR }
+        end,
+        "Error",
+      },
+      ["d"] = { vim.diagnostic.goto_next, "Diagnostic" },
+      ["q"] = { "<cmd>cnext<cr>", "Quickfix" },
+      ["l"] = { "<cmd>lnext<cr>", "Loclist" },
+      ["b"] = { "<cmd>bprevious<cr>", "Buffer" },
+      ["t"] = { "<cmd>tabnext<cr>", "Tab" },
+      ["c"] = {
+        function()
+          if vim.o.diff then
+            vim.cmd.normal { "]c", bang = true }
+          else
+            require("gitsigns.actions").next_hunk()
+          end
+        end,
+        "Hunk",
+      },
+    },
+    ["["] = {
+      name = "Prev",
+      ["e"] = {
+        function()
+          vim.diagnostic.goto_prev { severity = vim.diagnostic.severity.ERROR }
+        end,
+        "Error",
+      },
+      ["d"] = { vim.diagnostic.goto_prev, "Diagnostic" },
+      ["q"] = { "<cmd>cprev<cr>", "Quickfix" },
+      ["l"] = { "<cmd>lprev<cr>", "Loclist" },
+      ["b"] = { "<cmd>bnext<cr>", "Buffer" },
+      ["t"] = { "<cmd>tabprevious<cr>", "Tab" },
+      ["c"] = {
+        function()
+          if vim.o.diff then
+            vim.cmd.normal { "[c", bang = true }
+          else
+            require("gitsigns.actions").prev_hunk()
+          end
+        end,
+        "Hunk",
+      },
+    },
+  }
 
   for _, func in ipairs { mapx.nnoremap, mapx.inoremap } do
     func("<F1>", "<cmd>lua require('core.utils.ui').toggle_colorcolumn()<cr>", "Toggle Colorcolumn")
@@ -288,9 +337,7 @@ function M.setup_basic()
 end
 
 function M.setup_zenmode()
-  mapx.nname("<leader>z", "ZenMode")
-  mapx.nnoremap("<leader>zz", "<cmd>ZenMode<cr>", "Toggle ZenMode")
-  mapx.nnoremap("<leader>zt", "<cmd>Twilight<cr>", "Toggle Twilight")
+  mapx.nnoremap("<leader>z", "<cmd>ZenMode<cr>", "ZenMode")
 end
 
 function M.setup_dap()
@@ -322,6 +369,11 @@ function M.setup_git()
     else
       vim.cmd "Gtabedit | Gdiffsplit"
     end
+  end
+
+  -- git
+  for _, key in ipairs { "d", "j", "k", "g" } do
+    lvim.builtin.which_key.mappings.g[key] = nil
   end
 
   which_key.register {
@@ -356,14 +408,19 @@ function M.setup_git()
 end
 
 function M.setup_toggle()
-  mapx.nname("<leader>t", "Toggle")
-  mapx.nnoremap("<leader>tq", "<cmd>call QuickFixToggle()<cr>", "Quickfix")
-  mapx.nnoremap("<leader>tl", "<cmd>call auxlib#toggle_loclist()<cr>", "LocList")
-  mapx.nnoremap("<leader>te", "<cmd>lua require('core.utils.lsp').toggle_diagnostics()<cr>", "Diagnostic")
-  mapx.nnoremap("<leader>ta", "<cmd>AerialToggle!<cr>", "Aerial")
-  mapx.nnoremap("<leader>tu", "<cmd>UndotreeToggle<cr>", "Undotree")
-  mapx.nnoremap("<leader>tc", "<cmd>ColorizerToggle<cr>", "Colorizer")
-  mapx.nnoremap("<leader>tb", "<cmd>TableModeToggle<cr>", "Table Mode")
+  which_key.register {
+    ["<leader>t"] = {
+      name = "Toggle",
+      q = { "<cmd>call QuickFixToggle()<cr>", "Quickfix" },
+      l = { "<cmd>call auxlib#toggle_loclist()<cr>", "LocList" },
+      d = { "<cmd>lua require('core.utils.lsp').toggle_diagnostics()<cr>", "Diagnostic" },
+      a = { "<cmd>AerialToggle!<cr>", "Aerial" },
+      u = { "<cmd>UndotreeToggle<cr>", "Undotree" },
+      c = { "<cmd>ColorizerToggle<cr>", "Colorizer" },
+      b = { "<cmd>TableModeToggle<cr>", "Table Mode" },
+      t = { "<cmd>Twilight<cr>", "Toggle Twilight" },
+    },
+  }
 end
 
 function M.setup_treesitter()
@@ -416,8 +473,13 @@ function M.setup_explorer()
   end
 end
 
+function M.setup_package_management()
+  which_key.register {
+    ["<leader>pm"] = { "<cmd>Mason<cr>", "Mason" },
+  }
+end
+
 function M.setup()
-  M.setup_lvim()
   M.setup_basic()
   M.setup_toggle()
   M.setup_easy_align()
@@ -435,6 +497,7 @@ function M.setup()
   M.setup_visual_multi()
   M.setup_ufo()
   M.setup_explorer()
+  M.setup_package_management()
 end
 
 M.setup()
