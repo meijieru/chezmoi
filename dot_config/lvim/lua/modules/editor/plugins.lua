@@ -156,4 +156,8 @@ editor["rmagatti/session-lens"] = {
   disable = not (myvim.plugins.auto_session.active and myvim.plugins.telescope.active),
 }
 
+editor["ckolkey/ts-node-action"] = {
+  requires = { "nvim-treesitter" },
+}
+
 return editor

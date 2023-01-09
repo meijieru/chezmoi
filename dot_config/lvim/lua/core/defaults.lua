@@ -111,6 +111,7 @@ _G.myvim = {
     ufo = { active = true },
     oscyank = { active = false },
     smartyank = { active = true },
+    ts_node_action = { active = true },
 
     -- lang
     markdown_preview = { active = true },

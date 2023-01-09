@@ -335,6 +335,12 @@ function M.setup_basic()
   mapx.nnoremap("g?", "<cmd>WhichKey<cr>", "WhichKey")
   mapx.nnoremap("gx", system_open, "Open the file under cursor with system app")
   which_key.register {
+    ["<leader>a"] = {
+      function()
+        require("ts-node-action").node_action()
+      end,
+      "TS Node Action",
+    },
     dp = {
       function()
         if vim.o.diff then
