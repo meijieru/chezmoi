@@ -63,6 +63,7 @@ editor["mg979/vim-visual-multi"] = {
     "<Plug>(VM-Find-Under)",
     "<Plug>(VM-Add-Cursor-Down)",
     "<Plug>(VM-Add-Cursor-Up)",
+    "<Plug>(VM-Find-Subword-Under)",
   },
   setup = conf.visual_multi,
 }

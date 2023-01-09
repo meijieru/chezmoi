@@ -437,9 +437,10 @@ function M.setup_treesitter()
 end
 
 function M.setup_visual_multi()
-  mapx.nmap("<C-Down>", "<Plug>(VM-Add-Cursor-Down)", "VM Add Cursor Down")
-  mapx.nmap("<C-Up>", "<Plug>(VM-Add-Cursor-Up)", "VM Add Cursor Up")
-  mapx.nmap("<C-n>", "<Plug>(VM-Find-Under)", "VM Find Under")
+  vim.keymap.set("n", "<C-Down>", "<Plug>(VM-Add-Cursor-Down)", { desc = "VM Add Cursor Down" })
+  vim.keymap.set("n", "<C-Up>", "<Plug>(VM-Add-Cursor-Up)", { desc = "VM Add Cursor Up" })
+  vim.keymap.set("n", "<C-n>", "<Plug>(VM-Find-Under)", { desc = "VM Find Under" })
+  vim.keymap.set("x", "<C-n>", "<Plug>(VM-Find-Subword-Under)", { desc = "VM Find Under" })
 end
 
 function M.setup_ufo()
