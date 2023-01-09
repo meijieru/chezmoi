@@ -190,7 +190,7 @@ function M.setup_find()
         h = { smart_default "help_tags", "Find Help" },
         m = { smart_default "man_pages", "Man Pages" },
         k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
-        b = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Grep Buffer" },
+        b = { smart_default "current_buffer_fuzzy_find", "Grep Buffer" },
         l = { "<cmd>Telescope loclist<cr>", "Find Loclist" },
         n = { "<cmd>Telescope notify<cr>", "Notifications" },
         p = { "<cmd>Telescope resume<cr>", "Find Previous" },
@@ -219,6 +219,7 @@ function M.setup_find()
       f = {
         name = "Find",
         h = { visual_search "help_tags", "Find Help" },
+        b = { visual_search "current_buffer_fuzzy_find", "Grep Buffer" },
       },
     },
   }, {
@@ -298,7 +299,7 @@ function M.setup_basic()
             require("gitsigns.actions").next_hunk()
           end
         end,
-        "Hunk",
+        "Change | Hunk",
       },
     },
     ["["] = {
@@ -322,7 +323,7 @@ function M.setup_basic()
             require("gitsigns.actions").prev_hunk()
           end
         end,
-        "Hunk",
+        "Change | Hunk",
       },
     },
   }
@@ -333,12 +334,34 @@ function M.setup_basic()
   mapx.nnoremap("m<space>", "<cmd>delmarks!<cr>", "Delete All Marks")
   mapx.nnoremap("g?", "<cmd>WhichKey<cr>", "WhichKey")
   mapx.nnoremap("gx", system_open, "Open the file under cursor with system app")
-  -- mapx.nnoremap(
-  --   "dg",
-  --   "&diff ? '<cmd>diffget<cr>' : '<cmd>lua require\"core.keymap\".not_impl()<CR>'",
-  --   mapx.expr,
-  --   "Diff Get"
-  -- )
+  which_key.register {
+    dp = {
+      function()
+        if vim.o.diff then
+          vim.cmd.diffput()
+        else
+          require("gitsigns").stage_hunk()
+        end
+      end,
+      "Diff Put | Stage Hunk",
+    },
+    du = {
+      function()
+        require("gitsigns").undo_stage_hunk()
+      end,
+      "Undo Stage Hunk",
+    },
+    ["do"] = {
+      function()
+        if vim.o.diff then
+          vim.cmd.diffget()
+        else
+          require("gitsigns").reset_hunk()
+        end
+      end,
+      "Diff Get | Reset Hunk",
+    },
+  }
 
   mapx.vnoremap("<", "<gv")
   mapx.vnoremap(">", ">gv")
@@ -385,7 +408,7 @@ function M.setup_git()
   end
 
   -- git
-  for _, key in ipairs { "d", "j", "k", "g" } do
+  for _, key in ipairs { "d", "j", "k", "g", "s", "r", "u", "R" } do
     lvim.builtin.which_key.mappings.g[key] = nil
   end
 
