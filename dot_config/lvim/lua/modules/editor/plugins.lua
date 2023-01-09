@@ -57,6 +57,10 @@ editor["ggandor/leap.nvim"] = {
   config = conf.leap,
   disable = not myvim.plugins.leap.active,
 }
+editor["ggandor/flit.nvim"] = {
+  config = conf.flit,
+  disable = not (myvim.plugins.leap.active and myvim.plugins.flit.active),
+}
 
 editor["mg979/vim-visual-multi"] = {
   keys = {

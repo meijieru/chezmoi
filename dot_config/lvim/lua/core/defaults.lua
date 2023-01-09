@@ -108,6 +108,7 @@ _G.myvim = {
       enable_ft = false,
     },
     leap = { active = true },
+    flit = { active = false },
     ufo = { active = true },
     oscyank = { active = false },
     smartyank = { active = true },
