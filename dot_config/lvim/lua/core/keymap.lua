@@ -311,7 +311,7 @@ function M.setup_dap()
 end
 
 function M.setup_git()
-  local function git_diff()
+  local function fugitive_diff()
     -- find all window in current tab, ignoring floating_window
     local tabnr = vim.api.nvim_get_current_tabpage()
     local wininfo = vim.tbl_filter(function(info)
@@ -327,7 +327,10 @@ function M.setup_git()
   which_key.register {
     ["<leader>g"] = {
       name = "Git",
-      d = { git_diff, "Git Diff" },
+      -- d = { fugitive_diff, "Git Diff" },
+      d = { "<cmd>DiffviewOpen<cr>", "Diff View" },
+      h = { "<cmd>DiffviewFileHistory<cr>", "Diff History" },
+      H = { "<cmd>DiffviewFileHistory %<cr>", "Diff History (for current file)" },
       g = { require("core.utils.ui").toggle_fugitive, "Toggle Status" },
       y = {
         function()

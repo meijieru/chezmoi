@@ -2,7 +2,22 @@ local config = {}
 local Log = require "core.log"
 
 function config.diffview()
-  require("diffview").setup {}
+  require("diffview").setup {
+    view = {
+      merge_tool = {
+        layout = "diff3_mixed",
+      },
+    },
+    keymaps = {
+      file_panel = {
+        ["cc"] = "<cmd>Git commit<cr>",
+        ["q"] = "<cmd>tabclose<cr>",
+      },
+      file_history_panel = {
+        ["q"] = "<cmd>tabclose<cr>",
+      },
+    },
+  }
 end
 
 function config.gitlinker()
