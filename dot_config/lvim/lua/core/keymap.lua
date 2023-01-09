@@ -155,12 +155,6 @@ function M.setup_lsp()
   }
 end
 
-function M.setup_gitsigns()
-  mapx.onoremap("ih", ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>', "Hunk")
-  mapx.xnoremap("ih", ':<C-U>lua require"gitsigns.actions".select_hunk()<CR>', "Hunk")
-  mapx.nnoremap("<leader>gt", M.chain("Gitsigns toggle_deleted", "Gitsigns toggle_word_diff"), "Toggle Inline Diff")
-end
-
 function M.setup_find()
   local function smart_default(cmd, expr)
     return function()
@@ -395,6 +389,10 @@ function M.setup_git()
     lvim.builtin.which_key.mappings.g[key] = nil
   end
 
+  vim.keymap.set({ "o", "x" }, "ih", function()
+    require("gitsigns.actions").select_hunk()
+  end, { desc = "Hunk" })
+
   which_key.register {
     ["<leader>g"] = {
       name = "Git",
@@ -403,6 +401,7 @@ function M.setup_git()
       h = { "<cmd>DiffviewFileHistory<cr>", "Diff History" },
       H = { "<cmd>DiffviewFileHistory %<cr>", "Diff History (for current file)" },
       g = { require("core.utils.ui").toggle_fugitive, "Toggle Status" },
+      t = { M.chain("Gitsigns toggle_deleted", "Gitsigns toggle_word_diff"), "Toggle Inline Diff" },
       y = {
         function()
           require("gitlinker").get_buf_range_url "n"
@@ -506,7 +505,6 @@ function M.setup()
   M.setup_terminal()
   M.setup_hop()
   M.setup_lsp()
-  M.setup_gitsigns()
   M.setup_asynctasks()
   M.setup_sniprun()
   M.setup_zenmode()
