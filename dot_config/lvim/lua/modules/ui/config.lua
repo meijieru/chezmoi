@@ -119,6 +119,13 @@ function M.oil()
   }
 end
 
+function M.statuscol()
+  require("statuscol").setup {
+    setopt = true,
+    order = "NSFs",
+  }
+end
+
 function M.sainnhe_colorscheme(name)
   vim.g[name .. "_enable_italic"] = myvim.colorscheme.enable_italic
   vim.g[name .. "_disable_italic_comment"] = not myvim.colorscheme.enable_italic_comment

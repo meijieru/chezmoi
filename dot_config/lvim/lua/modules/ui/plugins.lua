@@ -109,4 +109,9 @@ ui["stevearc/oil.nvim"] = {
   disable = not myvim.plugins.oil.active,
 }
 
+ui["luukvbaal/statuscol.nvim"] = {
+  config = conf.statuscol,
+  disable = not myvim.plugins.statuscol.active,
+}
+
 return ui

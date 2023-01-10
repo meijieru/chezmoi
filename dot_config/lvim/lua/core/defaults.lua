@@ -94,6 +94,7 @@ _G.myvim = {
     noice = { active = false },
     breadcrumbs = { active = true },
     neoscroll = { active = false },
+    statuscol = { active = true },
 
     -- editor
     dap = { active = true },
