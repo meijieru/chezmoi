@@ -89,11 +89,6 @@ ui["stevearc/oil.nvim"] = {
   enabled = myvim.plugins.oil.active,
 }
 
-ui["stevearc/oil.nvim"] = {
-  config = conf.oil,
-  enabled = myvim.plugins.oil.active,
-}
-
 ui["luukvbaal/statuscol.nvim"] = {
   config = conf.statuscol,
   enabled = myvim.plugins.statuscol.active,
