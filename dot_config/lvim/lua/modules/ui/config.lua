@@ -111,15 +111,6 @@ function M.oil()
   }
 end
 
-function M.oil()
-  require("oil").setup {
-    view_options = {
-      -- Show files and directories that start with "."
-      show_hidden = true,
-    },
-  }
-end
-
 function M.sainnhe_colorscheme(name)
   vim.g[name .. "_enable_italic"] = myvim.colorscheme.enable_italic
   vim.g[name .. "_disable_italic_comment"] = not myvim.colorscheme.enable_italic_comment
