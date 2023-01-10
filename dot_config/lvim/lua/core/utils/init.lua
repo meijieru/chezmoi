@@ -68,7 +68,6 @@ end
 --- @param package string #Dirname of the package.
 --- @param opts any #table|nil Additional options
 ---    - skip_packer (boolean|nil) #Use packer if true.
----    - profile (boolean|nil) #Profile if true.
 --- @return boolean #true if success.
 function M.load_pack(package, opts)
   vim.validate {
@@ -76,38 +75,18 @@ function M.load_pack(package, opts)
     opts = { opts, "table", true },
   }
   opts = opts or {}
-  local profile = myvim.profile.enable or (opts.profile or false)
   local skip_packer = opts.skip_packer or false
 
-  -- NOTE: According to the following doc, must be after `packer_compiled.lua` is loaded
-  if not skip_packer and packer_plugins[package] == nil then
-    Log:warn(package .. " doens't exist")
-    return false
-  end
-  if myvim.profile.infos[package] and myvim.profile.infos[package].loaded then
-    Log:debug(package .. " already loaded")
-    return true
-  end
-
-  local packadd_func = vim.cmd.PackerLoad
   if skip_packer then
-    packadd_func = vim.cmd.packadd
-  end
-  local infos = { loaded = true }
-  if profile then
-    local start = vim.loop.hrtime()
-    packadd_func(package)
-    infos["load_time"] = (vim.loop.hrtime() - start) / 1e6
-  else
-    local status = pcall(packadd_func, package)
+    local status = vim.cmd.packadd(package)
     if not status then
       Log:warn(package .. " fails to load")
-      return false
     end
+    return false
+  else
+    vim.cmd(string.format("Lazy load %s", package))
+    return true
   end
-  myvim.profile.infos[package] = infos
-  Log:debug(package .. " loaded")
-  return true
 end
 
 --- Ensure package is loaded before func

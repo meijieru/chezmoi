@@ -2,28 +2,27 @@ local completion = {}
 local conf = require "modules.completion.config"
 
 completion["benfowler/telescope-luasnip.nvim"] = {
-  module = "telescope._extensions.luasnip", -- if you wish to lazy-load
   config = conf.telescope_luasnip,
-  disable = not myvim.plugins.telescope.active,
+  enabled = myvim.plugins.telescope.active,
   after = "telescope.nvim",
 }
 
 completion["tzachar/cmp-tabnine"] = {
-  run = "./install.sh",
+  build = "./install.sh",
   event = "InsertEnter",
   config = conf.tabnine,
-  disable = not (myvim.plugins.tabnine.active and myvim.plugins.cmp.active),
+  enabled = (myvim.plugins.tabnine.active and myvim.plugins.cmp.active),
   after = "nvim-cmp",
 }
 completion["hrsh7th/cmp-cmdline"] = {
-  disable = not myvim.plugins.cmp.active,
+  enabled = myvim.plugins.cmp.active,
 }
 completion["ray-x/cmp-treesitter"] = {
-  disable = not (myvim.plugins.cmp_treesitter.active and myvim.plugins.cmp.active),
+  enabled = (myvim.plugins.cmp_treesitter.active and myvim.plugins.cmp.active),
 }
 completion["rcarriga/cmp-dap"] = {
   config = conf.cmp_dap,
-  disable = not (myvim.plugins.cmp.active and myvim.plugins.dap.active and myvim.plugins.cmp_dap.active),
+  enabled = (myvim.plugins.cmp.active and myvim.plugins.dap.active and myvim.plugins.cmp_dap.active),
   after = "nvim-cmp",
 }
 

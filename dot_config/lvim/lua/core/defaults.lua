@@ -18,11 +18,6 @@ _G.myvim = {
     filetype = { "gitcommit", "gitrebase", "svn", "hgcommit" },
   },
 
-  profile = {
-    enable = false,
-    infos = {},
-  },
-
   kind_icons = {
     Text = "",
     Method = "",

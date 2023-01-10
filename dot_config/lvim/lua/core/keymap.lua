@@ -3,18 +3,16 @@ local M = {}
 local Log = require "core.log"
 local utils = require "core.utils"
 
-utils.load_pack("which-key.nvim", { skip_packer = true })
 local status_whichkey_ok, which_key = utils.safe_load "which-key"
 if not status_whichkey_ok then
   return M
 end
 
-utils.load_pack("mapx.nvim", { skip_packer = true })
 local status_mapx_ok, mapx = utils.safe_load "mapx"
 if not status_mapx_ok then
   return M
 end
-mapx.setup { global = false, whichkey = true, debug = false }
+require("mapx").setup { global = false, whichkey = true, debug = false }
 
 -- wait for https://github.com/b0o/mapx.nvim/issues/3
 function M.chain(...)
@@ -143,7 +141,6 @@ function M.setup_lsp()
       ["s"] = {
         function()
           if myvim.plugins.aerial.active then
-            utils.load_pack "aerial.nvim"
             require("telescope").extensions.aerial.aerial()
           else
             require("telescope.builtin").lsp_document_symbols()
