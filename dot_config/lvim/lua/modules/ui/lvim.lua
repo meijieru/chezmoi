@@ -80,10 +80,10 @@ function M.setup_gitsigns()
   if not myvim.plugins.gitsigns.active then
     return
   end
-  lvim.builtin.gitsigns.opts.signs.delete.text = "▎"
+  for _, field in ipairs { "add", "change", "changedelete", "delete" } do
+    lvim.builtin.gitsigns.opts.signs[field].text = lvim.icons.ui.BoldLineLeft
+  end
   lvim.builtin.gitsigns.opts.signs.topdelete.text = "▔"
-  lvim.builtin.gitsigns.opts.show_deleted = false
-  lvim.builtin.gitsigns.opts.word_diff = false
 end
 
 function M.setup_alpha()
