@@ -1,13 +1,13 @@
-local tools = {}
+local M = {}
 local conf = require "modules.tools.config"
 
-tools["meijieru/imtoggle.nvim"] = {
+M["meijieru/imtoggle.nvim"] = {
   event = "InsertEnter",
   config = conf.imtoggle,
   enabled = myvim.plugins.imtoggle.active,
 }
 
-tools["tpope/vim-fugitive"] = {
+M["tpope/vim-fugitive"] = {
   cmd = {
     "G",
     "Git",
@@ -25,15 +25,14 @@ tools["tpope/vim-fugitive"] = {
     "Gedit",
     "Gtabedit",
   },
-  ft = { "fugitive" },
-  fn = { "FugitiveGitDir" },
 }
-tools["ruifm/gitlinker.nvim"] = {
+M["ruifm/gitlinker.nvim"] = {
+  lazy = true,
   dependencies = "nvim-lua/plenary.nvim",
   config = conf.gitlinker,
   enabled = myvim.plugins.gitlinker.active,
 }
-tools["sindrets/diffview.nvim"] = {
+M["sindrets/diffview.nvim"] = {
   cmd = {
     "DiffviewOpen",
     "DiffviewFileHistory",
@@ -44,33 +43,35 @@ tools["sindrets/diffview.nvim"] = {
   config = conf.diffview,
 }
 
-tools["TimUntersberger/neogit"] = {
+M["TimUntersberger/neogit"] = {
   cmd = { "Neogit" },
   dependencies = { "nvim-lua/plenary.nvim" },
   config = conf.neogit,
   enabled = false,
 }
 
-tools["skywind3000/asynctasks.vim"] = {
+M["GustavoKatel/telescope-asynctasks.nvim"] = {
+  lazy = true,
+  dependencies = {
+    "skywind3000/asynctasks.vim",
+    "nvim-telescope/telescope-frecency.nvim",
+  },
+  enabled = myvim.plugins.telescope.active,
+}
+M["skywind3000/asynctasks.vim"] = {
   cmd = { "AsyncTask", "AsyncTaskEdit", "AsyncTaskList" },
-  fn = { "asynctasks#source" },
-  after = { "asyncrun.vim" },
   dependencies = {
     { "skywind3000/asyncrun.vim", cmd = { "AsyncRun" }, config = conf.asyncrun },
-    {
-      "GustavoKatel/telescope-asynctasks.nvim",
-      enabled = myvim.plugins.telescope.active,
-    },
   },
   init = conf.asynctasks,
 }
 
-tools["dstein64/vim-startuptime"] = {
+M["dstein64/vim-startuptime"] = {
   cmd = { "StartupTime" },
   init = conf.startuptime,
 }
 
-tools["michaelb/sniprun"] = {
+M["michaelb/sniprun"] = {
   build = { "bash install.sh" },
   keys = { "<Plug>SnipRun", "<Plug>SnipRunOperator" },
   cmd = { "SnipRun" },
@@ -78,40 +79,36 @@ tools["michaelb/sniprun"] = {
   enabled = myvim.plugins.sniprun.active,
 }
 
-tools["norcalli/nvim-colorizer.lua"] = {
+M["norcalli/nvim-colorizer.lua"] = {
   cmd = { "ColorizerToggle" },
   config = conf.colorizer,
 }
 
-tools["wakatime/vim-wakatime"] = {
-  -- FIXME(meijieru): wait for https://github.com/wbthomason/packer.nvim/issues/8
-  event = "BufRead",
+M["wakatime/vim-wakatime"] = {
+  event = "VeryLazy",
   enabled = myvim.plugins.wakatime.active,
 }
 
-tools["nvim-telescope/telescope-frecency.nvim"] = {
+M["nvim-telescope/telescope-frecency.nvim"] = {
+  lazy = true,
   config = conf.telescope_frecency,
   dependencies = { "tami5/sqlite.lua" },
   enabled = myvim.plugins.telescope_frecency.active,
 }
 
-tools["alker0/chezmoi.vim"] = { enabled = false }
-tools["Pocco81/AutoSave.nvim"] = {
-  event = { "BufRead" },
-  enabled = false,
-}
+M["alker0/chezmoi.vim"] = { enabled = false }
 
-tools["glacambre/firenvim"] = {
-  -- FIXME(meijieru): doesn't work now
+M["glacambre/firenvim"] = {
+  lazy = true,
   build = function()
     vim.fn["firenvim#install"](0)
   end,
   enabled = false,
 }
 
-tools["rktjmp/shipwright.nvim"] = {
+M["rktjmp/shipwright.nvim"] = {
   cmd = { "Shipwright" },
   enabled = myvim.plugins.shipwright.active,
 }
 
-return tools
+return M

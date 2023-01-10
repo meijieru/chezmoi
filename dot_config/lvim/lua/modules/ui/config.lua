@@ -18,10 +18,6 @@ function M.notify()
   }
   notify.setup(opts)
 
-  if myvim.plugins.telescope.active then
-    require("telescope").load_extension "notify"
-  end
-
   local lvim_log = require "lvim.core.log"
   lvim_log:configure_notifications(notify)
 end

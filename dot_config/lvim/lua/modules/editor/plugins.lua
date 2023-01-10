@@ -1,19 +1,17 @@
-local editor = {}
+local M = {}
 local conf = require "modules.editor.config"
 
 -- editor["tpope/vim-unimpaired"] = {}
-editor["tpope/vim-surround"] = {
+M["tpope/vim-surround"] = {
   dependencies = { { "tpope/vim-repeat" } },
-  event = "CursorMoved",
-  -- keys = { "cs", "ds", "ys" }, -- cause delay dd
-  after = "vim-repeat",
+  event = { "VeryLazy" },
 }
-editor["machakann/vim-sandwich"] = { keys = { "s" }, enabled = false }
-editor["tpope/vim-sleuth"] = { event = "BufRead" }
-editor["tpope/vim-rsi"] = { event = { "CmdlineEnter", "InsertEnter" } }
-editor["tpope/vim-eunuch"] = { event = "BufRead" }
+M["machakann/vim-sandwich"] = { keys = { "s" }, enabled = false }
+M["tpope/vim-sleuth"] = { event = "BufRead" }
+M["tpope/vim-rsi"] = { event = { "CmdlineEnter", "InsertEnter" } }
+M["tpope/vim-eunuch"] = { event = "CmdlineEnter" }
 
-editor["ojroques/vim-oscyank"] = {
+M["ojroques/vim-oscyank"] = {
   -- cmd = { "OSCYank", "OSCYankReg" },
   -- keys = { "<Plug>OSCYank" },
   config = conf.oscyank,
@@ -22,20 +20,20 @@ editor["ojroques/vim-oscyank"] = {
   end,
   enabled = myvim.plugins.oscyank.active,
 }
-editor["ibhagwan/smartyank.nvim"] = {
+M["ibhagwan/smartyank.nvim"] = {
+  event = { "VeryLazy" },
   config = conf.smartyank,
   enabled = myvim.plugins.smartyank.active,
 }
 
-editor["kevinhwang91/nvim-ufo"] = {
-  -- NOTE(meijieru): `BufReadPre` cause problem.
+M["kevinhwang91/nvim-ufo"] = {
   event = { "BufRead" },
   dependencies = "kevinhwang91/promise-async",
   config = conf.ufo,
   enabled = myvim.plugins.ufo.active,
 }
 
-editor["phaazon/hop.nvim"] = {
+M["phaazon/hop.nvim"] = {
   cmd = {
     "HopLineStart",
     "HopLineStartAC",
@@ -48,20 +46,22 @@ editor["phaazon/hop.nvim"] = {
     "HopChar1",
     "HopChar2",
   },
-  -- event = "BufRead",
   config = conf.hop,
   enabled = myvim.plugins.hop.active,
 }
-editor["ggandor/leap.nvim"] = {
+M["ggandor/leap.nvim"] = {
+  event = { "BufRead" },
   config = conf.leap,
   enabled = myvim.plugins.leap.active,
 }
-editor["ggandor/flit.nvim"] = {
+M["ggandor/flit.nvim"] = {
+  event = { "BufRead" },
   config = conf.flit,
+  dependencies = { "ggandor/leap.nvim" },
   enabled = (myvim.plugins.leap.active and myvim.plugins.flit.active),
 }
 
-editor["mg979/vim-visual-multi"] = {
+M["mg979/vim-visual-multi"] = {
   keys = {
     "<Plug>(VM-Find-Under)",
     "<Plug>(VM-Add-Cursor-Down)",
@@ -71,83 +71,87 @@ editor["mg979/vim-visual-multi"] = {
   init = conf.visual_multi,
 }
 
-editor["stevearc/aerial.nvim"] = {
+M["stevearc/aerial.nvim"] = {
   cmd = { "AerialToggle", "AerialPrev", "AerialNext", "AerialPrevUp", "AerialNextUp" },
   config = conf.aerial,
   enabled = myvim.plugins.aerial.active,
 }
 
-editor["kana/vim-textobj-user"] = { fn = { "textobj#user#*" } }
-editor["kana/vim-textobj-indent"] = { event = "BufRead" }
-editor["jceb/vim-textobj-uri"] = { event = "BufRead" }
-editor["sgur/vim-textobj-parameter"] = { ft = { "lua" }, enabled = false }
+M["kana/vim-textobj-indent"] = { event = "BufRead", dependencies = { "kana/vim-textobj-user" } }
+M["jceb/vim-textobj-uri"] = { event = "BufRead", dependencies = { "kana/vim-textobj-user" } }
+M["sgur/vim-textobj-parameter"] = {
+  ft = { "lua" },
+  dependencies = { "kana/vim-textobj-user" },
+  enabled = false,
+}
 
-editor["dhruvasagar/vim-table-mode"] = {
+M["dhruvasagar/vim-table-mode"] = {
   cmd = "TableModeToggle",
 }
-editor["junegunn/vim-easy-align"] = {
+M["junegunn/vim-easy-align"] = {
   keys = { "<Plug>(EasyAlign)" },
   cmd = "EasyAlign",
 }
-editor["andymass/vim-matchup"] = {
-  event = "CursorMoved",
+M["andymass/vim-matchup"] = {
+  event = "BufRead",
   config = conf.matchup,
 }
 
-editor["ethanholz/nvim-lastplace"] = {
+M["ethanholz/nvim-lastplace"] = {
   event = "BufRead",
   config = conf.lastplace,
 }
 
-editor["theHamsta/nvim-dap-virtual-text"] = {
+M["theHamsta/nvim-dap-virtual-text"] = {
   dependencies = { "mfussenegger/nvim-dap", "nvim-treesitter/nvim-treesitter" },
   cmd = { "DapVirtualTextToggle" },
   config = conf.dap_virtual_text,
-  enabled = (myvim.plugins.dap_virtual_text.active and myvim.plugins.dap.active),
+  enabled = myvim.plugins.dap_virtual_text.active and myvim.plugins.dap.active,
 }
-editor["nvim-telescope/telescope-dap.nvim"] = {
+M["nvim-telescope/telescope-dap.nvim"] = {
+  lazy = true,
   dependencies = { "mfussenegger/nvim-dap" },
-  enabled = (myvim.plugins.dap_telescope.active and myvim.plugins.dap.active and myvim.plugins.telescope.active),
+  enabled = myvim.plugins.dap.active and myvim.plugins.telescope.active,
 }
-editor["mfussenegger/nvim-dap-python"] = {
+M["mfussenegger/nvim-dap-python"] = {
   dependencies = { "mfussenegger/nvim-dap" },
   ft = { "python" },
   enabled = myvim.plugins.dap.active,
 }
 
-editor["nvim-treesitter/nvim-treesitter-textobjects"] = {
+M["nvim-treesitter/nvim-treesitter-textobjects"] = {
   event = "BufRead",
-  after = "nvim-treesitter",
+  dependencies = "nvim-treesitter",
 }
-editor["p00f/nvim-ts-rainbow"] = {
+M["p00f/nvim-ts-rainbow"] = {
   event = "BufRead",
-  after = "nvim-treesitter",
+  dependencies = "nvim-treesitter",
 }
-editor["nvim-treesitter/playground"] = {
+M["nvim-treesitter/playground"] = {
   cmd = { "TSPlaygroundToggle", "TSHighlightCapturesUnderCursor" },
-  after = "nvim-treesitter",
+  dependencies = "nvim-treesitter",
 }
-editor["RRethy/nvim-treesitter-textsubjects"] = {
+M["RRethy/nvim-treesitter-textsubjects"] = {
   event = "BufRead",
-  after = "nvim-treesitter",
+  dependencies = "nvim-treesitter",
   enabled = false,
 }
 
-editor["danymat/neogen"] = {
+M["danymat/neogen"] = {
   cmd = { "Neogen" },
   dependencies = { "nvim-treesitter" },
   config = conf.neogen,
   enabled = myvim.plugins.neogen.active,
 }
 
-editor["b0o/mapx.nvim"] = {}
+M["b0o/mapx.nvim"] = {}
 
-editor["rmagatti/auto-session"] = {
+M["rmagatti/auto-session"] = {
   event = "VimEnter",
   config = conf.auto_session,
   enabled = myvim.plugins.auto_session.active,
 }
-editor["rmagatti/session-lens"] = {
+M["rmagatti/session-lens"] = {
   dependencies = {
     "auto-session",
     "telescope.nvim",
@@ -156,8 +160,9 @@ editor["rmagatti/session-lens"] = {
   enabled = (myvim.plugins.auto_session.active and myvim.plugins.telescope.active),
 }
 
-editor["ckolkey/ts-node-action"] = {
+M["ckolkey/ts-node-action"] = {
+  event = "BufRead",
   dependencies = { "nvim-treesitter" },
 }
 
-return editor
+return M

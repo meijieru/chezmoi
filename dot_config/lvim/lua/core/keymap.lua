@@ -179,7 +179,7 @@ function M.setup_find()
         k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
         b = { smart_default "current_buffer_fuzzy_find", "Grep Buffer" },
         l = { "<cmd>Telescope loclist<cr>", "Find Loclist" },
-        n = { "<cmd>Telescope notify<cr>", "Notifications" },
+        n = { "<cmd>lua require('telescope').extensions.notify.notify()<cr>", "Notifications" },
         p = { "<cmd>Telescope resume<cr>", "Find Previous" },
         P = { "<cmd>Telescope projects<cr>", "Projects" },
         q = { "<cmd>Telescope quickfix<cr>", "Find QuickFix" },
@@ -370,20 +370,36 @@ function M.setup_zenmode()
 end
 
 function M.setup_dap()
-  mapx.vname("<leader>d", "Debug")
-  mapx.vnoremap("<leader>de", "<Cmd>lua require('dapui').eval()<cr>", "Eval Expression")
-  mapx.nnoremap("<leader>de", "<Cmd>lua require('dapui').eval()<cr>", "Eval Expression")
-  mapx.nnoremap("<leader>df", "<Cmd>lua require('dapui').float_element()<cr>", "Float Element")
-  mapx.nnoremap("<leader>dd", "<cmd>lua require'dap'.run_to_cursor()<cr>", "Run To Cursor")
-  mapx.nnoremap("<leader>dD", "<cmd>lua require'dap'.disconnect()<cr>", "Disconnect")
-  if myvim.plugins.dap_telescope.active then
-    mapx.nnoremap("<leader>ds", "<Cmd>Telescope dap configurations<cr>", "Start")
-    mapx.nnoremap("<leader>dC", "<Cmd>Telescope dap commands<cr>", "Commands")
-    mapx.nnoremap("<leader>dl", "<Cmd>Telescope dap list_breakpoints<cr>", "List Breakpoints")
-  end
+  local keymaps = {
+    name = "Debug",
+    e = { "<Cmd>lua require('dapui').eval()<cr>", "Eval Expression" },
+    f = { "<Cmd>lua require('dapui').float_element()<cr>", "Float Element" },
+    d = { "<cmd>lua require'dap'.run_to_cursor()<cr>", "Run To Cursor" },
+    D = { "<cmd>lua require'dap'.disconnect()<cr>", "Disconnect" },
+    s = {
+      function()
+        require("telescope").extensions.dap.configurations()
+      end,
+      "Start",
+    },
+    C = {
+      function()
+        require("telescope").extensions.dap.commands()
+      end,
+      "Commands",
+    },
+    l = {
+      function()
+        require("telescope").extensions.dap.list_breakpoints()
+      end,
+      "List Breakpoints",
+    },
+  }
   if myvim.plugins.dap_virtual_text.active then
-    mapx.nnoremap("<leader>dV", "<Cmd>DapVirtualTextToggle<cr>", "Toggle Virtual Text")
+    keymaps.V = { "<Cmd>DapVirtualTextToggle<cr>", "Toggle Virtual Text" }
   end
+  which_key.register { ["<leader>d"] = keymaps }
+  mapx.vnoremap("<leader>de", "<Cmd>lua require('dapui').eval()<cr>", "Eval Expression")
 end
 
 function M.setup_git()

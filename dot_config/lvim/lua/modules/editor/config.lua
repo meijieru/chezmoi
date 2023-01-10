@@ -81,12 +81,6 @@ function M.aerial()
   end
   opts.icons = icons
   require("aerial").setup(opts)
-
-  -- NOTE: doesn't take effect as this func is called after lsp setup
-  -- lvim.lsp.on_attach_callback = function(client, bufnr)
-  --   require("aerial").on_attach(client, bufnr)
-  -- end
-  require("telescope").load_extension "aerial"
 end
 
 function M.neogen()

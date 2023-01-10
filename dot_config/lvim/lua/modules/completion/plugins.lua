@@ -1,35 +1,41 @@
-local completion = {}
+local M = {}
 local conf = require "modules.completion.config"
 
-completion["benfowler/telescope-luasnip.nvim"] = {
+M["benfowler/telescope-luasnip.nvim"] = {
+  lazy = true,
   config = conf.telescope_luasnip,
   enabled = myvim.plugins.telescope.active,
-  after = "telescope.nvim",
+  dependencies = "telescope.nvim",
 }
 
-completion["tzachar/cmp-tabnine"] = {
+M["tzachar/cmp-tabnine"] = {
   build = "./install.sh",
   event = "InsertEnter",
   config = conf.tabnine,
   enabled = (myvim.plugins.tabnine.active and myvim.plugins.cmp.active),
-  after = "nvim-cmp",
+  dependencies = "nvim-cmp",
 }
-completion["hrsh7th/cmp-cmdline"] = {
+M["hrsh7th/cmp-cmdline"] = {
+  event = { "CmdlineEnter" },
   enabled = myvim.plugins.cmp.active,
+  dependencies = "nvim-cmp",
 }
-completion["ray-x/cmp-treesitter"] = {
+M["ray-x/cmp-treesitter"] = {
+  event = "InsertEnter",
   enabled = (myvim.plugins.cmp_treesitter.active and myvim.plugins.cmp.active),
+  dependencies = "nvim-cmp",
 }
-completion["rcarriga/cmp-dap"] = {
+M["rcarriga/cmp-dap"] = {
+  ft = { "dap-repl" },
   config = conf.cmp_dap,
   enabled = (myvim.plugins.cmp.active and myvim.plugins.dap.active and myvim.plugins.cmp_dap.active),
-  after = "nvim-cmp",
+  dependencies = "nvim-cmp",
 }
 
-completion["ray-x/lsp_signature.nvim"] = {
+M["ray-x/lsp_signature.nvim"] = {
   event = "BufRead",
   config = conf.lsp_signature,
-  after = "nvim-lspconfig",
+  dependencies = "nvim-lspconfig",
 }
 
-return completion
+return M

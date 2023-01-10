@@ -1,4 +1,4 @@
-local ui = {}
+local M = {}
 
 local conf = require "modules.ui.config"
 
@@ -25,24 +25,24 @@ local function use_colorschemes(plugins, url, colors, extras)
   plugins[url] = opts
 end
 
-use_colorschemes(ui, "meijieru/edge.nvim", { "edge_lush" }, { dependencies = { "rktjmp/lush.nvim" } })
-use_colorschemes(ui, "sainnhe/gruvbox-material", { "gruvbox-material" })
-use_colorschemes(ui, "sainnhe/edge", { "edge" })
-use_colorschemes(ui, "sainnhe/everforest", { "everforest" })
-use_colorschemes(ui, "shaunsingh/nord.nvim", { "nord" })
-use_colorschemes(ui, "catppuccin/nvim", { "catppuccin" }, { name = "catppuccin" })
+use_colorschemes(M, "meijieru/edge.nvim", { "edge_lush" }, { dependencies = { "rktjmp/lush.nvim" } })
+use_colorschemes(M, "sainnhe/gruvbox-material", { "gruvbox-material" })
+use_colorschemes(M, "sainnhe/edge", { "edge" })
+use_colorschemes(M, "sainnhe/everforest", { "everforest" })
+use_colorschemes(M, "shaunsingh/nord.nvim", { "nord" })
+use_colorschemes(M, "catppuccin/nvim", { "catppuccin" }, { name = "catppuccin" })
 
-ui["romainl/vim-cool"] = {}
+M["romainl/vim-cool"] = { event = { "VeryLazy" } }
 
-ui["folke/zen-mode.nvim"] = {
+M["folke/zen-mode.nvim"] = {
   cmd = "ZenMode",
   config = conf.zen_mode,
 }
-ui["folke/twilight.nvim"] = {
+M["folke/twilight.nvim"] = {
   cmd = { "Twilight", "TwilightEnable" },
   config = conf.twilight,
 }
-ui["folke/noice.nvim"] = {
+M["folke/noice.nvim"] = {
   event = "VimEnter",
   config = function()
     require("noice").setup()
@@ -55,43 +55,45 @@ ui["folke/noice.nvim"] = {
   },
   enabled = myvim.plugins.noice.active,
 }
-ui["rcarriga/nvim-notify"] = {
+M["rcarriga/nvim-notify"] = {
   config = conf.notify,
   enabled = myvim.plugins.notify.active,
 }
 
-ui["karb94/neoscroll.nvim"] = {
+M["karb94/neoscroll.nvim"] = {
   event = "WinScrolled",
   config = conf.neoscroll,
   enabled = myvim.plugins.neoscroll.active,
 }
-ui["petertriho/nvim-scrollbar"] = {
-  event = "BufRead",
+M["petertriho/nvim-scrollbar"] = {
+  event = "VeryLazy",
   config = conf.scrollbar,
   enabled = myvim.plugins.scrollbar.active,
 }
 
-ui["kevinhwang91/nvim-bqf"] = {
+M["kevinhwang91/nvim-bqf"] = {
   ft = "qf",
   config = conf.bqf,
   enabled = true,
 }
 
-ui["vimpostor/vim-tpipeline"] = { enabled = myvim.plugins.tpipeline.active }
-ui["mbbill/undotree"] = { cmd = { "UndotreeToggle" } }
-ui["stevearc/dressing.nvim"] = {
+M["vimpostor/vim-tpipeline"] = { enabled = myvim.plugins.tpipeline.active }
+M["mbbill/undotree"] = { cmd = { "UndotreeToggle" } }
+M["stevearc/dressing.nvim"] = {
+  event = "VeryLazy",
   config = conf.dressing,
   enabled = myvim.plugins.dressing.active,
 }
 
-ui["stevearc/oil.nvim"] = {
+M["stevearc/oil.nvim"] = {
+  lazy = true,
   config = conf.oil,
   enabled = myvim.plugins.oil.active,
 }
 
-ui["luukvbaal/statuscol.nvim"] = {
+M["luukvbaal/statuscol.nvim"] = {
   config = conf.statuscol,
   enabled = myvim.plugins.statuscol.active,
 }
 
-return ui
+return M
