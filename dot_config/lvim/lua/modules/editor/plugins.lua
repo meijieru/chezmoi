@@ -86,6 +86,7 @@ editor["dhruvasagar/vim-table-mode"] = {
   cmd = "TableModeToggle",
 }
 editor["junegunn/vim-easy-align"] = {
+  keys = { "<Plug>(EasyAlign)" },
   cmd = "EasyAlign",
 }
 editor["andymass/vim-matchup"] = {

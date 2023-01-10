@@ -36,18 +36,8 @@ function M.not_impl(msg)
   vim.notify(msg or "Not Implementation PlaceHolder", vim.log.levels.ERROR)
 end
 
-local function _ensure_package_command(package, command)
-  return function()
-    utils.load_pack(package)
-    return vim.api.nvim_replace_termcodes(command, true, true, true)
-  end
-end
-
 function M.setup_easy_align()
-  local label = "EasyAlign"
-  local func = _ensure_package_command("vim-easy-align", "<Plug>(EasyAlign)")
-  mapx.nmap("ga", func, mapx.expr, label)
-  mapx.xmap("ga", func, mapx.expr, label)
+  vim.keymap.set({ "n", "x" }, "ga", "<Plug>(EasyAlign)", { desc = "EasyAlign" })
 end
 
 function M.setup_terminal()
