@@ -39,9 +39,13 @@ delete:
   - .config/lvim/lua/core/utils.lua
   - .config/lvim/plugin/folding.vim
   - .config/lvim/package.json
+  - .config/lvim/plugin
+  - .config/nvimpager/plugin
 
   - .local/share/nvim/dapinstall
   - .local/share/nvim/lsp_servers
+  - .local/share/nvim/site
+  - .local/share/lunarvim/site/pack/packer
 
 move:
   .wget-hsts: $XDG_STATE_HOME/wget-hsts
