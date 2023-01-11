@@ -92,10 +92,6 @@ function config.colorizer()
   })
 end
 
-function config.telescope_frecency()
-  require("telescope").load_extension "frecency"
-end
-
 local function setup_drop()
   vim.loop.os_setenv("VIM_EXE", "nvim")
   vim.g.terminal_edit = "edit"

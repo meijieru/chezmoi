@@ -188,7 +188,7 @@ function M.setup_find()
         r = {
           function()
             if myvim.plugins.telescope_frecency.active then
-              vim.cmd "Telescope frecency"
+              require("telescope").extensions.frecency.frecency()
             else
               vim.cmd "Telescope oldfiles"
             end

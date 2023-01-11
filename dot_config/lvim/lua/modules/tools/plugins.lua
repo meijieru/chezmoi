@@ -91,8 +91,7 @@ M["wakatime/vim-wakatime"] = {
 
 M["nvim-telescope/telescope-frecency.nvim"] = {
   lazy = true,
-  config = conf.telescope_frecency,
-  dependencies = { "tami5/sqlite.lua" },
+  dependencies = { "tami5/sqlite.lua", lazy = true },
   enabled = myvim.plugins.telescope_frecency.active,
 }
 
