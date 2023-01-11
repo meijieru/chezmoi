@@ -25,6 +25,11 @@ vim.o.grepformat = "%f:%l:%c:%m"
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal"
 vim.o.laststatus = 3
 
+if vim.fn.has "nvim-0.9" then
+  vim.o.splitkeep = "screen"
+  vim.opt.diffopt:append "linematch:60"
+end
+
 _G.qftf = require("core.utils.ui").qftf
 vim.o.qftf = "{info -> v:lua._G.qftf(info, 'shorten')}"
 
