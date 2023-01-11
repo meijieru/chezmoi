@@ -79,7 +79,7 @@ M["michaelb/sniprun"] = {
   enabled = myvim.plugins.sniprun.active,
 }
 
-M["norcalli/nvim-colorizer.lua"] = {
+M["NvChad/nvim-colorizer.lua"] = {
   cmd = { "ColorizerToggle" },
   config = conf.colorizer,
 }

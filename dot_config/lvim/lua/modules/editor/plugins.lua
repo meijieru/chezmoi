@@ -123,7 +123,7 @@ M["nvim-treesitter/nvim-treesitter-textobjects"] = {
   event = "BufRead",
   dependencies = "nvim-treesitter",
 }
-M["p00f/nvim-ts-rainbow"] = {
+M["mrjones2014/nvim-ts-rainbow"] = {
   event = "BufRead",
   dependencies = "nvim-treesitter",
 }
