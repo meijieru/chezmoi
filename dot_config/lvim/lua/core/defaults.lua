@@ -58,7 +58,7 @@ _G.myvim = {
     -- completion
     tabnine = { active = false },
     cmp = { active = true },
-    cmp_treesitter = { active = true },
+    cmp_treesitter = { active = false },
     cmp_dap = { active = true },
 
     -- tool
@@ -94,7 +94,6 @@ _G.myvim = {
     -- editor
     dap = { active = true },
     dap_virtual_text = { active = false },
-    dap_telescope = { active = true },
     neogen = { active = true },
     spellsitter = { active = false },
     auto_session = { active = false },
