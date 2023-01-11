@@ -18,5 +18,5 @@ function! auxlib#terminal_edit(bid, arglist)
 endfunc
 
 function! auxlib#url_open(url)
-    silent exec '!xdg-open ' . a:url
+    call v:lua.require'core.utils.init'.xdg_open(a:url)
 endfunction

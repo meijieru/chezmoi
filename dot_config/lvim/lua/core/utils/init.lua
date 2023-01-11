@@ -133,4 +133,24 @@ function M.get_visual_selection()
   return content
 end
 
+--- Open in other application
+--- @param file string
+function M.xdg_open(file)
+  local Job = require "plenary.job"
+  Job
+    :new({
+      command = "xdg-open",
+      args = { file },
+      on_exit = function(job, retval)
+        local opts = { title = "xdg-open" }
+        if retval == 0 then
+          vim.notify(file .. " opened", "info", opts)
+        else
+          vim.notify(string.format("Exit with code: %d, output: %s", retval, job:result()), "error", opts)
+        end
+      end,
+    })
+    :start()
+end
+
 return M

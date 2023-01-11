@@ -243,14 +243,13 @@ function M.setup_basic()
     end
 
     local cfile = vim.fn.fnameescape(vim.fn.expand "<cfile>")
-    if vim.fn.filereadable(cfile) == 1 or string.match(cfile, "[a-z]*://[^ >,;]*") ~= nil then
-      vim.cmd(string.format("silent !xdg-open %s", cfile))
-      return
-    elseif is_github(cfile) then
-      vim.cmd(string.format("silent !xdg-open https://github.com/%s", cfile))
+    if is_github(cfile) then
+      cfile = string.format("https://github.com/%s", cfile)
+    elseif vim.fn.filereadable(cfile) == 0 and string.match(cfile, "[a-z]*://[^ >,;]*") == nil then
+      vim.notify(string.format("url %s invalid", cfile), "error", { title = "system-open" })
       return
     end
-    vim.notify(string.format("url %s invalid", cfile), "error")
+    utils.xdg_open(cfile)
   end
 
   mapx.inoremap("<C-k>", "<Up>")
