@@ -95,7 +95,6 @@ _G.myvim = {
     dap = { active = true },
     dap_virtual_text = { active = false },
     neogen = { active = true },
-    spellsitter = { active = false },
     auto_session = { active = false },
     project = { active = true },
     hop = {
