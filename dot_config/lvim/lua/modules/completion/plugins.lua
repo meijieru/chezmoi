@@ -33,7 +33,7 @@ M["rcarriga/cmp-dap"] = {
 }
 
 M["ray-x/lsp_signature.nvim"] = {
-  event = "BufRead",
+  event = "VeryLazy",
   config = conf.lsp_signature,
   dependencies = "nvim-lspconfig",
 }

@@ -43,7 +43,7 @@ M["folke/twilight.nvim"] = {
   config = conf.twilight,
 }
 M["folke/noice.nvim"] = {
-  event = "VimEnter",
+  event = "VeryLazy",
   config = function()
     require("noice").setup()
   end,
@@ -56,6 +56,7 @@ M["folke/noice.nvim"] = {
   enabled = myvim.plugins.noice.active,
 }
 M["rcarriga/nvim-notify"] = {
+  event = "VeryLazy",
   config = conf.notify,
   enabled = myvim.plugins.notify.active,
 }

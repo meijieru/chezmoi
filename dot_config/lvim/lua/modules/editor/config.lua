@@ -8,10 +8,6 @@ function M.leap()
   require("leap").add_default_mappings()
 end
 
-function M.flit()
-  require("flit").setup()
-end
-
 function M.matchup()
   vim.g.matchup_matchparen_offscreen = { method = "popup" }
   -- enable ds%, cs%
@@ -153,17 +149,6 @@ function M.ufo()
   require("ufo").setup {
     fold_virt_text_handler = handler,
   }
-end
-
-function M.auto_session()
-  require("auto-session").setup {
-    log_level = "info",
-    auto_session_suppress_dirs = { "~/" },
-  }
-end
-
-function M.session_lens()
-  require("session-lens").setup {}
 end
 
 require("modules.editor.lvim").setup()

@@ -27,7 +27,7 @@ M["ibhagwan/smartyank.nvim"] = {
 }
 
 M["kevinhwang91/nvim-ufo"] = {
-  event = { "BufRead" },
+  event = { "VeryLazy" },
   dependencies = "kevinhwang91/promise-async",
   config = conf.ufo,
   enabled = myvim.plugins.ufo.active,
@@ -50,15 +50,16 @@ M["phaazon/hop.nvim"] = {
   enabled = myvim.plugins.hop.active,
 }
 M["ggandor/leap.nvim"] = {
-  event = { "BufRead" },
+  event = { "VeryLazy" },
+  dependencies = {
+    {
+      "ggandor/flit.nvim",
+      opts = { labeled_modes = "nv" },
+      enabled = (myvim.plugins.leap.active and myvim.plugins.flit.active),
+    },
+  },
   config = conf.leap,
   enabled = myvim.plugins.leap.active,
-}
-M["ggandor/flit.nvim"] = {
-  event = { "BufRead" },
-  config = conf.flit,
-  dependencies = { "ggandor/leap.nvim" },
-  enabled = (myvim.plugins.leap.active and myvim.plugins.flit.active),
 }
 
 M["mg979/vim-visual-multi"] = {
@@ -77,8 +78,8 @@ M["stevearc/aerial.nvim"] = {
   enabled = myvim.plugins.aerial.active,
 }
 
-M["kana/vim-textobj-indent"] = { event = "BufRead", dependencies = { "kana/vim-textobj-user" } }
-M["jceb/vim-textobj-uri"] = { event = "BufRead", dependencies = { "kana/vim-textobj-user" } }
+M["kana/vim-textobj-indent"] = { event = "VeryLazy", dependencies = { "kana/vim-textobj-user" } }
+M["jceb/vim-textobj-uri"] = { event = "VeryLazy", dependencies = { "kana/vim-textobj-user" } }
 M["sgur/vim-textobj-parameter"] = {
   ft = { "lua" },
   dependencies = { "kana/vim-textobj-user" },
@@ -93,7 +94,7 @@ M["junegunn/vim-easy-align"] = {
   cmd = "EasyAlign",
 }
 M["andymass/vim-matchup"] = {
-  event = "BufRead",
+  event = "VeryLazy",
   config = conf.matchup,
 }
 
@@ -120,11 +121,11 @@ M["mfussenegger/nvim-dap-python"] = {
 }
 
 M["nvim-treesitter/nvim-treesitter-textobjects"] = {
-  event = "BufRead",
+  event = "VeryLazy",
   dependencies = "nvim-treesitter",
 }
 M["mrjones2014/nvim-ts-rainbow"] = {
-  event = "BufRead",
+  event = "VeryLazy",
   dependencies = "nvim-treesitter",
 }
 M["nvim-treesitter/playground"] = {
@@ -132,7 +133,7 @@ M["nvim-treesitter/playground"] = {
   dependencies = "nvim-treesitter",
 }
 M["RRethy/nvim-treesitter-textsubjects"] = {
-  event = "BufRead",
+  event = "VeryLazy",
   dependencies = "nvim-treesitter",
   enabled = false,
 }
@@ -147,21 +148,17 @@ M["danymat/neogen"] = {
 M["b0o/mapx.nvim"] = {}
 
 M["rmagatti/auto-session"] = {
-  event = "VimEnter",
-  config = conf.auto_session,
-  enabled = myvim.plugins.auto_session.active,
-}
-M["rmagatti/session-lens"] = {
-  dependencies = {
-    "auto-session",
-    "telescope.nvim",
+  event = "BufReadPre",
+  dependencies = { "rmagatti/session-lens", opts = {}, enabled = myvim.plugins.telescope.active },
+  opts = {
+    log_level = "info",
+    auto_session_suppress_dirs = { "~/" },
   },
-  config = conf.session_lens,
-  enabled = (myvim.plugins.auto_session.active and myvim.plugins.telescope.active),
+  enabled = myvim.plugins.auto_session.active,
 }
 
 M["ckolkey/ts-node-action"] = {
-  event = "BufRead",
+  event = "VeryLazy",
   dependencies = { "nvim-treesitter" },
 }
 
