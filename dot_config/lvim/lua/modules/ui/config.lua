@@ -64,6 +64,13 @@ function M.scrollbar()
     handle = {
       color = fg,
     },
+    marks = {
+      Error = { highlight = "DiagnosticSignError" },
+      Warn = { highlight = "DiagnosticSignWarn" },
+      Info = { highlight = "DiagnosticSignInfo" },
+      Hint = { highlight = "DiagnosticSignHint" },
+    },
+    handlers = { gitsigns = myvim.plugins.gitsigns.active },
   }
 end
 
