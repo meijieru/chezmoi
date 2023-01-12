@@ -19,6 +19,10 @@ vim.o.grepformat = "%f:%l:%c:%m"
 vim.o.laststatus = 3
 vim.o.background = "light"
 
+if myvim.plugins.smartyank.active then
+  vim.o.clipboard = ""
+end
+
 if vim.fn.has "nvim-0.9" then
   vim.o.splitkeep = "screen"
   vim.opt.diffopt:append "linematch:60"
