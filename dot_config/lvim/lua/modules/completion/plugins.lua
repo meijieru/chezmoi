@@ -27,6 +27,25 @@ M["rcarriga/cmp-dap"] = {
   dependencies = "nvim-cmp",
 }
 
+M["zbirenbaum/copilot.lua"] = {
+  cmd = "Copilot",
+  event = "InsertEnter",
+  opts = {
+    suggestion = { enabled = false },
+    panel = { enabled = false },
+    filetypes = {
+      ["dap-repl"] = false,
+    },
+  },
+  enabled = myvim.plugins.copilot.active,
+  dependencies = "copilot-cmp",
+}
+M["zbirenbaum/copilot-cmp"] = {
+  lazy = true,
+  opts = {},
+  enabled = myvim.plugins.copilot.active and myvim.plugins.cmp.active,
+}
+
 M["ray-x/lsp_signature.nvim"] = {
   lazy = true,
   init = function()
