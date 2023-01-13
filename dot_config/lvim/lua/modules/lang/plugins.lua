@@ -20,5 +20,6 @@ M["simrat39/rust-tools.nvim"] = {
   config = conf.rust_tools,
   enabled = myvim.plugins.rust_tools.active,
 }
+M["jose-elias-alvarez/typescript.nvim"] = { ft = { "typescript" }, opts = {} }
 
 return M
