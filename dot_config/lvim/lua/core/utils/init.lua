@@ -56,14 +56,6 @@ function M.asyncrun_notify(prefix)
   vim.notify(prefix .. status, info_level[status], { title = "AsyncRun" })
 end
 
-function M.chezmoi_apply()
-  -- luacheck: push ignore 631
-  vim.cmd [[
-    AsyncRun -post=lua\ require("core.utils").asyncrun_notify("Chezmoi\ apply:\ ") -silent -raw=1 chezmoi apply --source-path %
-  ]]
-  -- luacheck: pop
-end
-
 --- Get plugin base dir.
 --- @param url string
 --- @return string
@@ -136,17 +128,46 @@ end
 --- Open in other application
 --- @param file string
 function M.xdg_open(file)
-  local Job = require "plenary.job"
-  Job
+  local job = require "plenary.job"
+  local opts = { title = "xdg-open" }
+  job
     :new({
       command = "xdg-open",
       args = { file },
-      on_exit = function(job, retval)
-        local opts = { title = "xdg-open" }
+      on_stderr = function(_, res, _)
+        local info = table.concat(vim.split(res, ":"), ":", 2)
+        vim.notify(info, "error", opts)
+      end,
+      on_exit = function(_, retval)
         if retval == 0 then
-          vim.notify(file .. " opened", "info", opts)
-        else
-          vim.notify(string.format("Exit with code: %d, output: %s", retval, job:result()), "error", opts)
+          vim.notify(string.format("Opened: %s", file), "info", opts)
+        end
+      end,
+    })
+    :start()
+end
+
+--- Apply chezmoi file
+--- @param file string
+function M.chezmoi_apply(file)
+  local path = require "plenary.path"
+  local relpath = path:new(file):make_relative()
+  if vim.startswith(file, "fugitive:///") or vim.startswith(relpath, ".git") then
+    return
+  end
+  local job = require "plenary.job"
+  local opts = { title = "Chezmoi Apply" }
+  job
+    :new({
+      command = "chezmoi",
+      args = { "apply", "--source-path", file },
+      on_stderr = function(_, res, _)
+        local info = table.concat(vim.split(res, ":"), ":", 2)
+        vim.notify(info, "error", opts)
+      end,
+      on_exit = function(_, retval)
+        if retval == 0 then
+          vim.notify(string.format("Done: %s", relpath), "info", opts)
         end
       end,
     })
