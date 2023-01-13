@@ -485,13 +485,6 @@ function M.setup_treesitter()
   mapx.nnoremap("<leader>Ts", "<cmd>TSUpdate<cr>", "Update Treesitter Parser")
 end
 
-function M.setup_visual_multi()
-  vim.keymap.set("n", "<C-Down>", "<Plug>(VM-Add-Cursor-Down)", { desc = "VM Add Cursor Down" })
-  vim.keymap.set("n", "<C-Up>", "<Plug>(VM-Add-Cursor-Up)", { desc = "VM Add Cursor Up" })
-  vim.keymap.set("n", "<C-n>", "<Plug>(VM-Find-Under)", { desc = "VM Find Under" })
-  vim.keymap.set("x", "<C-n>", "<Plug>(VM-Find-Subword-Under)", { desc = "VM Find Under" })
-end
-
 function M.setup_ufo()
   if not myvim.plugins.ufo.active then
     return
@@ -543,7 +536,6 @@ function M.setup()
   M.setup_git()
   M.setup_find()
   M.setup_treesitter()
-  M.setup_visual_multi()
   M.setup_ufo()
   M.setup_explorer()
   M.setup_package_management()
