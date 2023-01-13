@@ -30,6 +30,21 @@ M["kevinhwang91/nvim-ufo"] = {
   event = { "VeryLazy" },
   dependencies = "kevinhwang91/promise-async",
   config = conf.ufo,
+  init = function()
+    -- Neovim hasn't added foldingRange to default capabilities, users must add it manually
+    local _make_client_capabilities = vim.lsp.protocol.make_client_capabilities
+    vim.lsp.protocol.make_client_capabilities = function()
+      local capabilities = _make_client_capabilities()
+      if capabilities.textDocument.foldingRange ~= nil then
+        vim.notify("foldingRange added", "warn", { title = "Ufo Init" })
+      end
+      capabilities.textDocument.foldingRange = {
+        dynamicRegistration = false,
+        lineFoldingOnly = true,
+      }
+      return capabilities
+    end
+  end,
   enabled = myvim.plugins.ufo.active,
 }
 
