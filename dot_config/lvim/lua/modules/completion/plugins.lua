@@ -15,11 +15,6 @@ M["tzachar/cmp-tabnine"] = {
   enabled = (myvim.plugins.tabnine.active and myvim.plugins.cmp.active),
   dependencies = "nvim-cmp",
 }
-M["hrsh7th/cmp-cmdline"] = {
-  event = { "CmdlineEnter" },
-  enabled = myvim.plugins.cmp.active,
-  dependencies = "nvim-cmp",
-}
 M["ray-x/cmp-treesitter"] = {
   event = "InsertEnter",
   enabled = (myvim.plugins.cmp_treesitter.active and myvim.plugins.cmp.active),
