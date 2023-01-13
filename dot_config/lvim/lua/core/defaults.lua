@@ -71,6 +71,8 @@ _G.myvim = {
     shipwright = { active = true },
     wakatime = { active = true },
     sniprun = { active = false },
+    overseer = { active = true },
+    asynctasks = { active = false },
 
     -- ui
     indentlines = { active = true },

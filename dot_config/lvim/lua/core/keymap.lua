@@ -183,7 +183,7 @@ function M.setup_find()
         p = { "<cmd>Telescope resume<cr>", "Find Previous" },
         P = { "<cmd>Telescope projects<cr>", "Projects" },
         q = { "<cmd>Telescope quickfix<cr>", "Find QuickFix" },
-        t = { "<cmd>lua require('telescope').extensions.asynctasks.all()<cr>", "Find Tasks" },
+        t = { "<cmd>OverseerRun<cr>", "Find Tasks" },
         j = { "<cmd>Telescope jumplist<cr>", "Find JumpList" },
         r = {
           function()
@@ -467,7 +467,8 @@ function M.setup_toggle()
       u = { "<cmd>UndotreeToggle<cr>", "Undotree" },
       c = { "<cmd>ColorizerToggle<cr>", "Colorizer" },
       b = { "<cmd>TableModeToggle<cr>", "Table Mode" },
-      t = { "<cmd>Twilight<cr>", "Toggle Twilight" },
+      z = { "<cmd>Twilight<cr>", "Toggle Twilight" },
+      t = { "<cmd>OverseerToggle<cr>", "Toggle Overseer" }
     },
   }
 end

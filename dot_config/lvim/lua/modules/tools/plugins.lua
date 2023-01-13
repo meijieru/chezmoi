@@ -56,7 +56,7 @@ M["GustavoKatel/telescope-asynctasks.nvim"] = {
     "skywind3000/asynctasks.vim",
     "nvim-telescope/telescope-frecency.nvim",
   },
-  enabled = myvim.plugins.telescope.active,
+  enabled = myvim.plugins.telescope.active and myvim.plugins.asynctasks.active,
 }
 M["skywind3000/asynctasks.vim"] = {
   cmd = { "AsyncTask", "AsyncTaskEdit", "AsyncTaskList" },
@@ -64,6 +64,22 @@ M["skywind3000/asynctasks.vim"] = {
     { "skywind3000/asyncrun.vim", cmd = { "AsyncRun" }, config = conf.asyncrun },
   },
   init = conf.asynctasks,
+  enabled = myvim.plugins.asynctasks.active,
+}
+
+M["stevearc/overseer.nvim"] = {
+  cmd = { "OverseerRun", "OverseerToggle" },
+  opts = {
+    strategy = { "toggleterm", open_on_start = false },
+    templates = { "builtin", "myplugin.global_tasks" },
+    task_list = {
+      bindings = {
+        ["q"] = "<cmd>close<cr>",
+        ["<c-x>"] = "OpenSplit",
+      },
+    },
+  },
+  enabled = myvim.plugins.overseer.active,
 }
 
 M["dstein64/vim-startuptime"] = {
