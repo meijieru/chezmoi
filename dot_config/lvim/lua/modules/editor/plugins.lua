@@ -7,7 +7,7 @@ M["tpope/vim-surround"] = {
   event = { "VeryLazy" },
 }
 M["machakann/vim-sandwich"] = { keys = { "s" }, enabled = false }
-M["tpope/vim-sleuth"] = { event = "BufRead" }
+M["tpope/vim-sleuth"] = { event = "BufReadPre" }
 M["tpope/vim-rsi"] = { event = { "CmdlineEnter", "InsertEnter" } }
 M["tpope/vim-eunuch"] = { event = "CmdlineEnter" }
 
