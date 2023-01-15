@@ -1,7 +1,8 @@
 local home_dir = os.getenv("HOME")
 local envs = {
-  LUNARVIM_CONFIG_DIR = home_dir .. "/.config/lvim",
   LUNARVIM_RUNTIME_DIR = home_dir .. "/.local/share/lunarvim",
+  LUNARVIM_CONFIG_DIR = home_dir .. "/.config/lvim",
+  LUNARVIM_CACHE_DIR = home_dir .. "/.cache/lvim",
 }
 for key, val in pairs(envs) do
   vim.loop.os_setenv(key, val)
