@@ -11,18 +11,14 @@ M["tpope/vim-sleuth"] = { event = "BufReadPre" }
 M["tpope/vim-rsi"] = { event = { "CmdlineEnter", "InsertEnter" } }
 M["tpope/vim-eunuch"] = { event = "CmdlineEnter" }
 
-M["ojroques/vim-oscyank"] = {
-  -- cmd = { "OSCYank", "OSCYankReg" },
-  -- keys = { "<Plug>OSCYank" },
-  config = conf.oscyank,
-  cond = function()
-    return os.getenv "SSH_TTY" ~= nil
-  end,
-  enabled = myvim.plugins.oscyank.active,
-}
 M["ibhagwan/smartyank.nvim"] = {
   event = { "VeryLazy" },
-  config = conf.smartyank,
+  opts = {
+    highlight = {
+      higroup = "Search", -- highlight group of yanked text
+      timeout = 200, -- timeout for clearing the highlight
+    },
+  },
   enabled = myvim.plugins.smartyank.active,
 }
 
@@ -48,22 +44,6 @@ M["kevinhwang91/nvim-ufo"] = {
   enabled = myvim.plugins.ufo.active,
 }
 
-M["phaazon/hop.nvim"] = {
-  cmd = {
-    "HopLineStart",
-    "HopLineStartAC",
-    "HopLineStartBC",
-    "HopLineStartMW",
-    "HopWord",
-    "HopWordAC",
-    "HopWordBC",
-    "HopPattern",
-    "HopChar1",
-    "HopChar2",
-  },
-  config = conf.hop,
-  enabled = myvim.plugins.hop.active,
-}
 M["ggandor/leap.nvim"] = {
   event = { "VeryLazy" },
   dependencies = {
@@ -125,7 +105,7 @@ M["ethanholz/nvim-lastplace"] = {
 M["theHamsta/nvim-dap-virtual-text"] = {
   dependencies = { "mfussenegger/nvim-dap", "nvim-treesitter/nvim-treesitter" },
   cmd = { "DapVirtualTextToggle" },
-  config = conf.dap_virtual_text,
+  opts = {},
   enabled = myvim.plugins.dap_virtual_text.active and myvim.plugins.dap.active,
 }
 M["nvim-telescope/telescope-dap.nvim"] = {
@@ -160,7 +140,7 @@ M["RRethy/nvim-treesitter-textsubjects"] = {
 M["danymat/neogen"] = {
   cmd = { "Neogen" },
   dependencies = { "nvim-treesitter" },
-  config = conf.neogen,
+  opts = {},
   enabled = myvim.plugins.neogen.active,
 }
 

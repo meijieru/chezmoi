@@ -60,37 +60,6 @@ function M.setup_sniprun()
   mapx.nmap("<leader>rr", "<Plug>SnipRun", mapx.silent, "SnipRun")
 end
 
-function M.setup_hop()
-  if not myvim.plugins.hop.active then
-    return
-  end
-  local prefix = "<leader><leader>"
-  mapx.nname(prefix, "Hop")
-  local mappings = {
-    w = { "<cmd>HopWordAC<CR>", "Forward Words" },
-    b = { "<cmd>HopWordBC<CR>", "Backward Words" },
-    j = { "<cmd>HopLineStartAC<CR>", "Forward Lines" },
-    k = { "<cmd>HopLineStartBC<CR>", "Backward Lines" },
-    s = { "<cmd>HopPattern<CR>", "Search Patterns" },
-    l = { "<cmd>HopLineStartMW<CR>", "Windows Lines" },
-  }
-  for key, val in pairs(mappings) do
-    mapx.nnoremap(prefix .. key, val[1], mapx.silent, val[2])
-  end
-
-  if myvim.plugins.hop.enable_ft then
-    local function hint_char1(opts)
-      return string.format("<cmd>lua require'hop'.hint_char1({%s, current_line_only = true})<cr>", opts)
-    end
-    mapx.nnoremap("f", hint_char1 "direction = require'hop.hint'.HintDirection.AFTER_CURSOR")
-    mapx.nnoremap("F", hint_char1 "direction = require'hop.hint'.HintDirection.BEFORE_CURSOR")
-    mapx.onoremap("f", hint_char1 "direction = require'hop.hint'.HintDirection.AFTER_CURSOR, inclusive_jump = true")
-    mapx.onoremap("F", hint_char1 "direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, inclusive_jump = true")
-    mapx.onoremap("t", hint_char1 "direction = require'hop.hint'.HintDirection.AFTER_CURSOR")
-    mapx.onoremap("T", hint_char1 "direction = require'hop.hint'.HintDirection.BEFORE_CURSOR")
-  end
-end
-
 function M.setup_lsp()
   for _, key in ipairs { "gs", "gl" } do
     lvim.lsp.buffer_mappings.normal_mode[key] = nil
@@ -468,7 +437,7 @@ function M.setup_toggle()
       c = { "<cmd>ColorizerToggle<cr>", "Colorizer" },
       b = { "<cmd>TableModeToggle<cr>", "Table Mode" },
       z = { "<cmd>Twilight<cr>", "Toggle Twilight" },
-      t = { "<cmd>OverseerToggle<cr>", "Toggle Overseer" }
+      t = { "<cmd>OverseerToggle<cr>", "Toggle Overseer" },
     },
   }
 end
@@ -528,7 +497,6 @@ function M.setup()
   M.setup_toggle()
   M.setup_easy_align()
   M.setup_terminal()
-  M.setup_hop()
   M.setup_lsp()
   M.setup_asynctasks()
   M.setup_sniprun()

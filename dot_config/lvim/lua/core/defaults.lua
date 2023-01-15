@@ -106,7 +106,6 @@ _G.myvim = {
     leap = { active = true },
     flit = { active = false },
     ufo = { active = true },
-    oscyank = { active = false },
     smartyank = { active = true },
     ts_node_action = { active = true },
 

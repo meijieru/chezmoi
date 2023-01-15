@@ -1,9 +1,5 @@
 local M = {}
 
-function M.hop()
-  require("hop").setup()
-end
-
 function M.leap()
   require("leap").add_default_mappings()
 end
@@ -19,12 +15,6 @@ function M.lastplace()
     lastplace_ignore_buftype = myvim.ignores.buftype,
     lastplace_ignore_filetype = myvim.ignores.filetype,
     lastplace_open_folds = true,
-  }
-end
-
-function M.dap_virtual_text()
-  require("nvim-dap-virtual-text").setup {
-    enabled = true,
   }
 end
 
@@ -77,44 +67,6 @@ function M.aerial()
   end
   opts.icons = icons
   require("aerial").setup(opts)
-end
-
-function M.neogen()
-  require("neogen").setup { enabled = true }
-end
-
-function M.oscyank()
-  vim.g.oscyank_silent = true
-  vim.cmd [[
-    " autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '+' | execute 'OSCYankReg +' | endif
-    autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '' | execute 'OSCYankReg "' | endif
-  ]]
-end
-
-function M.smartyank()
-  require("smartyank").setup {
-    highlight = {
-      enabled = true, -- highlight yanked text
-      higroup = "Search", -- highlight group of yanked text
-      timeout = 200, -- timeout for clearing the highlight
-    },
-    clipboard = {
-      enabled = true,
-    },
-    tmux = {
-      enabled = true,
-      -- remove `-w` to disable copy to host client's clipboard
-      cmd = { "tmux", "set-buffer", "-w" },
-    },
-    osc52 = {
-      enabled = true,
-      -- escseq = 'tmux',     -- use tmux escape sequence, only enable if
-      -- you're using tmux and have issues (see #4)
-      ssh_only = true, -- false to OSC52 yank also in local sessions
-      silent = false, -- true to disable the "n chars copied" echo
-      echo_hl = "Directory", -- highlight group of the OSC52 echo message
-    },
-  }
 end
 
 function M.ufo()
