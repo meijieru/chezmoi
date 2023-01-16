@@ -436,7 +436,6 @@ function M.setup_toggle()
       l = { "<cmd>call auxlib#toggle_loclist()<cr>", "LocList" },
       d = { "<cmd>lua require('core.utils.lsp').toggle_diagnostics()<cr>", "Diagnostic" },
       a = { "<cmd>AerialToggle!<cr>", "Aerial" },
-      u = { "<cmd>UndotreeToggle<cr>", "Undotree" },
       c = { "<cmd>ColorizerToggle<cr>", "Colorizer" },
       b = { "<cmd>TableModeToggle<cr>", "Table Mode" },
       z = { "<cmd>Twilight<cr>", "Toggle Twilight" },

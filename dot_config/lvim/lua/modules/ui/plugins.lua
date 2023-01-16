@@ -79,7 +79,15 @@ M["kevinhwang91/nvim-bqf"] = {
 }
 
 M["vimpostor/vim-tpipeline"] = { enabled = myvim.plugins.tpipeline.active }
-M["mbbill/undotree"] = { cmd = { "UndotreeToggle" } }
+M["debugloop/telescope-undo.nvim"] = {
+  keys = { { "<leader>u", "<cmd>lua require('telescope').extensions.undo.undo()<cr>", desc = "Undotree" } },
+  dependencies = { "nvim-telescope/telescope.nvim" },
+  init = function()
+    lvim.builtin.telescope.extensions.undo = {
+      side_by_side = true,
+    }
+  end,
+}
 M["stevearc/dressing.nvim"] = {
   event = "VeryLazy",
   config = conf.dressing,
