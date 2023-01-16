@@ -4,4 +4,3 @@ opts:
 
 wget:
   im-select.exe: https://github.com/daipeihust/im-select/raw/master/im-select-win/out/x64/im-select.exe
-  wsl-open: https://raw.githubusercontent.com/4U6U57/wsl-open/master/wsl-open.sh

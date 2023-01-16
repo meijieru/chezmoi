@@ -62,3 +62,4 @@ yay:
   - cmake-format
   - diffsitter-bin
   - nvimpager
+  - wsl-open
