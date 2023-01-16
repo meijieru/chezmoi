@@ -184,6 +184,9 @@ function M.setup_find()
 end
 
 function M.setup_asynctasks()
+  if not myvim.plugins.asynctasks.active then
+    return
+  end
   local mappings = {
     ["<F5>"] = { "<cmd>AsyncTask file-run<cr>", "File Run" },
     ["<F6>"] = { "<cmd>AsyncTask file-build<cr>", "File Build" },
