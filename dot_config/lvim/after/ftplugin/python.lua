@@ -36,11 +36,13 @@ end
 
 local function null_ls_config()
   local formatters = require "lvim.lsp.null-ls.formatters"
+  local null_ls = require "null-ls"
   formatters.setup {
     -- order matters
     { exe = "black" },
-    -- { exe = "yapf" },
     { exe = "isort", extra_args = { "--profile", "black", "--force_sort_within_sections" } },
+    -- only for range format
+    { exe = "yapf", method = null_ls.methods.RANGE_FORMATTING },
   }
 end
 
