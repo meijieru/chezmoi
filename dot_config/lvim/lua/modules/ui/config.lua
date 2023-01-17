@@ -86,31 +86,10 @@ end
 function M.dressing()
   require("dressing").setup {
     input = {
-      -- Default prompt string
-      -- default_prompt = "> ",
-
-      -- When true, <Esc> will close the modal
-      insert_only = true,
-
-      -- These are passed to nvim_open_win
       border = "rounded",
-
-      win_options = {
-        -- Window transparency (0-100)
-        winblend = 10,
-        winhighlight = "NormalFloat:Normal",
-      },
-
-      -- These can be integers or a float between 0 and 1 (e.g. 0.4 for 40%)
-      prefer_width = 40,
-      width = nil,
-      max_width = { 140, 0.9 },
-      min_width = { 20, 0.2 },
     },
     select = {
-      -- Priority list of preferred vim.select implementations
       backend = { "telescope", "fzf", "builtin", "nui" },
-
       telescope = nil,
     },
   }

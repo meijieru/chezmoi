@@ -1,9 +1,7 @@
--- Autocommands (https://neovim.io/doc/user/autocmd.html)
-
-local create_autocmd = vim.api.nvim_create_autocmd
+local on = vim.api.nvim_create_autocmd
 
 -- https://www.chezmoi.io/docs/how-to/#configure-vim-to-run-chezmoi-apply-whenever-you-save-a-dotfile
-create_autocmd("BufWritePost", {
+on("BufWritePost", {
   pattern = { "*/.local/share/chezmoi/*" },
   callback = function(env)
     require("core.utils").chezmoi_apply(env.file)
@@ -12,10 +10,17 @@ create_autocmd("BufWritePost", {
 })
 
 -- disable fold
-create_autocmd(
-  "FileType",
-  { pattern = { "alpha", "lspinfo", "aerial", "dapui_scopes" }, command = "setlocal nofoldenable" }
-)
+on("FileType", { pattern = { "alpha", "lspinfo", "aerial", "dapui_scopes" }, command = "setlocal nofoldenable" })
+
+-- overwrite highlight
+on("Colorscheme", {
+  pattern = { "*" },
+  callback = function()
+    vim.api.nvim_set_hl(0, "NormalFloat", { link = "Normal" })
+    vim.api.nvim_set_hl(0, "FloatBorder", { link = "Normal" })
+  end,
+  desc = "Customize highlight",
+})
 
 -- diable lvim autocmds
 local autocmds_to_disable = {
