@@ -108,6 +108,12 @@ M["wakatime/vim-wakatime"] = {
 M["nvim-telescope/telescope-frecency.nvim"] = {
   lazy = true,
   dependencies = { "tami5/sqlite.lua", lazy = true },
+  init = function()
+    lvim.builtin.telescope.extensions.frecency = {
+      default_workspace = "CWD",
+      show_unindexed = false,
+    }
+  end,
   enabled = myvim.plugins.telescope_frecency.active,
 }
 
