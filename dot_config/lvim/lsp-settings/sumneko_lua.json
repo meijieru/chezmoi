@@ -3,7 +3,7 @@
   "Lua.diagnostics.enable": true,
   "Lua.diagnostics.globals": ["describe", "it", "before_each", "after_each"],
   "Lua.diagnostics.disable": ["unused-vararg", "different-requires"],
-  "Lua.completion.callSnippet": "Both",
+  "Lua.completion.callSnippet": "Disable",
   "Lua.completion.keywordSnippet": "Both",
   "Lua.format.enable": false
 }
