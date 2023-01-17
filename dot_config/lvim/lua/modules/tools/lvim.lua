@@ -17,6 +17,7 @@ function M.setup_telescope()
     width = 0.8,
   }
   lvim.builtin.telescope.theme = myvim.plugins.telescope.theme
+  lvim.builtin.telescope.pickers.buffers.initial_mode = nil
 end
 
 function M.setup()
