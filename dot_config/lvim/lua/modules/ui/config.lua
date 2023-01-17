@@ -7,6 +7,7 @@ function M.notify()
   vim.notify = notify
 
   local opts = {
+    render = "default",
     stages = "fade",
     icons = {
       ERROR = lvim.icons.diagnostics.Error,
@@ -19,7 +20,9 @@ function M.notify()
   notify.setup(opts)
 
   local lvim_log = require "lvim.core.log"
-  lvim_log:configure_notifications(notify)
+  if not myvim.plugins.noice.active then
+    lvim_log:configure_notifications(notify)
+  end
 end
 
 function M.zen_mode()

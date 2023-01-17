@@ -60,6 +60,7 @@ _G.myvim = {
     cmp = { active = true },
     cmp_treesitter = { active = false },
     cmp_dap = { active = true },
+    lsp_signature = { active = true },
 
     -- tool
     treesitter = {
