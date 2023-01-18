@@ -101,6 +101,9 @@ function M.oil()
       -- Show files and directories that start with "."
       show_hidden = true,
     },
+    keymaps = {
+      ["."] = "actions.open_cmdline",
+    },
   }
 end
 
