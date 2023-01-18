@@ -18,6 +18,51 @@ function M.lastplace()
   }
 end
 
+function M.neotest()
+  local animated_icons = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
+  require("neotest").setup {
+    adapters = {
+      require "neotest-python" {
+        dap = { justMyCode = false },
+      },
+      require "neotest-plenary",
+      require "neotest-jest" {
+        cwd = require("neotest-jest").root,
+      },
+    },
+    consumers = {
+      overseer = require "neotest.consumers.overseer",
+    },
+    summary = {
+      mappings = {
+        expand = "l",
+        expand_all = "L",
+        jumpto = { "gf", "<CR>" },
+      },
+    },
+    icons = {
+      passed = " ",
+      running = " ",
+      failed = " ",
+      unknown = " ",
+      running_animated = vim.tbl_map(function(s)
+        return s .. " "
+      end, animated_icons),
+      non_collapsible = " ",
+      collapsed = "",
+      expanded = "",
+      child_prefix = " ",
+      final_child_prefix = " ",
+      child_indent = " ",
+      final_child_indent = " ",
+    },
+    quickfix = { open = false },
+    output = {
+      open_on_run = false,
+    },
+  }
+end
+
 function M.visual_multi()
   local vm_maps = {}
   vm_maps["Select Operator"] = ""
@@ -98,8 +143,14 @@ function M.ufo()
     return newVirtText
   end
 
+  local ft_map = {
+    ["neotest-summary"] = "",
+  }
   require("ufo").setup {
     fold_virt_text_handler = handler,
+    provider_selector = function(_, filetype, _)
+      return ft_map[filetype]
+    end,
   }
 end
 

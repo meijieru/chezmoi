@@ -92,7 +92,7 @@ M["kevinhwang91/nvim-bqf"] = {
 
 M["vimpostor/vim-tpipeline"] = { enabled = myvim.plugins.tpipeline.active }
 M["debugloop/telescope-undo.nvim"] = {
-  keys = { { "<leader>u", "<cmd>lua require('telescope').extensions.undo.undo()<cr>", desc = "Undotree" } },
+  keys = { { "<leader>fu", "<cmd>lua require('telescope').extensions.undo.undo()<cr>", desc = "Undotree" } },
   dependencies = { "nvim-telescope/telescope.nvim" },
   init = function()
     lvim.builtin.telescope.extensions.undo = {

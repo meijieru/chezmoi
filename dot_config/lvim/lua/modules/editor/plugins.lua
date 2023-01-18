@@ -144,6 +144,18 @@ M["danymat/neogen"] = {
   enabled = myvim.plugins.neogen.active,
 }
 
+M["nvim-neotest/neotest"] = {
+  lazy = true,
+  dependencies = {
+    "nvim-neotest/neotest-python",
+    "nvim-neotest/neotest-plenary",
+    "nvim-lua/plenary.nvim",
+    "haydenmeade/neotest-jest",
+  },
+  config = conf.neotest,
+  enabled = myvim.plugins.neotest.active,
+}
+
 M["b0o/mapx.nvim"] = {}
 
 M["rmagatti/auto-session"] = {

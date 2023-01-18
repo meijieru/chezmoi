@@ -111,6 +111,53 @@ function M.setup_lsp()
   }
 end
 
+function M.setup_neotest()
+  if not myvim.plugins.neotest.active then
+    return
+  end
+  which_key.register {
+    ["<leader>u"] = {
+      name = "Neotest",
+      t = {
+        function()
+          require("neotest").summary.toggle()
+        end,
+        "Toggle Neotest",
+      },
+      u = {
+        function()
+          require("neotest").run.run { vim.api.nvim_buf_get_name(0) }
+        end,
+        "Run File",
+      },
+      n = {
+        function()
+          require("neotest").run.run()
+        end,
+        "Run Nearest",
+      },
+      l = {
+        function()
+          require("neotest").run.run_last()
+        end,
+        "Run Last",
+      },
+      d = {
+        function()
+          require("neotest").run.run { strategy = "dap" }
+        end,
+        "Run DAP",
+      },
+      o = {
+        function()
+          require("neotest").output.open { short = true }
+        end,
+        "Short Summary",
+      },
+    },
+  }
+end
+
 function M.setup_find()
   local function smart_default(cmd, expr)
     return function()
@@ -507,6 +554,7 @@ function M.setup()
   M.setup_git()
   M.setup_find()
   M.setup_treesitter()
+  M.setup_neotest()
   M.setup_ufo()
   M.setup_explorer()
   M.setup_package_management()

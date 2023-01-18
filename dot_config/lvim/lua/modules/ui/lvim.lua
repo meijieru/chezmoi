@@ -136,7 +136,10 @@ function M.setup_breadcrumbs()
 end
 
 function M.setup_illuminate()
-  table.insert(lvim.builtin.illuminate.options.filetypes_denylist, "aerial")
+  vim.list_extend(
+    lvim.builtin.illuminate.options.filetypes_denylist,
+    { "aerial", "qf" }
+  )
 end
 
 function M.setup()
