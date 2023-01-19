@@ -110,9 +110,9 @@ function M.setup_alpha()
       local buttons_val = vim.list_slice(theme.buttons.val, 1, 3)
       vim.list_extend(buttons_val, {
         dashboard.button("SPC f f", "  Find file"),
-        dashboard.button("SPC f g", "  Live grep"),
         dashboard.button("SPC f P", "  Find project"),
-        dashboard.button("q", "  Quit", "<cmd>qa<CR>"),
+        dashboard.button("SPC *", "  Live grep"),
+        dashboard.button("q", "  Quit", "<cmd>q<CR>"),
       })
       theme.buttons.val = buttons_val
     end
