@@ -14,6 +14,14 @@ if not status_mapx_ok then
 end
 require("mapx").setup { global = false, whichkey = true, debug = false }
 
+local function normal_command(command)
+  return string.format("<cmd>%s<cr>", command)
+end
+
+local function lua_normal_command(command)
+  return normal_command(string.format("lua %s", command))
+end
+
 -- wait for https://github.com/b0o/mapx.nvim/issues/3
 function M.chain(...)
   local cmds = { ... }
@@ -94,9 +102,9 @@ function M.setup_lsp()
   end
   which_key.register {
     ["<leader>l"] = {
-      ["g"] = { "<cmd>Neogen<cr>", "Generate Doc" },
-      ["d"] = { "<cmd>Telescope diagnostics bufnr=0<cr>", "Document Diagnostics" },
-      ["D"] = { "<cmd>Telescope diagnostics<cr>", "Workspace Diagnostics" },
+      ["g"] = { normal_command "Neogen", "Generate Doc" },
+      ["d"] = { normal_command "Telescope diagnostics bufnr=0", "Document Diagnostics" },
+      ["D"] = { normal_command "Telescope diagnostics", "Workspace Diagnostics" },
       ["s"] = {
         function()
           if myvim.plugins.aerial.active then
@@ -182,25 +190,25 @@ function M.setup_find()
     ["<leader>"] = {
       -- trick: <c-space> convert it as fuzzy
       ["*"] = { smart_default "live_grep", "Grep" },
-      b = { "<cmd>Telescope buffers<cr>", "Find Buffer" },
-      ["/"] = { "<cmd>Telescope search_history<cr>", "Find Search History" },
+      b = { normal_command "Telescope buffers", "Find Buffer" },
+      ["/"] = { normal_command "Telescope search_history", "Find Search History" },
       f = {
         name = "Find",
-        s = { "<cmd>lua require'telescope'.extensions.luasnip.luasnip{}<cr>", "Find snippets" },
-        c = { "<cmd>Telescope command_history<cr>", "Find Commands History" },
-        C = { "<cmd>Telescope commands<cr>", "Commands" },
-        f = { "<cmd>Telescope find_files<cr>", "Find File" },
+        s = { lua_normal_command "require('telescope').extensions.luasnip.luasnip()", "Find snippets" },
+        c = { normal_command "Telescope command_history", "Find Commands History" },
+        C = { normal_command "Telescope commands", "Commands" },
+        f = { normal_command "Telescope find_files", "Find File" },
         h = { smart_default "help_tags", "Find Help" },
         m = { smart_default "man_pages", "Man Pages" },
-        k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
+        k = { normal_command "Telescope keymaps", "Keymaps" },
         b = { smart_default "current_buffer_fuzzy_find", "Grep Buffer" },
-        l = { "<cmd>Telescope loclist<cr>", "Find Loclist" },
-        n = { "<cmd>lua require('telescope').extensions.notify.notify()<cr>", "Notifications" },
-        p = { "<cmd>Telescope resume<cr>", "Find Previous" },
-        P = { "<cmd>Telescope projects<cr>", "Projects" },
-        q = { "<cmd>Telescope quickfix<cr>", "Find QuickFix" },
-        t = { "<cmd>OverseerRun<cr>", "Find Tasks" },
-        j = { "<cmd>Telescope jumplist<cr>", "Find JumpList" },
+        l = { normal_command "Telescope loclist", "Find Loclist" },
+        n = { lua_normal_command "require('telescope').extensions.notify.notify()", "Notifications" },
+        p = { normal_command "Telescope resume", "Find Previous" },
+        P = { normal_command "Telescope projects", "Projects" },
+        q = { normal_command "Telescope quickfix", "Find QuickFix" },
+        t = { normal_command "OverseerRun", "Find Tasks" },
+        j = { normal_command "Telescope jumplist", "Find JumpList" },
         r = {
           function()
             if myvim.plugins.telescope_frecency.active then
@@ -211,7 +219,7 @@ function M.setup_find()
           end,
           "Open Recent File",
         },
-        R = { "<cmd>Telescope registers<cr>", "Registers" },
+        R = { normal_command "Telescope registers", "Registers" },
       },
     },
   }
@@ -235,10 +243,10 @@ function M.setup_asynctasks()
     return
   end
   local mappings = {
-    ["<F5>"] = { "<cmd>AsyncTask file-run<cr>", "File Run" },
-    ["<F6>"] = { "<cmd>AsyncTask file-build<cr>", "File Build" },
-    ["<f7>"] = { "<cmd>AsyncTask project-run<cr>", "Project Run" },
-    ["<f8>"] = { "<cmd>AsyncTask project-build<cr>", "Project Build" },
+    ["<F5>"] = { normal_command "AsyncTask file-run", "File Run" },
+    ["<F6>"] = { normal_command "AsyncTask file-build", "File Build" },
+    ["<f7>"] = { normal_command "AsyncTask project-run", "Project Run" },
+    ["<f8>"] = { normal_command "AsyncTask project-build", "Project Build" },
   }
   which_key.register(mappings, { silent = true })
 end
@@ -291,17 +299,19 @@ function M.setup_basic()
         end,
         "Error",
       },
-      ["d"] = { vim.diagnostic.goto_next, "Diagnostic" },
-      ["q"] = { "<cmd>cnext<cr>", "Quickfix" },
-      ["l"] = { "<cmd>lnext<cr>", "Loclist" },
-      ["b"] = { "<cmd>bprevious<cr>", "Buffer" },
-      ["t"] = { "<cmd>tabnext<cr>", "Tab" },
+      ["d"] = { lua_normal_command "vim.diagnostic.goto_next()", "Diagnostic" },
+      ["q"] = { normal_command "cnext", "Quickfix" },
+      ["l"] = { normal_command "lnext", "Loclist" },
+      ["b"] = { normal_command "bprevious", "Buffer" },
+      ["t"] = { normal_command "tabnext", "Tab" },
       ["c"] = {
         function()
-          if vim.o.diff then
-            vim.cmd.normal { "]c", bang = true }
-          else
-            require("gitsigns.actions").next_hunk()
+          for _ = 1, vim.v.count1 do
+            if vim.o.diff then
+              vim.cmd.normal { "]c", bang = true }
+            else
+              require("gitsigns.actions").next_hunk()
+            end
           end
         end,
         "Change | Hunk",
@@ -315,17 +325,19 @@ function M.setup_basic()
         end,
         "Error",
       },
-      ["d"] = { vim.diagnostic.goto_prev, "Diagnostic" },
-      ["q"] = { "<cmd>cprev<cr>", "Quickfix" },
-      ["l"] = { "<cmd>lprev<cr>", "Loclist" },
-      ["b"] = { "<cmd>bnext<cr>", "Buffer" },
-      ["t"] = { "<cmd>tabprevious<cr>", "Tab" },
+      ["d"] = { lua_normal_command "vim.diagnostic.goto_prev()", "Diagnostic" },
+      ["q"] = { normal_command "cprev", "Quickfix" },
+      ["l"] = { normal_command "lprev", "Loclist" },
+      ["b"] = { normal_command "bnext", "Buffer" },
+      ["t"] = { normal_command "tabprevious", "Tab" },
       ["c"] = {
         function()
-          if vim.o.diff then
-            vim.cmd.normal { "[c", bang = true }
-          else
-            require("gitsigns.actions").prev_hunk()
+          for _ = 1, vim.v.count1 do
+            if vim.o.diff then
+              vim.cmd.normal { "[c", bang = true }
+            else
+              require("gitsigns.actions").prev_hunk()
+            end
           end
         end,
         "Change | Hunk",
@@ -334,10 +346,10 @@ function M.setup_basic()
   }
 
   for _, func in ipairs { mapx.nnoremap, mapx.inoremap } do
-    func("<F1>", "<cmd>lua require('core.utils.ui').toggle_colorcolumn()<cr>", "Toggle Colorcolumn")
+    func("<F1>", lua_normal_command "require('core.utils.ui').toggle_colorcolumn()", "Toggle Colorcolumn")
   end
-  mapx.nnoremap("m<space>", "<cmd>delmarks!<cr>", "Delete All Marks")
-  mapx.nnoremap("g?", "<cmd>WhichKey<cr>", "WhichKey")
+  mapx.nnoremap("m<space>", normal_command "delmarks!", "Delete All Marks")
+  mapx.nnoremap("g?", normal_command "WhichKey", "WhichKey")
   mapx.nnoremap("gx", system_open, "Open the file under cursor with system app")
   which_key.register {
     ["<leader>a"] = {
@@ -384,16 +396,19 @@ function M.setup_basic()
 end
 
 function M.setup_zenmode()
-  mapx.nnoremap("<leader>z", "<cmd>ZenMode<cr>", "ZenMode")
+  mapx.nnoremap("<leader>z", normal_command "ZenMode", "ZenMode")
 end
 
 function M.setup_dap()
+  for _, key in ipairs { "d", "s", "C" } do
+    lvim.builtin.which_key.mappings.d[key] = nil
+  end
   local keymaps = {
     name = "Debug",
-    e = { "<Cmd>lua require('dapui').eval()<cr>", "Eval Expression" },
-    f = { "<Cmd>lua require('dapui').float_element()<cr>", "Float Element" },
-    d = { "<cmd>lua require'dap'.run_to_cursor()<cr>", "Run To Cursor" },
-    D = { "<cmd>lua require'dap'.disconnect()<cr>", "Disconnect" },
+    e = { lua_normal_command "require('dapui').eval()", "Eval Expression" },
+    f = { lua_normal_command "require('dapui').float_element()<cr>", "Float Element" },
+    d = { lua_normal_command "require'dap'.run_to_cursor()<cr>", "Run To Cursor" },
+    D = { lua_normal_command "require'dap'.disconnect()<cr>", "Disconnect" },
     s = {
       function()
         require("telescope").extensions.dap.configurations()
@@ -414,27 +429,13 @@ function M.setup_dap()
     },
   }
   if myvim.plugins.dap_virtual_text.active then
-    keymaps.V = { "<Cmd>DapVirtualTextToggle<cr>", "Toggle Virtual Text" }
+    keymaps.V = { normal_command "DapVirtualTextToggle", "Toggle Virtual Text" }
   end
   which_key.register { ["<leader>d"] = keymaps }
-  mapx.vnoremap("<leader>de", "<Cmd>lua require('dapui').eval()<cr>", "Eval Expression")
+  mapx.vnoremap("<leader>de", lua_normal_command "require('dapui').eval()<cr>", "Eval Expression")
 end
 
 function M.setup_git()
-  local function fugitive_diff()
-    -- find all window in current tab, ignoring floating_window
-    local tabnr = vim.api.nvim_get_current_tabpage()
-    local wininfo = vim.tbl_filter(function(info)
-      return vim.api.nvim_win_get_config(info.winid).relative == "" and info.tabnr == tabnr
-    end, vim.fn.getwininfo())
-    if #wininfo == 1 then
-      vim.cmd "Gvdiff"
-    else
-      vim.cmd "Gtabedit | Gdiffsplit"
-    end
-  end
-
-  -- git
   for _, key in ipairs { "d", "j", "k", "g", "s", "r", "u", "R" } do
     lvim.builtin.which_key.mappings.g[key] = nil
   end
@@ -447,10 +448,10 @@ function M.setup_git()
     ["<leader>g"] = {
       name = "Git",
       -- d = { fugitive_diff, "Git Diff" },
-      d = { "<cmd>DiffviewOpen<cr>", "Diff View" },
-      h = { "<cmd>DiffviewFileHistory<cr>", "Diff History" },
-      H = { "<cmd>DiffviewFileHistory %<cr>", "Diff History (for current file)" },
-      g = { require("core.utils.ui").toggle_fugitive, "Toggle Status" },
+      d = { normal_command "DiffviewOpen", "Diff View" },
+      h = { normal_command "DiffviewFileHistory", "Diff History" },
+      H = { normal_command "DiffviewFileHistory %", "Diff History (for current file)" },
+      g = { lua_normal_command "require('core.utils.ui').toggle_fugitive()", "Toggle Status" },
       t = { M.chain("Gitsigns toggle_deleted", "Gitsigns toggle_word_diff"), "Toggle Inline Diff" },
       y = {
         function()
@@ -479,29 +480,30 @@ function M.setup_toggle()
   which_key.register {
     ["<leader>t"] = {
       name = "Toggle",
-      q = { "<cmd>call QuickFixToggle()<cr>", "Quickfix" },
-      l = { "<cmd>call auxlib#toggle_loclist()<cr>", "LocList" },
-      d = { "<cmd>lua require('core.utils.lsp').toggle_diagnostics()<cr>", "Diagnostic" },
-      a = { "<cmd>AerialToggle!<cr>", "Aerial" },
-      c = { "<cmd>ColorizerToggle<cr>", "Colorizer" },
-      b = { "<cmd>TableModeToggle<cr>", "Table Mode" },
-      z = { "<cmd>Twilight<cr>", "Toggle Twilight" },
-      t = { "<cmd>OverseerToggle<cr>", "Toggle Overseer" },
+      --- Defined in LunarVim
+      q = { normal_command "call QuickFixToggle()", "Quickfix" },
+      l = { normal_command "call auxlib#toggle_loclist()", "LocList" },
+      d = { lua_normal_command "require('core.utils.lsp').toggle_diagnostics()", "Diagnostic" },
+      a = { normal_command "AerialToggle!", "Aerial" },
+      c = { normal_command "ColorizerToggle", "Colorizer" },
+      b = { normal_command "TableModeToggle", "Table Mode" },
+      z = { normal_command "Twilight", "Toggle Twilight" },
+      t = { normal_command "OverseerToggle", "Toggle Overseer" },
     },
   }
 end
 
 function M.setup_treesitter()
   mapx.nname("<leader>T", "Treesitter")
-  mapx.nnoremap("<leader>Tc", "<cmd>TSConfigInfo<cr>", "Config Info")
-  mapx.nnoremap("<leader>Tm", "<cmd>TSModuleInfo<cr>", "Module Info")
-  mapx.nnoremap("<leader>Tp", "<cmd>TSPlaygroundToggle<cr>", "Playground")
+  mapx.nnoremap("<leader>Tc", normal_command "TSConfigInfo", "Config Info")
+  mapx.nnoremap("<leader>Tm", normal_command "TSModuleInfo", "Module Info")
+  mapx.nnoremap("<leader>Tp", normal_command "TSPlaygroundToggle", "Playground")
   if vim.inspect_pos ~= nil then
-    mapx.nnoremap("<leader>Th", "<cmd>Inspect<cr>", "Highlight Info")
+    mapx.nnoremap("<leader>Th", normal_command "Inspect", "Highlight Info")
   else
-    mapx.nnoremap("<leader>Th", "<cmd>TSHighlightCapturesUnderCursor<cr>", "Highlight Info")
+    mapx.nnoremap("<leader>Th", normal_command "TSHighlightCapturesUnderCursor", "Highlight Info")
   end
-  mapx.nnoremap("<leader>Ts", "<cmd>TSUpdate<cr>", "Update Treesitter Parser")
+  mapx.nnoremap("<leader>Ts", normal_command "TSUpdate", "Update Treesitter Parser")
 end
 
 function M.setup_ufo()
@@ -537,7 +539,7 @@ end
 
 function M.setup_package_management()
   which_key.register {
-    ["<leader>pm"] = { "<cmd>Mason<cr>", "Mason" },
+    ["<leader>pm"] = { normal_command "Mason", "Mason" },
   }
 end
 

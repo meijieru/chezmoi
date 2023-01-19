@@ -119,11 +119,6 @@ function M.setup_dap()
     local dap = require "dap"
     dap.defaults.fallback.terminal_win_cmd = "botright 50vsplit new"
     require("dap.ext.vscode").load_launchjs()
-
-    -- disable default keymaps
-    for _, key in ipairs { "d", "s", "C" } do
-      lvim.builtin.which_key.mappings.d[key] = nil
-    end
   end
 end
 
