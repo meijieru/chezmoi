@@ -4,7 +4,7 @@ lunarvim_path=~/lib/LunarVim
 if [[ ! -d "${lunarvim_path}" ]]; then
     git clone ssh://git@direct.meijieru.com:2222/meijieru/LunarVim.git ${lunarvim_path}
     cd "${lunarvim_path}"
-    make install
+    bash utils/installer/install.sh -l --no-install-dependencies
 fi
 
 dir=$(pwd)
