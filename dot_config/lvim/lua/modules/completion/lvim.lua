@@ -53,7 +53,6 @@ function M.setup_cmp()
     end
     return nil
   end
-  local map_modes = { "i", "s" }
 
   -- we don't use tab for cmp
   local status_luasnip_ok, luasnip = safe_load "luasnip"
@@ -61,21 +60,30 @@ function M.setup_cmp()
     return
   end
   local methods = require("lvim.core.cmp").methods
+
+  for _, key in ipairs { "<C-J>", "<C-K>", "<C-D>", "<C-E>", "<C-F>", "<C-Y>", "<Down>", "<Up>" } do
+    lvim.builtin.cmp.mapping[key] = nil
+  end
+
+  lvim.builtin.cmp.mapping["<C-D>"] = cmp.mapping.scroll_docs(8)
+  lvim.builtin.cmp.mapping["<C-U>"] = cmp.mapping.scroll_docs(-8)
+
+  local map_modes = { "i", "s" }
   lvim.builtin.cmp.mapping["<Tab>"] = cmp.mapping(function(fallback)
     local neogen = load_neogen()
     if luasnip.expand_or_locally_jumpable() then
       luasnip.expand_or_jump()
-    elseif methods.jumpable() then
+    elseif methods.jumpable(1) then
       luasnip.jump(1)
     elseif neogen and neogen.jumpable() then
       neogen.jump_next()
-    elseif methods.check_backspace() then
+    else
       fallback()
     end
   end, map_modes)
   lvim.builtin.cmp.mapping["<S-Tab>"] = cmp.mapping(function(fallback)
     local neogen = load_neogen()
-    if methods.jumpable(-1) then
+    if luasnip.jumpable(-1) then
       luasnip.jump(-1)
     elseif neogen and neogen.jumpable(-1) then
       neogen.jump_prev()
@@ -83,10 +91,6 @@ function M.setup_cmp()
       fallback()
     end
   end, map_modes)
-  -- disable keymap
-  for _, key in ipairs { "<C-J>", "<C-K>", "<Down>", "<Up>" } do
-    lvim.builtin.cmp.mapping[key] = nil
-  end
 end
 
 function M.setup_lsp()
