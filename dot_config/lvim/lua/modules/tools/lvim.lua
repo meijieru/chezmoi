@@ -5,10 +5,6 @@ function M.setup_telescope()
   if not myvim.plugins.telescope.active then
     return
   end
-
-  lvim.builtin.telescope.defaults.mappings.i["<C-w>"] = function()
-    vim.cmd.normal { 'b"zcw', bang = true }
-  end
   -- useful defalt:
   -- <C-/> Show mappings for picker actions (insert mode)
   -- ? Show mappings for picker actions (normal mode)
