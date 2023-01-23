@@ -109,7 +109,10 @@ _G.myvim = {
     flit = { active = false },
     ufo = { active = true },
     smartyank = { active = true },
-    ts_node_action = { active = true },
+    ts_node_action = {
+      active = true,
+      integrate_with_null_ls = false,
+    },
 
     -- lang
     markdown_preview = { active = true },
