@@ -80,9 +80,7 @@ end
 
 function M.aerial()
   local opts = {
-    -- Priority list of preferred backends for aerial
-    -- backends = { "lsp", "treesitter", "markdown" },
-    backends = { "treesitter", "markdown", "lsp" },
+    backends = { "lsp", "treesitter", "markdown", "man" },
 
     layout = {
       max_width = 40,
