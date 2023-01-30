@@ -111,6 +111,7 @@ function M.statuscol()
   require("statuscol").setup {
     setopt = true,
     order = "NSFs",
+    foldfunc = "builtin",
   }
 end
 

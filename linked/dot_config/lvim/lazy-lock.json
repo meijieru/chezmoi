@@ -70,7 +70,7 @@
   "shipwright.nvim": { "branch": "master", "commit": "ab70e80bb67b7ed3350bec89dd73473539893932" },
   "smartyank.nvim": { "branch": "master", "commit": "cd191d9629d620ccc608e6b4e60f3541264d0323" },
   "sqlite.lua": { "branch": "master", "commit": "53cac3fdb5f5e4e63e243232b6eccf3c764ae18a" },
-  "statuscol.nvim": { "branch": "main", "commit": "5e545f98fe40498b4c93dcfaa472d7a972cec3fc" },
+  "statuscol.nvim": { "branch": "main", "commit": "622a21c9e67b86dd5ce8170cec6de918c2b5b895" },
   "structlog.nvim": { "branch": "main", "commit": "45b26a2b1036bb93c0e83f4225e85ab3cee8f476" },
   "telescope-dap.nvim": { "branch": "master", "commit": "313d2ea12ae59a1ca51b62bf01fc941a983d9c9c" },
   "telescope-frecency.nvim": { "branch": "master", "commit": "62cbd4e7f55fb6de2b8081087ce97026022ffcd2" },
