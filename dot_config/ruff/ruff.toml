@@ -1,0 +1,11 @@
+# https://github.com/charliermarsh/ruff#reference
+target-version = "py38"
+ignore = []
+line-length = 80
+select = ["ALL"]
+
+[isort]
+known-third-party = []
+
+[pydocstyle] # https://github.com/charliermarsh/ruff#pydocstyle
+convention = "google"
