@@ -18,6 +18,9 @@ M["ibhagwan/smartyank.nvim"] = {
       higroup = "Search", -- highlight group of yanked text
       timeout = 200, -- timeout for clearing the highlight
     },
+    osc52 = {
+      escseq = "tmux", -- use tmux escape sequence, only enable if you're using remote tmux and have issues (see #4)
+    },
   },
   enabled = myvim.plugins.smartyank.active,
 }
