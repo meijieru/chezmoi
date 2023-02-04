@@ -107,7 +107,7 @@ M["stevearc/dressing.nvim"] = {
 }
 
 M["stevearc/oil.nvim"] = {
-  lazy = true,
+  -- TODO(meijieru): lazy load
   config = conf.oil,
   enabled = myvim.plugins.oil.active,
 }
