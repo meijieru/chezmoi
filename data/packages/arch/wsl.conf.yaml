@@ -28,6 +28,7 @@ pacman:
   - nodejs
   - yarn
   - npm
+  - typescript
   - clang
   - cmake
   - chezmoi
@@ -44,6 +45,7 @@ pacman:
   - python-matplotlib
   - python-pyqt5
   - python-ipdb
+  - python-pipreqs
   # - python-klepto # sniprun
   - ipython
 
@@ -55,6 +57,8 @@ pacman:
   - adobe-source-han-sans-cn-fonts
   - noto-fonts-emoji
   - nerd-fonts-jetbrains-mono
+
+  - foliate
 
 yay:
   - lsyncd
