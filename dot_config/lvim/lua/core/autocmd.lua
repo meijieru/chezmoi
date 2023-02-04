@@ -9,8 +9,13 @@ on("BufWritePost", {
   desc = "Trigger chezmoi apply",
 })
 
--- disable fold
-on("FileType", { pattern = { "alpha", "lspinfo", "aerial", "dapui_scopes" }, command = "setlocal nofoldenable" })
+on("FileType", {
+  pattern = { "alpha", "lspinfo", "aerial", "dapui_scopes" },
+  callback = function()
+    vim.wo.foldenable = false
+  end,
+  desc = "Disable fold",
+})
 
 -- overwrite highlight
 on("Colorscheme", {
@@ -24,11 +29,6 @@ on("Colorscheme", {
 
 -- diable lvim autocmds
 local autocmds_to_disable = {
-  {
-    group = "_filetype_settings",
-    event = { "FileType" },
-    pattern = { "alpha" },
-  },
   {
     group = "_general_settings",
     event = "TextYankPost",
