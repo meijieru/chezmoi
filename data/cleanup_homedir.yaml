@@ -42,6 +42,7 @@ delete:
   - .config/lvim/plugin
   - .config/nvimpager/plugin
   - .config/lvim/after/ftplugin/html.lua
+  - .config/lvim/after/ftplugin/startuptime.lua
 
   - .local/share/nvim/dapinstall
   - .local/share/nvim/lsp_servers

@@ -10,6 +10,13 @@ on("BufWritePost", {
 })
 
 on("FileType", {
+  pattern = { "startuptime" },
+  callback = function()
+    vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = 0, desc = "Close" })
+  end,
+})
+
+on("FileType", {
   pattern = { "alpha", "lspinfo", "aerial", "dapui_scopes" },
   callback = function()
     vim.wo.foldenable = false
