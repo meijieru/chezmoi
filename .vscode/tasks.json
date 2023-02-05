@@ -1,0 +1,28 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "shell",
+      "label": "clean dir",
+      "command": "python3",
+      "args": ["tools/cleanup_dir.py"]
+    },
+    {
+      "type": "shell",
+      "label": "chezmoi apply",
+      "command": "chezmoi",
+      "args": ["apply"]
+    },
+    {
+      "type": "shell",
+      "label": "update checksum",
+      "command": "./run_file_dependent_scripts.py",
+      "args": ["--skip_install"]
+    },
+    {
+      "type": "shell",
+      "label": "sync local packages",
+      "command": "chezmoi execute-template < tools/install_package/install_local_packages.sh.tmpl | bash"
+    }
+  ]
+}

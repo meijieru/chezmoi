@@ -1,0 +1,15 @@
+#!/bin/bash
+
+source ./tools/install_package/install.sh
+
+{{- if eq .chezmoi.osRelease.name "Ubuntu" }}
+package_install ubuntu/local.yaml
+{{ end -}}
+
+{{- if eq .chezmoi.osRelease.name "Debian GNU/Linux" }}
+package_install debian/local.yaml
+{{ end -}}
+
+{{- if eq .chezmoi.osRelease.name "Arch Linux" }}
+package_install arch/local.yaml
+{{ end -}}
