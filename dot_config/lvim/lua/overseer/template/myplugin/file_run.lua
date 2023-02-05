@@ -31,6 +31,7 @@ local filetype_to_cmd = {
   javascript = run_with "node",
   lua = run_with "luajit",
   perl = run_with "perl",
+  html = run_with "xdg-open",
   c = remove_extension,
   cpp = remove_extension,
   go = remove_extension,
