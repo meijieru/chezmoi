@@ -41,6 +41,7 @@ delete:
   - .config/lvim/package.json
   - .config/lvim/plugin
   - .config/nvimpager/plugin
+  - .config/lvim/after/ftplugin/html.lua
 
   - .local/share/nvim/dapinstall
   - .local/share/nvim/lsp_servers
