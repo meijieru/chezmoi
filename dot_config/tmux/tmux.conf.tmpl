@@ -73,8 +73,8 @@ set -g status-justify absolute-centre
 {{ else }}
 set -g status-justify centre
 {{ end -}}
-set -g status-left '[#[fg=cyan]#S#[fg=green]]'
-set -g status-right '#[fg=green][#[fg=cyan]%Y-%m-%d#[fg=green]]'
+set -g status-left '#[fg=green][#[fg=cyan]#S#[fg=green]]'
+set -g status-right '#[fg=green][#[fg=cyan]#H#[fg=green]]'
 set -g status-left-length 80
 set -g status-right-length 80
 set -g status-position bottom
