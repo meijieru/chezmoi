@@ -5,3 +5,5 @@ end
 
 vim.wo.wrap = true
 null_ls_config()
+
+-- require("lvim.lsp.manager").setup "grammarly"

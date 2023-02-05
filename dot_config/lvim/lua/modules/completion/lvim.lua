@@ -103,6 +103,14 @@ function M.setup_lsp()
       return true
     end
   end, lvim.lsp.automatic_configuration.skipped_servers)
+
+  lvim.lsp.automatic_configuration.skipped_filetypes = vim.tbl_filter(function(val)
+    if vim.tbl_contains(myvim.lsp.lvim.ensured_filetypes, val) then
+      return false
+    else
+      return true
+    end
+  end, lvim.lsp.automatic_configuration.skipped_filetypes)
 end
 
 function M.setup()
