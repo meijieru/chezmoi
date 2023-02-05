@@ -49,6 +49,8 @@ delete:
   - .local/share/nvim/site
   - .local/share/lunarvim/site/pack/packer
 
+  - .local/bin/asynctasks
+
 move:
   .wget-hsts: $XDG_STATE_HOME/wget-hsts
   .zlua: $XDG_STATE_HOME/zlua
