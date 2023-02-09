@@ -18,6 +18,7 @@ vim.o.grepprg = [[rg --hidden --glob "!.git" --no-heading --smart-case --vimgrep
 vim.o.grepformat = "%f:%l:%c:%m"
 vim.o.laststatus = 3
 vim.o.background = "light"
+vim.o.exrc = true
 
 if myvim.plugins.smartyank.active then
   vim.o.clipboard = ""
