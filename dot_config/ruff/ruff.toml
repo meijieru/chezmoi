@@ -2,7 +2,7 @@
 target-version = "py38"
 ignore = []
 line-length = 80
-select = ["ALL"]
+select = ["E", "F"]
 
 [isort]
 known-third-party = []
