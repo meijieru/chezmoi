@@ -187,6 +187,9 @@ function M.setup_find()
   end
 
   which_key.register {
+    ["<c-p>"] = { normal_command "Telescope commands", "Commands Palette" },
+  }
+  which_key.register {
     ["<leader>"] = {
       -- trick: <c-space> convert it as fuzzy
       ["*"] = { smart_default "live_grep", "Grep" },
@@ -196,7 +199,6 @@ function M.setup_find()
         name = "Find",
         s = { lua_normal_command "require('telescope').extensions.luasnip.luasnip()", "Find snippets" },
         c = { normal_command "Telescope command_history", "Find Commands History" },
-        C = { normal_command "Telescope commands", "Commands" },
         f = { normal_command "Telescope find_files", "Find File" },
         h = { smart_default "help_tags", "Find Help" },
         m = { smart_default "man_pages", "Man Pages" },
