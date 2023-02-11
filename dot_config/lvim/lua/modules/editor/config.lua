@@ -80,25 +80,20 @@ end
 
 function M.aerial()
   local opts = {
-    backends = { "lsp", "treesitter", "markdown", "man" },
-
     layout = {
       max_width = 40,
       min_width = 40,
     },
-
-    lsp = {
-      -- Set to false to not update the symbols when there are LSP errors
-      update_when_errors = false,
-    },
-
     -- A list of all symbols to display. Set to false to display all symbols.
+    -- This can be a filetype map (see :help aerial-filetype-map)
+    -- To see all available values, see :help SymbolKind
     filter_kind = {
       "Class",
       "Constructor",
       "Enum",
       "Function",
       "Interface",
+      "Module",
       "Method",
       "Struct",
     },
@@ -147,7 +142,11 @@ function M.ufo()
   require("ufo").setup {
     fold_virt_text_handler = handler,
     provider_selector = function(_, filetype, _)
-      return ft_map[filetype]
+      if vim.tbl_contains(ft_map, filetype) then
+        return ft_map[filetype]
+      else
+        return { "lsp", "indent" }
+      end
     end,
   }
 end
