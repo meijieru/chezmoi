@@ -42,6 +42,7 @@ local function builder()
   local cmd, extra = filetype_to_cmd[vim.bo.filetype](file)
   return vim.tbl_deep_extend("force", {
     cmd = cmd,
+    strategy = { "toggleterm", open_on_start = true },
     components = vim.list_extend({
       "default",
     }, helper.get_output_component()),

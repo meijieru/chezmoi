@@ -240,17 +240,22 @@ function M.setup_find()
   })
 end
 
-function M.setup_asynctasks()
-  if not myvim.plugins.asynctasks.active then
-    return
+function M.setup_tasks()
+  if myvim.plugins.asynctasks.active then
+    local mappings = {
+      ["<F5>"] = { normal_command "AsyncTask file-run", "File Run" },
+      ["<F6>"] = { normal_command "AsyncTask file-build", "File Build" },
+      ["<f7>"] = { normal_command "AsyncTask project-run", "Project Run" },
+      ["<f8>"] = { normal_command "AsyncTask project-build", "Project Build" },
+    }
+    which_key.register(mappings, { silent = true })
+  elseif myvim.plugins.overseer.active then
+    local mappings = {
+      ["<F5>"] = { normal_command "OverseerRun file-run", "File Run" },
+      ["<F6>"] = { normal_command "OverseerRun file-build", "File Build" },
+    }
+    which_key.register(mappings, { silent = true })
   end
-  local mappings = {
-    ["<F5>"] = { normal_command "AsyncTask file-run", "File Run" },
-    ["<F6>"] = { normal_command "AsyncTask file-build", "File Build" },
-    ["<f7>"] = { normal_command "AsyncTask project-run", "Project Run" },
-    ["<f8>"] = { normal_command "AsyncTask project-build", "Project Build" },
-  }
-  which_key.register(mappings, { silent = true })
 end
 
 function M.setup_basic()
@@ -551,7 +556,7 @@ function M.setup()
   M.setup_easy_align()
   M.setup_terminal()
   M.setup_lsp()
-  M.setup_asynctasks()
+  M.setup_tasks()
   M.setup_sniprun()
   M.setup_zenmode()
   M.setup_dap()
