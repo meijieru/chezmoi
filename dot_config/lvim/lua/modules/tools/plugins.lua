@@ -70,7 +70,7 @@ M["skywind3000/asynctasks.vim"] = {
 M["stevearc/overseer.nvim"] = {
   cmd = { "OverseerRun", "OverseerToggle" },
   opts = {
-    strategy = { "toggleterm", open_on_start = false },
+    strategy = { "toggleterm", open_on_start = true },
     templates = { "builtin", "myplugin.global_tasks" },
     task_list = {
       bindings = {
