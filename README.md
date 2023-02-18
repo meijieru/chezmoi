@@ -27,7 +27,3 @@ Check [wiki](https://gitea.meijieru.com/meijieru/nas_management/wiki/?action=_pa
 ## Neovim
 
 Check [doc](./doc/nvim.md).
-
-### Cheatsheets
-
-Check [doc](./doc/cheatsheet.md).
