@@ -1,5 +1,7 @@
 local helper = require "overseer.template.myplugin.helper"
 
+local remove_extension = helper.remove_extension
+
 --- Run with runner
 ---@param runner string | table
 ---@return function
@@ -12,13 +14,6 @@ local function run_with(runner)
       vim.list_extend(runner, { file })
     end
   end
-end
-
---- Remove the extension
----@param file string
----@return table
-local function remove_extension(file)
-  return { helper.remove_extension(file) }
 end
 
 local filetype_to_cmd = {
