@@ -16,6 +16,7 @@ function M.setup_telescope()
   lvim.builtin.telescope.pickers.buffers.initial_mode = nil
   lvim.builtin.telescope.pickers.find_files = {
     find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+    previewer = false,
   }
 end
 
