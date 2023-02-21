@@ -57,7 +57,6 @@ function M.setup_treesitter()
     keymaps = { ["."] = "textsubjects-smart", [";"] = "textsubjects-container-outer" },
   }
   lvim.builtin.treesitter.playground.enable = true
-  lvim.builtin.treesitter.rainbow.enable = true
 end
 
 function M.setup_autopair()

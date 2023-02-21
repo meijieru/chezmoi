@@ -126,9 +126,24 @@ M["nvim-treesitter/nvim-treesitter-textobjects"] = {
   event = "VeryLazy",
   dependencies = "nvim-treesitter",
 }
-M["mrjones2014/nvim-ts-rainbow"] = {
+M["HiPhish/nvim-ts-rainbow2"] = {
   event = "VeryLazy",
-  dependencies = "nvim-treesitter",
+  init = function()
+    lvim.builtin.treesitter.rainbow = {
+      enable = true,
+      disable = {},
+      max_file_lines = 3000,
+      hlgroups = {
+        "rainbowcol1",
+        "rainbowcol2",
+        "rainbowcol3",
+        "rainbowcol4",
+        "rainbowcol5",
+        "rainbowcol6",
+        "rainbowcol7",
+      },
+    }
+  end,
 }
 M["nvim-treesitter/playground"] = {
   cmd = { "TSPlaygroundToggle", "TSHighlightCapturesUnderCursor" },
