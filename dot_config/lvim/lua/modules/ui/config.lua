@@ -104,6 +104,10 @@ function M.oil()
     keymaps = {
       ["."] = "actions.open_cmdline",
     },
+    win_options = {
+      -- https://github.com/stevearc/oil.nvim/issues/57
+      concealcursor = "nc",
+    },
   }
 end
 
