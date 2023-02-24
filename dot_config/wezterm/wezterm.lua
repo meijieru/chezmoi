@@ -34,7 +34,7 @@ wezterm.on("gui-startup", function(cmd)
 end)
 
 return {
-  hide_tab_bar_if_only_one_tab = true,
+  hide_tab_bar_if_only_one_tab = false,
   enable_tab_bar = true,
 
   font_rules = {
