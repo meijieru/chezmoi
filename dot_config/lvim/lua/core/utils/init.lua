@@ -174,4 +174,31 @@ function M.chezmoi_apply(file)
     :start()
 end
 
+--- Read the content
+---@param fpath string file path
+---@return string?
+function M.read_file(fpath)
+  local file = io.open(fpath, "r")
+  local contents
+  if file then
+    contents = file:read "*all"
+    file:close()
+    return contents
+  else
+    return
+  end
+end
+
+--- Read json
+---@param fpath string
+---@return table?
+function M.read_json(fpath)
+  local contents = M.read_file(fpath)
+  if contents == nil then
+    return nil
+  else
+    return vim.json.decode(contents)
+  end
+end
+
 return M

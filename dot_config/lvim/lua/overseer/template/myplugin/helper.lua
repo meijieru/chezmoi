@@ -1,4 +1,4 @@
-M = {}
+local M = {}
 
 --- Remove the extension
 ---@param file string
