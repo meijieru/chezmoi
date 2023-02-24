@@ -22,10 +22,6 @@ function M.setup_cmp()
     path = 0,
     buffer = 0,
   })
-  lvim.builtin.cmp.confirm_opts = {
-    behavior = cmp.ConfirmBehavior.Insert,
-    select = false,
-  }
   lvim.builtin.cmp.formatting.kind_icons = myvim.kind_icons
 
   local template, source_names =
