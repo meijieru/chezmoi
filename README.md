@@ -23,7 +23,3 @@ Check [doc](./doc/win10.md), still work in progress.
 ## Setup NAS
 
 Check [wiki](https://gitea.meijieru.com/meijieru/nas_management/wiki/?action=_pages).
-
-## Neovim
-
-Check [doc](./doc/nvim.md).
