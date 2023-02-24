@@ -42,4 +42,27 @@ function M.get_remote_config()
   end
 end
 
+--- Get the remote url
+---@param host string
+---@param fpath string
+---@param protocol string?
+---@return string
+function M.get_remote_url(host, fpath, protocol)
+  return string.format("%s://%s/%s", protocol or "oil-ssh", host, fpath)
+end
+
+--- Get the remote url for local fpath
+---@param fpath string
+---@return string?
+function M.get_remote_path_for_local(fpath)
+  local remote_config = M.get_remote_config()
+  if remote_config == nil then
+    return nil
+  end
+  local remote_dir = remote_config.targetdir
+  local path = require "plenary.path"
+  local relpath = path:new(fpath):make_relative()
+  return vim.fs.normalize(join_paths(remote_dir, relpath))
+end
+
 return M
