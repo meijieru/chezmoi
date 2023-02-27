@@ -14,8 +14,7 @@ local config_name = ".vim/remote.json"
 function M.get_remote_config_path()
   local cwd = vim.loop.cwd()
   local file = join_paths(cwd, config_name)
-  local status, _ = pcall(vim.loop.fs_stat, file)
-  if status then
+  if vim.fn.filereadable(file) == 1 then
     return file
   end
 end
