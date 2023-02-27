@@ -62,11 +62,7 @@ M["ggandor/leap.nvim"] = {
 
 M["mg979/vim-visual-multi"] = {
   keys = {
-    {
-      "<C-Down>",
-      "<Plug>(VM-Find-Under)",
-      desc = "VM Add Cursor Down",
-    },
+    { "<C-Down>", "<Plug>(VM-Add-Cursor-Down)", desc = "VM Add Cursor Down" },
     { "<C-Up>", "<Plug>(VM-Add-Cursor-Up)", desc = "VM Add Cursor Up" },
     { "<C-n>", "<Plug>(VM-Find-Under)", desc = "VM Find Under" },
     { "<C-n>", "<Plug>(VM-Find-Subword-Under)", mode = "x", desc = "VM Find Under" },
