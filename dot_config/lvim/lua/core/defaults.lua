@@ -65,7 +65,7 @@ _G.myvim = {
 
     -- tool
     treesitter = {
-      ensure_installed = {},
+      ensure_installed = { "comment" },
     },
     imtoggle = { active = false },
     telescope = { active = true, theme = "center" },
