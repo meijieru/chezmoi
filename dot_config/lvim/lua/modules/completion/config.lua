@@ -8,9 +8,9 @@ function config.lsp_signature()
       border = "rounded",
     },
     max_width = 100,
-    floating_window = false,
+    floating_window = true,
     floating_window_above_cur_line = true,
-    hint_enable = true,
+    hint_enable = false, -- virtual text
     doc_lines = 0,
   }
 end
