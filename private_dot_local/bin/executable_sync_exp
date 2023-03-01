@@ -1,0 +1,16 @@
+#!/bin/bash
+
+hosts=$1
+targetdir=$2
+expdir=$3
+local_expdir=${4:-checkpoints}
+
+for host in ${hosts}; do
+	remote=${host}:${targetdir}/${expdir}
+	echo "sync ${remote} -> ${local_expdir}"
+	rsync -ahP \
+		--exclude *.pth \
+		--exclude *.model \
+		--exclude *.pkl \
+		${remote}/ ${local_expdir}/
+done

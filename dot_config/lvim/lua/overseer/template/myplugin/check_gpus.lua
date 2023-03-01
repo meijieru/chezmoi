@@ -4,7 +4,7 @@ local remote = require "core.utils.remote"
 local gpu_monitor_dir = "~/lib/gpu-monitor/"
 
 local tmpl = {
-  priority = 60,
+  priority = 51,
   params = {
     preset = {},
     name = {},

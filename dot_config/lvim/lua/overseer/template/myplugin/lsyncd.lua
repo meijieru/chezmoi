@@ -3,7 +3,7 @@ local remote = require "core.utils.remote"
 
 local lsyncd_tmpl_path = vim.fs.normalize "~/.config/lsyncd/ssh_tmpl.lua"
 local tmpl = {
-  priority = 60,
+  priority = 52,
   params = {
     env = {},
     name = {},

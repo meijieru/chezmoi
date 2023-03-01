@@ -3,4 +3,5 @@ return {
   "myplugin.file_build",
   "myplugin.lsyncd",
   "myplugin.check_gpus",
+  "myplugin.sync_exp",
 }
