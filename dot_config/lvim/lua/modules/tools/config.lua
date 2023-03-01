@@ -75,10 +75,6 @@ function config.asyncrun()
   }
 end
 
-function config.startuptime()
-  vim.g.startuptime_tries = 10
-end
-
 function config.sniprun()
   require("sniprun").setup {
     display = {

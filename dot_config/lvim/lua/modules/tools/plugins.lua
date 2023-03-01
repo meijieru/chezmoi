@@ -84,7 +84,10 @@ M["stevearc/overseer.nvim"] = {
 
 M["dstein64/vim-startuptime"] = {
   cmd = { "StartupTime" },
-  init = conf.startuptime,
+  init = function()
+    vim.g.startuptime_tries = 10
+    vim.g.startuptime_event_width = 40
+  end,
 }
 
 M["michaelb/sniprun"] = {
