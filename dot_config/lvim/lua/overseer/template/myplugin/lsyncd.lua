@@ -13,6 +13,7 @@ local tmpl = {
       cmd = { "lsyncd", lsyncd_tmpl_path },
       env = params.env,
       name = params.name,
+      components = { "status_only" },
     }
   end,
 }

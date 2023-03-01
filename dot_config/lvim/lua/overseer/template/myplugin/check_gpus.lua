@@ -19,6 +19,7 @@ local tmpl = {
         join_paths("servers", params.preset),
       },
       name = params.name,
+      components = { "status_only" },
     }
   end,
 }

@@ -78,6 +78,12 @@ M["stevearc/overseer.nvim"] = {
         ["<c-x>"] = "OpenSplit",
       },
     },
+    component_aliases = {
+      status_only = {
+        "on_exit_set_status",
+        "on_complete_notify",
+      },
+    },
   },
   enabled = myvim.plugins.overseer.active,
 }
