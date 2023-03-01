@@ -28,7 +28,6 @@ return {
     local ret = {}
     for preset in vim.fs.dir(join_paths(gpu_monitor_dir, "servers")) do
       local name = "check_gpu " .. vim.split(preset, "%.")[1]
-      vim.notify(name)
       ret[#ret + 1] = overseer.wrap_template(tmpl, {
         -- name in selection
         name = name,
