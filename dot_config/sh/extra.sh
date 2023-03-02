@@ -42,6 +42,13 @@ if [[ -f $HOME/lib/anaconda/bin/conda ]]; then
     eval "$(${ANACONDA_HOME}/bin/conda shell.$(echo "$SHELL" | sed "s/.*\///") hook)"
 fi
 
+# load brew
+brew_home=/home/linuxbrew/.linuxbrew
+if [[ -f ${brew_home}/bin/brew ]]; then
+    export PATH=${brew_home}/bin:${PATH}
+    export LD_LIBRARY_PATH=${brew_home}/lib:${LD_LIBRARY_PATH}
+fi
+
 # google related
 # source the common Brain bashrc (go/brain-bashrc)
 if [ -r /google/data/ro/teams/brain-frameworks/config/ml_bashrc ]; then
