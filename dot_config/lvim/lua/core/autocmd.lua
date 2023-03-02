@@ -17,6 +17,13 @@ on("FileType", {
 })
 
 on("FileType", {
+  pattern = { "alpha" },
+  callback = function()
+    vim.keymap.set("n", "q", "<cmd>quit<cr>", { buffer = 0, desc = "Quit" })
+  end,
+})
+
+on("FileType", {
   pattern = { "alpha", "lspinfo", "aerial", "dapui_scopes" },
   callback = function()
     vim.wo.foldenable = false

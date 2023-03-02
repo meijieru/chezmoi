@@ -81,7 +81,12 @@ _G.myvim = {
     aerial = { active = true },
     dressing = { active = true },
     notify = { active = true },
-    alpha = { active = true, theme = "theta" },
+    alpha = {
+      active = true,
+      theme = "theta",
+      show_button = "auto",
+    },
+    pokemon = { active = true },
     terminal = { active = true },
     bufferline = { active = false },
     gitsigns = { active = true },

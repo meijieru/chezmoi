@@ -106,6 +106,35 @@ M["stevearc/dressing.nvim"] = {
   enabled = myvim.plugins.dressing.active,
 }
 
+M["ColaMint/pokemon.nvim"] = {
+  lazy = true,
+  config = function()
+    local number_candidates = {
+      "0025",
+      "0039",
+      "0104",
+      "0105",
+      "0116",
+      "0131",
+      "0006.3",
+      "0735.1",
+      "0196.1",
+      "0628.2",
+    }
+    local number
+    if math.random() > 0.5 then
+      number = "random"
+    else
+      number = number_candidates[math.random(#number_candidates)]
+    end
+    require("pokemon").setup {
+      number = number,
+      size = "auto",
+    }
+  end,
+  enabled = myvim.plugins.pokemon.active,
+}
+
 M["stevearc/oil.nvim"] = {
   -- TODO(meijieru): lazy load
   config = conf.oil,

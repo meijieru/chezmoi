@@ -98,6 +98,16 @@ function M.setup_alpha()
     local theme_name = myvim.plugins.alpha.theme
     local theme = require("alpha.themes." .. theme_name)
 
+    local header_val
+    local show_button = true
+    if myvim.plugins.pokemon.active then
+      local pokemon = require "pokemon"
+      header_val = pokemon.header()
+      if myvim.plugins.alpha.show_button == "auto" then
+        show_button = false
+      end
+    end
+
     if theme.mru_opts ~= nil then
       theme.mru_opts.ignore = function(path, ext)
         local default_mru_ignore = { "gitcommit" }
@@ -106,15 +116,26 @@ function M.setup_alpha()
     end
 
     if theme_name == "theta" then
-      local dashboard = require "alpha.themes.dashboard"
-      local buttons_val = vim.list_slice(theme.buttons.val, 1, 3)
-      vim.list_extend(buttons_val, {
-        dashboard.button("SPC f f", "  Find file"),
-        dashboard.button("SPC f P", "  Find project"),
-        dashboard.button("SPC *", "  Live grep"),
-        dashboard.button("q", "  Quit", "<cmd>q<CR>"),
-      })
-      theme.buttons.val = buttons_val
+      if show_button then
+        local dashboard = require "alpha.themes.dashboard"
+        local buttons_val = vim.list_slice(theme.buttons.val, 1, 3)
+        vim.list_extend(buttons_val, {
+          dashboard.button("SPC f f", "  Find file"),
+          dashboard.button("SPC f P", "  Find project"),
+          dashboard.button("SPC *", "  Live grep"),
+        })
+        theme.buttons.val = buttons_val
+      else
+        theme.config.layout = {
+          theme.header,
+          { type = "padding", val = 0 },
+          theme.config.layout[4],
+        }
+      end
+
+      if header_val ~= nil then
+        theme.header.val = header_val
+      end
     end
     alpha.setup(theme.config)
   end
@@ -136,10 +157,7 @@ function M.setup_breadcrumbs()
 end
 
 function M.setup_illuminate()
-  vim.list_extend(
-    lvim.builtin.illuminate.options.filetypes_denylist,
-    { "aerial", "qf" }
-  )
+  vim.list_extend(lvim.builtin.illuminate.options.filetypes_denylist, { "aerial", "qf" })
 end
 
 function M.setup()
