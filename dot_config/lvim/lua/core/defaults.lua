@@ -1,7 +1,6 @@
 _G.myvim = {
   log = {
     level = "info",
-    override_notify = true,
   },
   colorscheme = {
     name = "everforest",
