@@ -94,6 +94,9 @@ M["junegunn/vim-easy-align"] = {
 M["andymass/vim-matchup"] = {
   event = "VeryLazy",
   config = conf.matchup,
+  init = function()
+    lvim.builtin.treesitter.matchup.enable = true
+  end,
 }
 
 M["ethanholz/nvim-lastplace"] = {
@@ -143,9 +146,18 @@ M["HiPhish/nvim-ts-rainbow2"] = {
 M["nvim-treesitter/playground"] = {
   cmd = { "TSPlaygroundToggle", "TSHighlightCapturesUnderCursor" },
   dependencies = "nvim-treesitter",
+  init = function()
+    lvim.builtin.treesitter.playground.enable = true
+  end,
 }
 M["RRethy/nvim-treesitter-textsubjects"] = {
   event = "VeryLazy",
+  init = function()
+    lvim.builtin.treesitter.textsubjects = {
+      enable = false,
+      keymaps = { ["."] = "textsubjects-smart", [";"] = "textsubjects-container-outer" },
+    }
+  end,
   dependencies = "nvim-treesitter",
   enabled = false,
 }

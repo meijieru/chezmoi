@@ -1,7 +1,6 @@
 local M = {}
 
 function M.setup_treesitter()
-  lvim.builtin.treesitter.highlight.additional_vim_regex_highlighting = false
   lvim.builtin.treesitter.ensure_installed = myvim.plugins.treesitter.ensure_installed
   lvim.builtin.treesitter.incremental_selection = {
     enable = true,
@@ -12,9 +11,7 @@ function M.setup_treesitter()
       node_decremental = ",",
     },
   }
-  lvim.builtin.treesitter.matchup.enable = true
   -- TODO(meijieru): check later
-  lvim.builtin.treesitter.indent.disable = { "yaml", "python" }
   lvim.builtin.treesitter.textobjects = {
     swap = {
       enable = false,
@@ -52,11 +49,6 @@ function M.setup_treesitter()
       },
     },
   }
-  lvim.builtin.treesitter.textsubjects = {
-    enable = false,
-    keymaps = { ["."] = "textsubjects-smart", [";"] = "textsubjects-container-outer" },
-  }
-  lvim.builtin.treesitter.playground.enable = true
 end
 
 function M.setup_autopair()
