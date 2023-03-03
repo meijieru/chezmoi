@@ -1,0 +1,13 @@
+#!/bin/bash
+
+default_src_dir=~/workspace
+src_dir="${1:-${default_src_dir}}"
+dst_dir="backup:${2}"
+
+echo "backup: ${src_dir} -> ${dst_dir}"
+rclone sync -iLP --retries 5 \
+	--exclude-if-present .ignore \
+	--exclude build/ \
+	--exclude node_modules/ \
+	--exclude __pycache__/ \
+	${src_dir} ${dst_dir}
