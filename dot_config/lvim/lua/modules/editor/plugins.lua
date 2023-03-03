@@ -128,7 +128,6 @@ M["HiPhish/nvim-ts-rainbow2"] = {
     lvim.builtin.treesitter.rainbow = {
       enable = true,
       disable = {},
-      max_file_lines = 3000,
       hlgroups = {
         "rainbowcol1",
         "rainbowcol2",
