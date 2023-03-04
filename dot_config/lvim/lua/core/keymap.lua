@@ -7,12 +7,8 @@ local status_whichkey_ok, which_key = utils.safe_load "which-key"
 if not status_whichkey_ok then
   return M
 end
-
-local status_mapx_ok, mapx = utils.safe_load "mapx"
-if not status_mapx_ok then
-  return M
-end
-require("mapx").setup { global = false, whichkey = true, debug = false }
+local register = which_key.register
+local map = vim.keymap.set
 
 local function normal_command(command)
   return string.format("<cmd>%s<cr>", command)
@@ -22,7 +18,6 @@ local function lua_normal_command(command)
   return normal_command(string.format("lua %s", command))
 end
 
--- wait for https://github.com/b0o/mapx.nvim/issues/3
 function M.chain(...)
   local cmds = { ... }
   local function exe(cmd)
@@ -45,27 +40,16 @@ function M.not_impl(msg)
 end
 
 function M.setup_easy_align()
-  vim.keymap.set({ "n", "x" }, "ga", "<Plug>(EasyAlign)", { desc = "EasyAlign" })
+  map({ "n", "x" }, "ga", "<Plug>(EasyAlign)", { desc = "EasyAlign" })
 end
 
 function M.setup_terminal()
-  local opts = { noremap = true }
-  mapx.tnoremap("<M-q>", [[<C-\><C-n>]], opts)
-  mapx.tnoremap("<M-h>", [[<C-\><C-n><C-W>h]], opts)
-  mapx.tnoremap("<M-j>", [[<C-\><C-n><C-W>j]], opts)
-  mapx.tnoremap("<M-k>", [[<C-\><C-n><C-W>k]], opts)
-  mapx.tnoremap("<M-l>", [[<C-\><C-n><C-W>l]], opts)
-
+  map("t", "<M-q>", [[<C-\><C-n>]])
+  map("t", "<M-h>", [[<C-\><C-n><C-W>h]])
+  map("t", "<M-j>", [[<C-\><C-n><C-W>j]])
+  map("t", "<M-k>", [[<C-\><C-n><C-W>k]])
+  map("t", "<M-l>", [[<C-\><C-n><C-W>l]])
   lvim.builtin.terminal.open_mapping = "<C-t>"
-end
-
-function M.setup_sniprun()
-  if not myvim.plugins.sniprun.active then
-    return
-  end
-  mapx.vmap("gr", "<Plug>SnipRun", mapx.silent, "SnipRun")
-  mapx.nmap("<leader>r", "<Plug>SnipRunOperator", mapx.silent, "SnipRun")
-  mapx.nmap("<leader>rr", "<Plug>SnipRun", mapx.silent, "SnipRun")
 end
 
 function M.setup_lsp()
@@ -100,7 +84,7 @@ function M.setup_lsp()
   for _, key in ipairs { "j", "k", "s", "d", "w", "e", "i", "I", "q" } do
     lvim.builtin.which_key.mappings.l[key] = nil
   end
-  which_key.register {
+  register {
     ["<leader>l"] = {
       ["g"] = { normal_command "Neogen", "Generate Doc" },
       ["d"] = { normal_command "Telescope diagnostics bufnr=0", "Document Diagnostics" },
@@ -123,7 +107,7 @@ function M.setup_neotest()
   if not myvim.plugins.neotest.active then
     return
   end
-  which_key.register {
+  register {
     ["<leader>u"] = {
       name = "Neotest",
       t = {
@@ -186,10 +170,10 @@ function M.setup_find()
     end
   end
 
-  which_key.register {
+  register {
     ["<c-p>"] = { normal_command "Telescope commands", "Commands Palette" },
   }
-  which_key.register {
+  register {
     ["<leader>"] = {
       -- trick: <c-space> convert it as fuzzy
       ["*"] = { smart_default "live_grep", "Grep" },
@@ -226,7 +210,7 @@ function M.setup_find()
     },
   }
 
-  which_key.register({
+  register({
     ["<leader>"] = {
       ["*"] = { visual_search "live_grep", "Grep" },
       f = {
@@ -247,7 +231,7 @@ function M.setup_tasks()
       ["<F6>"] = { normal_command "OverseerRun file-build", "File Build" },
       ["<F8>"] = { normal_command "OverseerRun make", "Project Build" },
     }
-    which_key.register(mappings, { silent = true })
+    register(mappings, { silent = true })
   end
 end
 
@@ -279,18 +263,18 @@ function M.setup_basic()
     utils.xdg_open(cfile)
   end
 
-  mapx.inoremap("<C-k>", "<Up>")
-  mapx.inoremap("<C-j>", "<Down>")
-  mapx.inoremap("<C-h>", "<Left>")
-  mapx.inoremap("<C-l>", "<Right>")
+  map({ "i", "c" }, "<C-k>", "<Up>")
+  map({ "i", "c" }, "<C-j>", "<Down>")
+  map({ "i", "c" }, "<C-h>", "<Left>")
+  map({ "i", "c" }, "<C-l>", "<Right>")
 
   -- Better window movement
-  mapx.nnoremap("<A-h>", "<C-w>h", "Left Window")
-  mapx.nnoremap("<A-j>", "<C-w>j", "Down Window")
-  mapx.nnoremap("<A-k>", "<C-w>k", "Up Window")
-  mapx.nnoremap("<A-l>", "<C-w>l", "Right Window")
+  map("n", "<A-h>", "<C-w>h", { desc = "Left Window" })
+  map("n", "<A-j>", "<C-w>j", { desc = "Down Window" })
+  map("n", "<A-k>", "<C-w>k", { desc = "Up Window" })
+  map("n", "<A-l>", "<C-w>l", { desc = "Right Window" })
 
-  which_key.register {
+  register {
     ["]"] = {
       name = "Next",
       ["e"] = {
@@ -345,13 +329,16 @@ function M.setup_basic()
     },
   }
 
-  for _, func in ipairs { mapx.nnoremap, mapx.inoremap } do
-    func("<F1>", lua_normal_command "require('core.utils.ui').toggle_colorcolumn()", "Toggle Colorcolumn")
-  end
-  mapx.nnoremap("m<space>", normal_command "delmarks!", "Delete All Marks")
-  mapx.nnoremap("g?", normal_command "WhichKey", "WhichKey")
-  mapx.nnoremap("gx", system_open, "Open the file under cursor with system app")
-  which_key.register {
+  map(
+    { "n", "i" },
+    "<F1>",
+    lua_normal_command "require('core.utils.ui').toggle_colorcolumn()",
+    { desc = "Toggle Colorcolumn" }
+  )
+  map("n", "m<space>", normal_command "delmarks!", { desc = "Delete All Marks" })
+  map("n", "g?", normal_command "WhichKey", { desc = "WhichKey" })
+  map("n", "gx", system_open, { desc = "Open the file under cursor with system app" })
+  register {
     ["<leader>a"] = {
       function()
         require("ts-node-action").node_action()
@@ -386,23 +373,21 @@ function M.setup_basic()
     },
   }
 
-  mapx.vnoremap("<", "<gv")
-  mapx.vnoremap(">", ">gv")
-
-  mapx.cnoremap("<C-h>", "<Left>")
-  mapx.cnoremap("<C-j>", "<Down>")
-  mapx.cnoremap("<C-k>", "<Up>")
-  mapx.cnoremap("<C-l>", "<Right>")
+  map("v", "<", "<gv")
+  map("v", ">", ">gv")
 end
 
 function M.setup_zenmode()
-  mapx.nnoremap("<leader>z", normal_command "ZenMode", "ZenMode")
+  register {
+    ["<leader>z"] = { normal_command "ZenMode", "ZenMode" },
+  }
 end
 
 function M.setup_dap()
   for _, key in ipairs { "d", "s", "C" } do
     lvim.builtin.which_key.mappings.d[key] = nil
   end
+
   local keymaps = {
     name = "Debug",
     e = { lua_normal_command "require('dapui').eval()", "Eval Expression" },
@@ -431,8 +416,14 @@ function M.setup_dap()
   if myvim.plugins.dap_virtual_text.active then
     keymaps.V = { normal_command "DapVirtualTextToggle", "Toggle Virtual Text" }
   end
-  which_key.register { ["<leader>d"] = keymaps }
-  mapx.vnoremap("<leader>de", lua_normal_command "require('dapui').eval()<cr>", "Eval Expression")
+  register { ["<leader>d"] = keymaps }
+
+  register({
+    ["<leader>d"] = {
+      name = "Debug",
+      e = { lua_normal_command "require('dapui').eval()", "Eval Expression" },
+    },
+  }, { mode = "v" })
 end
 
 function M.setup_git()
@@ -440,11 +431,11 @@ function M.setup_git()
     lvim.builtin.which_key.mappings.g[key] = nil
   end
 
-  vim.keymap.set({ "o", "x" }, "ih", function()
+  map({ "o", "x" }, "ih", function()
     require("gitsigns.actions").select_hunk()
   end, { desc = "Hunk" })
 
-  which_key.register {
+  register {
     ["<leader>g"] = {
       name = "Git",
       -- d = { fugitive_diff, "Git Diff" },
@@ -461,7 +452,7 @@ function M.setup_git()
       },
     },
   }
-  which_key.register({
+  register({
     ["<leader>g"] = {
       name = "Git",
       y = {
@@ -477,7 +468,7 @@ function M.setup_git()
 end
 
 function M.setup_toggle()
-  which_key.register {
+  register {
     ["<leader>t"] = {
       name = "Toggle",
       --- Defined in LunarVim
@@ -494,16 +485,16 @@ function M.setup_toggle()
 end
 
 function M.setup_treesitter()
-  mapx.nname("<leader>T", "Treesitter")
-  mapx.nnoremap("<leader>Tc", normal_command "TSConfigInfo", "Config Info")
-  mapx.nnoremap("<leader>Tm", normal_command "TSModuleInfo", "Module Info")
-  mapx.nnoremap("<leader>Tp", normal_command "TSPlaygroundToggle", "Playground")
-  if vim.inspect_pos ~= nil then
-    mapx.nnoremap("<leader>Th", normal_command "Inspect", "Highlight Info")
-  else
-    mapx.nnoremap("<leader>Th", normal_command "TSHighlightCapturesUnderCursor", "Highlight Info")
-  end
-  mapx.nnoremap("<leader>Ts", normal_command "TSUpdate", "Update Treesitter Parser")
+  register {
+    ["<leader>T"] = {
+      name = "Treesitter",
+      c = { normal_command "TSConfigInfo", "Config Info" },
+      m = { normal_command "TSModuleInfo", "Module Info" },
+      p = { normal_command "TSPlaygroundToggle", "Playground" },
+      s = { normal_command "TSUpdate", "Update Treesitter Parser" },
+      h = { normal_command "Inspect", "Highlight Info" },
+    },
+  }
 end
 
 function M.setup_ufo()
@@ -519,7 +510,7 @@ function M.setup_ufo()
   }
   for key, info in pairs(key_to_function_names) do
     local fname, desc = unpack(info, 1, 2)
-    vim.keymap.set("n", key, function()
+    map("n", key, function()
       require("ufo")[fname]()
     end, { desc = desc })
   end
@@ -527,7 +518,7 @@ end
 
 function M.setup_explorer()
   if myvim.plugins.oil.active then
-    vim.keymap.set("n", "-", function()
+    map("n", "-", function()
       require("oil").open()
     end, { desc = "Open parent directory" })
   end
@@ -538,7 +529,7 @@ function M.setup_explorer()
 end
 
 function M.setup_package_management()
-  which_key.register {
+  register {
     ["<leader>pm"] = { normal_command "Mason", "Mason" },
   }
 end
@@ -550,7 +541,6 @@ function M.setup()
   M.setup_terminal()
   M.setup_lsp()
   M.setup_tasks()
-  M.setup_sniprun()
   M.setup_zenmode()
   M.setup_dap()
   M.setup_git()

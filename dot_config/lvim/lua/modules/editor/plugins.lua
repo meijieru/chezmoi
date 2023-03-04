@@ -164,8 +164,6 @@ M["nvim-neotest/neotest"] = {
   enabled = myvim.plugins.neotest.active,
 }
 
-M["b0o/mapx.nvim"] = {}
-
 M["rmagatti/auto-session"] = {
   event = "BufReadPre",
   dependencies = { "rmagatti/session-lens", opts = {}, enabled = myvim.plugins.telescope.active },
