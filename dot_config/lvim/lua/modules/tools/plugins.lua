@@ -43,30 +43,6 @@ M["sindrets/diffview.nvim"] = {
   config = conf.diffview,
 }
 
-M["TimUntersberger/neogit"] = {
-  cmd = { "Neogit" },
-  dependencies = { "nvim-lua/plenary.nvim" },
-  config = conf.neogit,
-  enabled = false,
-}
-
-M["GustavoKatel/telescope-asynctasks.nvim"] = {
-  lazy = true,
-  dependencies = {
-    "skywind3000/asynctasks.vim",
-    "nvim-telescope/telescope-frecency.nvim",
-  },
-  enabled = myvim.plugins.telescope.active and myvim.plugins.asynctasks.active,
-}
-M["skywind3000/asynctasks.vim"] = {
-  cmd = { "AsyncTask", "AsyncTaskEdit", "AsyncTaskList" },
-  dependencies = {
-    { "skywind3000/asyncrun.vim", cmd = { "AsyncRun" }, config = conf.asyncrun },
-  },
-  init = conf.asynctasks,
-  enabled = myvim.plugins.asynctasks.active,
-}
-
 M["stevearc/overseer.nvim"] = {
   cmd = { "OverseerRun", "OverseerToggle" },
   opts = {
@@ -134,11 +110,6 @@ M["glacambre/firenvim"] = {
     vim.fn["firenvim#install"](0)
   end,
   enabled = false,
-}
-
-M["rktjmp/shipwright.nvim"] = {
-  cmd = { "Shipwright" },
-  enabled = myvim.plugins.shipwright.active,
 }
 
 return M

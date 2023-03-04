@@ -69,11 +69,9 @@ _G.myvim = {
     imtoggle = { active = false },
     telescope = { active = true, theme = "center" },
     telescope_frecency = { active = true },
-    shipwright = { active = true },
     wakatime = { active = true },
     sniprun = { active = false },
     overseer = { active = true },
-    asynctasks = { active = false },
 
     -- ui
     indentlines = { active = true },

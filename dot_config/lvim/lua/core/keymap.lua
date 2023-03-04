@@ -241,15 +241,7 @@ function M.setup_find()
 end
 
 function M.setup_tasks()
-  if myvim.plugins.asynctasks.active then
-    local mappings = {
-      ["<F5>"] = { normal_command "AsyncTask file-run", "File Run" },
-      ["<F6>"] = { normal_command "AsyncTask file-build", "File Build" },
-      ["<F7>"] = { normal_command "AsyncTask project-run", "Project Run" },
-      ["<F8>"] = { normal_command "AsyncTask project-build", "Project Build" },
-    }
-    which_key.register(mappings, { silent = true })
-  elseif myvim.plugins.overseer.active then
+  if myvim.plugins.overseer.active then
     local mappings = {
       ["<F5>"] = { normal_command "OverseerRun file-run", "File Run" },
       ["<F6>"] = { normal_command "OverseerRun file-build", "File Build" },

@@ -70,7 +70,6 @@
   "project.nvim": { "branch": "main", "commit": "1c2e9c93c7c85126c2197f5e770054f53b1926fb" },
   "promise-async": { "branch": "main", "commit": "7fa127fa80e7d4d447e0e2c78e99af4355f4247b" },
   "schemastore.nvim": { "branch": "main", "commit": "809c05360a0dabfc018093a090045d292d362ef4" },
-  "shipwright.nvim": { "branch": "master", "commit": "ab70e80bb67b7ed3350bec89dd73473539893932" },
   "smartyank.nvim": { "branch": "master", "commit": "7e3905578f646503525b2f7018b8afd17861018c" },
   "sqlite.lua": { "branch": "master", "commit": "93ff5824682ecc874200e338fd8ca9ccd08508f8" },
   "statuscol.nvim": { "branch": "main", "commit": "0d8e1f56238f42aeffb2040be8ae8b3eb750a44d" },

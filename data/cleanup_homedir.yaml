@@ -49,6 +49,7 @@ delete:
   - .local/share/nvim/site
   - .local/share/lunarvim/site/pack/packer
 
+  - .local/bin/asynctask
   - .local/bin/asynctasks
 
 move:

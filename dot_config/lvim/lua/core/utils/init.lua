@@ -43,19 +43,6 @@ function M.is_dap_debugger_installed(name)
   return true
 end
 
---- AsyncrRun customized notify hook
---- @param prefix string
-function M.asyncrun_notify(prefix)
-  prefix = prefix or ""
-  local status = vim.g.asyncrun_status
-  local info_level = {
-    running = "info",
-    success = "info",
-    failure = "warn",
-  }
-  vim.notify(prefix .. status, info_level[status], { title = "AsyncRun" })
-end
-
 --- Get plugin base dir.
 --- @param url string
 --- @return string

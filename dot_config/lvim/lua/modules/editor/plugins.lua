@@ -6,7 +6,6 @@ M["tpope/vim-surround"] = {
   dependencies = { { "tpope/vim-repeat" } },
   event = { "VeryLazy" },
 }
-M["machakann/vim-sandwich"] = { keys = { "s" }, enabled = false }
 M["tpope/vim-sleuth"] = { event = "BufReadPre" }
 M["tpope/vim-rsi"] = { event = { "CmdlineEnter", "InsertEnter" } }
 M["tpope/vim-eunuch"] = { event = "CmdlineEnter" }
@@ -78,11 +77,6 @@ M["stevearc/aerial.nvim"] = {
 
 M["kana/vim-textobj-indent"] = { event = "VeryLazy", dependencies = { "kana/vim-textobj-user" } }
 M["jceb/vim-textobj-uri"] = { event = "VeryLazy", dependencies = { "kana/vim-textobj-user" } }
-M["sgur/vim-textobj-parameter"] = {
-  ft = { "lua" },
-  dependencies = { "kana/vim-textobj-user" },
-  enabled = false,
-}
 
 M["dhruvasagar/vim-table-mode"] = {
   cmd = "TableModeToggle",
@@ -149,17 +143,6 @@ M["nvim-treesitter/playground"] = {
   init = function()
     lvim.builtin.treesitter.playground.enable = true
   end,
-}
-M["RRethy/nvim-treesitter-textsubjects"] = {
-  event = "VeryLazy",
-  init = function()
-    lvim.builtin.treesitter.textsubjects = {
-      enable = false,
-      keymaps = { ["."] = "textsubjects-smart", [";"] = "textsubjects-container-outer" },
-    }
-  end,
-  dependencies = "nvim-treesitter",
-  enabled = false,
 }
 
 M["danymat/neogen"] = {
