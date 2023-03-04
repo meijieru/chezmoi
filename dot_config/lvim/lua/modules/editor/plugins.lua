@@ -116,7 +116,7 @@ M["mfussenegger/nvim-dap-python"] = {
 }
 
 M["nvim-treesitter/nvim-treesitter-textobjects"] = {
-  event = "VeryLazy",
+  event = "User FileOpened",
   dependencies = "nvim-treesitter",
 }
 M["HiPhish/nvim-ts-rainbow2"] = {
