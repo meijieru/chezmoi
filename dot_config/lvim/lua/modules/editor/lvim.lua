@@ -40,12 +40,18 @@ function M.setup_treesitter()
     select = {
       enable = true,
       keymaps = {
-        ["af"] = "@function.outer",
         ["if"] = "@function.inner",
-        ["ac"] = "@class.outer",
+        ["af"] = "@function.outer",
         ["ic"] = "@class.inner",
+        ["ac"] = "@class.outer",
+        ["iC"] = "@conditional.inner",
+        ["aC"] = "@conditional.outer",
         ["i,"] = "@parameter.inner",
         ["a,"] = "@parameter.outer",
+        ["ia"] = "@assignment.inner",
+        ["aa"] = "@assignment.outer",
+        -- ["ik"] = "@assignment.lhs",
+        -- ["ak"] = "@assignment.rhs",
       },
     },
   }
