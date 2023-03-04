@@ -41,11 +41,13 @@ pacman:
 
   - python-pip
   - python-yaml
+  - python-pytoml
   - python-scipy
   - python-matplotlib
   - python-pyqt5
   - python-ipdb
   - python-pipreqs
+  - python-tqdm
   # - python-klepto # sniprun
   - ipython
 
