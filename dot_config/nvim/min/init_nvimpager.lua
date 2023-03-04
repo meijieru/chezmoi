@@ -87,6 +87,3 @@ vim.g.mapleader = " "
 -- vim.o.sidescrolloff = 8
 
 vim.cmd.colorscheme(colorscheme)
-
--- prevent load tpipeline
-vim.g.loaded_tpipeline = 1
