@@ -28,7 +28,7 @@ M["rcarriga/cmp-dap"] = {
 }
 
 M["ray-x/lsp_signature.nvim"] = {
-  event = "VeryLazy",
+  event = "InsertEnter",
   config = conf.lsp_signature,
   dependencies = "nvim-lspconfig",
   enabled = myvim.plugins.lsp_signature.active,

@@ -86,7 +86,7 @@ M["NvChad/nvim-colorizer.lua"] = {
 }
 
 M["wakatime/vim-wakatime"] = {
-  event = "VeryLazy",
+  event = "User FileOpened",
   enabled = myvim.plugins.wakatime.active,
 }
 

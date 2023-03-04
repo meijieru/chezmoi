@@ -79,7 +79,7 @@ M["karb94/neoscroll.nvim"] = {
   enabled = myvim.plugins.neoscroll.active,
 }
 M["petertriho/nvim-scrollbar"] = {
-  event = "VeryLazy",
+  event = "User FileOpened",
   config = conf.scrollbar,
   enabled = myvim.plugins.scrollbar.active,
 }

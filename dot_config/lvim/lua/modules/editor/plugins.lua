@@ -4,7 +4,7 @@ local conf = require "modules.editor.config"
 -- editor["tpope/vim-unimpaired"] = {}
 M["tpope/vim-surround"] = {
   dependencies = { { "tpope/vim-repeat" } },
-  event = { "VeryLazy" },
+  event = "User FileOpened",
 }
 M["tpope/vim-sleuth"] = { event = "BufReadPre" }
 M["tpope/vim-rsi"] = { event = { "CmdlineEnter", "InsertEnter" } }
@@ -25,7 +25,7 @@ M["ibhagwan/smartyank.nvim"] = {
 }
 
 M["kevinhwang91/nvim-ufo"] = {
-  event = { "VeryLazy" },
+  event = "User FileOpened",
   dependencies = "kevinhwang91/promise-async",
   config = conf.ufo,
   init = function()
@@ -86,7 +86,7 @@ M["junegunn/vim-easy-align"] = {
   cmd = "EasyAlign",
 }
 M["andymass/vim-matchup"] = {
-  event = "VeryLazy",
+  event = "User FileOpened",
   config = conf.matchup,
   init = function()
     lvim.builtin.treesitter.matchup.enable = true
@@ -120,7 +120,7 @@ M["nvim-treesitter/nvim-treesitter-textobjects"] = {
   dependencies = "nvim-treesitter",
 }
 M["HiPhish/nvim-ts-rainbow2"] = {
-  event = "VeryLazy",
+  event = "User FileOpened",
   init = function()
     lvim.builtin.treesitter.rainbow = {
       enable = true,
@@ -175,7 +175,7 @@ M["rmagatti/auto-session"] = {
 }
 
 M["ckolkey/ts-node-action"] = {
-  event = "VeryLazy",
+  event = "User FileOpened",
   dependencies = { "nvim-treesitter" },
 }
 
