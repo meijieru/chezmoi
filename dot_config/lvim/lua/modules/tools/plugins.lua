@@ -60,6 +60,21 @@ M["stevearc/overseer.nvim"] = {
         "on_complete_notify",
       },
     },
+    task_win = {
+      win_opts = {
+        winblend = 0,
+      },
+    },
+    confirm = {
+      win_opts = {
+        winblend = 0,
+      },
+    },
+    form = {
+      win_opts = {
+        winblend = 0,
+      },
+    },
   },
   enabled = myvim.plugins.overseer.active,
 }
