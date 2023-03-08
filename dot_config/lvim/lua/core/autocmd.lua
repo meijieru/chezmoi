@@ -1,3 +1,5 @@
+local api = vim.api
+local map = vim.keymap.set
 local on = vim.api.nvim_create_autocmd
 
 -- https://www.chezmoi.io/docs/how-to/#configure-vim-to-run-chezmoi-apply-whenever-you-save-a-dotfile
@@ -12,14 +14,14 @@ on("BufWritePost", {
 on("FileType", {
   pattern = { "startuptime", "fugitiveblame" },
   callback = function()
-    vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = 0, desc = "Close" })
+    map("n", "q", "<cmd>close<cr>", { buffer = 0, desc = "Close" })
   end,
 })
 
 on("FileType", {
   pattern = { "alpha" },
   callback = function()
-    vim.keymap.set("n", "q", "<cmd>quit<cr>", { buffer = 0, desc = "Quit" })
+    map("n", "q", "<cmd>quit<cr>", { buffer = 0, desc = "Quit" })
   end,
 })
 
@@ -35,8 +37,10 @@ on("FileType", {
 on("Colorscheme", {
   pattern = { "*" },
   callback = function()
-    vim.api.nvim_set_hl(0, "NormalFloat", { link = "Normal" })
-    vim.api.nvim_set_hl(0, "FloatBorder", { link = "Normal" })
+    api.nvim_set_hl(0, "NormalFloat", { link = "Normal" })
+    api.nvim_set_hl(0, "FloatBorder", { link = "Normal" })
+    -- TODO(meijieru): revisit when colorscheme has lsp semantic token support
+    api.nvim_set_hl(0, "@lsp.type.variable", { link = "@variable" })
   end,
   desc = "Customize highlight",
 })
@@ -49,8 +53,8 @@ local autocmds_to_disable = {
   },
 }
 for _, params in ipairs(autocmds_to_disable) do
-  local autocmds = vim.api.nvim_get_autocmds(params)
+  local autocmds = api.nvim_get_autocmds(params)
   for _, autocmd in ipairs(autocmds) do
-    vim.api.nvim_del_autocmd(autocmd.id)
+    api.nvim_del_autocmd(autocmd.id)
   end
 end
