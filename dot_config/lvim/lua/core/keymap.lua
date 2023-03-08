@@ -427,7 +427,7 @@ function M.setup_dap()
 end
 
 function M.setup_git()
-  for _, key in ipairs { "d", "j", "k", "g", "s", "r", "u", "R" } do
+  for _, key in ipairs { "d", "p", "j", "k", "l", "g", "s", "r", "u", "R" } do
     lvim.builtin.which_key.mappings.g[key] = nil
   end
 
@@ -438,11 +438,11 @@ function M.setup_git()
   register {
     ["<leader>g"] = {
       name = "Git",
-      -- d = { fugitive_diff, "Git Diff" },
       d = { normal_command "DiffviewOpen", "Diff View" },
       h = { normal_command "DiffviewFileHistory", "Diff History" },
       H = { normal_command "DiffviewFileHistory %", "Diff History (for current file)" },
       g = { lua_normal_command "require('core.utils.ui').toggle_fugitive()", "Toggle Status" },
+      l = { normal_command "Git blame", "Git Blame" },
       t = { M.chain("Gitsigns toggle_deleted", "Gitsigns toggle_word_diff"), "Toggle Inline Diff" },
       y = {
         function()

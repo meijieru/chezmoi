@@ -24,17 +24,4 @@ function M.get_info_under_cursor()
   end
 end
 
---- find all window in current tab, ignoring floating_window
-function M.fugitive_diff()
-  local tabnr = vim.api.nvim_get_current_tabpage()
-  local wininfo = vim.tbl_filter(function(info)
-    return vim.api.nvim_win_get_config(info.winid).relative == "" and info.tabnr == tabnr
-  end, vim.fn.getwininfo())
-  if #wininfo == 1 then
-    vim.cmd "Gvdiff"
-  else
-    vim.cmd "Gtabedit | Gdiffsplit"
-  end
-end
-
 return M

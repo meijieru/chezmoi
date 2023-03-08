@@ -10,7 +10,7 @@ on("BufWritePost", {
 })
 
 on("FileType", {
-  pattern = { "startuptime" },
+  pattern = { "startuptime", "fugitiveblame" },
   callback = function()
     vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = 0, desc = "Close" })
   end,
