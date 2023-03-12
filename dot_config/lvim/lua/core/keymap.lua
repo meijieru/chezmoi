@@ -490,7 +490,7 @@ function M.setup_treesitter()
       name = "Treesitter",
       c = { normal_command "TSConfigInfo", "Config Info" },
       m = { normal_command "TSModuleInfo", "Module Info" },
-      p = { normal_command "TSPlaygroundToggle", "Playground" },
+      p = { normal_command "InspectTree", "Playground" },
       s = { normal_command "TSUpdate", "Update Treesitter Parser" },
       h = { normal_command "Inspect", "Highlight Info" },
     },
