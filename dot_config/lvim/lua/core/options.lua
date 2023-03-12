@@ -17,7 +17,7 @@ vim.opt.diffopt:append { "internal", "algorithm:patience", "indent-heuristic" }
 vim.o.grepprg = [[rg --hidden --glob "!.git" --no-heading --smart-case --vimgrep --follow $*]]
 vim.o.grepformat = "%f:%l:%c:%m"
 vim.o.laststatus = 3
-vim.o.background = "light"
+vim.o.background = myvim.colorscheme.background
 vim.o.exrc = true
 
 if myvim.plugins.smartyank.active then

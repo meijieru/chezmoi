@@ -3,7 +3,8 @@ _G.myvim = {
     level = "info",
   },
   colorscheme = {
-    name = "everforest",
+    name = "tokyonight",
+    background = "light",
     enable_italic = true,
     enable_italic_comment = true,
     dim_inactive_windows = false,
