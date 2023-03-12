@@ -117,6 +117,7 @@ _G.myvim = {
       active = true,
       integrate_with_null_ls = false,
     },
+    rainbow = { active = false },
 
     -- lang
     markdown_preview = { active = true },

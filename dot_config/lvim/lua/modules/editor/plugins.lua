@@ -136,6 +136,7 @@ M["HiPhish/nvim-ts-rainbow2"] = {
       },
     }
   end,
+  enabled = myvim.plugins.rainbow.active,
 }
 M["nvim-treesitter/playground"] = {
   cmd = { "TSPlaygroundToggle", "TSHighlightCapturesUnderCursor" },
