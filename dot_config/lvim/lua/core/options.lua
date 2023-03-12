@@ -19,6 +19,8 @@ vim.o.grepformat = "%f:%l:%c:%m"
 vim.o.laststatus = 3
 vim.o.background = myvim.colorscheme.background
 vim.o.exrc = true
+-- https://github.com/hrsh7th/nvim-cmp/issues/309
+vim.o.title = false
 
 if myvim.plugins.smartyank.active then
   vim.o.clipboard = ""
