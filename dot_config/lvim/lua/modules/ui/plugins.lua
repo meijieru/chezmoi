@@ -26,9 +26,21 @@ local function use_colorschemes(plugins, url, colors, extras)
 end
 
 use_colorschemes(M, "meijieru/edge.nvim", { "edge_lush" }, { dependencies = { "rktjmp/lush.nvim" } })
-use_colorschemes(M, "sainnhe/gruvbox-material", { "gruvbox-material" })
-use_colorschemes(M, "sainnhe/edge", { "edge" })
-use_colorschemes(M, "sainnhe/everforest", { "everforest" })
+use_colorschemes(M, "sainnhe/gruvbox-material", { "gruvbox-material" }, {
+  init = function()
+    conf.sainnhe_colorscheme "gruvbox_material"
+  end,
+})
+use_colorschemes(M, "sainnhe/edge", { "edge" }, {
+  init = function()
+    conf.sainnhe_colorscheme "edge"
+  end,
+})
+use_colorschemes(M, "sainnhe/everforest", { "everforest" }, {
+  init = function()
+    conf.sainnhe_colorscheme "everforest"
+  end,
+})
 use_colorschemes(M, "shaunsingh/nord.nvim", { "nord" })
 use_colorschemes(M, "catppuccin/nvim", { "catppuccin" }, { name = "catppuccin" })
 
@@ -90,7 +102,12 @@ M["kevinhwang91/nvim-bqf"] = {
   enabled = true,
 }
 
-M["vimpostor/vim-tpipeline"] = { enabled = myvim.plugins.tpipeline.active }
+M["vimpostor/vim-tpipeline"] = {
+  init = function()
+    vim.g.tpipeline_fillcentre = true
+  end,
+  enabled = myvim.plugins.tpipeline.active,
+}
 M["debugloop/telescope-undo.nvim"] = {
   keys = { { "<leader>fu", "<cmd>lua require('telescope').extensions.undo.undo()<cr>", desc = "Undotree" } },
   dependencies = { "nvim-telescope/telescope.nvim" },

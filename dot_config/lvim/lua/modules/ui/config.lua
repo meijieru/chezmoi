@@ -136,13 +136,6 @@ function M.sainnhe_colorscheme(name)
   vim.g[name .. "_better_performance"] = true
 end
 
-local sainnhe_colorscheme_names = { "gruvbox_material", "edge", "everforest" }
-for _, colorscheme in ipairs(sainnhe_colorscheme_names) do
-  M.sainnhe_colorscheme(colorscheme)
-end
-
-vim.g.tpipeline_fillcentre = true
-
 require("modules.ui.lvim").setup()
 
 return M
