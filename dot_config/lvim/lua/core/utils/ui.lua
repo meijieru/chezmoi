@@ -105,21 +105,15 @@ local function _sainnhe_palettes(name)
   local configuration = vim.fn[name .. "#get_configuration"]()
 
   if name == "gruvbox_material" then
-    palette = vim.fn[name .. "#get_palette"](
-      configuration.background,
-      configuration.foreground,
-      configuration.colors_override
-    )
+    palette =
+      vim.fn[name .. "#get_palette"](configuration.background, configuration.foreground, configuration.colors_override)
     return {
       bg = palette.bg1[1],
       fg = palette.fg1[1],
     }
   elseif name == "edge" then
-    palette = vim.fn[name .. "#get_palette"](
-      configuration.style,
-      configuration.dim_foreground,
-      configuration.colors_override
-    )
+    palette =
+      vim.fn[name .. "#get_palette"](configuration.style, configuration.dim_foreground, configuration.colors_override)
     return { bg = palette.bg1[1], fg = palette.fg[1] }
   elseif name == "everforest" then
     palette = vim.fn[name .. "#get_palette"](configuration.background, configuration.colors_override)
@@ -139,7 +133,7 @@ local function _my_palettes(name)
   end
 end
 
---- Get palette for scroll bar
+--- Get palette for scroll bar, for colorscheme not supported scrollbar yet
 --- @param name string colorscheme
 --- @return table | nil
 function M.get_scroll_bar_color(name)

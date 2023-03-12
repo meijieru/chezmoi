@@ -59,7 +59,10 @@ function M.scrollbar()
   local scroll_bar_color = require("core.utils.ui").get_scroll_bar_color(myvim.colorscheme.name)
   local fg = nil
   if scroll_bar_color == nil then
-    Log:info "scrollbar color not available"
+    local status, _ = pcall(vim.api.nvim_get_hl_by_name, "ScrollbarHandle", false)
+    if not status then
+      Log:info "scrollbar color not available"
+    end
   else
     fg = scroll_bar_color.fg
   end
