@@ -1,6 +1,14 @@
 local wezterm = require("wezterm")
 local mux = wezterm.mux
 
+local function scheme_for_appearance(appearance)
+  if appearance:find("Dark") then
+    return "OneHalfDark"
+  else
+    return "OneHalfLight"
+  end
+end
+
 local mykeys = {
   { key = "{", mods = "SHIFT|ALT", action = wezterm.action({ ActivateTabRelative = -1 }) },
   { key = "}", mods = "SHIFT|ALT", action = wezterm.action({ ActivateTabRelative = 1 }) },
@@ -87,7 +95,7 @@ return {
 
   default_prog = { "wsl.exe", "~", "-d", "archlinux" },
 
-  color_scheme = "OneHalfLight",
+  color_scheme = scheme_for_appearance(wezterm.gui.get_appearance()),
 
   -- window_decorations = "NONE",
   window_padding = { left = 5, right = 0, top = 0, bottom = 0 },
