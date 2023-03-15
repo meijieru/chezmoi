@@ -2,19 +2,6 @@ local config = {}
 
 local Log = require "core.log"
 
-function config.lsp_signature()
-  require("lsp_signature").setup {
-    handler_opts = {
-      border = "rounded",
-    },
-    max_width = 100,
-    floating_window = true,
-    floating_window_above_cur_line = true,
-    hint_enable = false, -- virtual text
-    doc_lines = 0,
-  }
-end
-
 function config.telescope_luasnip()
   require("telescope").load_extension "luasnip"
 end
