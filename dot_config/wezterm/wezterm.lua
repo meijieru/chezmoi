@@ -41,6 +41,8 @@ wezterm.on("gui-startup", function(cmd)
   window:gui_window():maximize()
 end)
 
+local normal_font = "JetBrains Mono"
+
 return {
   hide_tab_bar_if_only_one_tab = false,
   enable_tab_bar = true,
@@ -62,7 +64,7 @@ return {
     },
     {
       intensity = "Bold",
-      font = font_with_fallback({ "JetBrains Mono" }, { weight = "Bold" }),
+      font = font_with_fallback({ normal_font }, { weight = "Bold" }),
     },
     {
       italic = true,
@@ -79,15 +81,11 @@ return {
     },
     {
       intensity = "Normal",
-      font = font_with_fallback({ "JetBrains Mono" }, { weight = "Regular" }),
+      font = font_with_fallback({ normal_font }, { weight = "Regular" }),
     },
   },
   font = font_with_fallback({
-    "JetBrains Mono",
-    -- "Victor Mono"
-    -- "VictorMono NF"
-    -- "FiraCode NF"
-    -- "Cascadia Code"
+    normal_font,
   }),
   font_size = 13.0,
   line_height = 0.95,
