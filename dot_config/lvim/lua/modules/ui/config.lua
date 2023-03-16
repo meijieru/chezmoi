@@ -33,6 +33,23 @@ function M.zen_mode()
       diagnostics = { enabled = true },
       tmux = { enabled = false },
     },
+    window = {
+      options = {
+        foldcolumn = "0",
+        signcolumn = "no",
+        statuscolumn = "%l",
+      },
+    },
+    on_open = function(_)
+      if myvim.plugins.scrollbar.active then
+        vim.cmd "ScrollbarToggle"
+      end
+    end,
+    on_close = function()
+      if myvim.plugins.scrollbar.active then
+        vim.cmd "ScrollbarToggle"
+      end
+    end,
   }
 end
 
