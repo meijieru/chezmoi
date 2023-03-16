@@ -22,6 +22,7 @@ vim.o.exrc = true
 -- https://github.com/hrsh7th/nvim-cmp/issues/309
 vim.o.title = false
 vim.o.splitkeep = "screen"
+vim.o.mousemodel = "extend"
 
 if myvim.plugins.smartyank.active then
   vim.o.clipboard = ""

@@ -137,11 +137,18 @@ function M.statuscol()
     setopt = true,
     segments = {
       {
+        sign = { name = { "GitSigns" }, maxwidth = 1, colwidth = 1, auto = false },
+        click = "v:lua.ScSa",
+      },
+      {
         text = { builtin.lnumfunc, " " },
         condition = { true, builtin.not_empty },
         click = "v:lua.ScLa",
       },
-      { text = { "%s" }, click = "v:lua.ScSa" },
+      {
+        sign = { name = { ".*" }, maxwidth = 1, colwidth = 1, auto = false },
+        click = "v:lua.ScSa",
+      },
       { text = { builtin.foldfunc, " " }, click = "v:lua.ScFa" },
     },
   }
