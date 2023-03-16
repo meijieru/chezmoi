@@ -6,7 +6,6 @@ M["tpope/vim-surround"] = {
   dependencies = { { "tpope/vim-repeat" } },
   event = "User FileOpened",
 }
-M["tpope/vim-sleuth"] = { event = "BufReadPre" }
 M["tpope/vim-rsi"] = { event = { "CmdlineEnter", "InsertEnter" } }
 M["tpope/vim-eunuch"] = { event = "CmdlineEnter" }
 
