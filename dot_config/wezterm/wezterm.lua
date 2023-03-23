@@ -3,9 +3,9 @@ local mux = wezterm.mux
 
 local function scheme_for_appearance(appearance)
   if appearance:find("Dark") then
-    return "OneHalfDark"
+    return "Edge Dark (base16)"
   else
-    return "OneHalfLight"
+    return "Edge Light (base16)"
   end
 end
 
