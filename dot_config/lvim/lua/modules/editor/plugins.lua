@@ -1,9 +1,9 @@
 local M = {}
 local conf = require "modules.editor.config"
 
--- editor["tpope/vim-unimpaired"] = {}
-M["tpope/vim-surround"] = {
-  dependencies = { { "tpope/vim-repeat" } },
+M["kylechui/nvim-surround"] = {
+  version = "*",
+  opts = {},
   event = "User FileOpened",
 }
 M["tpope/vim-rsi"] = { event = { "CmdlineEnter", "InsertEnter" } }
