@@ -4,7 +4,7 @@ _G.myvim = {
   },
   colorscheme = {
     name = "tokyonight",
-    background = "light",
+    background = "dark",
     enable_italic = true,
     enable_italic_comment = true,
     dim_inactive_windows = false,
