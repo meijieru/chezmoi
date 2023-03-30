@@ -26,7 +26,7 @@ if myvim.plugins.smartyank.active then
   vim.o.clipboard = ""
 end
 
-if vim.fn.has "nvim-0.9" then
+if vim.fn.has "nvim-0.9" == 1 then
   vim.o.splitkeep = "screen"
   vim.opt.diffopt:append "linematch:60"
 end
