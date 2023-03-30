@@ -172,4 +172,17 @@ M["ckolkey/ts-node-action"] = {
   dependencies = { "nvim-treesitter" },
 }
 
+M["chrisgrieser/nvim-spider"] = {
+  lazy = true,
+  opts = {},
+  init = function()
+    for _, key in ipairs { "w", "e", "b", "ge" } do
+      vim.keymap.set({ "n", "o", "x" }, key, function()
+        require("spider").motion(key)
+      end, { desc = "Spider-" .. key })
+    end
+  end,
+  enabled = myvim.plugins.spider.active,
+}
+
 return M
