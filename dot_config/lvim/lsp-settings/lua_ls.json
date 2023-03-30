@@ -5,5 +5,6 @@
   "Lua.diagnostics.disable": ["unused-vararg", "different-requires"],
   "Lua.completion.callSnippet": "Disable",
   "Lua.completion.keywordSnippet": "Both",
-  "Lua.format.enable": false
+  "Lua.format.enable": false,
+  "Lua.workspace.checkThirdParty": false
 }
