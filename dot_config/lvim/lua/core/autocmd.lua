@@ -1,3 +1,5 @@
+local Log = require "core.log"
+
 local api = vim.api
 local map = vim.keymap.set
 local on = vim.api.nvim_create_autocmd
@@ -31,6 +33,16 @@ on("FileType", {
     vim.wo.foldenable = false
   end,
   desc = "Disable fold",
+})
+
+on("FileType", {
+  pattern = { "lua", "json" },
+  callback = function()
+    Log:debug "set tabstop from filetype plugin"
+    vim.bo.tabstop = 2
+    vim.bo.shiftwidth = 2
+  end,
+  desc = "Filetype indent",
 })
 
 -- overwrite highlight
