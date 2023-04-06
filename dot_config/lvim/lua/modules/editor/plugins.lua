@@ -98,7 +98,7 @@ M["andymass/vim-matchup"] = {
 }
 
 M["ethanholz/nvim-lastplace"] = {
-  event = "BufRead",
+  event = "BufReadPre",
   config = conf.lastplace,
 }
 
