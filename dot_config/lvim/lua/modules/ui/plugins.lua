@@ -161,7 +161,7 @@ M["stevearc/oil.nvim"] = {
 M["luukvbaal/statuscol.nvim"] = {
   event = "UIEnter",
   config = conf.statuscol,
-  enabled = myvim.plugins.statuscol.active and vim.fn.has "nvim-0.9" == 1,
+  enabled = myvim.plugins.statuscol.active,
 }
 
 return M

@@ -10,10 +10,6 @@ end
 --- @param bufnr number | nil
 --- @param namespace number | nil
 function M.toggle_diagnostics(bufnr, namespace)
-  if vim.diagnostic.is_disabled == nil then
-    Log:warn "toggle_diagnostics skipped"
-    return
-  end
   if vim.diagnostic.is_disabled(bufnr, namespace) then
     vim.diagnostic.enable(bufnr, namespace)
   else
