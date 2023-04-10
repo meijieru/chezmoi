@@ -3,8 +3,8 @@ _G.myvim = {
     level = "info",
   },
   colorscheme = {
-    name = "tokyonight",
-    background = "dark",
+    name = "catppuccin",
+    background = "light",
     enable_italic = true,
     enable_italic_comment = true,
     dim_inactive_windows = false,
