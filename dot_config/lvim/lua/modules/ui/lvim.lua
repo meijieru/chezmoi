@@ -157,7 +157,10 @@ function M.setup_breadcrumbs()
 end
 
 function M.setup_illuminate()
-  vim.list_extend(lvim.builtin.illuminate.options.filetypes_denylist, { "aerial", "qf" })
+  vim.list_extend(
+    lvim.builtin.illuminate.options.filetypes_denylist,
+    { "aerial", "qf", "OverseerList", "neotest-summary" }
+  )
 end
 
 function M.setup()
