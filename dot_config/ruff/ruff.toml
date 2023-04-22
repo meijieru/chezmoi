@@ -6,6 +6,13 @@ select = ["E", "F"]
 
 [isort]
 known-third-party = []
+section-order = [
+    "future",
+    "standard-library",
+    "third-party",
+    "first-party",
+    "local-folder",
+]
 
 [pydocstyle] # https://github.com/charliermarsh/ruff#pydocstyle
 convention = "google"
