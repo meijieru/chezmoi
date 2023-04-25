@@ -52,7 +52,9 @@ M["folke/zen-mode.nvim"] = {
 }
 M["folke/twilight.nvim"] = {
   cmd = { "Twilight", "TwilightEnable" },
-  config = conf.twilight,
+  opts = {
+    context = 20,
+  },
 }
 M["folke/noice.nvim"] = {
   event = "VeryLazy",

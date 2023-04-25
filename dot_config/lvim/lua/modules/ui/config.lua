@@ -55,10 +55,6 @@ function M.zen_mode()
   }
 end
 
-function M.twilight()
-  require("twilight").setup {}
-end
-
 function M.neoscroll()
   require("neoscroll").setup {
     -- All these keys will be mapped to their corresponding default scrolling animation
