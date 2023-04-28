@@ -81,7 +81,7 @@ function M.setup_lsp()
     "Goto Type Definitions",
   }
 
-  for _, key in ipairs { "j", "k", "s", "d", "w", "e", "i", "I", "q" } do
+  for _, key in ipairs { "j", "k", "s", "d", "w", "e", "i", "I", "q", "f" } do
     lvim.builtin.which_key.mappings.l[key] = nil
   end
   register {
@@ -99,6 +99,7 @@ function M.setup_lsp()
         end,
         "Document Symbols",
       },
+      ["f"] = { lua_normal_command "require('lvim.lsp.utils').format({timeout_ms=2000})", "Format" },
     },
   }
 end
