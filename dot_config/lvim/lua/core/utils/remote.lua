@@ -24,6 +24,7 @@ local config_name = "remote.json"
 ---@field hosts string[]
 ---@field targetdir string
 ---@field expdir string?
+---@field local_expdir string?
 
 --- Get the config path when available
 ---@return string?

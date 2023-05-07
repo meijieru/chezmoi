@@ -24,6 +24,7 @@ return {
         hosts,
         config.targetdir,
         config.expdir,
+        config.local_expdir or config.expdir,
       },
       name = string.format("sync %s", params.preset),
     }
