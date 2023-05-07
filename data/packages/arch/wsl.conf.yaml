@@ -12,10 +12,12 @@ pacman:
   - trash-cli
   - neofetch
   - wget
+  - exa
+  - gdown
 
   - tmux
   - tmuxp
-  - glances
+  - btop
   - fzf
   - git
   - git-extras
@@ -44,7 +46,6 @@ pacman:
   - python-pytoml
   - python-scipy
   - python-matplotlib
-  - python-pyqt5
   - python-ipdb
   - python-pipreqs
   - python-tqdm
@@ -53,8 +54,10 @@ pacman:
 
   - python-torchvision
   - python-pytorch
+  - numactl # deps of pytorch
   - python-timm
   - python-einops
+  - python-fvcore
 
   - adobe-source-han-sans-cn-fonts
   - noto-fonts-emoji

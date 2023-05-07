@@ -8,7 +8,7 @@ apt:
   - git
   - etckeeper
   - trash-cli
-  - htop
+  - htop # TODO(meijieru): replace by btop
   - tmux
   - tmuxp
   - tree
@@ -18,6 +18,7 @@ apt:
   - neovim
   - python3-pip
   - lua5.4
+  - exa
 
   - make
   - sqlite3
