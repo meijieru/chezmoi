@@ -90,14 +90,6 @@ function M.setup_cmp()
 end
 
 function M.setup_lsp()
-  -- https://github.com/neovim/nvim-lspconfig/issues/726#issuecomment-1452724142
-  local capabilities = vim.lsp.protocol.make_client_capabilities()
-  capabilities.textDocument.publishDiagnostics.tagSupport.valueSet = { 2 }
-  local util = require "lspconfig.util"
-  util.default_config = vim.tbl_extend("force", util.default_config, {
-    capabilities = capabilities,
-  })
-
   vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, myvim.lsp.lvim.skipped_servers)
   lvim.lsp.automatic_configuration.skipped_servers = vim.tbl_filter(function(val)
     if vim.tbl_contains(myvim.lsp.lvim.ensured_servers, val) then
