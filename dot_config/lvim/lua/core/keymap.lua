@@ -117,13 +117,13 @@ function M.setup_neotest()
         end,
         "Toggle Neotest",
       },
-      u = {
+      f = {
         function()
           require("neotest").run.run { vim.api.nvim_buf_get_name(0) }
         end,
         "Run File",
       },
-      n = {
+      u = {
         function()
           require("neotest").run.run()
         end,
