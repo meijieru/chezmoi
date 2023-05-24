@@ -42,7 +42,19 @@ use_colorschemes(M, "sainnhe/everforest", { "everforest" }, {
   end,
 })
 use_colorschemes(M, "shaunsingh/nord.nvim", { "nord" })
-use_colorschemes(M, "catppuccin/nvim", { "catppuccin" }, { name = "catppuccin" })
+use_colorschemes(M, "catppuccin/nvim", { "catppuccin" }, {
+  name = "catppuccin",
+  opts = {
+    no_italic = not myvim.colorscheme.enable_italic,
+    dim_inactive = { enabled = myvim.colorscheme.dim_inactive_windows },
+    show_end_of_buffer = myvim.colorscheme.show_eob,
+    color_overrides = {
+      latte = {
+        base = "#FAFAFA",
+      },
+    },
+  },
+})
 
 M["romainl/vim-cool"] = { event = { "VeryLazy" } }
 

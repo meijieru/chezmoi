@@ -51,8 +51,6 @@ on("Colorscheme", {
   callback = function()
     api.nvim_set_hl(0, "NormalFloat", { link = "Normal" })
     api.nvim_set_hl(0, "FloatBorder", { link = "Normal" })
-    -- TODO(meijieru): revisit when colorscheme has lsp semantic token support
-    api.nvim_set_hl(0, "@lsp.type.variable", { link = "@variable" })
   end,
   desc = "Customize highlight",
 })
