@@ -119,6 +119,8 @@ function M.oil()
       -- Show files and directories that start with "."
       show_hidden = true,
     },
+    delete_to_trash = true,
+    trash_command = "trash-put",
     keymaps = {
       ["."] = "actions.open_cmdline",
     },
