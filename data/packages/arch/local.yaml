@@ -3,4 +3,4 @@ opts:
   overwrite: true
 
 wget:
-  im-select.exe: https://github.com/daipeihust/im-select/raw/master/im-select-win/out/x64/im-select.exe
+  im-select.exe: https://github.com/daipeihust/im-select/raw/master/win/out/x86/im-select.exe
