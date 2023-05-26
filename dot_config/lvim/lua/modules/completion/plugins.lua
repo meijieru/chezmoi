@@ -8,13 +8,6 @@ M["benfowler/telescope-luasnip.nvim"] = {
   dependencies = "telescope.nvim",
 }
 
-M["tzachar/cmp-tabnine"] = {
-  build = "./install.sh",
-  event = "InsertEnter",
-  config = conf.tabnine,
-  enabled = (myvim.plugins.tabnine.active and myvim.plugins.cmp.active),
-  dependencies = "nvim-cmp",
-}
 M["ray-x/cmp-treesitter"] = {
   event = "InsertEnter",
   enabled = (myvim.plugins.cmp_treesitter.active and myvim.plugins.cmp.active),
