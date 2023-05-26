@@ -10,7 +10,7 @@ end
 
 --- Try load package, logging if failed
 --- @param name string
---- @return table tuple of status & module
+--- @return boolean, table
 function M.safe_load(name)
   local status_ok, module = pcall(require, name)
   if not status_ok then
@@ -34,7 +34,7 @@ function M.is_dap_debugger_installed(name)
   end
 
   local mason_registry = require "mason-registry"
-  local status, _ = pcall(mason_registry.get_package, name)
+  status, _ = pcall(mason_registry.get_package, name)
   if not status then
     Log:info("Debugger " .. name .. " not installed")
     return false
@@ -93,7 +93,7 @@ function M.is_google()
 end
 
 --- Get content of current visual selection
---- @return string
+--- @return string?
 function M.get_visual_selection()
   -- https://github.com/neovim/neovim/pull/13896
   local visual_modes = {
