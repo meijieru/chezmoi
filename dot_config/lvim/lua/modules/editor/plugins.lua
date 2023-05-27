@@ -79,6 +79,45 @@ M["stevearc/aerial.nvim"] = {
   enabled = myvim.plugins.aerial.active,
 }
 
+M["SmiteshP/nvim-navbuddy"] = {
+  lazy = true,
+  init = function()
+    local augroup = vim.api.nvim_create_augroup("navbuddy", { clear = true })
+    vim.api.nvim_create_autocmd("LspAttach", {
+      group = augroup,
+      callback = function(args)
+        local bufnr = args.buf
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+        if not client.server_capabilities.documentSymbolProvider then
+          return
+        end
+        require("nvim-navbuddy").attach(client, bufnr)
+      end,
+    })
+  end,
+  dependencies = {
+    "SmiteshP/nvim-navic",
+    "MunifTanjim/nui.nvim",
+  },
+  config = function()
+    local actions = require "nvim-navbuddy.actions"
+    require("nvim-navbuddy").setup {
+      lsp = { auto_attach = false },
+      window = {
+        border = "rounded",
+        size = "70%",
+        sections = {
+          left = { size = "30%" },
+        },
+      },
+      mappings = {
+        ["t"] = actions.telescope {},
+      },
+    }
+  end,
+  enabled = myvim.plugins.navbuddy.active,
+}
+
 M["kana/vim-textobj-indent"] = { event = "VeryLazy", dependencies = { "kana/vim-textobj-user" } }
 M["jceb/vim-textobj-uri"] = { event = "VeryLazy", dependencies = { "kana/vim-textobj-user" } }
 

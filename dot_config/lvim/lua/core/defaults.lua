@@ -77,6 +77,7 @@ _G.myvim = {
     -- ui
     indentlines = { active = true },
     aerial = { active = true },
+    navbuddy = { active = true },
     dressing = { active = true },
     notify = { active = true },
     alpha = {
