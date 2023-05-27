@@ -42,23 +42,23 @@ M["zbirenbaum/copilot-cmp"] = {
 M["ray-x/lsp_signature.nvim"] = {
   lazy = true,
   init = function()
-    local _on_attach_callback = lvim.lsp.on_attach_callback
-    lvim.lsp.on_attach_callback = function(client, bufnr)
-      if _on_attach_callback ~= nil then
-        _on_attach_callback(client, bufnr)
-      end
-
-      require("lsp_signature").on_attach({
-        handler_opts = {
-          border = "rounded",
-        },
-        max_width = 100,
-        floating_window = true,
-        floating_window_above_cur_line = true,
-        hint_enable = false, -- virtual text
-        doc_lines = 0,
-      }, bufnr)
-    end
+    local augroup = vim.api.nvim_create_augroup("my_lsp_signature", { clear = true })
+    vim.api.nvim_create_autocmd("LspAttach", {
+      group = augroup,
+      callback = function(args)
+        local bufnr = args.buf
+        require("lsp_signature").on_attach({
+          handler_opts = {
+            border = "rounded",
+          },
+          max_width = 100,
+          floating_window = true,
+          floating_window_above_cur_line = true,
+          hint_enable = false, -- virtual text
+          doc_lines = 0,
+        }, bufnr)
+      end,
+    })
   end,
   enabled = myvim.plugins.lsp_signature.active,
 }
