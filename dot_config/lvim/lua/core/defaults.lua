@@ -65,7 +65,7 @@ _G.myvim = {
 
     -- tool
     treesitter = {
-      ensure_installed = { "comment", "markdown", "markdown_inline", "rst" },
+      ensure_installed = { "comment", "markdown", "markdown_inline", "rst", "regex" },
     },
     imtoggle = { active = false },
     telescope = { active = true, theme = "center" },
