@@ -448,6 +448,7 @@ function M.setup_git()
       H = { normal_command "DiffviewFileHistory %", "Diff History (for current file)" },
       g = { lua_normal_command "require('core.utils.ui').toggle_fugitive()", "Toggle Status" },
       l = { normal_command "Git blame", "Git Blame" },
+      L = { normal_command "Gitsigns toggle_current_line_blame", "Current Line Blame" },
       t = { M.chain("Gitsigns toggle_deleted", "Gitsigns toggle_word_diff"), "Toggle Inline Diff" },
       y = {
         function()
