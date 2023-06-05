@@ -47,14 +47,18 @@ M["ray-x/lsp_signature.nvim"] = {
       group = augroup,
       callback = function(args)
         local bufnr = args.buf
+        local has_inline = false and vim.fn.has "nvim-0.10" == 1
         require("lsp_signature").on_attach({
           handler_opts = {
             border = "rounded",
           },
           max_width = 100,
-          floating_window = true,
+          floating_window = not has_inline,
           floating_window_above_cur_line = true,
-          hint_enable = false, -- virtual text
+          hint_enable = has_inline, -- virtual text
+          hint_inline = function()
+            return has_inline
+          end,
           doc_lines = 0,
         }, bufnr)
       end,
