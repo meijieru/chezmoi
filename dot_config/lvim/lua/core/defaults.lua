@@ -98,6 +98,7 @@ _G.myvim = {
     breadcrumbs = { active = true },
     neoscroll = { active = false },
     statuscol = { active = true },
+    illuminate = { active = true },
 
     -- editor
     dap = { active = true },

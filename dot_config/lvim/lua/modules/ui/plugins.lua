@@ -53,6 +53,26 @@ use_colorschemes(M, "catppuccin/nvim", { "catppuccin" }, {
         base = "#FAFAFA",
       },
     },
+    integrations = {
+      notify = myvim.plugins.notify.active,
+      aerial = myvim.plugins.aerial.active,
+      alpha = myvim.plugins.alpha.active,
+      leap = myvim.plugins.leap.active,
+      dashboard = false,
+      gitsigns = myvim.plugins.gitsigns.active,
+      indent_blankline = {
+        enabled = myvim.plugins.indentlines.active,
+      },
+      neotest = myvim.plugins.neotest.active,
+      noice = myvim.plugins.noice.active,
+      ts_rainbow2 = false,
+      ts_rainbow = myvim.plugins.rainbow.active,
+      overseer = myvim.plugins.overseer.active,
+      telescope = myvim.plugins.telescope.active,
+      illuminate = myvim.plugins.illuminate.active,
+      which_key = true,
+      mason = true,
+    },
   },
 })
 
