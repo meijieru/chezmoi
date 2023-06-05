@@ -74,7 +74,7 @@ M["mg979/vim-visual-multi"] = {
 }
 
 M["stevearc/aerial.nvim"] = {
-  cmd = { "AerialToggle", "AerialPrev", "AerialNext", "AerialPrevUp", "AerialNextUp" },
+  cmd = { "AerialToggle", "AerialNavToggle" },
   config = conf.aerial,
   enabled = myvim.plugins.aerial.active,
 }

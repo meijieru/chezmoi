@@ -80,26 +80,34 @@ end
 
 function M.aerial()
   local opts = {
+    autojump = true,
     layout = {
       max_width = 40,
-      min_width = 40,
+      min_width = 30,
+      default_direction = "prefer_left",
     },
-    -- A list of all symbols to display. Set to false to display all symbols.
-    -- This can be a filetype map (see :help aerial-filetype-map)
-    -- To see all available values, see :help SymbolKind
-    filter_kind = {
-      "Class",
-      "Constructor",
-      "Enum",
-      "Function",
-      "Interface",
-      "Module",
-      "Method",
-      "Struct",
+    nav = {
+      max_width = 0.8,
+      preview = true,
+      autojump = true,
+      keymaps = {
+        ["<esc>"] = "actions.close",
+        ["q"] = "actions.close",
+      },
     },
   }
+  local filter_kind = {
+    "Class",
+    "Constructor",
+    "Enum",
+    "Function",
+    "Interface",
+    "Module",
+    "Method",
+    "Struct",
+  }
   local icons = { Collapsed = "" }
-  for _, name in ipairs(opts.filter_kind) do
+  for _, name in ipairs(filter_kind) do
     icons[name] = myvim.kind_icons[name]
     icons[name .. "Collapsed"] = string.format("%s %s", myvim.kind_icons[name], icons.Collapsed)
   end

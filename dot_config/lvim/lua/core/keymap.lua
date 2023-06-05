@@ -81,7 +81,7 @@ function M.setup_lsp()
     "Goto Type Definitions",
   }
 
-  for _, key in ipairs { "j", "k", "s", "d", "w", "e", "i", "I", "q", "f" } do
+  for _, key in ipairs { "j", "k", "s", "d", "w", "e", "i", "I", "q", "f", "l" } do
     lvim.builtin.which_key.mappings.l[key] = nil
   end
   register {
@@ -89,6 +89,7 @@ function M.setup_lsp()
       ["g"] = { normal_command "Neogen", "Generate Doc" },
       ["d"] = { normal_command "Telescope diagnostics bufnr=0", "Document Diagnostics" },
       ["D"] = { normal_command "Telescope diagnostics", "Workspace Diagnostics" },
+      ["l"] = { normal_command "AerialNavToggle", "NavToggle" },
       ["s"] = {
         function()
           if myvim.plugins.aerial.active then
