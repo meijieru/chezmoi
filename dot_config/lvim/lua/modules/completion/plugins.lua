@@ -8,11 +8,6 @@ M["benfowler/telescope-luasnip.nvim"] = {
   dependencies = "telescope.nvim",
 }
 
-M["ray-x/cmp-treesitter"] = {
-  event = "InsertEnter",
-  enabled = (myvim.plugins.cmp_treesitter.active and myvim.plugins.cmp.active),
-  dependencies = "nvim-cmp",
-}
 M["rcarriga/cmp-dap"] = {
   ft = { "dap-repl" },
   config = conf.cmp_dap,

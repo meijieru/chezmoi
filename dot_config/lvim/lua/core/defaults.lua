@@ -59,7 +59,6 @@ _G.myvim = {
     -- completion
     copilot = { active = false },
     cmp = { active = true },
-    cmp_treesitter = { active = false },
     cmp_dap = { active = true },
     lsp_signature = { active = true },
 
@@ -107,10 +106,6 @@ _G.myvim = {
     neotest = { active = true },
     auto_session = { active = false },
     project = { active = true },
-    hop = {
-      active = false,
-      enable_ft = false,
-    },
     leap = { active = true },
     flit = { active = false },
     ufo = { active = true },
