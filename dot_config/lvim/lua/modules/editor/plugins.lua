@@ -9,7 +9,7 @@ M["kylechui/nvim-surround"] = {
 M["tpope/vim-rsi"] = { event = { "CmdlineEnter", "InsertEnter" } }
 M["tpope/vim-eunuch"] = { event = "CmdlineEnter" }
 
-M["Darazaki/indent-o-matic"] = {
+M["NMAC427/guess-indent.nvim"] = {
   -- no need for lazy, very lightweight
   opts = {},
 }
