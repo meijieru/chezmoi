@@ -173,6 +173,7 @@ M["ColaMint/pokemon.nvim"] = {
       "0628.2",
     }
     local number
+    math.randomseed(os.time())
     if math.random() > 0.5 then
       number = "random"
     else
