@@ -1,6 +1,6 @@
 local M = {}
 
-local safe_load = require("core.utils").safe_load
+local utils = require "core.utils"
 
 function M.setup_cmp()
   lvim.builtin.cmp.active = myvim.plugins.cmp.active
@@ -8,7 +8,7 @@ function M.setup_cmp()
     return
   end
 
-  local status_cmp_ok, cmp = safe_load "cmp"
+  local status_cmp_ok, cmp_mapping = utils.safe_load "cmp.config.mapping"
   if not status_cmp_ok then
     return
   end
@@ -42,31 +42,20 @@ function M.setup_cmp()
     return string.format(template, val)
   end, source_names)
 
-  local function load_neogen()
-    if myvim.plugins.neogen.active then
-      local _, neogen = safe_load "neogen"
-      return neogen
-    end
-    return nil
-  end
-
-  -- we don't use tab for cmp
-  local status_luasnip_ok, luasnip = safe_load "luasnip"
-  if not status_luasnip_ok then
-    return
-  end
-  local methods = require("lvim.core.cmp").methods
+  local neogen = utils.require_on_index "neogen"
+  local luasnip = utils.require_on_index "luasnip"
 
   for _, key in ipairs { "<C-J>", "<C-K>", "<C-D>", "<C-E>", "<C-F>", "<C-Y>", "<Down>", "<Up>" } do
     lvim.builtin.cmp.mapping[key] = nil
   end
 
-  lvim.builtin.cmp.mapping["<C-D>"] = cmp.mapping.scroll_docs(8)
-  lvim.builtin.cmp.mapping["<C-U>"] = cmp.mapping.scroll_docs(-8)
+  lvim.builtin.cmp.mapping["<C-D>"] = cmp_mapping.scroll_docs(8)
+  lvim.builtin.cmp.mapping["<C-U>"] = cmp_mapping.scroll_docs(-8)
 
+  -- we don't use tab for cmp
   local map_modes = { "i", "s" }
-  lvim.builtin.cmp.mapping["<Tab>"] = cmp.mapping(function(fallback)
-    local neogen = load_neogen()
+  lvim.builtin.cmp.mapping["<Tab>"] = cmp_mapping(function(fallback)
+    local methods = require("lvim.core.cmp").methods
     if luasnip.expand_or_locally_jumpable() then
       luasnip.expand_or_jump()
     elseif methods.jumpable(1) then
@@ -77,8 +66,7 @@ function M.setup_cmp()
       fallback()
     end
   end, map_modes)
-  lvim.builtin.cmp.mapping["<S-Tab>"] = cmp.mapping(function(fallback)
-    local neogen = load_neogen()
+  lvim.builtin.cmp.mapping["<S-Tab>"] = cmp_mapping(function(fallback)
     if luasnip.jumpable(-1) then
       luasnip.jump(-1)
     elseif neogen and neogen.jumpable(-1) then

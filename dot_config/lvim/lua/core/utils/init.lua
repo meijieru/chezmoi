@@ -19,6 +19,8 @@ function M.safe_load(name)
   return status_ok, module
 end
 
+M.require_on_index = require("lvim.utils.modules").require_on_index
+
 --- Check whether dap debugger installed
 --- @param name string
 --- @return boolean
