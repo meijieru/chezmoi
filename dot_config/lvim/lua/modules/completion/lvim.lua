@@ -78,6 +78,15 @@ function M.setup_cmp()
 end
 
 function M.setup_lsp()
+  -- https://github.com/neovim/neovim/issues/23725#issuecomment-1561364086
+  local ok, wf = pcall(require, "vim.lsp._watchfiles")
+  if ok then
+    -- disable lsp watcher. Too slow on linux
+    wf._watchfunc = function()
+      return function() end
+    end
+  end
+
   vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, myvim.lsp.lvim.skipped_servers)
   lvim.lsp.automatic_configuration.skipped_servers = vim.tbl_filter(function(val)
     if vim.tbl_contains(myvim.lsp.lvim.ensured_servers, val) then
