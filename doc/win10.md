@@ -20,6 +20,7 @@ export ROAMING_DIR='${Onedrive-JHU}/settings/win10'
 
 ### Apps from win store
 
+- Adobe PDF Reader
 - Windows Terminal
   - Config file `${ROAMING_DIR}/windows_terminal/settings.json`
   - Use soft link
@@ -27,21 +28,18 @@ export ROAMING_DIR='${Onedrive-JHU}/settings/win10'
     mklink ${dst} ${src}
     ```
 - X410
-  - Will deprecate once wsl2 GUI is supported
-- Snipaste
-- Skype
+  - TODO: use wslg instead
 - LiquidText
+- Ditto
+- Auto Dark Mode X
 
 Optional
 
 - GestureSign
-- 弹弹 play
-- Pulse Secure
-  - **Currently not able to connect to school vpn**
 
 ### Apps from scoop
 
-- [Search](https://rasa.github.io/scoop-directory/search) from [scoop-directory](https://github.com/rasa/scoop-directory)
+- [Search](https://scoop.sh)
 
 ```ps1
 scoop install git
@@ -50,60 +48,54 @@ scoop bucket add main
 scoop bucket add extras
 scoop bucket add nonportable
 scoop bucket add dorado https://github.com/chawyehsu/dorado
-scoop bucket add user_carrot https://github.com/huangnauh/carrot.git  # for chezmoi
 
 scoop install 7zip aria2 git
 scoop install vscode wezterm
-scoop install autohotkey2 sharpkeys everything powertoys ditto chezmoi
+scoop install autohotkey2 sharpkeys everything powertoys snipaste thisiswin11
 scoop install fsviewer LICEcap potplayer
 scoop install nextcloud zoom rufus teamviewer freedownloadmanager
 
-echo "Check the optional packages"
-# optional
+# wsl utility
+scoop bucket add .oki https://github.com/okibcn/Bucket  # for wslcompact
+scoop install wslcompact
 
+# other
+scoop install wechat QQMusic obsidian bitwarden
+
+# games
+scoop bucket add games
+scoop install yuzu vcredist2022
+scoop install cemu-dev
+
+echo "Check the optional packages"
+
+# optional
 # scoop install discord
 # scoop install calibre-normal  # don't use calibre https://github.com/ScoopInstaller/Extras/issues/1765#issuecomment-466762524
-# scoop install alacritty
 # scoop install dropbox-np
 ```
 
-- Steam
-
 - SharpKeys
   - Exchange `CapsLock` with `Left control`.
-  - Load settings from `${ROAMING_DIR}/sharpkeys/win10_keyboard.skl`
+  - Load settings from `${Onedrive_jhu}/program/sharpkeys/win_keyboard.skl`
 - AutoHotKey
   - Load setting by create shortcut from `${Onedrive_jhu}/program/ahk/*.ahk`
   - `win+r` and enter `shell:startup`, paste the shortcut
-- Ditto
-  - Set the `General/Database Path = C:\Users\meiji\OneDrive\应用程序\ditto\Ditto.db`
-- PotPlayer
-  - enable [Bluesky frame rate converter](https://bluesky-soft.com/en/BlueskyFRC.html)
-
-**TODO: Reinstall**
-
-- Adobe PDF Reader
-- Chrome
-- Wechat
-
-**FIXME**
-
-- everything prompt for uac everytime, which doesn't occur in previous install
-- PotPlayer frame
+- Everything prompt for uac everytime, which doesn't occur in previous install
+    - Just use the service when first start
 
 ### Apps from website
 
 - [DisplayCal](https://displaycal.net/#download)
-- [Bandzip](https://www.bandisoft.com/bandizip/old/6/)
 - [Huorong](https://www.huorong.cn/person5.html)
 - [Ivacy](TODO)
 - [Pulse Secure](TODO)
-- [TIM](TODO)
 - [WizNote X](TODO)
 - [Office](TODO)
-- [Auto Dark Mode X](https://github.com/AutoDarkMode/Windows-Auto-Night-Mode/releases)
-- [Bluesky Frame Rate Converter](TODO)
 - [Huawei Store](TODO)
+- [Steam](TODO)
+  - Install through the official website
+  - Problematic through scoop
 
 Optional
 
@@ -118,9 +110,7 @@ Optional
     ```
 
 - [EasyCanvas](http://www.easynlight.com/)
-- [MacType](TODO)
 - [Mathpix Snipping Tool](TODO)
-- [QQ Music](TODO)
 - [SFTP Net Drive](TODO)
 - [Slack](TODO)
 - [Feishu](TODO)
