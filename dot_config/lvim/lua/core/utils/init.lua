@@ -94,6 +94,12 @@ function M.is_google()
   return vim.fn.filereadable "/google/bin/releases/cider/ciderlsp/ciderlsp" == 1
 end
 
+--- Check whether in wsl env
+--- @return boolean
+function M.is_wsl()
+  return vim.fn.has "wsl" == 1
+end
+
 --- Get content of current visual selection
 --- @return string?
 function M.get_visual_selection()
