@@ -2,19 +2,16 @@ pacman:
   - archlinuxcn-keyring
   - openssh
   - sudo
-  - xclip
   - zsh
   - lua
-  - luarocks
   - etckeeper
-  - rclone
-  - tldr
+
+  - tldr # alter to tealdeer?
   - trash-cli
   - neofetch
   - wget
   - exa
-  - gdown
-
+  - hyperfine
   - tmux
   - tmuxp
   - btop
@@ -25,6 +22,11 @@ pacman:
   - tree
   - ripgrep
   - fd
+  - dust
+  - duf
+  - bat
+  # - zoxide
+
   - neovim
   - python-neovim
   - nodejs
@@ -40,6 +42,7 @@ pacman:
   - python-black
   - python-isort
   - prettier
+  - stylua
 
   - python-pip
   - python-yaml
@@ -49,26 +52,27 @@ pacman:
   - python-ipdb
   - python-pipreqs
   - python-tqdm
-  # - python-klepto # sniprun
+  - python-rich
   - ipython
 
   - python-torchvision
   - python-pytorch
-  - numactl # deps of pytorch
   - python-timm
   - python-einops
   - python-fvcore
 
   - adobe-source-han-sans-cn-fonts
+  - ttf-jetbrains-mono-nerd
   - noto-fonts-emoji
-  - nerd-fonts-jetbrains-mono
 
+  - rclone
+  - gdown
   - foliate
 
 yay:
   - lsyncd
-  - stylua
   - cmake-format
-  - diffsitter-bin
   - nvimpager
   - wsl-open
+  # - google-cloud-cli
+  # - diffsitter-bin
