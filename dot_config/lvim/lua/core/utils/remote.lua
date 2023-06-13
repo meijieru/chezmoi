@@ -1,5 +1,7 @@
 local M = {}
 
+local uv = vim.uv or vim.loop
+
 ---@class remote.Cache
 ---@field config_path table
 ---@field config table
@@ -29,7 +31,7 @@ local config_name = "remote.json"
 --- Get the config path when available
 ---@return string?
 function M.get_remote_config_path()
-  local cwd = vim.loop.cwd()
+  local cwd = uv.cwd()
   local cache = _cache.config_path
   if cache[cwd] ~= nil then
     Log:debug(string.format("use cached remote config path: %s -> %s", cwd, cache[cwd]))

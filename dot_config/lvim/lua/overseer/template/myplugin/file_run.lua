@@ -1,3 +1,4 @@
+local uv = vim.uv or vim.loop
 local helper = require "overseer.template.myplugin.helper"
 
 local remove_extension = helper.remove_extension
@@ -18,7 +19,7 @@ end
 
 local filetype_to_cmd = {
   python = function(file)
-    return run_with "python"(file), { env = { PYTHONPATH = vim.loop.cwd() } }
+    return run_with "python"(file), { env = { PYTHONPATH = uv.cwd() } }
   end,
   sh = run_with "sh",
   zsh = run_with "zsh",

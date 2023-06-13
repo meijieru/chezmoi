@@ -1,9 +1,9 @@
 local M = {}
 
-local Log = require "core.log"
+local uv = vim.uv or vim.loop
 
 function M.root_dir(fname)
-  return require("lspconfig.util").root_pattern(unpack(myvim.root_markers))(fname) or vim.loop.cwd()
+  return require("lspconfig.util").root_pattern(unpack(myvim.root_markers))(fname) or uv.cwd()
 end
 
 --- Toggle diagnostics

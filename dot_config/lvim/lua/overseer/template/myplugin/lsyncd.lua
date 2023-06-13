@@ -1,3 +1,4 @@
+local uv = vim.uv or vim.loop
 local overseer = require "overseer"
 local remote = require "core.utils.remote"
 
@@ -25,7 +26,7 @@ return {
       return {}
     end
 
-    local cwd = vim.loop.cwd()
+    local cwd = uv.cwd()
     local ret = {}
     for _, host in ipairs(config.hosts) do
       local name = "lsyncd " .. host
