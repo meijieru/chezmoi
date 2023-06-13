@@ -5,18 +5,7 @@ done
 unset file
 
 # wsl
-if [[ $(uname -r) =~ Microsoft$ ]]; then
-    unsetopt BG_NICE
-    unsetopt beep
-    umask 022
-
-    export DISPLAY=localhost:0
-    export GDK_SCALE=2
-    export QT_SCALE_FACTOR=2
-
-    # otherwise opengl program may failed
-    export LIBGL_ALWAYS_INDIRECT=0
-elif [[ $(uname -r) =~ WSL2$ ]]; then
+if [[ $(uname -r) =~ WSL2$ ]]; then
     unsetopt BG_NICE
     unsetopt beep
     umask 022
