@@ -123,23 +123,19 @@ end
 --- Open in other application
 --- @param file string
 function M.xdg_open(file)
-  local job = require "plenary.job"
-  local opts = { title = "xdg-open" }
-  job
-    :new({
-      command = "xdg-open",
-      args = { file },
-      on_stderr = function(_, res, _)
-        local info = table.concat(vim.split(res, ":"), ":", 2)
-        vim.notify(info, "error", opts)
-      end,
-      on_exit = function(_, retval)
-        if retval == 0 then
-          vim.notify(string.format("Opened: %s", file), "info", opts)
-        end
-      end,
-    })
-    :start()
+  if vim.fn.has "nvim-0.10" == 0 then
+    Log:info "xdg_open requires neovim 0.10 or above"
+    return
+  end
+
+  vim.system({ "xdg-open", file }, { text = true, timeout = 1000 }, function(obj)
+    local opts = { title = "xdg-open" }
+    if obj.code == 0 and obj.signal == 0 then
+      vim.notify(string.format("Opened: %s", file), "info", opts)
+      return
+    end
+    vim.notify(obj.stderr, "error", opts)
+  end)
 end
 
 --- Apply chezmoi file
@@ -150,23 +146,21 @@ function M.chezmoi_apply(file)
   if vim.startswith(file, "fugitive:///") or vim.startswith(relpath, ".git") then
     return
   end
-  local job = require "plenary.job"
-  local opts = { title = "Chezmoi Apply" }
-  job
-    :new({
-      command = "chezmoi",
-      args = { "apply", "--source-path", file },
-      on_stderr = function(_, res, _)
-        local info = table.concat(vim.split(res, ":"), ":", 2)
-        vim.notify(info, "error", opts)
-      end,
-      on_exit = function(_, retval)
-        if retval == 0 then
-          vim.notify(string.format("Done: %s", relpath), "info", opts)
-        end
-      end,
-    })
-    :start()
+
+  if vim.fn.has "nvim-0.10" == 0 then
+    Log:info "chezmoi_apply requires neovim 0.10 or above"
+    return
+  end
+
+  vim.system({ "chezmoi", "apply", "--source-path", file }, { text = true }, function(obj)
+    local opts = { title = "Chezmoi Apply" }
+    if obj.code == 0 and obj.signal == 0 then
+      vim.notify(string.format("Done: %s", relpath), "info", opts)
+      return
+    end
+    local info = table.concat(vim.split(obj.stderr, ":"), ":", 2):gsub("\n$", "")
+    vim.notify(info, "error", opts)
+  end)
 end
 
 --- Read the content
