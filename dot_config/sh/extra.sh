@@ -21,7 +21,9 @@ elif [[ $(uname -r) =~ WSL2$ ]]; then
     unsetopt beep
     umask 022
 
-    export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
+    # # x410
+    # export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
+
     export GDK_SCALE=2
     export QT_SCALE_FACTOR=2
 
