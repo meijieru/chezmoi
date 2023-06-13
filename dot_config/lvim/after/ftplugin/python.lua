@@ -23,8 +23,7 @@ local function dap_config()
     pythonPath = function()
       local venv_path = os.getenv "VIRTUAL_ENV"
       if venv_path then
-        local is_windows = vim.loop.os_uname().version:match "Windows"
-        if is_windows then
+        if utils.is_windows() then
           return venv_path .. "\\Scripts\\python.exe"
         end
         return venv_path .. "/bin/python"

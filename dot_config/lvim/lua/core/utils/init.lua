@@ -1,5 +1,6 @@
 local M = {}
 
+local uv = vim.uv or vim.loop
 local Log = require "core.log"
 
 --- Source vimscript relative to cur dir
@@ -98,6 +99,12 @@ end
 --- @return boolean
 function M.is_wsl()
   return vim.fn.has "wsl" == 1
+end
+
+--- Check whether in windows env
+--- @return boolean
+function M.is_windows()
+  return uv.os_uname().version:match "Windows" ~= nil
 end
 
 --- Get content of current visual selection
