@@ -1,18 +1,21 @@
-local on_windows = vim.loop.os_uname().version:match("Windows")
-local function join_paths(...)
-  local path_sep = on_windows and "\\" or "/"
-  local result = table.concat({ ... }, path_sep)
-  return result
-end
+local uv = vim.uv or vim.loop
+
+local on_windows = uv.os_uname().version:match("Windows")
+local joinpath = vim.fs.joinpath
+  or function(...)
+    local path_sep = on_windows and "\\" or "/"
+    local result = table.concat({ ... }, path_sep)
+    return result
+  end
 
 local HOME = os.getenv("HOME")
-local XDG_CONFIG_HOME = os.getenv("XDG_CONFIG_HOME") or join_paths(HOME, ".config")
-local XDG_DATA_HOME = os.getenv("XDG_DATA_HOME") or join_paths(HOME, ".local/share")
-local runtime_dir = join_paths(XDG_DATA_HOME, "nvimpager")
-local config_dir = join_paths(XDG_CONFIG_HOME, "nvimpager")
+local XDG_CONFIG_HOME = os.getenv("XDG_CONFIG_HOME") or joinpath(HOME, ".config")
+local XDG_DATA_HOME = os.getenv("XDG_DATA_HOME") or joinpath(HOME, ".local/share")
+local runtime_dir = joinpath(XDG_DATA_HOME, "nvimpager")
+local config_dir = joinpath(XDG_CONFIG_HOME, "nvimpager")
 -- Reuse lvim lazy.nvim
-local lazy_dir = join_paths(XDG_DATA_HOME, "lunarvim", "site", "pack", "lazy", "opt", "lazy.nvim")
-local plugins_dir = join_paths(runtime_dir, "site", "pack", "lazy", "opt")
+local lazy_dir = joinpath(XDG_DATA_HOME, "lunarvim", "site", "pack", "lazy", "opt", "lazy.nvim")
+local plugins_dir = joinpath(runtime_dir, "site", "pack", "lazy", "opt")
 local runtimes = { config_dir, lazy_dir }
 for _, dir in ipairs(runtimes) do
   if not vim.tbl_contains(vim.opt.rtp:get(), dir) then
@@ -65,14 +68,14 @@ local opts = {
     border = "rounded",
   },
   root = plugins_dir,
-  lockfile = join_paths(config_dir, "lazy-lock.json"),
+  lockfile = joinpath(config_dir, "lazy-lock.json"),
   performance = {
     rtp = {
       reset = false,
     },
   },
   readme = {
-    root = join_paths(runtime_dir, "lazy", "readme"),
+    root = joinpath(runtime_dir, "lazy", "readme"),
   },
 }
 
