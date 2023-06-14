@@ -135,6 +135,9 @@ function M.statuscol()
   local builtin = require "statuscol.builtin"
   require("statuscol").setup {
     setopt = true,
+    -- https://github.com/luukvbaal/statuscol.nvim/issues/72#issuecomment-1593828496
+    ft_ignore = { "Overseer*" },
+    bt_ignore = { "nofile", "prompt" },
     segments = {
       {
         sign = { name = { "GitSigns" }, maxwidth = 1, colwidth = 1, auto = false },
