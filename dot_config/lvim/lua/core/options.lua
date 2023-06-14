@@ -1,4 +1,3 @@
--- vim.o.cmdheight = 0
 vim.o.foldcolumn = "1"
 if myvim.plugins.ufo.active then
   vim.o.foldlevel = 99
@@ -16,13 +15,17 @@ vim.o.showbreak = "↳ "
 vim.opt.diffopt:append { "internal", "algorithm:patience", "indent-heuristic", "linematch:60" }
 vim.o.grepprg = [[rg --hidden --glob "!.git" --no-heading --smart-case --vimgrep --follow $*]]
 vim.o.grepformat = "%f:%l:%c:%m"
-vim.o.laststatus = 3
 vim.o.background = myvim.colorscheme.background
-vim.o.exrc = true
+vim.o.splitkeep = "screen"
+
 -- https://github.com/hrsh7th/nvim-cmp/issues/309
 vim.o.title = false
-vim.o.splitkeep = "screen"
+
+-- for click handler of `luukvbaal/statuscol.nvim`
 vim.o.mousemodel = "extend"
+
+-- vim.o.exrc = true
+-- vim.o.cmdheight = 0
 
 if myvim.plugins.smartyank.active then
   vim.o.clipboard = ""
@@ -32,6 +35,4 @@ vim.o.qftf = "{info -> v:lua._G.qftf(info, 'shorten')}"
 
 -- lvim
 lvim.log = vim.tbl_deep_extend("force", lvim.log, myvim.log)
-lvim.format_on_save = false
-lvim.leader = "space"
 lvim.colorscheme = myvim.colorscheme.name
