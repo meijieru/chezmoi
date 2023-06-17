@@ -30,7 +30,7 @@ on("FileType", {
 on("FileType", {
   pattern = { "alpha", "lspinfo", "aerial", "dapui_scopes" },
   callback = function()
-    vim.wo.foldenable = false
+    api.nvim_set_option_value("foldenable", false, { scope = "local", win = 0 })
   end,
   desc = "Disable fold",
 })

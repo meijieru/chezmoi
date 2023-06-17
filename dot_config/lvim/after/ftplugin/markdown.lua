@@ -3,7 +3,7 @@ local function null_ls_config()
   formatters.setup { { exe = "prettier", filetypes = { "markdown" } } }
 end
 
-vim.wo.wrap = true
+vim.api.nvim_set_option_value("wrap", true, { scope = "local", win = 0 })
 null_ls_config()
 
 -- require("lvim.lsp.manager").setup "grammarly"
