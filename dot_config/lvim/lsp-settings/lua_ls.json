@@ -6,5 +6,6 @@
   "Lua.completion.callSnippet": "Disable",
   "Lua.completion.keywordSnippet": "Both",
   "Lua.format.enable": false,
-  "Lua.workspace.checkThirdParty": false
+  "Lua.workspace.checkThirdParty": false,
+  "Lua.hint.enable": true
 }
