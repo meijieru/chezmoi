@@ -481,11 +481,12 @@ function M.setup_toggle()
       q = { normal_command "call QuickFixToggle()", "Quickfix" },
       l = { normal_command "call auxlib#toggle_loclist()", "LocList" },
       d = { lua_normal_command "require('core.utils.lsp').toggle_diagnostics()", "Diagnostic" },
+      i = { lua_normal_command "vim.lsp.inlay_hint(0)", "Inlay Hints" },
       a = { normal_command "AerialToggle!", "Aerial" },
       c = { normal_command "ColorizerToggle", "Colorizer" },
       b = { normal_command "TableModeToggle", "Table Mode" },
-      z = { normal_command "Twilight", "Toggle Twilight" },
-      t = { normal_command "OverseerToggle", "Toggle Overseer" },
+      z = { normal_command "Twilight", "Twilight" },
+      t = { normal_command "OverseerToggle", "Overseer" },
     },
   }
 end
