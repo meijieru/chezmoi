@@ -51,7 +51,7 @@ _G.myvim = {
     lvim = {
       skipped_servers = {},
       ensured_servers = { "ruff_lsp" },
-      ensured_filetypes = { "markdown", "rst", "plaintext", "toml", "proto" },
+      ensured_filetypes = { "toml" },
     },
   },
 
