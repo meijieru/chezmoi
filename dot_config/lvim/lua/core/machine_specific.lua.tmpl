@@ -10,6 +10,11 @@ myvim.plugins.imtoggle.active = true
 myvim.plugins.copilot.active = true
 {{ end }}
 
+{{ if eq .chezmoi.hostname "Jieru-Ally" }}
+myvim.plugins.imtoggle.active = true
+myvim.plugins.copilot.active = true
+{{ end }}
+
 {{ if eq .chezmoi.osRelease.name "Ubuntu" }}
 {{ if eq .chezmoi.osRelease.versionID "16.04" }}
 -- https://github.com/lewis6991/gitsigns.nvim/issues/205
