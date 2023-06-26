@@ -44,13 +44,11 @@ function M.zen_mode()
       if myvim.plugins.scrollbar.active then
         vim.cmd "ScrollbarToggle"
       end
-      lvim.builtin.breadcrumbs.active = false
     end,
     on_close = function()
       if myvim.plugins.scrollbar.active then
         vim.cmd "ScrollbarToggle"
       end
-      lvim.builtin.breadcrumbs.active = myvim.plugins.breadcrumbs.active
     end,
   }
 end

@@ -26,15 +26,6 @@ function config.diffview()
         ["q"] = "<cmd>tabclose<cr>",
       },
     },
-    hooks = {
-      view_opened = function(_)
-        --- Don't overwrite winbar
-        lvim.builtin.breadcrumbs.active = false
-      end,
-      view_closed = function(_)
-        lvim.builtin.breadcrumbs.active = myvim.plugins.breadcrumbs.active
-      end,
-    },
   }
 end
 
