@@ -89,7 +89,7 @@ function M.setup_lsp()
       ["g"] = { normal_command "Neogen", "Generate Doc" },
       ["d"] = { normal_command "Telescope diagnostics bufnr=0", "Document Diagnostics" },
       ["D"] = { normal_command "Telescope diagnostics", "Workspace Diagnostics" },
-      ["l"] = { normal_command "AerialNavToggle", "NavToggle" },
+      ["l"] = { lua_normal_command "require('dropbar.api').pick()", "NavToggle" },
       ["s"] = {
         function()
           if myvim.plugins.aerial.active then
@@ -474,6 +474,8 @@ function M.setup_git()
 end
 
 function M.setup_toggle()
+  lvim.builtin.which_key.mappings.t = nil
+
   register {
     ["<leader>t"] = {
       name = "Toggle",
