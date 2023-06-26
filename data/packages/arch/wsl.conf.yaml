@@ -33,6 +33,7 @@ pacman:
   - yarn
   - npm
   - typescript
+  - rust
   - clang
   - cmake
   - chezmoi
