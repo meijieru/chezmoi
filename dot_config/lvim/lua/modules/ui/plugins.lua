@@ -57,7 +57,6 @@ use_colorschemes(M, "catppuccin/nvim", { "catppuccin" }, {
       notify = myvim.plugins.notify.active,
       aerial = myvim.plugins.aerial.active,
       alpha = myvim.plugins.alpha.active,
-      leap = myvim.plugins.leap.active,
       dashboard = false,
       gitsigns = myvim.plugins.gitsigns.active,
       indent_blankline = {

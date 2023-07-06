@@ -106,9 +106,7 @@ _G.myvim = {
     neotest = { active = true },
     auto_session = { active = false },
     project = { active = true },
-    leap = { active = false },
     flash = { active = true },
-    flit = { active = false },
     ufo = { active = true },
     smartyank = { active = true },
     ts_node_action = {

@@ -98,19 +98,6 @@ M["folke/flash.nvim"] = {
   enabled = myvim.plugins.flash.active,
 }
 
-M["ggandor/leap.nvim"] = {
-  event = { "VeryLazy" },
-  dependencies = {
-    {
-      "ggandor/flit.nvim",
-      opts = { labeled_modes = "nv" },
-      enabled = (myvim.plugins.leap.active and myvim.plugins.flit.active),
-    },
-  },
-  config = conf.leap,
-  enabled = myvim.plugins.leap.active,
-}
-
 M["mg979/vim-visual-multi"] = {
   keys = {
     { "<C-Down>", "<Plug>(VM-Add-Cursor-Down)", desc = "VM Add Cursor Down" },
