@@ -114,7 +114,6 @@ _G.myvim = {
       integrate_with_null_ls = false,
     },
     rainbow = { active = false },
-    spider = { active = false },
 
     -- lang
     markdown_preview = { active = true },

@@ -251,10 +251,4 @@ M["ckolkey/ts-node-action"] = {
   dependencies = { "nvim-treesitter" },
 }
 
-M["chrisgrieser/nvim-spider"] = {
-  lazy = true,
-  opts = {},
-  enabled = myvim.plugins.spider.active,
-}
-
 return M

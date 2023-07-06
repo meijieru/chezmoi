@@ -526,22 +526,6 @@ function M.setup_package_management()
   }
 end
 
-function M.setup_spider()
-  if not myvim.plugins.spider.active then
-    return
-  end
-
-  for _, key in ipairs { "w", "e", "b", "ge" } do
-    -- NOTE(meijieru): for dot-repeatability, https://github.com/chrisgrieser/nvim-spider#installation
-    vim.keymap.set(
-      { "n", "o", "x" },
-      key,
-      lua_normal_command(string.format("require('spider').motion('%s')", key)),
-      { desc = "Spider-" .. key }
-    )
-  end
-end
-
 function M.setup()
   M.setup_basic()
   M.setup_toggle()
@@ -558,7 +542,6 @@ function M.setup()
   M.setup_ufo()
   M.setup_explorer()
   M.setup_package_management()
-  M.setup_spider()
 end
 
 M.setup()
