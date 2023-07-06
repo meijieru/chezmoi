@@ -252,22 +252,6 @@ function M.setup_basic()
     lvim.builtin.which_key.mappings[key] = nil
   end
 
-  local function system_open()
-    local function is_github(str)
-      local comps = vim.split(str, "/")
-      return #comps == 2
-    end
-
-    local cfile = vim.fn.fnameescape(vim.fn.expand "<cfile>")
-    if is_github(cfile) then
-      cfile = string.format("https://github.com/%s", cfile)
-    elseif vim.fn.filereadable(cfile) == 0 and string.match(cfile, "[a-z]*://[^ >,;]*") == nil then
-      vim.notify(string.format("url %s invalid", cfile), "error", { title = "system-open" })
-      return
-    end
-    utils.xdg_open(cfile)
-  end
-
   map({ "i", "c" }, "<C-k>", "<Up>")
   map({ "i", "c" }, "<C-j>", "<Down>")
   map({ "i", "c" }, "<C-h>", "<Left>")
@@ -342,7 +326,6 @@ function M.setup_basic()
   )
   map("n", "m<space>", normal_command "delmarks!", { desc = "Delete All Marks" })
   map("n", "g?", normal_command "WhichKey", { desc = "WhichKey" })
-  map("n", "gx", system_open, { desc = "Open the file under cursor with system app" })
   register {
     ["<leader>a"] = {
       function()

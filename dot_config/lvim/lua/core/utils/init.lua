@@ -127,24 +127,6 @@ function M.get_visual_selection()
   return content
 end
 
---- Open in other application
---- @param file string
-function M.xdg_open(file)
-  if vim.fn.has "nvim-0.10" == 0 then
-    Log:info "xdg_open requires neovim 0.10 or above"
-    return
-  end
-
-  vim.system({ "xdg-open", file }, { text = true, timeout = 1000 }, function(obj)
-    local opts = { title = "xdg-open" }
-    if obj.code == 0 and obj.signal == 0 then
-      vim.notify(string.format("Opened: %s", file), "info", opts)
-      return
-    end
-    vim.notify(obj.stderr, "error", opts)
-  end)
-end
-
 --- Apply chezmoi file
 --- @param file string
 function M.chezmoi_apply(file)
