@@ -343,7 +343,7 @@ function M.setup_basic()
       end,
       "Diff Put | Stage Hunk",
     },
-    du = {
+    dP = {
       function()
         require("gitsigns").undo_stage_hunk()
       end,
