@@ -21,6 +21,7 @@ function M.safe_load(name)
 end
 
 M.require_on_index = require("lvim.utils.modules").require_on_index
+M.require_on_exported_call = require("lvim.utils.modules").require_on_exported_call
 
 --- Check whether dap debugger installed
 --- @param name string

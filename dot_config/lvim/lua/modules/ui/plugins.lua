@@ -145,8 +145,20 @@ M["debugloop/telescope-undo.nvim"] = {
   keys = { { "<leader>fu", "<cmd>lua require('telescope').extensions.undo.undo()<cr>", desc = "Undotree" } },
   dependencies = { "nvim-telescope/telescope.nvim" },
   init = function()
+    local actions = require("core.utils").require_on_exported_call "telescope-undo.actions"
     lvim.builtin.telescope.extensions.undo = {
+      use_delta = true,
       side_by_side = true,
+      mappings = {
+        i = {
+          ["<cr>"] = actions.restore,
+        },
+        n = {
+          ["y"] = actions.yank_additions,
+          ["Y"] = actions.yank_deletions,
+          ["u"] = actions.restore,
+        },
+      },
     }
   end,
 }
