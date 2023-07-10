@@ -80,25 +80,23 @@ for i = 1, 8 do
   })
 end
 
-return {
-  font_rules = font_rules,
-  font = font_with_fallback({
-    normal_font,
-  }),
-  font_size = 13.0,
-  line_height = 0.95,
-  -- harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
+local config = wezterm.config_builder()
 
-  default_prog = { "wsl.exe", "~", "-d", "archlinux" },
+config.color_scheme = scheme_for_appearance(wezterm.gui.get_appearance())
+config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
+config.window_padding = { left = 0, right = 0, top = 5, bottom = 0 }
+config.enable_scroll_bar = false
 
-  color_scheme = scheme_for_appearance(wezterm.gui.get_appearance()),
+config.exit_behavior = "Close"
+config.keys = mykeys
+config.front_end = "WebGpu"
 
-  window_decorations = "INTEGRATED_BUTTONS|RESIZE",
-  window_padding = { left = 0, right = 0, top = 5, bottom = 0 },
-  enable_scroll_bar = false,
+config.line_height = 0.95
+config.font_size = 13.0
+config.font_rules = font_rules
+config.font = font_with_fallback({
+  normal_font,
+})
+config.default_prog = { "wsl.exe", "~", "-d", "archlinux" }
 
-  exit_behavior = "Close",
-  keys = mykeys,
-
-  front_end = "WebGpu",
-}
+return config
