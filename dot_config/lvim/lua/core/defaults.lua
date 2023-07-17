@@ -76,7 +76,6 @@ _G.myvim = {
     -- ui
     indentlines = { active = true },
     aerial = { active = true },
-    navbuddy = { active = false },
     dressing = { active = true },
     notify = { active = true },
     alpha = {
@@ -92,7 +91,6 @@ _G.myvim = {
     scrollbar = { active = true },
     nvimtree = { active = false },
     oil = { active = true },
-    tpipeline = { active = false },
     noice = { active = false },
     breadcrumbs = { active = true },
     neoscroll = { active = false },
@@ -113,10 +111,8 @@ _G.myvim = {
       active = true,
       integrate_with_null_ls = false,
     },
-    rainbow = { active = false },
 
     -- lang
     markdown_preview = { active = true },
-    rust_tools = { active = false },
   },
 }

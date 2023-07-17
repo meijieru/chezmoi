@@ -9,10 +9,6 @@ else
   vim.g.python3_host_prog = "/usr/bin/python3"
 end
 
-function M.rust_tools()
-  require("rust-tools").setup {}
-end
-
 -- disable languages
 vim.g.loaded_python_provider = 0
 vim.g.loaded_ruby_provider = 0

@@ -65,7 +65,7 @@ use_colorschemes(M, "catppuccin/nvim", { "catppuccin" }, {
       neotest = myvim.plugins.neotest.active,
       noice = myvim.plugins.noice.active,
       ts_rainbow2 = false,
-      ts_rainbow = myvim.plugins.rainbow.active,
+      ts_rainbow = false,
       overseer = myvim.plugins.overseer.active,
       telescope = myvim.plugins.telescope.active,
       illuminate = myvim.plugins.illuminate.active,
@@ -135,12 +135,6 @@ M["kevinhwang91/nvim-bqf"] = {
   enabled = true,
 }
 
-M["vimpostor/vim-tpipeline"] = {
-  init = function()
-    vim.g.tpipeline_fillcentre = true
-  end,
-  enabled = myvim.plugins.tpipeline.active,
-}
 M["debugloop/telescope-undo.nvim"] = {
   keys = { { "<leader>fu", "<cmd>lua require('telescope').extensions.undo.undo()<cr>", desc = "Undotree" } },
   dependencies = { "nvim-telescope/telescope.nvim" },
