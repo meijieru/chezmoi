@@ -1,4 +1,4 @@
-# Win10 Setup
+
 
 ## Common
 
@@ -58,8 +58,9 @@ Setting up the data following the [guide](https://www.tenforums.com/tutorials/13
 
 <!-- - lrcat & dir by `mklink /h ${dst} ${src}` -->
 
-```cmd
-mklink /h ${dst} ${src}
+```powershell
+cd ${data}/pictures/lrcat/
+New-Item -ItemType HardLink -Path "meijieru.lrcat" -Target "C:\Users\meiji\OneDrive - Johns Hopkins\picture\lrcat\meijieru.lrcat"
 ```
 
 ##### Sogou Pinyin
@@ -139,7 +140,7 @@ echo "Check the optional packages"
 
 Optional
 
-- [Lightroom](https://www.weidown.com/xiazai/5606.html)
+- Install [CC](https://creativecloud.adobe.com/apps/all/desktop?action=install&source=apps&productId=creative-cloud) & [Lightroom](https://www.cybermania.ws/software/adobe-genp/)
 - [Mathpix Snipping Tool](TODO)
 - [BaiduNetDisk](TODO)
 
