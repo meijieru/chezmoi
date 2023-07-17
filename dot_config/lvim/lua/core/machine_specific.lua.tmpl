@@ -21,10 +21,3 @@ myvim.plugins.copilot.active = true
 myvim.plugins.gitsigns.active = false
 {{ end }}
 {{ end }}
-
-{{ if eq .chezmoi.username "jierumei" }}
--- google specific
-myvim.lsp.ciderlsp = true
-vim.list_extend(myvim.lsp.lvim.skipped_servers, { "pyright" })
-{{ end }}
-

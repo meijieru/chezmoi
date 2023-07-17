@@ -19,7 +19,6 @@ _G.myvim = {
   },
 
   lsp = {
-    ciderlsp = false,
     lvim = {
       skipped_servers = {},
       ensured_servers = { "ruff_lsp" },

@@ -93,7 +93,8 @@ end
 --- Check whether in google env
 --- @return boolean
 function M.is_google()
-  return vim.fn.filereadable "/google/bin/releases/cider/ciderlsp/ciderlsp" == 1
+  Log:warn "Not implemented"
+  return false
 end
 
 --- Check whether in wsl env
