@@ -93,6 +93,24 @@ function M.aerial()
       },
     },
   }
+  local filter_kind = {
+    "Class",
+    "Constructor",
+    "Enum",
+    "Function",
+    "Interface",
+    "Module",
+    "Method",
+    "Struct",
+  }
+  local icons = { Collapsed = "" }
+  for _, name in ipairs(filter_kind) do
+    local icon = lvim.icons.kind[name]
+    icons[name] = icon
+    icons[name .. "Collapsed"] = string.format("%s %s", icon, icons.Collapsed)
+  end
+  opts.icons = icons
+  opts.filter_kind = filter_kind
   require("aerial").setup(opts)
 end
 
