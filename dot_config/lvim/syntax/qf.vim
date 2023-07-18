@@ -1,5 +1,5 @@
 " Modified from https://github.com/kevinhwang91/nvim-bqf#format-new-quickfix
-if exists("b:current_syntax")
+if exists('b:current_syntax')
     finish
 endif
 
@@ -16,9 +16,9 @@ hi def link qfFileName Directory
 hi def link qfSeparatorLeft Delimiter
 hi def link qfSeparatorRight Delimiter
 hi def link qfLineNr LineNr
-hi def link qfError DiagnosticSignError
-hi def link qfWarning DiagnosticSignWarn
-hi def link qfInfo DiagnosticSignInfo
-hi def link qfNote DiagnosticSignHint
+hi def link qfError DiagnosticError
+hi def link qfWarning DiagnosticWarn
+hi def link qfInfo DiagnosticInfo
+hi def link qfNote DiagnosticHint
 
 let b:current_syntax = 'qf'
