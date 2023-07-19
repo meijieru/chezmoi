@@ -23,6 +23,11 @@ _G.myvim = {
       skipped_servers = {},
       ensured_servers = { "ruff_lsp" },
       ensured_filetypes = { "toml" },
+      no_automatic_installation = {
+        "pyright",
+        "ruff_lsp",
+        "clangd",
+      },
     },
   },
 

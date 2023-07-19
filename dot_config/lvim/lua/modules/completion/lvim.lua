@@ -102,6 +102,8 @@ function M.setup_lsp()
       return true
     end
   end, lvim.lsp.automatic_configuration.skipped_filetypes)
+
+  lvim.lsp.installer.setup.automatic_installation.exclude = myvim.lsp.lvim.no_automatic_installation
 end
 
 function M.setup()

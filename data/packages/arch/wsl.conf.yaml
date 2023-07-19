@@ -44,6 +44,8 @@ pacman:
   - python-isort
   - prettier
   - stylua
+  - pyright
+  - ruff-lsp
 
   - pyside6
   - qt6-svg
