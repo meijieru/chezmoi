@@ -71,6 +71,7 @@ use_colorschemes(M, "catppuccin/nvim", { "catppuccin" }, {
       illuminate = myvim.plugins.illuminate.active,
       which_key = true,
       mason = true,
+      flash = myvim.plugins.flash.active,
     },
   },
 })
