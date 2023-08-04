@@ -1,21 +1,19 @@
-
-
 ## Common
-
-```bash
-# First setting up onedrive
-export ROAMING_DIR='${Onedrive-JHU}/settings/win10'
-```
 
 ### Settings
 
 #### Font
 
-[Fix Chinese charactors](https://iamcristye.github.io/Font/)
+- [Fix Chinese charactors](https://iamcristye.github.io/Font/)
 
 #### System
 
 - disable [shift-alt](https://superuser.com/a/1385457)
+
+Optional
+
+- Intel Laptop
+  - Disable `Display Power Saving Technology` in intel control panel's power setting
 
 #### App
 
@@ -59,7 +57,7 @@ Setting up the data following the [guide](https://www.tenforums.com/tutorials/13
 <!-- - lrcat & dir by `mklink /h ${dst} ${src}` -->
 
 ```powershell
-cd ${data}/pictures/lrcat/
+cd ${data}/picture/lrcat/
 New-Item -ItemType HardLink -Path "meijieru.lrcat" -Target "C:\Users\meiji\OneDrive - Johns Hopkins\picture\lrcat\meijieru.lrcat"
 ```
 
@@ -67,21 +65,27 @@ New-Item -ItemType HardLink -Path "meijieru.lrcat" -Target "C:\Users\meiji\OneDr
 
 Disable `ctrl+,` by changing to others, TODO: check it later
 
+##### Wechat
+
+- Disable auto update
+- Move files to `${data}/document/wechat`
+
 ### Uninstall unneccesary apps
 
 ### Apps from win store
 
-- X410
-  - TODO: use wslg instead
 - LiquidText
 - Ditto
 - Auto Dark Mode X
 - Huorong
+- snipaste
 
 Optional
 
 - GestureSign
 - Nebo
+- X410
+  - use wslg instead
 
 ### Apps from scoop
 
@@ -96,10 +100,11 @@ scoop bucket add nonportable
 scoop bucket add dorado https://github.com/chawyehsu/dorado
 
 scoop install 7zip aria2 git
-scoop install vscode wezterm
-scoop install autohotkey2 sharpkeys everything powertoys snipaste
+scoop install vscode wezterm neovide
+scoop install autohotkey sharpkeys everything powertoys mathpix
 scoop install fsviewer potplayer
 scoop install nextcloud zoom rufus teamviewer freedownloadmanager
+scoop install displaycal argyllcms@2.1.2
 
 # wsl utility
 scoop bucket add .oki https://github.com/okibcn/Bucket  # for wslcompact
@@ -128,7 +133,6 @@ echo "Check the optional packages"
 - [Chrome](https://www.google.com/chrome/)
 - [Sogou](https://shurufa.sogou.com/)
 - [Mind Master](https://www.edrawsoft.cn/mindmaster/)
-- [DisplayCal](https://displaycal.net/#download)
 - [Ivacy](TODO)
 - [Pulse Secure](TODO)
 - [WizNote X](TODO)
@@ -141,7 +145,6 @@ echo "Check the optional packages"
 Optional
 
 - Install [CC](https://creativecloud.adobe.com/apps/all/desktop?action=install&source=apps&productId=creative-cloud) & [Lightroom](https://www.cybermania.ws/software/adobe-genp/)
-- [Mathpix Snipping Tool](TODO)
 - [BaiduNetDisk](TODO)
 
 ### StartUp
@@ -159,12 +162,3 @@ TODO
 ### Android Subsystem
 
 ## Machine Specific
-
-### Matebook X Pro
-
-#### Drivers
-
-- [HW PCManager](https://consumer.huawei.com/cn/support/laptops/matebook-x-pro/)
-  - Enable fingerprint
-    - TODO
-- Disable `Display Power Saving Technology` in intel control panel's power setting
