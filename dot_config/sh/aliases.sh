@@ -34,6 +34,7 @@ fi
 
 if [ -x "$(command -v exa)" ]; then
     alias l="exa --long --icons"
+    alias ll="exa --long --icons --all"
     alias lg="exa --long --header --git --icons"
     alias ls="exa"
 fi
