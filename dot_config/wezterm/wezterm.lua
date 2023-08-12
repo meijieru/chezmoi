@@ -89,7 +89,15 @@ config.enable_scroll_bar = false
 
 config.exit_behavior = "Close"
 config.keys = mykeys
-config.front_end = "WebGpu"
+
+for _, gpu in ipairs(wezterm.gui.enumerate_gpus()) do
+  -- flickring on Intel IntegratedGpu
+  if gpu.backend == "Vulkan" and gpu.device_type == "IntegratedGpu" and gpu.name:find("Intel") == nil then
+    config.webgpu_preferred_adapter = gpu
+    config.front_end = "WebGpu"
+    break
+  end
+end
 
 config.line_height = 0.95
 config.font_size = 13.0
