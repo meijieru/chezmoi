@@ -81,5 +81,6 @@ yay:
   - cmake-format
   - nvimpager
   - wsl-open
+  - win32yank-bin
   # - google-cloud-cli
   # - diffsitter-bin
