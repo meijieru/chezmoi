@@ -90,11 +90,24 @@ config.enable_scroll_bar = false
 config.exit_behavior = "Close"
 config.keys = mykeys
 
+config.front_end = "WebGpu"
+local gpu_infos = {}
 for _, gpu in ipairs(wezterm.gui.enumerate_gpus()) do
-  -- flickring on Intel IntegratedGpu
-  if gpu.backend == "Vulkan" and gpu.device_type == "IntegratedGpu" and gpu.name:find("Intel") == nil then
+  if gpu_infos[gpu.device_type] == nil then
+    gpu_infos[gpu.device_type] = {
+      [gpu.backend] = gpu,
+    }
+  else
+    gpu_infos[gpu.device_type][gpu.backend] = gpu
+  end
+end
+
+local gpu_info = gpu_infos["IntegratedGpu"] or gpu_infos["DiscreteGpu"]
+local backend_fallback = { "Dx12", "Vulkan", "Metal" }
+for _, backend in ipairs(backend_fallback) do
+  local gpu = gpu_info[backend]
+  if gpu ~= nil then
     config.webgpu_preferred_adapter = gpu
-    config.front_end = "WebGpu"
     break
   end
 end
