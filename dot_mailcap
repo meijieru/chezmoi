@@ -1,2 +1,2 @@
-image/png; wsl-open '%s'
-image/jpeg; wsl-open '%s'
+image/png; wslview '%s'
+image/jpeg; wslview '%s'

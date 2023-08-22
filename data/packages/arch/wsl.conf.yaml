@@ -76,11 +76,12 @@ pacman:
   - gdown
   - foliate
 
+  - wslu
+
 yay:
   - lsyncd
   - cmake-format
   - nvimpager
-  - wsl-open
   - win32yank-bin
   # - google-cloud-cli
   # - diffsitter-bin

@@ -21,9 +21,9 @@ if [[ $(uname -r) =~ WSL2$ ]]; then
 
     # xdg-open
     if [[ -z $BROWSER ]]; then
-        export BROWSER=wsl-open
+        export BROWSER=wslview
     else
-        export BROWSER=${BROWSER}:wsl-open
+        export BROWSER=${BROWSER}:wslview
     fi
 fi
 
