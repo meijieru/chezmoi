@@ -10,7 +10,7 @@ end
 
 if utils.is_neovide() then
   Log:debug "In neovide frontend"
-  vim.o.guifont = "JetBrainsMono Nerd Font Mono:h13"
+  vim.o.guifont = "JetBrainsMonoNL Nerd Font:h13"
   myvim.plugins.wakatime.active = false
 
   -- FIXME(meijieru): until fixed upstream
