@@ -39,6 +39,7 @@ pacman:
   - chezmoi
 
   - shfmt
+  - python-importlib-metadata # yapf deps
   - yapf
   - python-black
   - python-isort
