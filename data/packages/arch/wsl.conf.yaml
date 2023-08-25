@@ -25,7 +25,7 @@ pacman:
   - dust
   - duf
   - bat
-  # - zoxide
+  - zoxide
 
   - neovim
   - python-neovim

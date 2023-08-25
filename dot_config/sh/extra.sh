@@ -27,6 +27,11 @@ if [[ $(uname -r) =~ WSL2$ ]]; then
     fi
 fi
 
+# load zoxide
+if [ -x "$(command -v zoxide)" ]; then
+    eval "$(zoxide init zsh)"
+fi
+
 # load anaconda
 if [[ -f $HOME/lib/anaconda/bin/conda ]]; then
     export ANACONDA_HOME=${HOME}/lib/anaconda

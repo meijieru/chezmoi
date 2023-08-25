@@ -55,7 +55,6 @@ delete:
 
 move:
   .wget-hsts: $XDG_STATE_HOME/wget-hsts
-  .zlua: $XDG_STATE_HOME/zlua
   .zsh_history: $XDG_STATE_HOME/zsh/history
   .zcomet: $ZCOMET_DIR
 
@@ -69,3 +68,4 @@ check:
   - .gnupg
 
   - ~/lib/anaconda
+  - $XDG_STATE_HOME/zlua

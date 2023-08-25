@@ -19,6 +19,7 @@ apt:
   - python3-pip
   - lua5.4
   - exa
+  - zoxide
 
   - make
   - sqlite3
