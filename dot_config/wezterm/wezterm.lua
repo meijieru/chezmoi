@@ -17,7 +17,7 @@ local function font_with_fallback(fonts, params)
     fonts[1],
     -- "JetBrainsMono NF",
     "Microsoft Yahei",
-    { family = "Symbols Nerd Font Mono", scale = 0.8 },
+    { family = "Symbols Nerd Font Mono", scale = 0.75 },
   }
 
   return wezterm.font_with_fallback(names, params)
