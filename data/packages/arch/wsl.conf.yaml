@@ -1,4 +1,5 @@
 pacman:
+  - downgrade
   - archlinuxcn-keyring
   - openssh
   - sudo
