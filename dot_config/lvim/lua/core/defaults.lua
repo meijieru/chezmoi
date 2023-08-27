@@ -27,6 +27,7 @@ _G.myvim = {
         "pyright",
         "ruff_lsp",
         "clangd",
+        "lua_ls",
       },
     },
   },
