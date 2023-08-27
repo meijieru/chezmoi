@@ -44,7 +44,6 @@ pacman:
   - yapf
   - python-black
   - python-isort
-  - prettier
   - pyright
   - ruff-lsp
   - lua-language-server
