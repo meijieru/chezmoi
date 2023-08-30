@@ -1,7 +1,0 @@
-{
-  "inspect": {
-    "prefix": "inspect",
-    "body": ["print(vim.inspect({${1:val}}))"],
-    "description": "vim inspect"
-  }
-}

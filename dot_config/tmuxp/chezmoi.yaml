@@ -11,17 +11,17 @@ windows:
       main-pane-height: 35
     panes:
       - focus: true
-  - window_name: lvim
+  - window_name: nvim
     layout: main-horizontal
     options:
       main-pane-height: 35
-    start_directory: dot_config/lvim/
+    start_directory: dot_config/astronvim
     panes:
       - focus: true
-  - window_name: LunarVim
+  - window_name: astronvim
     layout: main-horizontal
     options:
       main-pane-height: 35
-    start_directory: ~/lib/LunarVim/
+    start_directory: ~/.config/astronvim
     panes:
       - focus: true

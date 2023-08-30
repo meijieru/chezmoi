@@ -35,20 +35,14 @@ delete:
   - .ycm_extra_conf.py
   - .mailcap
 
-  - .config/lvim/lua/modules/completion/lsp.lua
-  - .config/lvim/lua/modules/ui/utils.lua
-  - .config/lvim/lua/core/utils.lua
-  - .config/lvim/plugin/folding.vim
-  - .config/lvim/package.json
-  - .config/lvim/plugin
+  - .config/lvim
   - .config/nvimpager/plugin
-  - .config/lvim/after/ftplugin/html.lua
-  - .config/lvim/after/ftplugin/startuptime.lua
 
   - .local/share/nvim/dapinstall
   - .local/share/nvim/lsp_servers
   - .local/share/nvim/site
-  - .local/share/lunarvim/site/pack/packer
+  - .local/share/lunarvim
+  - .local/share/lvim
 
   - .local/bin/asynctask
   - .local/bin/asynctasks
@@ -69,3 +63,5 @@ check:
 
   - ~/lib/anaconda
   - $XDG_STATE_HOME/zlua
+
+  - lib/LunarVim
