@@ -6,7 +6,7 @@ import shutil
 import yaml
 
 
-def cleanup(config: dict, root_dir: str) -> None:
+def cleanup(config: dict, root_dir: str, use_trash: bool = True) -> None:
     def get_files(pattern):
         pattern_abs = os.path.join(os.path.expanduser(root_dir), pattern)
         return glob.glob(pattern_abs)
@@ -21,7 +21,9 @@ def cleanup(config: dict, root_dir: str) -> None:
         if not os.path.exists(fpath):
             continue
 
-        if os.path.isdir(fpath) and not os.path.islink(fpath):
+        if use_trash:
+            os.system(f"trash-put {fpath}")
+        elif os.path.isdir(fpath) and not os.path.islink(fpath):
             shutil.rmtree(fpath)
         else:
             os.remove(fpath)
