@@ -35,14 +35,16 @@ delete:
   - .ycm_extra_conf.py
   - .mailcap
 
-  - .config/lvim
+  - .config/lvim/
   - .config/nvimpager/plugin
+  - .config/nvimpager/init.vim
 
   - .local/share/nvim/dapinstall
   - .local/share/nvim/lsp_servers
   - .local/share/nvim/site
   - .local/share/lunarvim
   - .local/share/lvim
+  - .local/share/nvimpager/site/pack
 
   - .local/bin/asynctask
   - .local/bin/asynctasks

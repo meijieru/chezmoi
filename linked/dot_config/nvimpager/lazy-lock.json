@@ -1,0 +1,6 @@
+{
+  "everforest": { "branch": "master", "commit": "83b666410d7ae0eccf96dbbe3b4b6ac5b8172d38" },
+  "flash.nvim": { "branch": "main", "commit": "8a8e74922a383c253b7f92e042b749150140c8d1" },
+  "nvim-treesitter": { "branch": "main", "commit": "c0e40a282d80f4e30ba67799f67041fe40cbb45e" },
+  "smartyank.nvim": { "branch": "master", "commit": "7e3905578f646503525b2f7018b8afd17861018c" }
+}

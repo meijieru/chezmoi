@@ -1,21 +1,13 @@
-local uv = vim.uv or vim.loop
-
-local on_windows = uv.os_uname().version:match("Windows")
 local joinpath = vim.fs.joinpath
-  or function(...)
-    local path_sep = on_windows and "\\" or "/"
-    local result = table.concat({ ... }, path_sep)
-    return result
-  end
 
 local HOME = os.getenv("HOME")
 local XDG_CONFIG_HOME = os.getenv("XDG_CONFIG_HOME") or joinpath(HOME, ".config")
 local XDG_DATA_HOME = os.getenv("XDG_DATA_HOME") or joinpath(HOME, ".local/share")
 local runtime_dir = joinpath(XDG_DATA_HOME, "nvimpager")
 local config_dir = joinpath(XDG_CONFIG_HOME, "nvimpager")
--- Reuse lvim lazy.nvim
-local lazy_dir = joinpath(XDG_DATA_HOME, "lunarvim", "site", "pack", "lazy", "opt", "lazy.nvim")
-local plugins_dir = joinpath(runtime_dir, "site", "pack", "lazy", "opt")
+-- Reuse nvim lazy.nvim
+local lazy_dir = joinpath(XDG_DATA_HOME, "nvim", "lazy", "lazy.nvim")
+local plugins_dir = joinpath(runtime_dir, "lazy")
 local runtimes = { config_dir, lazy_dir }
 for _, dir in ipairs(runtimes) do
   if not vim.tbl_contains(vim.opt.rtp:get(), dir) then
@@ -45,21 +37,56 @@ local plugins = {
   },
   {
     "nvim-treesitter/nvim-treesitter",
-    config = function()
-      require("nvim-treesitter.configs").setup({
-        highlight = { enable = true, additional_vim_regex_highlighting = false },
-      })
-    end,
+    branch = "main",
+    opts = {
+      auto_install = true,
+    },
+    lazy = false,
   },
   {
-    "ggandor/leap.nvim",
-    event = { "VeryLazy" },
-    config = function()
-      require("leap").add_default_mappings()
-    end,
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    opts = { modes = { search = { enabled = false } } },
+    keys = {
+      {
+        "s",
+        mode = { "n", "x", "o" },
+        function()
+          require("flash").jump()
+        end,
+        desc = "Flash",
+      },
+      {
+        "S",
+        mode = { "n", "o", "x" },
+        function()
+          require("flash").treesitter()
+        end,
+        desc = "Flash Treesitter",
+      },
+      {
+        "r",
+        mode = "o",
+        function()
+          require("flash").remote()
+        end,
+        desc = "Remote Flash",
+      },
+      {
+        "R",
+        mode = { "o", "x" },
+        function()
+          require("flash").treesitter_search()
+        end,
+        desc = "Treesitter Search",
+      },
+    },
   },
 }
 local opts = {
+  defaults = {
+    lazy = true,
+  },
   install = {
     missing = true,
     colorscheme = { colorscheme },
@@ -80,6 +107,12 @@ local opts = {
 }
 
 lazy.setup(plugins, opts)
+
+vim.api.nvim_create_autocmd("FileType", {
+  callback = function(args)
+    pcall(vim.treesitter.start)
+  end,
+})
 
 vim.o.background = "light"
 vim.o.termguicolors = true
