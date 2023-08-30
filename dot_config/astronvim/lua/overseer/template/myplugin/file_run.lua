@@ -1,4 +1,4 @@
-local uv = vim.uv or vim.loop
+local uv = vim.uv
 local helper = require "overseer.template.myplugin.helper"
 
 local remove_extension = helper.remove_extension

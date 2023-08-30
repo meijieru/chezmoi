@@ -1,4 +1,4 @@
-local uv = vim.uv or vim.loop
+local uv = vim.uv
 local overseer = require "overseer"
 local remote = require "core.utils.remote"
 
