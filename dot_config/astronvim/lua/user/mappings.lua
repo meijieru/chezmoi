@@ -146,6 +146,7 @@ local to_disable = {
     -- Terminal
     ["<F7>"] = false,
     ["<C-'>"] = false,
+    ["<leader>tn"] = false,
 
     -- Custom menu for modification of the user experience
     ["<leader>uc"] = false,
@@ -407,6 +408,11 @@ return function(maps)
   -- Debug
   maps.n["<leader>dd"] = maps.n["<leader>ds"]
   maps.n["<leader>ds"] = nil
+
+  -- Terminal
+  if maps.n["<leader>tp"] and vim.fn.executable "ipython" == 1 then
+    maps.n["<leader>tp"] = { function() utils.toggle_term_cmd "ipython" end, desc = "ToggleTerm python" }
+  end
 
   direct_set()
 
