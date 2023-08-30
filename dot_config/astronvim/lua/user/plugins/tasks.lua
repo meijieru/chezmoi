@@ -4,7 +4,11 @@ return {
   {
     "overseer.nvim",
     opts = {
-      strategy = { "toggleterm", open_on_start = false },
+      strategy = {
+        "toggleterm",
+        open_on_start = false,
+        hidden = true,
+      },
       templates = { "builtin", "myplugin.global_tasks" },
       task_list = {
         bindings = {
