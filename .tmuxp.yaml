@@ -1,9 +1,0 @@
-session_name: chezmoi
-windows:
-  - window_name: dev
-    panes:
-      - shell_command: vim
-  - window_name: lvim
-    shell_command_before:
-      - cd ~/lib/LunarVim
-  - window_name: command
