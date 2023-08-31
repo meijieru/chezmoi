@@ -229,6 +229,7 @@ return {
     opts = {
       render = "default",
       stages = "fade",
+      top_down = false,
     },
   },
 
