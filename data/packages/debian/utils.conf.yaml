@@ -8,7 +8,7 @@ apt:
   - git
   - etckeeper
   - trash-cli
-  - htop # TODO(meijieru): replace by btop
+  - btop
   - tmux
   - tmuxp
   - tree
