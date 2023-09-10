@@ -32,11 +32,11 @@ if [ -x "$(command -v xclip)" ]; then
     alias pastefromclipboard='xclip -o -selection c'
 fi
 
-if [ -x "$(command -v exa)" ]; then
-    alias l="exa --long --icons"
-    alias ll="exa --long --icons --all"
-    alias lg="exa --long --header --git --icons"
-    alias ls="exa"
+if [ -x "$(command -v eza)" ]; then
+    alias l="eza --long --icons"
+    alias ll="eza --long --icons --all"
+    alias lg="eza --long --header --git --icons"
+    alias ls="eza"
 fi
 
 if [ -x "$(command -v dust)" ]; then
