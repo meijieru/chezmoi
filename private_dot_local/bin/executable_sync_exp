@@ -10,6 +10,7 @@ for host in ${hosts}; do
 	echo "sync ${remote} -> ${local_expdir}"
 	rsync -ahP \
 		--exclude *.pth \
+		--exclude *.tar \
 		--exclude *.model \
 		--exclude *.pkl \
 		${remote}/ ${local_expdir}/
