@@ -64,7 +64,7 @@ return {
 
   { import = "astrocommunity.project.project-nvim" },
   {
-    "project_nvim",
+    "project.nvim",
     opts = function(_, opts)
       opts.ignore_lsp = nil
       opts.detection_methods = { "pattern", "lsp" }
