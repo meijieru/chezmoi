@@ -1,0 +1,10 @@
+#!/bin/bash
+
+hosts=$1
+remote_command=$2
+echo "hosts: ${hosts}, command: ${remote_command}"
+
+for host in ${hosts}; do
+	echo "check ${host}"
+	ssh ${host} -t -o RemoteCommand="${remote_command}"
+done
