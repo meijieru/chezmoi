@@ -25,6 +25,30 @@ return {
         config.local_expdir or config.expdir,
       },
       name = string.format("sync %s", params.preset),
+      components = {
+        "on_exit_set_status",
+        {
+          "on_output_parse",
+          parser = {
+            {
+              "extract",
+              "^exit code of (.*): (%d+)$",
+              "host",
+              "exit_code",
+            },
+          },
+        },
+        {
+          "myplugin.preprocess_result",
+          on_preprocess_result = function(_, _, result)
+            local num_success = 0
+            for _, value in ipairs(result) do
+              num_success = num_success + (value["exit_code"] == 0 and 1 or 0)
+            end
+            vim.notify(string.format("%d/%d synced", num_success, #result), "info", { title = "sync_exp" })
+          end,
+        },
+      },
     }
   end,
   condition = {

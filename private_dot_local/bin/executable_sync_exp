@@ -14,4 +14,5 @@ for host in ${hosts}; do
 		--exclude *.model \
 		--exclude *.pkl \
 		${remote}/ ${local_expdir}/
+	echo "exit code of ${host}: $?"
 done
