@@ -33,10 +33,15 @@ if [ -x "$(command -v xclip)" ]; then
 fi
 
 if [ -x "$(command -v eza)" ]; then
-    alias l="eza --long --icons"
-    alias ll="eza --long --icons --all"
-    alias lg="eza --long --header --git --icons"
-    alias ls="eza"
+    exa="eza"
+elif [ -x "$(command -v exa)" ]; then
+    exa="exa"
+fi
+if [ -n "${exa}" ]; then
+    alias l="${exa} --long --icons"
+    alias ll="${exa} --long --icons --all"
+    alias lg="${exa} --long --header --git --icons"
+    alias ls="${exa}"
 fi
 
 if [ -x "$(command -v dust)" ]; then
