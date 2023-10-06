@@ -84,5 +84,6 @@ yay:
   - cmake-format
   - nvimpager
   - win32yank-bin
+  - arxiv-latex-cleaner
   # - google-cloud-cli
   # - diffsitter-bin
