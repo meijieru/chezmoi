@@ -43,7 +43,7 @@ on("FileType", {
 })
 
 on("FileType", {
-  pattern = { "lua", "json" },
+  pattern = { "lua", "json", "markdown" },
   callback = function()
     vim.notify("set tabstop from filetype plugin", vim.log.levels.DEBUG, { title = "Filetype indent" })
     vim.bo.tabstop = 2
