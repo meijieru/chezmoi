@@ -37,6 +37,7 @@ pacman:
   - rust
   - clang
   - cmake
+  - xmake
   - chezmoi
 
   - shfmt
