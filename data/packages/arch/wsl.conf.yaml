@@ -63,6 +63,7 @@ pacman:
   - python-tqdm
   - python-rich
   - ipython
+  - jupyter-notebook
 
   - python-torchvision
   - python-pytorch
