@@ -1,5 +1,5 @@
 return {
-  "jose-elias-alvarez/null-ls.nvim",
+  "null-ls.nvim",
   opts = function(_, opts)
     local null_ls = require "null-ls"
 
