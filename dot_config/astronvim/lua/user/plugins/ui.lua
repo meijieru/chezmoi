@@ -131,4 +131,9 @@ return {
     -- TODO(meijieru): slow down python startup
     enabled = false,
   },
+
+  {
+    "vimpostor/vim-lumen",
+    lazy = false,
+  },
 }
