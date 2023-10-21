@@ -48,6 +48,10 @@ delete:
 
   - .local/bin/asynctask
   - .local/bin/asynctasks
+  - .local/bin/lvim
+  - .local/bin/antigen.zsh
+  - .local/bin/pygrun
+  - .local/bin/tabulate
 
 move:
   .wget-hsts: $XDG_STATE_HOME/wget-hsts
