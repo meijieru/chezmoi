@@ -5,8 +5,8 @@ return {
   { import = "astrocommunity.bars-and-lines.statuscol-nvim" },
   {
     "statuscol.nvim",
-    event = "UIEnter",
-    lazy = true,
+    event = "BufReadPost",
+    lazy = vim.fn.argv()[1] == nil,
     opts = function(_, _)
       local builtin = require "statuscol.builtin"
       local opts = {
@@ -74,6 +74,7 @@ return {
   { import = "astrocommunity.file-explorer.oil-nvim" },
   {
     "oil.nvim",
+    lazy = not vim.startswith(vim.fn.argv()[1] or "", "oil-ssh://"),
     opts = {
       view_options = {
         -- Show files and directories that start with "."
@@ -94,8 +95,6 @@ return {
         { "-", function() require("oil").open() end, desc = "Open parent directory" },
       }
     end,
-    -- TODO(meijieru): lazy load
-    lazy = false,
   },
 
   { import = "astrocommunity.test.neotest" },
