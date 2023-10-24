@@ -1,8 +1,88 @@
 # https://github.com/charliermarsh/ruff#reference
-target-version = "py38"
-ignore = []
-line-length = 80
-select = ["E", "F"]
+
+# pytorch config ref: https://github.com/pytorch/pytorch/blob/main/pyproject.toml
+
+line-length = 120
+select = [
+    "B",
+    "C4",
+    "G",
+    "E",
+    "F",
+    "SIM1",
+    "W",
+    # Not included in flake8
+    "UP",
+    "PERF",
+    "PGH004",
+    "PIE807",
+    "PIE810",
+    "PLE",
+    "PLR1722", # use sys exit
+    "PLW3301", # nested min max
+    "PT006",   # TODO: enable more PT rules
+    "PT022",
+    "PT023",
+    "PT024",
+    "PT025",
+    "PT026",
+    "PYI",
+    "RUF017",
+    "TRY200",
+    "TRY302",
+]
+ignore = [
+    # these ignores are from flake8-bugbear; please fix!
+    "B007",
+    "B008",
+    "B017",
+    "B018",   # Useless expression
+    "B019",
+    "B020",
+    "B023",
+    "B026",
+    "B028",   # No explicit `stacklevel` keyword argument found
+    "B904",
+    "E402",
+    "C408",   # C408 ignored because we like the dict keyword argument syntax
+    "E501",   # E501 is not flexible enough, we're using B950 instead
+    "E721",
+    "E731",   # Assign lambda expression
+    "E741",
+    "EXE001",
+    "F405",
+    "F821",
+    "F841",
+    # these ignores are from flake8-logging-format; please fix!
+    "G101",
+    "G201",
+    "G202",
+    # these ignores are from RUFF perf; please fix!
+    "PERF203",
+    "PERF4",
+    "PYI001",  # these ignores are from PYI; please fix!
+    "PYI019",
+    "PYI024",
+    "PYI036",
+    "PYI041",
+    "PYI056",
+    "SIM102",
+    "SIM103",
+    "SIM112",  # flake8-simplify code styles
+    "SIM105",  # these ignores are from flake8-simplify. please fix or ignore with commented reason
+    "SIM108",
+    "SIM110",
+    "SIM114",  # Combine `if` branches using logical `or` operator
+    "SIM115",
+    "SIM116",  # Disable Use a dictionary instead of consecutive `if` statements
+    "SIM117",
+    "SIM118",
+    "UP006",   # keep-runtime-typing
+    "UP007",   # keep-runtime-typing
+]
+
+[per-file-ignores]
+"__init__.py" = ["F401"]
 
 [isort]
 known-third-party = []
