@@ -43,8 +43,6 @@ pacman:
   - shfmt
   - python-importlib-metadata # yapf deps
   - yapf
-  - python-black
-  - python-isort
   - pyright
   - ruff-lsp
   - lua-language-server

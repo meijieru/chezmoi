@@ -16,10 +16,9 @@ return {
       null_ls.builtins.code_actions.gitrebase,
 
       -- TODO(meijieru): revisit when ruff works
-      null_ls.builtins.formatting.black,
-      null_ls.builtins.formatting.isort:with { extra_args = { "--profile", "black", "--force_sort_within_sections" } },
       yapf,
     }
     return opts
   end,
+  enabled = true,
 }
