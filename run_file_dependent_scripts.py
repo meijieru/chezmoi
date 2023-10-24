@@ -88,12 +88,10 @@ def UmaskNamedTemporaryFile(*args, perms: int = 0o700, **kargs):
 def run_file(fname: str) -> None:
     base_name, ext = os.path.splitext(os.path.basename(fname))
     if ext in [".tmpl"]:
-        with UmaskNamedTemporaryFile(
-            suffix=base_name, delete=False
-        ) as tmp_file:
+        with UmaskNamedTemporaryFile(suffix=base_name, delete=False) as tmp_file:
             subprocess.run(
                 ["chezmoi", "execute-template"],
-                stdin=open(fname, "r"),
+                stdin=open(fname),
                 stdout=tmp_file,
                 check=True,
                 encoding="utf-8",
@@ -104,9 +102,7 @@ def run_file(fname: str) -> None:
         subprocess.run(fname, check=True)
 
 
-def verify_checksums(
-    existing_checksum_map: Dict[str, str], dependencies: Dict[str, List[str]]
-) -> bool:
+def verify_checksums(existing_checksum_map: Dict[str, str], dependencies: Dict[str, List[str]]) -> bool:
     checksum_refresh = False
     to_executes = set()
 
@@ -114,27 +110,22 @@ def verify_checksums(
         with open(fpath, "rb") as dep_file:
             file_bytes = dep_file.read()
             hash = hashlib.sha256(file_bytes).hexdigest()
-            if (
-                fpath not in existing_checksum_map
-                or hash != existing_checksum_map[fpath]
-            ):
-                logging.info("Hashes mismatch: {}".format(fpath))
+            if fpath not in existing_checksum_map or hash != existing_checksum_map[fpath]:
+                logging.info("Hashes mismatch: %s", fpath)
                 checksum_refresh = True
                 to_executes.update(exes)
             else:
-                logging.info("Hashes match: {}".format(fpath))
+                logging.info("Hashes match: %s", fpath)
 
     for exe in to_executes:
-        logging.info("Running: {}".format(exe))
+        logging.info("Running: %s", exe)
         run_file(exe)
     return checksum_refresh
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Run on deps changes.")
-    parser.add_argument(
-        "--skip_install", action="store_true", help="update checksum only"
-    )
+    parser.add_argument("--skip_install", action="store_true", help="update checksum only")
     args = parser.parse_args()
 
     logging.basicConfig(

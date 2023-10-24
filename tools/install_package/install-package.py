@@ -28,7 +28,8 @@ class Action(abc.ABC):
     def deploy(self) -> None:
         raise NotImplementedError()
 
-    @abc.abstractclassmethod
+    @classmethod
+    @abc.abstractmethod
     def is_usable(cls, config: MutableMapping[str, Any]) -> bool:
         del config
         raise NotImplementedError()
@@ -64,13 +65,13 @@ class PackageManager(Action):
 
     @classmethod
     def is_usable(cls, config: MutableMapping[str, Any]) -> bool:
-        return any([val in config for val in cls._keys])
+        return any(val in config for val in cls._keys)
 
     def deploy(self) -> None:
         logging.info(str(self._keys))
         for key in self._keys:
             if key in self._context:
-                logging.info("Processing {}".format(key))
+                logging.info("Processing %s", key)
                 self._process(self._context[key])
 
     def _process(self, packages):
@@ -92,9 +93,9 @@ class PackageManager(Action):
             result = self._install(pkg)
             results[result] = results.get(result, 0) + 1
             if result not in successful:
-                logging.error("Could not install package '{}'".format(pkg))
+                logging.error("Could not install package '%s'", pkg)
 
-        if all([result in successful for result in results.keys()]):
+        if all(result in successful for result in results.keys()):
             logging.info("\nAll packages installed successfully")
             success = True
         else:
@@ -102,7 +103,7 @@ class PackageManager(Action):
 
         for status, amount in results.items():
             log = logging.info if status in successful else logging.error
-            log("{} {}".format(amount, status.value))
+            log("%s %s", (amount, status.value))
 
         return success
 
@@ -111,14 +112,12 @@ class PackageManager(Action):
         # we need to execute the command with LANG=en_US
         cmd = self._command_template.format(pkg)
 
-        logging.info('Installing "{}". Please wait...'.format(pkg))
+        logging.info('Installing "%s". Please wait...', pkg)
 
         # needed to avoid conflicts due to locking
         time.sleep(1)
 
-        proc = subprocess.Popen(
-            cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT
-        )
+        proc = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         if proc.stdout is None:
             logging.warning("Failed to fetch stdout")
             return PkgStatus.NOT_SURE
@@ -129,9 +128,7 @@ class PackageManager(Action):
             if out.decode("utf-8").find(self._strings[item]) >= 0:
                 return item
 
-        logging.warning(
-            "Could not determine what happened with package {}".format(pkg)
-        )
+        logging.warning("Could not determine what happened with package %s", pkg)
         return PkgStatus.NOT_SURE
 
 
@@ -148,9 +145,7 @@ class Yay(PackageManager):
             PkgStatus.INSTALLED: "Total Installed Size:",
             PkgStatus.UP_TO_DATE: "is up to date -- skipping",
         }
-        super().__init__(
-            context, "LANG=en_US yay --needed --noconfirm -S {}", strings
-        )
+        super().__init__(context, "LANG=en_US yay --needed --noconfirm -S {}", strings)
 
 
 class Apt(PackageManager):
@@ -195,7 +190,7 @@ class Wget(Action):
     _key = "wget"
 
     def __init__(self, *args, **kwargs):
-        super(Wget, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
     @classmethod
     def is_usable(cls, config: MutableMapping[str, Any]) -> bool:
@@ -208,15 +203,13 @@ class Wget(Action):
         local_path = self._context["opts"]["local_path"]
         overwrite = self._context["opts"].get("overwrite", False)
         for fname, url in self._context[self._key].items():
-            fname_abs = os.path.abspath(
-                os.path.expanduser(os.path.join(local_path, fname))
-            )
-            logging.info("Downloading {} to {}".format(fname, local_path))
+            fname_abs = os.path.abspath(os.path.expanduser(os.path.join(local_path, fname)))
+            logging.info("Downloading %s to %s", fname, local_path)
             if os.path.exists(fname_abs):
                 if overwrite:
-                    logging.info("Overwriting {}".format(fname))
+                    logging.info("Overwriting %s", fname)
                 else:
-                    logging.error("Existed: {}".format(fname))
+                    logging.error("Existed: %s", fname)
             self.download_file(fname_abs, url)
             self.chmod_digit(fname_abs)
 
@@ -229,17 +222,15 @@ class Wget(Action):
 def guess_type(config: MutableMapping[str, Any]) -> Action:
     for cls in [Wget, Yay, Apt, Pip]:
         if cls.is_usable(config):
-            logging.info("Use action: {}".format(cls.__name__))
+            logging.info("Use action: %s", cls.__name__)
             return cls(config)
-    raise ValueError("Unknown config with keys: {}".format(list(config.keys())))
+    raise ValueError(f"Unknown config with keys: {list(config.keys())}")
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Install packages.")
     parser.add_argument("config_file", type=str, help="where is the local path")
-    parser.add_argument(
-        "--log_level", type=str, default="info", help="log level"
-    )
+    parser.add_argument("--log_level", type=str, default="info", help="log level")
     args = parser.parse_args()
 
     logging.basicConfig(
@@ -247,7 +238,7 @@ if __name__ == "__main__":
         level=getattr(logging, args.log_level.upper()),
     )
 
-    with open(args.config_file, "r") as f:
+    with open(args.config_file) as f:
         config = yaml.load(f, Loader=yaml.SafeLoader)
 
     action = guess_type(config)

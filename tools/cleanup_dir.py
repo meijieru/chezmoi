@@ -15,7 +15,7 @@ def cleanup(config: dict, root_dir: str, use_trash: bool = True) -> None:
     for pattern in config["delete"]:
         files_to_delete.extend(get_files(pattern))
     if len(files_to_delete):
-        logging.info("Delete: {}".format(files_to_delete))
+        logging.info("Delete: %s", files_to_delete)
 
     for fpath in files_to_delete:
         if not os.path.exists(fpath):
@@ -32,7 +32,7 @@ def cleanup(config: dict, root_dir: str, use_trash: bool = True) -> None:
     for pattern in config["check"]:
         files_to_warn.extend(get_files(pattern))
     if len(files_to_warn):
-        logging.warning("Check: {}".format(files_to_warn))
+        logging.warning("Check: %s", files_to_warn)
 
     for pattern, dst in config["move"].items():
         src = get_files(pattern)
@@ -41,16 +41,16 @@ def cleanup(config: dict, root_dir: str, use_trash: bool = True) -> None:
         elif len(src) == 1:
             src = src[0]
         else:
-            raise RuntimeError("{} should not be pattern".format(pattern))
+            raise RuntimeError(f"{pattern} should not be pattern")
 
         dst = os.path.expandvars(dst)
-        msg = "{} -> {}".format(src, dst)
+        msg = f"{src} -> {dst}"
         if not os.path.isabs(dst):
-            logging.warning("Skip {}, must be abs path".format(msg))
+            logging.warning("Skip %s, must be abs path", msg)
         elif os.path.exists(dst):
-            logging.warning("Skip {}, dst exists".format(msg))
+            logging.warning("Skip %s, dst exists", msg)
         else:
-            logging.info("Renaming {}".format(msg))
+            logging.info("Renaming %s", msg)
             os.rename(src, dst)
 
 
@@ -64,12 +64,8 @@ if __name__ == "__main__":
         default="data/cleanup_homedir.yaml",
         help="config file",
     )
-    parser.add_argument(
-        "--dir", type=str, default="~", help="dir to be cleaned"
-    )
-    parser.add_argument(
-        "--log_level", type=str, default="info", help="log level"
-    )
+    parser.add_argument("--dir", type=str, default="~", help="dir to be cleaned")
+    parser.add_argument("--log_level", type=str, default="info", help="log level")
     args = parser.parse_args()
 
     logging.basicConfig(
@@ -77,6 +73,6 @@ if __name__ == "__main__":
         level=getattr(logging, args.log_level.upper()),
     )
 
-    with open(args.config_file, "r") as f:
+    with open(args.config_file) as f:
         config = yaml.load(f, Loader=yaml.SafeLoader)
     cleanup(config, args.dir)
