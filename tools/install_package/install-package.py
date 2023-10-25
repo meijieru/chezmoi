@@ -103,7 +103,7 @@ class PackageManager(Action):
 
         for status, amount in results.items():
             log = logging.info if status in successful else logging.error
-            log("%s %s", (amount, status.value))
+            log("%s %s", amount, status.value)
 
         return success
 
