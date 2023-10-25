@@ -134,5 +134,6 @@ return {
   {
     "vimpostor/vim-lumen",
     lazy = false,
+    enabled = myvim.plugins.is_development_machine,
   },
 }

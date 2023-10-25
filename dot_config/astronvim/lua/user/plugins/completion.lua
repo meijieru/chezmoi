@@ -13,7 +13,7 @@ local spec = {
   },
 }
 
-if myvim.plugins.copilot.active then
+if myvim.plugins.is_development_machine then
   return vim.list_extend(spec, {
 
     {
@@ -27,7 +27,6 @@ if myvim.plugins.copilot.active then
           ["dap-repl"] = false,
         },
       },
-      enabled = myvim.plugins.copilot.active,
     },
     {
       "zbirenbaum/copilot-cmp",
@@ -49,7 +48,6 @@ if myvim.plugins.copilot.active then
         opts.duplicates.copilot = 1
         return opts
       end,
-      enabled = myvim.plugins.copilot.active,
     },
   })
 end

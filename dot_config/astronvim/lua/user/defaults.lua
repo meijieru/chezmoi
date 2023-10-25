@@ -1,5 +1,5 @@
 _G.myvim = {
   plugins = {
-    copilot = { active = false },
+    is_development_machine = false,
   },
 }

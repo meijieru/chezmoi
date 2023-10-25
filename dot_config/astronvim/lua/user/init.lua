@@ -17,13 +17,6 @@ return {
       },
       timeout_ms = 2000, -- default format timeout
     },
-    -- enable servers that you already have installed without mason
-    servers = {
-      "pyright",
-      "ruff_lsp",
-      "clangd",
-      "lua_ls",
-    },
   },
 
   lazy = {

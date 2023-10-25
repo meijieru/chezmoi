@@ -4,17 +4,17 @@
 -- TODO(meijieru): disable null-ls on servers
 
 {{ if eq .chezmoi.hostname "Jieru-PC" }}
-myvim.plugins.copilot.active = true
+myvim.plugins.is_development_machine = true
 {{ end }}
 
 {{ if eq .chezmoi.hostname "Jieru-X360" }}
-myvim.plugins.copilot.active = true
+myvim.plugins.is_development_machine = true
 {{ end }}
 
 {{ if eq .chezmoi.hostname "Jieru-Ally" }}
-myvim.plugins.copilot.active = true
+myvim.plugins.is_development_machine = true
 {{ end }}
 
 {{ if eq .chezmoi.hostname "Home-NUC" }}
-myvim.plugins.copilot.active = true
+myvim.plugins.is_development_machine = true
 {{ end }}
