@@ -1,6 +1,7 @@
 apt:
   - fuse
   - cifs-utils
+  - lm-sensors
 
   # - tldr
   - rsync
