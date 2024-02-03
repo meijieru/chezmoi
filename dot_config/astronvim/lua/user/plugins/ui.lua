@@ -16,7 +16,7 @@ return {
         bt_ignore = { "nofile", "prompt" },
         segments = {
           {
-            sign = { name = { "GitSigns" }, maxwidth = 1, colwidth = 1, auto = false },
+            sign = { namespace = { "gitsign" }, maxwidth = 1, colwidth = 1, auto = false },
             click = "v:lua.ScSa",
           },
           {
@@ -25,7 +25,7 @@ return {
             click = "v:lua.ScLa",
           },
           {
-            sign = { name = { ".*" }, maxwidth = 1, colwidth = 1, auto = false },
+            sign = { namespace = { ".*" }, maxwidth = 1, colwidth = 1, auto = false },
             click = "v:lua.ScSa",
           },
           { text = { builtin.foldfunc, " " }, click = "v:lua.ScFa" },
