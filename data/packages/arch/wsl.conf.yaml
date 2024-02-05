@@ -41,8 +41,6 @@ pacman:
   - chezmoi
 
   - shfmt
-  - python-importlib-metadata # yapf deps
-  - yapf
   - pyright
   - ruff-lsp
   - lua-language-server
@@ -78,6 +76,12 @@ pacman:
   - foliate
 
   - wslu
+
+  - texlive-latexextra
+  - texlive-mathscience
+  - texlive-fontsextra
+  - texlive-core
+  - texlive-publishers
 
 yay:
   - lsyncd
