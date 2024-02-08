@@ -3,6 +3,8 @@
 # pytorch config ref: https://github.com/pytorch/pytorch/blob/main/pyproject.toml
 
 line-length = 120
+
+[lint]
 select = [
     "B",
     "C4",
@@ -28,7 +30,6 @@ select = [
     "PT026",
     "PYI",
     "RUF017",
-    "TRY200",
     "TRY302",
 ]
 ignore = [
@@ -81,10 +82,10 @@ ignore = [
     "UP007",   # keep-runtime-typing
 ]
 
-[per-file-ignores]
+[lint.per-file-ignores]
 "__init__.py" = ["F401"]
 
-[isort]
+[lint.isort]
 known-third-party = []
 section-order = [
     "future",
@@ -94,5 +95,5 @@ section-order = [
     "local-folder",
 ]
 
-[pydocstyle] # https://github.com/charliermarsh/ruff#pydocstyle
+[lint.pydocstyle] # https://github.com/charliermarsh/ruff#pydocstyle
 convention = "google"
