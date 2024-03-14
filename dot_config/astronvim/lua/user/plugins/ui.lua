@@ -59,6 +59,7 @@ return {
     end,
   },
 
+  { import = "astrocommunity.colorscheme.nordic-nvim" },
   { import = "astrocommunity.colorscheme.catppuccin" },
   {
     "catppuccin",

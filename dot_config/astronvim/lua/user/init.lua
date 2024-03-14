@@ -8,7 +8,7 @@ return {
     channel = "stable", -- "stable" or "nightly"
   },
 
-  colorscheme = "catppuccin",
+  colorscheme = "nordic",
 
   lsp = {
     formatting = {
