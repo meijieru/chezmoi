@@ -76,17 +76,18 @@ pacman:
 
   - wslu
 
-  - texlive-latexextra
-  - texlive-mathscience
-  - texlive-fontsextra
-  - texlive-core
-  - texlive-publishers
+  # - texlive-latexextra
+  # - texlive-mathscience
+  # - texlive-fontsextra
+  # - texlive-core
+  # - texlive-publishers
 
 yay:
   - lsyncd
   - cmake-format
   - nvimpager
   - win32yank-bin
-  - arxiv-latex-cleaner
+  - python-jax
+  # - arxiv-latex-cleaner
   # - google-cloud-cli
   # - diffsitter-bin
