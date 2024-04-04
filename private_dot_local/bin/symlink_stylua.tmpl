@@ -1,0 +1,4 @@
+{{- $styluaPath := printf "%s/.local/share/nvim/mason/packages/stylua/stylua" .chezmoi.homeDir }}
+{{- if stat $styluaPath }}
+{{ $styluaPath }}
+{{- end }}
