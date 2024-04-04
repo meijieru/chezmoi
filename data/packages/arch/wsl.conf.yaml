@@ -41,7 +41,6 @@ pacman:
   - chezmoi
 
   - shfmt
-  - pyright
   - ruff-lsp
   - lua-language-server
   - stylua
