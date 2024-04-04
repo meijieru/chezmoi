@@ -48,7 +48,7 @@ pacman:
   - pyside6
   - qt6-svg
 
-  - python-pip
+  - uv
   - python-yaml
   - python-pytoml
   - python-scipy
