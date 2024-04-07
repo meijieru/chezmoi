@@ -36,6 +36,7 @@ delete:
   - .mailcap
 
   - .config/lvim/
+  - .config/astronvim/
   - .config/nvimpager/plugin
   - .config/nvimpager/init.vim
 
@@ -45,6 +46,8 @@ delete:
   - .local/share/lunarvim
   - .local/share/lvim
   - .local/share/nvimpager/site/pack
+  - .local/share/astronvim
+  - .local/share/astronvim_v4
 
   - .local/bin/asynctask
   - .local/bin/asynctasks
