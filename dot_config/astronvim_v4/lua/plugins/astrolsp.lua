@@ -11,6 +11,7 @@ local is_available = require("astrocore").is_available
 ---@param opts AstroLSPOpts
 local function opts_func(_, opts)
   opts.formatting.format_on_save.enabled = false
+  opts.formatting.timeout_ms = 2000
 
   opts.servers = myvim.plugins.lsp.servers_from_system
 
