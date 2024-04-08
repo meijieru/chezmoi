@@ -39,10 +39,7 @@ function M.is_neovide() return vim.g.neovide ~= nil end
 
 --- Check whether in google env
 --- @return boolean
-function M.is_google()
-  vim.notify_once("Not implemented", vim.log.levels.WARN, { title = "is_google" })
-  return false
-end
+function M.is_google() return vim.fn.isdirectory "/google" == 1 end
 
 --- Check whether in wsl env
 --- @return boolean
