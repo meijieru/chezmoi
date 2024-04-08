@@ -124,6 +124,7 @@ return {
 
       autocmds = {
         q_close_windows = false,
+        -- TODO(meijieru): enable for oil.nvim
         neotree_start = false,
       },
 
@@ -259,16 +260,17 @@ return {
             desc = "Diff Get | Reset Hunk",
           },
 
-          ["<leader>gd"] = { normal_command "DiffviewOpen", desc = "Diff View" },
-          ["<leader>gh"] = { normal_command "DiffviewFileHistory", desc = "Diff History" },
-          ["<leader>gH"] = { normal_command "DiffviewFileHistory %", desc = "Diff History (for current file)" },
-          ["<leader>gg"] = { function() require("core.utils.git").toggle_fugitive() end, desc = "Toggle Status" },
-          ["<leader>gl"] = { normal_command "Git blame", desc = "Git Blame" },
-          ["<leader>gL"] = { normal_command "Gitsigns toggle_current_line_blame", desc = "Current Line Blame" },
-          ["<leader>gt"] = {
+          ["<Leader>gd"] = { normal_command "DiffviewOpen", desc = "Diff View" },
+          ["<Leader>gh"] = { normal_command "DiffviewFileHistory", desc = "Diff History" },
+          ["<Leader>gH"] = { normal_command "DiffviewFileHistory %", desc = "Diff History (for current file)" },
+          ["<Leader>gg"] = { function() require("core.utils.git").toggle_fugitive() end, desc = "Toggle Status" },
+          ["<Leader>gl"] = { normal_command "Git blame", desc = "Git Blame" },
+          ["<Leader>gL"] = { normal_command "Gitsigns toggle_current_line_blame", desc = "Current Line Blame" },
+          ["<Leader>gt"] = {
             keymap_utils.chain("Gitsigns toggle_deleted", "Gitsigns toggle_word_diff"),
             desc = "Toggle Inline Diff",
           },
+          ["<Leader>gm"] = { normal_command "Telescope git_status", desc = "Modified Files" },
 
           -- Next / Prev
           ["]"] = {
@@ -327,34 +329,34 @@ return {
           -- Telescope
           -- trick: <c-space> convert it as fuzzy
           ["<c-p>"] = { normal_command "Telescope commands", desc = "Commands Palette" },
-          ["<leader>*"] = { smart_default "live_grep", desc = "Grep" },
-          ["<leader>b"] = { normal_command "Telescope buffers", desc = "Find Buffer" },
-          ["<leader>/"] = { normal_command "Telescope search_history", desc = "Find Search History" },
-          ["<leader>fc"] = { normal_command "Telescope command_history", desc = "Find Commands History" },
-          ["<leader>ff"] = { normal_command "Telescope find_files", desc = "Find File" },
-          ["<leader>fh"] = { smart_default "help_tags", desc = "Find Help" },
-          ["<leader>fm"] = { smart_default "man_pages", desc = "Find man" },
-          ["<leader>fk"] = { normal_command "Telescope keymaps", desc = "Keymaps" },
-          ["<leader>fb"] = { smart_default "current_buffer_fuzzy_find", desc = "Grep Buffer" },
-          ["<leader>fl"] = { normal_command "Telescope loclist", desc = "Find Loclist" },
-          ["<leader>fp"] = { normal_command "Telescope projects", desc = "Projects" },
-          ["<leader>fq"] = { normal_command "Telescope quickfix", desc = "Find QuickFix" },
-          ["<leader>ft"] = { normal_command "OverseerRun", desc = "Find Tasks" },
-          ["<leader>fj"] = { normal_command "Telescope jumplist", desc = "Find JumpList" },
-          ["<leader>fr"] = { normal_command "Telescope oldfiles", desc = "Open Recent File" },
-          ["<leader>fR"] = { normal_command "Telescope registers", desc = "Find Registers" },
+          ["<Leader>*"] = { smart_default "live_grep", desc = "Grep" },
+          ["<Leader>b"] = { normal_command "Telescope buffers", desc = "Find Buffer" },
+          ["<Leader>/"] = { normal_command "Telescope search_history", desc = "Find Search History" },
+          ["<Leader>fc"] = { normal_command "Telescope command_history", desc = "Find Commands History" },
+          ["<Leader>ff"] = { normal_command "Telescope find_files", desc = "Find File" },
+          ["<Leader>fh"] = { smart_default "help_tags", desc = "Find Help" },
+          ["<Leader>fm"] = { smart_default "man_pages", desc = "Find man" },
+          ["<Leader>fk"] = { normal_command "Telescope keymaps", desc = "Keymaps" },
+          ["<Leader>fb"] = { smart_default "current_buffer_fuzzy_find", desc = "Grep Buffer" },
+          ["<Leader>fl"] = { normal_command "Telescope loclist", desc = "Find Loclist" },
+          ["<Leader>fp"] = { normal_command "Telescope projects", desc = "Projects" },
+          ["<Leader>fq"] = { normal_command "Telescope quickfix", desc = "Find QuickFix" },
+          ["<Leader>ft"] = { normal_command "OverseerRun", desc = "Find Tasks" },
+          ["<Leader>fj"] = { normal_command "Telescope jumplist", desc = "Find JumpList" },
+          ["<Leader>fr"] = { normal_command "Telescope oldfiles", desc = "Open Recent File" },
+          ["<Leader>fR"] = { normal_command "Telescope registers", desc = "Find Registers" },
 
           -- Debug
-          ["<leader>de"] = { function() require("dapui").eval() end, desc = "Evaluate" },
+          ["<Leader>de"] = { function() require("dapui").eval() end, desc = "Evaluate" },
 
           -- Custom menu for modification of the user experience
-          ["<leader>uc"] = { normal_command "ColorizerToggle", desc = "Colorizer" },
-          ["<leader>uu"] = { normal_command "OverseerToggle", desc = "Overseer" },
-          ["<leader>uq"] = { function() require("core.utils.ui").toggle_quickfix() end, desc = "Quickfix" },
-          ["<leader>ul"] = { function() require("core.utils.ui").toggle_loclist() end, desc = "Loclist" },
+          ["<Leader>uc"] = { normal_command "ColorizerToggle", desc = "Colorizer" },
+          ["<Leader>uu"] = { normal_command "OverseerToggle", desc = "Overseer" },
+          ["<Leader>uq"] = { function() require("core.utils.ui").toggle_quickfix() end, desc = "Quickfix" },
+          ["<Leader>ul"] = { function() require("core.utils.ui").toggle_loclist() end, desc = "Loclist" },
 
           -- Treesitter
-          ["<leader>T"] = {
+          ["<Leader>T"] = {
             name = get_icon "ActiveTS" .. " Treesitter",
             c = { normal_command "TSConfigInfo", "Config Info" },
             m = { normal_command "TSModuleInfo", "Module Info" },
@@ -373,7 +375,7 @@ return {
           ["<"] = { "<gv" },
           [">"] = { ">gv" },
 
-          ["<leader>"] = {
+          ["<Leader>"] = {
             ["*"] = { visual_search "live_grep", "Grep" },
             g = maps.n["<Leader>g"],
             f = maps.n["<Leader>f"],
@@ -382,7 +384,7 @@ return {
           },
 
           -- Debug
-          ["<leader>de"] = { function() require("dapui").eval() end, desc = "Evaluate" },
+          ["<Leader>de"] = { function() require("dapui").eval() end, desc = "Evaluate" },
 
           ["<Leader>/"] = false,
         },
