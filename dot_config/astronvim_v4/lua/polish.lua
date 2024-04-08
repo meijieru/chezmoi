@@ -60,11 +60,7 @@ on("FileType", {
 })
 
 -- diable autocmds
-local autocmds_to_disable = {
-  {
-    group = "neotree_start",
-  },
-}
+local autocmds_to_disable = {}
 for _, params in ipairs(autocmds_to_disable) do
   local autocmds = api.nvim_get_autocmds(params)
   for _, autocmd in ipairs(autocmds) do

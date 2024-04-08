@@ -124,6 +124,7 @@ return {
 
       autocmds = {
         q_close_windows = false,
+        neotree_start = false,
       },
 
       -- Mappings can be configured through AstroCore as well.
