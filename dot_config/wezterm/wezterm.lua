@@ -102,7 +102,7 @@ for _, gpu in ipairs(wezterm.gui.enumerate_gpus()) do
   end
 end
 
-local gpu_info = gpu_infos["IntegratedGpu"] or gpu_infos["DiscreteGpu"]
+local gpu_info = gpu_infos["DiscreteGpu"] or gpu_infos["IntegratedGpu"]
 local backend_fallback = { "Dx12", "Vulkan", "Metal" }
 for _, backend in ipairs(backend_fallback) do
   local gpu = gpu_info[backend]
