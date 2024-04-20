@@ -4,8 +4,8 @@
 --       as this provides autocomplete and documentation while editing
 
 -- default mappings:
--- ~/.local/share/astronvim_v4/lazy/AstroNvim/lua/astronvim/plugins/_astrocore_mappings.lua
--- ~/.local/share/astronvim_v4/lazy/AstroNvim/lua/astronvim/plugins/_astrolsp_mappings.lua
+-- ~/.local/share/nvim/lazy/AstroNvim/lua/astronvim/plugins/_astrocore_mappings.lua
+-- ~/.local/share/nvim/lazy/AstroNvim/lua/astronvim/plugins/_astrolsp_mappings.lua
 
 _G.qftf = require("core.utils.ui").qftf
 
