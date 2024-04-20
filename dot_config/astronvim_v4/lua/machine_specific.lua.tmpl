@@ -10,7 +10,7 @@ myvim.plugins.is_development_machine = true
 {{ if or (eq .chezmoi.hostname "Jieru-X360") (eq .chezmoi.hostname "Jieru-Ally") (eq .chezmoi.hostname "Home-NUC") }}
 myvim.plugins.lsp.servers_from_system = {
   -- "pyright"
-  "ruff_lsp",
+  "ruff",
   "clangd",
   "lua_ls",
 }

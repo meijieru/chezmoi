@@ -41,7 +41,7 @@ pacman:
   - chezmoi
 
   - shfmt
-  - ruff-lsp
+  - ruff
   - lua-language-server
   - stylua
 
