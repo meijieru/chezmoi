@@ -4,6 +4,11 @@
       "Lua.format.enable": false,
       "Lua.hint.enable": true,
       "Lua.completion.callSnippet": "Disable"
+    },
+    "basedpyright": {
+      "basedpyright.analysis": {
+        "typeCheckingMode": "standard"
+      }
     }
   }
 }
