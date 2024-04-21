@@ -1,4 +1,4 @@
-if true then return end
+if true then return {} end
 
 return {
   { import = "astrocommunity.bars-and-lines.statuscol-nvim" },
