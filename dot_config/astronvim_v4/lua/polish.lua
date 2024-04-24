@@ -19,7 +19,9 @@ on("BufWritePost", {
     local file = env.file
     local path = require "plenary.path"
     local relpath = path:new(file):make_relative()
-    if vim.startswith(file, "fugitive:///") or vim.startswith(relpath, ".git") then return end
+    if vim.startswith(file, "fugitive:///") or vim.startswith(file, "oil:///") or vim.startswith(relpath, ".git") then
+      return
+    end
 
     vim.system({ "chezmoi", "apply", "--source-path", file }, { text = true }, function(obj)
       if obj.code == 0 and obj.signal == 0 then
