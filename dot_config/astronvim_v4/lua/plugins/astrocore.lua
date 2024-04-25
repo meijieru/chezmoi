@@ -72,7 +72,7 @@ end
 ---@type LazySpec
 return {
   "AstroNvim/astrocore",
-  ---@type AstroCoreOpts
+  ---@param opts AstroCoreOpts
   opts = function(_, opts)
     local maps = opts.mappings
     local override = {
@@ -126,6 +126,15 @@ return {
         q_close_windows = false,
         -- TODO(meijieru): enable for oil.nvim
         neotree_start = false,
+        neovide_init = {
+          {
+            event = "UIEnter",
+            desc = "Set neovide related",
+            callback = function()
+              if require("core.utils").is_neovide() then require("core.utils.env").neovide_setup() end
+            end,
+          },
+        },
       },
 
       -- Mappings can be configured through AstroCore as well.
