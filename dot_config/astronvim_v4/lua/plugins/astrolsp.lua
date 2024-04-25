@@ -6,8 +6,6 @@
 -- default mappings:
 -- ~/.local/share/nvim/lazy/AstroNvim/lua/astronvim/plugins/_astrolsp_mappings.lua
 
-local is_available = require("astrocore").is_available
-
 ---@param opts AstroLSPOpts
 local function opts_func(_, opts)
   opts.formatting.format_on_save.enabled = false
@@ -21,7 +19,7 @@ local function opts_func(_, opts)
       -- ["<Leader>ld"] = false,
       ["<Leader>li"] = false,
       ["<Leader>lI"] = false,
-      -- ["<Leader>ll"] = false,
+      ["<Leader>ll"] = false,
       ["<Leader>lL"] = false,
       ["<Leader>lR"] = false,
       ["<Leader>lh"] = false,
@@ -31,18 +29,6 @@ local function opts_func(_, opts)
       ["<Leader>ld"] = {
         function() require("telescope.builtin").diagnostics { bufnr = 0 } end,
         desc = "Document diagnostics",
-      },
-      ["<Leader>ll"] = {
-        function()
-          if is_available "dropbar.nvim" then
-            require("dropbar.api").pick()
-          elseif is_available "aerial.nvim" then
-            require("aerial").nav_toggle()
-          else
-            vim.notify("No dropbar or aerial.nvim installed", vim.log.levels.ERROR)
-          end
-        end,
-        desc = "Navigate",
       },
       ["<Leader>lS"] = vim.tbl_deep_extend("force", maps.n["<Leader>lG"], { desc = "Workspace symbols" }),
       ["<Leader>lG"] = false,
