@@ -38,6 +38,10 @@ return {
     local function git_diffview_branch(prompt_bufnr) return git_diffview(prompt_bufnr, "DiffviewOpen %s") end
 
     opts.pickers = {
+      find_files = {
+        hidden = true,
+        file_ignore_patterns = { "node_modules", ".git", ".venv" },
+      },
       git_commits = {
         mappings = {
           i = {
