@@ -437,7 +437,7 @@ return {
           showbreak = "↳ ",
           grepprg = [[rg --hidden --glob "!.git" --no-heading --smart-case --vimgrep --follow $*]],
           grepformat = "%f:%l:%c:%m",
-          -- background = "dark",
+          background = "light",
           splitkeep = "screen",
           -- https://github.com/hrsh7th/nvim-cmp/issues/309
           title = false,

@@ -106,6 +106,7 @@ return {
   {
     "vimpostor/vim-lumen",
     lazy = false,
-    enabled = myvim.plugins.is_development_machine,
+    -- NOTE(meijieru): revisit after https://github.com/neovim/neovim/issues/19362
+    enabled = false,
   },
 }
