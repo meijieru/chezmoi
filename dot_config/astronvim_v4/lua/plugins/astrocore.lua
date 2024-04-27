@@ -178,6 +178,12 @@ return {
         ["<Leader>dd"] = maps.n["<Leader>ds"],
         ["<Leader>ds"] = false,
       },
+      i = {
+        ["<C-s>"] = false,
+      },
+      x = {
+        ["<C-s>"] = false,
+      },
       v = {
         ["<Leader>/"] = false,
       },
