@@ -250,8 +250,12 @@ return {
               for _ = 1, vim.v.count1 do
                 if vim.o.diff then
                   vim.cmd.normal { "]c", bang = true }
+                elseif is_available "mini.diff" then
+                  require("mini.diff").goto_hunk "next"
+                elseif is_available "gitsigns.nvim" then
+                  require("gitsigns").nav_hunk "next"
                 else
-                  require("gitsigns.actions").next_hunk()
+                  vim.notify("No available method for next hunk", vim.log.levels.ERROR)
                 end
               end
             end,
@@ -271,8 +275,12 @@ return {
               for _ = 1, vim.v.count1 do
                 if vim.o.diff then
                   vim.cmd.normal { "[c", bang = true }
+                elseif is_available "mini.diff" then
+                  require("mini.diff").goto_hunk "prev"
+                elseif is_available "gitsigns.nvim" then
+                  require("gitsigns").nav_hunk "prev"
                 else
-                  require("gitsigns.actions").prev_hunk()
+                  vim.notify("No available method for prev hunk", vim.log.levels.ERROR)
                 end
               end
             end,
