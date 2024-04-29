@@ -25,6 +25,10 @@ return {
       end
     end, { "i", "s" })
 
+    opts.experimental = {
+      ghost_text = true,
+    }
+
     return opts
   end,
 }
