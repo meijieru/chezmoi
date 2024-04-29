@@ -254,6 +254,8 @@ return {
                   require("mini.diff").goto_hunk "next"
                 elseif is_available "gitsigns.nvim" then
                   require("gitsigns").nav_hunk "next"
+                elseif is_available "vim-signify" then
+                  vim.cmd [[execute "normal! \<Plug>(signify-next-hunk)"]]
                 else
                   vim.notify("No available method for next hunk", vim.log.levels.ERROR)
                 end
@@ -279,6 +281,8 @@ return {
                   require("mini.diff").goto_hunk "prev"
                 elseif is_available "gitsigns.nvim" then
                   require("gitsigns").nav_hunk "prev"
+                elseif is_available "vim-signify" then
+                  vim.cmd [[execute "normal! \<Plug>(signify-prev-hunk)"]]
                 else
                   vim.notify("No available method for prev hunk", vim.log.levels.ERROR)
                 end
