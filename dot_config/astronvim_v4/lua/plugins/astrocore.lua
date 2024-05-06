@@ -82,8 +82,8 @@ return {
         ["<Leader>q"] = false,
         ["<Leader>Q"] = false,
         ["<Leader>n"] = false,
-        ["<C-s>"] = false,
-        ["<C-q>"] = false,
+        ["<C-S>"] = false,
+        ["<C-Q>"] = false,
         ["|"] = false,
         ["\\"] = false,
 
@@ -127,10 +127,10 @@ return {
 
         ["<Leader>o"] = false,
 
-        ["<C-h>"] = false,
-        ["<C-j>"] = false,
-        ["<C-k>"] = false,
-        ["<C-l>"] = false,
+        ["<C-H>"] = false,
+        ["<C-J>"] = false,
+        ["<C-K>"] = false,
+        ["<C-L>"] = false,
         ["<C-Up>"] = false,
         ["<C-Down>"] = false,
         ["<C-Left>"] = false,
@@ -179,19 +179,19 @@ return {
         ["<Leader>ds"] = false,
       },
       i = {
-        ["<C-s>"] = false,
+        ["<C-S>"] = false,
       },
       x = {
-        ["<C-s>"] = false,
+        ["<C-S>"] = false,
       },
       v = {
         ["<Leader>/"] = false,
       },
       t = {
-        ["<C-h>"] = false,
-        ["<C-j>"] = false,
-        ["<C-k>"] = false,
-        ["<C-l>"] = false,
+        ["<C-H>"] = false,
+        ["<C-J>"] = false,
+        ["<C-K>"] = false,
+        ["<C-L>"] = false,
       },
     }
     ---@type AstroCoreMappings
@@ -293,10 +293,10 @@ return {
         },
 
         -- Better window movement
-        ["<A-h>"] = { "<C-w>h", desc = "Left Window" },
-        ["<A-j>"] = { "<C-w>j", desc = "Down Window" },
-        ["<A-k>"] = { "<C-w>k", desc = "Up Window" },
-        ["<A-l>"] = { "<C-w>l", desc = "Right Window" },
+        ["<A-h>"] = { "<C-W>h", desc = "Left Window" },
+        ["<A-j>"] = { "<C-W>j", desc = "Down Window" },
+        ["<A-k>"] = { "<C-W>k", desc = "Up Window" },
+        ["<A-l>"] = { "<C-W>l", desc = "Right Window" },
 
         -- Other
         ["m<space>"] = { normal_command "delmarks!", desc = "Delete All Marks" },
@@ -304,7 +304,7 @@ return {
 
         -- Telescope
         -- trick: <c-space> convert it as fuzzy
-        ["<c-p>"] = { normal_command "Telescope commands", desc = "Commands Palette" },
+        ["<C-P>"] = { normal_command "Telescope commands", desc = "Commands Palette" },
         ["<Leader>*"] = { smart_default "live_grep", desc = "Grep" },
         ["<Leader>b"] = { normal_command "Telescope buffers", desc = "Find Buffer" },
         ["<Leader>/"] = { normal_command "Telescope search_history", desc = "Find Search History" },
@@ -379,7 +379,7 @@ return {
 
       t = {
         -- Improved Terminal Navigation
-        ["<A-q>"] = { [[<C-\><C-n>]], desc = "Terminal normal mode" },
+        ["<A-q>"] = { [[<C-\><C-N>]], desc = "Terminal normal mode" },
         ["<A-h>"] = { normal_command "wincmd h", desc = "Terminal left window navigation" },
         ["<A-j>"] = { normal_command "wincmd j", desc = "Terminal down window navigation" },
         ["<A-k>"] = { normal_command "wincmd k", desc = "Terminal up window navigation" },
@@ -391,10 +391,10 @@ return {
       },
 
       i = {
-        ["<C-k>"] = { "<Up>" },
-        ["<C-j>"] = { "<Down>" },
-        ["<C-h>"] = { "<Left>" },
-        ["<C-l>"] = { "<Right>" },
+        ["<C-K>"] = { "<Up>" },
+        ["<C-J>"] = { "<Down>" },
+        ["<C-H>"] = { "<Left>" },
+        ["<C-L>"] = { "<Right>" },
         ["<F1>"] = {
           lua_normal_command "require('core.utils.ui').toggle_colorcolumn()",
           desc = "Toggle Colorcolumn",
@@ -403,10 +403,10 @@ return {
 
       -- FIXME(meijieru): doesn't work
       c = {
-        ["<C-k>"] = { "<Up>" },
-        ["<C-j>"] = { "<Down>" },
-        ["<C-h>"] = { "<Left>" },
-        ["<C-l>"] = { "<Right>" },
+        ["<C-K>"] = { "<Up>" },
+        ["<C-J>"] = { "<Down>" },
+        ["<C-H>"] = { "<Left>" },
+        ["<C-L>"] = { "<Right>" },
       },
 
       -- TODO(meijieru): migrate more
