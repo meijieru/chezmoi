@@ -17,8 +17,6 @@ local function opts_func(_, opts)
   local to_remap = {
     n = {
       -- ["<Leader>ld"] = false,
-      ["<Leader>la"] = false,
-      ["<Leader>lr"] = false,
       ["<Leader>li"] = false,
       ["<Leader>lI"] = false,
       ["<Leader>ll"] = false,
@@ -38,7 +36,6 @@ local function opts_func(_, opts)
 
     v = {
       ["<Leader>lf"] = false,
-      ["<Leader>la"] = false,
     },
   }
   maps = vim.tbl_deep_extend("force", maps, to_remap)
