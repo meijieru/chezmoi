@@ -38,6 +38,9 @@ local function opts_func(_, opts)
 
     v = {
       ["<Leader>lf"] = false,
+    },
+
+    x = {
       ["<Leader>la"] = false,
     },
   }
