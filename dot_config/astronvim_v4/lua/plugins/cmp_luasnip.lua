@@ -6,7 +6,7 @@ return {
     if not snip_status_ok then return end
 
     local mapping = opts.mapping
-    for _, key in ipairs { "<C-j>", "<C-k>", "<C-y>", "<Down>", "<Up>" } do
+    for _, key in ipairs { "<C-J>", "<C-K>", "<C-Y>", "<Down>", "<Up>" } do
       mapping[key] = nil
     end
 
