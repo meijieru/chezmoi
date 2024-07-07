@@ -239,12 +239,6 @@ return {
         -- Next / Prev
         ["]"] = {
           name = "Next",
-          ["e"] = {
-            function() vim.diagnostic.goto_next { severity = vim.diagnostic.severity.ERROR } end,
-            "Next Error",
-          },
-          ["q"] = { normal_command "cnext", "Next Quickfix" },
-          ["l"] = { normal_command "lnext", "Next Loclist" },
           ["c"] = {
             function()
               for _ = 1, vim.v.count1 do
@@ -266,12 +260,6 @@ return {
         },
         ["["] = {
           name = "Previous",
-          ["e"] = {
-            function() vim.diagnostic.goto_prev { severity = vim.diagnostic.severity.ERROR } end,
-            "Previous Error",
-          },
-          ["q"] = { normal_command "cprev", "Previous Quickfix" },
-          ["l"] = { normal_command "lprev", "Previous Loclist" },
           ["c"] = {
             function()
               for _ = 1, vim.v.count1 do
