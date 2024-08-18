@@ -21,7 +21,7 @@ return {
     },
   },
 
-  { import = "astrocommunity.debugging.nvim-bqf" },
+  { import = "astrocommunity.quickfix.nvim-bqf" },
   {
     "nvim-bqf",
     opts = function(_, opts)
