@@ -237,47 +237,41 @@ return {
         ["<Leader>gm"] = { normal_command "Telescope git_status", desc = "Modified Files" },
 
         -- Next / Prev
-        ["]"] = {
-          name = "Next",
-          ["c"] = {
-            function()
-              for _ = 1, vim.v.count1 do
-                if vim.o.diff then
-                  vim.cmd.normal { "]c", bang = true }
-                elseif is_available "mini.diff" then
-                  require("mini.diff").goto_hunk "next"
-                elseif is_available "gitsigns.nvim" then
-                  require("gitsigns").nav_hunk "next"
-                elseif is_available "vim-signify" then
-                  vim.cmd [[execute "normal! \<Plug>(signify-next-hunk)"]]
-                else
-                  vim.notify("No available method for next hunk", vim.log.levels.ERROR)
-                end
+        ["]c"] = {
+          function()
+            for _ = 1, vim.v.count1 do
+              if vim.o.diff then
+                vim.cmd.normal { "]c", bang = true }
+              elseif is_available "mini.diff" then
+                require("mini.diff").goto_hunk "next"
+              elseif is_available "gitsigns.nvim" then
+                require("gitsigns").nav_hunk "next"
+              elseif is_available "vim-signify" then
+                vim.cmd [[execute "normal! \<Plug>(signify-next-hunk)"]]
+              else
+                vim.notify("No available method for next hunk", vim.log.levels.ERROR)
               end
-            end,
-            "Next Change | Hunk",
-          },
+            end
+          end,
+          desc = "Next Change | Hunk",
         },
-        ["["] = {
-          name = "Previous",
-          ["c"] = {
-            function()
-              for _ = 1, vim.v.count1 do
-                if vim.o.diff then
-                  vim.cmd.normal { "[c", bang = true }
-                elseif is_available "mini.diff" then
-                  require("mini.diff").goto_hunk "prev"
-                elseif is_available "gitsigns.nvim" then
-                  require("gitsigns").nav_hunk "prev"
-                elseif is_available "vim-signify" then
-                  vim.cmd [[execute "normal! \<Plug>(signify-prev-hunk)"]]
-                else
-                  vim.notify("No available method for prev hunk", vim.log.levels.ERROR)
-                end
+        ["[c"] = {
+          function()
+            for _ = 1, vim.v.count1 do
+              if vim.o.diff then
+                vim.cmd.normal { "[c", bang = true }
+              elseif is_available "mini.diff" then
+                require("mini.diff").goto_hunk "prev"
+              elseif is_available "gitsigns.nvim" then
+                require("gitsigns").nav_hunk "prev"
+              elseif is_available "vim-signify" then
+                vim.cmd [[execute "normal! \<Plug>(signify-prev-hunk)"]]
+              else
+                vim.notify("No available method for prev hunk", vim.log.levels.ERROR)
               end
-            end,
-            "Previous Change | Hunk",
-          },
+            end
+          end,
+          desc = "Previous Change | Hunk",
         },
 
         -- Better window movement
@@ -320,14 +314,12 @@ return {
         ["<Leader>ul"] = { function() require("core.utils.ui").toggle_loclist() end, desc = "Loclist" },
 
         -- Treesitter
-        ["<Leader>T"] = {
-          name = get_icon "ActiveTS" .. " Treesitter",
-          c = { normal_command "TSConfigInfo", "Config Info" },
-          m = { normal_command "TSModuleInfo", "Module Info" },
-          t = { normal_command "InspectTree", "Playground" },
-          s = { normal_command "TSUpdate", "Update Treesitter Parser" },
-          h = { normal_command "Inspect", "Highlight Info" },
-        },
+        ["<Leader>T"] = get_icon "ActiveTS" .. " Treesitter",
+        ["<Leader>Tc"] = { normal_command "TSConfigInfo", desc = "Config Info" },
+        ["<Leader>Tm"] = { normal_command "TSModuleInfo", desc = "Module Info" },
+        ["<Leader>Tt"] = { normal_command "InspectTree", desc = "Playground" },
+        ["<Leader>Ts"] = { normal_command "TSUpdate", desc = "Update Treesitter Parser" },
+        ["<Leader>Th"] = { normal_command "Inspect", desc = "Highlight Info" },
 
         -- Lang
         ["<Leader>ll"] = {
@@ -353,13 +345,11 @@ return {
         ["<"] = { "<gv" },
         [">"] = { ">gv" },
 
-        ["<Leader>"] = {
-          ["*"] = { visual_search "live_grep", "Grep" },
-          g = maps.n["<Leader>g"],
-          f = maps.n["<Leader>f"],
-          fh = { visual_search "help_tags", "Find Help" },
-          fb = { visual_search "current_buffer_fuzzy_find", "Grep Buffer" },
-        },
+        ["<Leader>*"] = { visual_search "live_grep", desc = "Grep" },
+        ["<Leader>g"] = maps.n["<Leader>g"],
+        ["<Leader>f"] = maps.n["<Leader>f"],
+        ["<Leader>fh"] = { visual_search "help_tags", desc = "Find Help" },
+        ["<Leader>fb"] = { visual_search "current_buffer_fuzzy_find", desc = "Grep Buffer" },
 
         -- Debug
         ["<Leader>de"] = { function() require("dapui").eval() end, desc = "Evaluate" },
