@@ -21,6 +21,7 @@ return {
     },
   },
 
+  { import = "astrocommunity.quickfix.quicker-nvim" },
   { import = "astrocommunity.quickfix.nvim-bqf" },
   {
     "nvim-bqf",
