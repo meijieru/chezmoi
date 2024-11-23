@@ -36,7 +36,7 @@ on("BufWritePost", {
 })
 
 on("FileType", {
-  pattern = { "startuptime", "fugitiveblame" },
+  pattern = { "startuptime", "fugitiveblame", "qf" },
   callback = function() map("n", "q", "<cmd>close<cr>", { buffer = 0, desc = "Close" }) end,
 })
 
