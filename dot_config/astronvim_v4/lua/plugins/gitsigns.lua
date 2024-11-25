@@ -5,5 +5,6 @@ return {
     opts.signs.topdelete = { text = get_icon "GitSignTopDelete" }
     opts.signcolumn = false
     opts.numhl = true
+    opts.on_attach = nil
   end,
 }
