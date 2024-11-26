@@ -3,9 +3,11 @@ local spec = {
   { import = "astrocommunity.completion.blink-cmp" },
   {
     "Saghen/blink.cmp",
-    opts = {
-      windows = nil,
-    },
+    opts = function (_, opts)
+      opts.windows = nil
+      opts.version = nil
+      return opts
+    end,
   },
 
   -- { import = "astrocommunity.completion.cmp-cmdline" },
