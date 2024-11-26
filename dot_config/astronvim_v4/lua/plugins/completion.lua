@@ -1,6 +1,49 @@
 local spec = {
 
-  { import = "astrocommunity.completion.cmp-cmdline" },
+  { import = "astrocommunity.completion.blink-cmp" },
+  {
+    "Saghen/blink.cmp",
+    version = "*",
+    build = vim.NIL,
+    opts = {
+      keymap = {
+        ["<Tab>"] = vim.NIL,
+        ["<S-Tab>"] = vim.NIL,
+      },
+      signature = {
+        enabled = true,
+        window = {
+          border = "rounded",
+          winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
+        },
+      },
+      completion = {
+        list = {
+          selection = "auto_insert",
+        },
+        menu = {
+          border = "rounded",
+          winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
+        },
+        documentation = {
+          auto_show = true,
+          window = {
+            border = "rounded",
+            winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
+          },
+        },
+      },
+    },
+  },
+
+  {
+    "saghen/blink.compat",
+    version = "*",
+    lazy = true,
+    opts = {},
+  },
+
+  -- { import = "astrocommunity.completion.cmp-cmdline" },
   -- { import = "astrocommunity.completion.copilot-lua-cmp" },
 
   {
