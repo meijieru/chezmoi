@@ -1,6 +1,15 @@
 local spec = {
 
-  { import = "astrocommunity.completion.cmp-cmdline" },
+  { import = "astrocommunity.completion.blink-cmp" },
+  {
+    "Saghen/blink.cmp",
+    opts = function(_, opts)
+      opts.signature = { enabled = true }
+      return opts
+    end,
+  },
+
+  -- { import = "astrocommunity.completion.cmp-cmdline" },
   -- { import = "astrocommunity.completion.copilot-lua-cmp" },
 
   {
