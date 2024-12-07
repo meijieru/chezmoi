@@ -44,7 +44,6 @@ pacman:
 
   - shfmt
   - ruff
-  - lua-language-server
   - stylua
 
   - pyside6
