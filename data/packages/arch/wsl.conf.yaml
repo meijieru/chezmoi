@@ -7,9 +7,9 @@ pacman:
   - lua
   - etckeeper
 
-  - tldr # alter to tealdeer?
+  - tealdeer # alter to outfieldr according to the benchmark?
   - trash-cli
-  - neofetch
+  - fastfetch
   - wget
   - exa
   - hyperfine
@@ -20,13 +20,14 @@ pacman:
   - git
   - git-extras
   - tokei
-  - tree
   - ripgrep
   - fd
   - dust
   - duf
   - bat
   - zoxide
+  - grex
+  - bandwhich
 
   - neovim
   - python-neovim
@@ -84,7 +85,6 @@ pacman:
 
 yay:
   - lsyncd
-  - cmake-format
   - nvimpager
   - win32yank-bin
   - python-flax

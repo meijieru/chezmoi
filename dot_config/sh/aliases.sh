@@ -42,6 +42,7 @@ if [ -n "${exa}" ]; then
     alias ll="${exa} --long --icons --all"
     alias lg="${exa} --long --header --git --icons"
     alias ls="${exa}"
+    alias tree="${exa} --tree"
 fi
 
 if [ -x "$(command -v dust)" ]; then
@@ -59,6 +60,10 @@ fi
 if [ -x "$(command -v btop)" ]; then
     alias top="btop"
     alias htop="btop"
+fi
+
+if [ -x "$(command -v fastfetch)" ]; then
+    alias neofetch="fastfetch"
 fi
 
 if [ -x "$(command -v nvim)" ]; then
