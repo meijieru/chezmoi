@@ -120,6 +120,7 @@ config.font = font_with_fallback({
 })
 config.default_prog = { "wsl.exe", "~", "-d", "archlinux" }
 
-config.max_fps = 165
+-- FIXME(meijieru): sync to monitor
+config.max_fps = 120
 
 return config
