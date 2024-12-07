@@ -16,9 +16,6 @@ chezmoi apply --dry-run --verbose
 
 Check [doc](./doc/server_setup.md).
 
-## Setup win10
-
-Check [doc](./doc/win10.md), still work in progress.
 
 ## Setup NAS
 
