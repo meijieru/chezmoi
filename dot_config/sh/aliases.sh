@@ -7,6 +7,9 @@ alias .....="cd ../../../.."
 # less with color
 alias less="less -R"
 
+# override prezto utility `mkdir -p`
+alias mkdir="nocorrect mkdir"
+
 # Customize to your needs...
 alias mk='make'
 alias zc='z -c' # match subdir of current dir
