@@ -67,12 +67,8 @@ setw -g xterm-keys
 # status line
 set -g focus-events on
 set -g status-style fg=default,bg=default
-{{- if eq .chezmoi.osRelease.name "Arch Linux" }}
 # require tmux >= 3.2
 set -g status-justify absolute-centre
-{{ else }}
-set -g status-justify centre
-{{ end -}}
 set -g status-left '#[fg=green][#[fg=cyan]#S#[fg=green]]'
 set -g status-right '#[fg=green][#[fg=cyan]#H#[fg=green]]'
 set -g status-left-length 80

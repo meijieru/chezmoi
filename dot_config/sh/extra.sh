@@ -4,6 +4,11 @@ for file in /usr/share/fzf/{key-bindings,completion}.zsh; do
 done
 unset file
 
+# macos
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    export PATH="/opt/homebrew/bin:$PATH"
+fi
+
 # wsl
 if [[ $(uname -r) =~ WSL2$ ]]; then
     unsetopt BG_NICE
