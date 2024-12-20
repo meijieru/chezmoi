@@ -9,7 +9,7 @@ fi
 
 source $XDG_CONFIG_HOME/zsh/zshrc.config
 
-for file in ${XDG_CONFIG_HOME:-$HOME/.config}/sh/{functions,aliases,extra}.sh; do
+for file in ${XDG_CONFIG_HOME:-$HOME/.config}/sh/{functions,extra,aliases}.sh; do
     [ -r "$file" ] && source "$file"
 done
 unset file
