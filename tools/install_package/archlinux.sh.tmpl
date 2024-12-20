@@ -14,6 +14,12 @@ package_install arch/wsl.conf.yaml
 {{- if or (eq .chezmoi.hostname "Home-PC") }}
 package_install arch/home_pc.conf.yaml
 {{- else }}
-package_install arch/other_machines.conf.yaml
+
+{{- if or (eq .chezmoi.osRelease.name "Arch Linux") }}
+package_install arch/other_machines.yaml
+{{- else }}
+echo "Skip pytorch due to arm64"
+{{ end -}}
+
 {{ end -}}
 

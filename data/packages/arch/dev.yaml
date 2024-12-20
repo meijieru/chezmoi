@@ -82,7 +82,7 @@ yay:
   - lsyncd
   - nvimpager
   - bun-bin
-  - python-flax
+  # - python-flax
   # - arxiv-latex-cleaner
   # - google-cloud-cli
   # - diffsitter-bin
