@@ -1,0 +1,8 @@
+pacman:
+  - wslu
+
+  # for testing wslg
+  - foliate
+
+yay:
+  - win32yank-bin

@@ -36,6 +36,7 @@ pacman:
   - npm
   - typescript
   - rust
+  - zig
   - clang
   - cmake
   - xmake
@@ -61,8 +62,6 @@ pacman:
   - ipython
   - jupyter-notebook
 
-  - python-torchvision
-  - python-pytorch
   - python-timm
   - python-einops
   - python-fvcore
@@ -73,9 +72,6 @@ pacman:
 
   - rclone
   - gdown
-  - foliate
-
-  - wslu
 
   # - texlive-latexextra
   # - texlive-mathscience
@@ -86,7 +82,7 @@ pacman:
 yay:
   - lsyncd
   - nvimpager
-  - win32yank-bin
+  - bun-bin
   - python-flax
   # - arxiv-latex-cleaner
   # - google-cloud-cli

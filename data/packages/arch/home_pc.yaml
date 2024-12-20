@@ -1,0 +1,9 @@
+pacman:
+  - docker
+  - nvidia-container-toolkit
+  - cuda
+  - nvtop
+  - python-pytorch-cuda
+  - python-torchvision-cuda
+
+

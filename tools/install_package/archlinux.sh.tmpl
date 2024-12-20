@@ -1,7 +1,19 @@
 #!/bin/bash
 
-{{- if eq .chezmoi.osRelease.name "Arch Linux" }}
+{{- if or (eq .chezmoi.osRelease.name "Arch Linux") (eq .chezmoi.osRelease.name "Arch Linux ARM") }}
 source ./tools/install_package/install.sh
-package_install arch/local.yaml
+package_install arch/dev.yaml
+{{ end -}}
+
+{{- if or (eq .chezmoi.osRelease.name "Arch Linux") }}
+# wsl
+package_install arch/wsl_local.yaml
 package_install arch/wsl.conf.yaml
 {{ end -}}
+
+{{- if or (eq .chezmoi.hostname "Home-PC") }}
+package_install arch/home_pc.conf.yaml
+{{- else }}
+package_install arch/other_machines.conf.yaml
+{{ end -}}
+

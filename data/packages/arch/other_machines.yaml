@@ -1,0 +1,3 @@
+pacman:
+  - python-torchvision
+  - python-pytorch

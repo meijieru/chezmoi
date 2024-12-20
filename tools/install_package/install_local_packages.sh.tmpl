@@ -10,6 +10,6 @@ package_install ubuntu/local.yaml
 package_install debian/local.yaml
 {{ end -}}
 
-{{- if eq .chezmoi.osRelease.name "Arch Linux" }}
+{{- if or (eq .chezmoi.osRelease.name "Arch Linux") (eq .chezmoi.osRelease.name "Arch Linux ARM") }}
 package_install arch/local.yaml
 {{ end -}}
