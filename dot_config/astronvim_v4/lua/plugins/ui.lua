@@ -17,9 +17,9 @@ return {
         progress = {
           enabled = false,
         },
-      signature = {
+        signature = {
           enabled = false,
-      }
+        },
       },
     },
   },
@@ -43,6 +43,9 @@ return {
         latte = {
           base = "#FAFAFA",
         },
+      },
+      integrations = {
+        blink_cmp = true,
       },
     },
   },

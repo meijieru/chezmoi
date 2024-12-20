@@ -14,7 +14,7 @@ local spec = {
         enabled = true,
         window = {
           border = "rounded",
-          winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
+          winhighlight = "Normal:Normal",
         },
       },
       completion = {
@@ -23,13 +23,13 @@ local spec = {
         },
         menu = {
           border = "rounded",
-          winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
+          winhighlight = "Normal:Normal",
         },
         documentation = {
           auto_show = true,
           window = {
             border = "rounded",
-            winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
+            winhighlight = "Normal:Normal",
           },
         },
       },
