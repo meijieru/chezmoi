@@ -3,8 +3,6 @@ local spec = {
   { import = "astrocommunity.completion.blink-cmp" },
   {
     "Saghen/blink.cmp",
-    version = "*",
-    build = vim.NIL,
     opts = {
       keymap = {
         ["<Tab>"] = vim.NIL,
