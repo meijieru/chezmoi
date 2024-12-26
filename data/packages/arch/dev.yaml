@@ -55,7 +55,6 @@ pacman:
   - python-scipy
   - python-matplotlib
   - python-ipdb
-  - python-pipreqs
   - python-tqdm
   - python-rich
   - ipython
