@@ -228,7 +228,18 @@ return {
         ["<Leader>gh"] = { normal_command "DiffviewFileHistory", desc = "Diff History" },
         ["<Leader>gH"] = { normal_command "DiffviewFileHistory %", desc = "Diff History (for current file)" },
         ["<Leader>gg"] = { function() require("core.utils.git").toggle_fugitive() end, desc = "Toggle Status" },
-        ["<Leader>gl"] = { normal_command "Git blame", desc = "Git Blame" },
+        ["<Leader>gl"] = {
+          function()
+            if is_available "gitsigns.nvim" then
+              require("gitsigns").blame()
+            elseif is_available "fugitive" then
+              vim.cmd "Git blame"
+            else
+              vim.notify("No available method for git blame", vim.log.levels.ERROR)
+            end
+          end,
+          desc = "Git Blame",
+        },
         ["<Leader>gL"] = { normal_command "Gitsigns toggle_current_line_blame", desc = "Current Line Blame" },
         ["<Leader>gt"] = {
           keymap_utils.chain("Gitsigns toggle_deleted", "Gitsigns toggle_word_diff"),
