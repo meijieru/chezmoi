@@ -16,9 +16,6 @@ local spec = {
         },
       },
       completion = {
-        list = {
-          selection = "auto_insert",
-        },
         menu = {
           border = "rounded",
           winhighlight = "Normal:Normal",
