@@ -3,10 +3,14 @@ local spec = {
   { import = "astrocommunity.completion.blink-cmp" },
   {
     "Saghen/blink.cmp",
+    opts_extend = { "sources.default", "sources.cmdline" },
+
     opts = {
       keymap = {
         ["<Tab>"] = vim.NIL,
         ["<S-Tab>"] = vim.NIL,
+        ["<C-J>"] = vim.NIL,
+        ["<C-K>"] = vim.NIL,
       },
       signature = {
         enabled = true,
@@ -17,11 +21,11 @@ local spec = {
       },
       completion = {
         menu = {
+          auto_show = true,
           border = "rounded",
           winhighlight = "Normal:Normal",
         },
         documentation = {
-          auto_show = true,
           window = {
             border = "rounded",
             winhighlight = "Normal:Normal",
