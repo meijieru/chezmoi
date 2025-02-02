@@ -7,7 +7,7 @@ return {
     if opts.ensure_installed ~= "all" then
       opts.ensure_installed = require("astrocore").list_insert_unique(
         opts.ensure_installed,
-        { "comment", "rst", "regex", "markdown", "markdown_inline", "gitcommit" }
+        { "comment", "rst", "regex", "markdown", "markdown_inline", "gitcommit", "yaml" }
       )
     end
     opts.textobjects = vim.tbl_deep_extend("force", opts.textobjects, {

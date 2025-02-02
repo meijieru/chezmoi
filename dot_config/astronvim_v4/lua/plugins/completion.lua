@@ -1,38 +1,50 @@
+local list_insert_unique = require("astrocore").list_insert_unique
+
+local function get_api_key(name)
+  local key = string.format("cmd:gpg --decrypt ~/.local/share/chezmoi/data/encrypted/%s.gpg 2>/dev/null", name)
+  return key
+end
+
 local spec = {
 
   { import = "astrocommunity.completion.blink-cmp" },
   {
     "Saghen/blink.cmp",
-    opts_extend = { "sources.default", "sources.cmdline" },
-
-    opts = {
-      keymap = {
-        ["<Tab>"] = vim.NIL,
-        ["<S-Tab>"] = vim.NIL,
-        ["<C-J>"] = vim.NIL,
-        ["<C-K>"] = vim.NIL,
-      },
-      signature = {
-        enabled = true,
-        window = {
-          border = "rounded",
-          winhighlight = "Normal:Normal",
+    opts = function(_, opts)
+      return vim.tbl_deep_extend("force", opts, {
+        keymap = {
+          ["<Tab>"] = { "fallback" },
+          ["<S-Tab>"] = { "fallback" },
+          ["<C-J>"] = { "fallback" },
+          ["<C-K>"] = { "fallback" },
         },
-      },
-      completion = {
-        menu = {
-          auto_show = true,
-          border = "rounded",
-          winhighlight = "Normal:Normal",
-        },
-        documentation = {
+        signature = {
+          enabled = true,
           window = {
             border = "rounded",
             winhighlight = "Normal:Normal",
           },
         },
-      },
-    },
+        completion = {
+          menu = {
+            auto_show = true,
+            border = "rounded",
+            winhighlight = "Normal:Normal",
+          },
+          documentation = {
+            window = {
+              border = "rounded",
+              winhighlight = "Normal:Normal",
+            },
+          },
+        },
+        appearance = {
+          kind_icons = {
+            Copilot = "",
+          },
+        },
+      })
+    end,
   },
 
   {
@@ -55,10 +67,7 @@ local spec = {
   },
 }
 
--- TODO(meijieru): revisit
-
--- if myvim.plugins.is_development_machine then
-if false then
+if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machine then
   return vim.list_extend(spec, {
 
     {
@@ -74,25 +83,62 @@ if false then
       },
     },
     {
-      "zbirenbaum/copilot-cmp",
-      opts = {},
-      dependencies = "copilot.lua",
-    },
-    {
-      "hrsh7th/nvim-cmp",
-      dependencies = { "zbirenbaum/copilot-cmp" },
+      "Saghen/blink.cmp",
       opts = function(_, opts)
-        local cmp_sources = require "cmp.config.sources"
-        opts.sources = cmp_sources {
-          { name = "copilot", priority = 1001 },
-          { name = "nvim_lsp", priority = 1000 },
-          { name = "luasnip", priority = 750 },
-          { name = "buffer", priority = 500 },
-          { name = "path", priority = 250 },
+        opts.sources.default = list_insert_unique(opts.sources.default, { "copilot" })
+        opts.sources.providers.copilot = {
+          name = "copilot",
+          module = "blink-copilot",
+          score_offset = 100,
+          async = true,
         }
-        opts.duplicates.copilot = 1
-        return opts
       end,
+      dependencies = {
+        "fang2hou/blink-copilot",
+        opts = {
+          max_completions = 2,
+          max_attempts = 2,
+        },
+      },
+    },
+
+    {
+      "olimorris/codecompanion.nvim",
+      dependencies = {
+        "nvim-lua/plenary.nvim",
+        "nvim-treesitter/nvim-treesitter",
+        {
+          "Saghen/blink.cmp",
+          opts = function(_, opts) opts.sources.default = list_insert_unique(opts.sources.default, { "codecompanion" }) end,
+        },
+      },
+      opts = {
+        strategies = {
+          chat = {
+            adapter = "deepseek",
+          },
+          inline = {
+            adapter = "deepseek",
+          },
+        },
+        adapters = {
+          deepseek = function()
+            return require("codecompanion.adapters").extend("deepseek", {
+              env = {
+                api_key = get_api_key "deepseek_key",
+              },
+              schema = {
+                model = {
+                  default = "deepseek-reasoner",
+                },
+              },
+            })
+          end,
+        },
+      },
+      enabled = true,
+      lazy = true,
+      event = { "InsertEnter", "CmdlineEnter" },
     },
   })
 end

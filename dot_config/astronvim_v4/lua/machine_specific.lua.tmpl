@@ -3,13 +3,17 @@
 
 -- TODO(meijieru): disable null-ls on servers
 
-{{ if or (eq .chezmoi.hostname "Jieru-Laptop") (eq .chezmoi.hostname "Home-PC") (eq .chezmoi.hostname "jierumei-glaptop") (eq .chezmoi.hostname "jierucloud") (eq .chezmoi.hostname "arch") }}
+{{ if or (eq .chezmoi.hostname "Jieru-Laptop") (eq .chezmoi.hostname "Home-PC")   (eq .chezmoi.hostname "arch") }}
 myvim.plugins.is_development_machine = true
+{{ end }}
+
+{{ if or (eq .chezmoi.hostname "jierumei-glaptop") (eq .chezmoi.hostname "jierucloud")  }}
+myvim.plugins.is_development_machine = true
+myvim.plugins.is_corporate_machine = true
 {{ end }}
 
 {{ if or (eq .chezmoi.hostname "Jieru-Laptop") (eq .chezmoi.hostname "Home-PC") (eq .chezmoi.hostname "arch") }}
 myvim.plugins.lsp.servers_from_system = {
-  -- "pyright"
   "ruff",
   "clangd",
 }
