@@ -115,10 +115,10 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
       opts = {
         strategies = {
           chat = {
-            adapter = "deepseek",
+            adapter = "siliconflow",
           },
           inline = {
-            adapter = "deepseek",
+            adapter = "siliconflow",
           },
         },
         adapters = {
@@ -130,6 +130,19 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
               schema = {
                 model = {
                   default = "deepseek-reasoner",
+                },
+              },
+            })
+          end,
+          siliconflow = function()
+            return require("codecompanion.adapters").extend("deepseek", {
+              url = "https://api.siliconflow.com/v1/chat/completions",
+              env = {
+                api_key = get_api_key "siliconflow_key",
+              },
+              schema = {
+                model = {
+                  default = "deepseek-ai/DeepSeek-R1",
                 },
               },
             })
