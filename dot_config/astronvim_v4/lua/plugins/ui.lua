@@ -46,6 +46,7 @@ return {
       },
       integrations = {
         blink_cmp = true,
+        fidget = true,
       },
     },
   },
@@ -115,5 +116,16 @@ return {
     lazy = false,
     -- NOTE(meijieru): revisit after https://github.com/neovim/neovim/issues/19362
     enabled = false,
+  },
+
+  {
+    "j-hui/fidget.nvim",
+    opts = {
+      notification = {
+        override_vim_notify = false,
+      },
+    },
+    lazy = true,
+    event = { "VeryLazy" },
   },
 }

@@ -314,6 +314,18 @@ return {
         ["<Leader>fj"] = { normal_command "Telescope jumplist", desc = "Find JumpList" },
         ["<Leader>fr"] = { normal_command "Telescope oldfiles", desc = "Open Recent File" },
         ["<Leader>fR"] = { normal_command "Telescope registers", desc = "Find Registers" },
+        ["<Leader>fn"] = {
+          function()
+            if is_available "nvim-notify" then
+              require("telescope").extensions.notify.notify()
+            elseif is_available "fidget.nvim" then
+              require("telescope").extensions.fidget.fidget()
+            else
+              vim.notify("No available method for notifications", vim.log.levels.ERROR)
+            end
+          end,
+          desc = "Find Files",
+        },
 
         -- Debug
         ["<Leader>de"] = { function() require("dapui").eval() end, desc = "Evaluate" },
