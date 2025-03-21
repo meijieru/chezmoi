@@ -67,6 +67,7 @@ local font_rules = {
   },
 }
 
+-- FIXME(meijieru): ctrl + shift + w sometimes doesn't work
 local mykeys = {
   { key = "{", mods = "SHIFT|ALT", action = wezterm.action({ ActivateTabRelative = -1 }) },
   { key = "}", mods = "SHIFT|ALT", action = wezterm.action({ ActivateTabRelative = 1 }) },
