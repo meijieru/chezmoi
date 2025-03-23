@@ -1,14 +1,13 @@
+local is_available = require("astrocore").is_available
+
 return {
   { import = "astrocommunity.scrolling.nvim-scrollbar" },
   { import = "astrocommunity.bars-and-lines.dropbar-nvim" },
-  {
-    "dropbar.nvim",
-    enabled = vim.fn.has "nvim-0.10" == 1,
-  },
-
-  { import = "astrocommunity.utility.noice-nvim" },
+  -- FIXME(meijieru): should be enabled, but https://github.com/AstroNvim/astrocommunity/blob/155e7216fda0e313a8271973623921ddef704fca/lua/astrocommunity/utility/noice-nvim/init.lua?plain=1#L55
+  -- { import = "astrocommunity.utility.noice-nvim" },
   {
     "noice.nvim",
+    dependencies = { "MunifTanjim/nui.nvim" },
     opts = {
       messages = {
         view_search = false,
@@ -20,8 +19,20 @@ return {
         signature = {
           enabled = false,
         },
+        hover = {
+          enabled = false,
+        }
+      },
+
+      presets = {
+        bottom_search = true, -- use a classic bottom cmdline for search
+        command_palette = true, -- position the cmdline and popupmenu together
+        long_message_to_split = true, -- long messages will be sent to a split
+        inc_rename = is_available "inc-rename.nvim", -- enables an input dialog for inc-rename.nvim
+        lsp_doc_border = false, -- add a border to hover docs and signature help
       },
     },
+    event = "VeryLazy",
   },
 
   { import = "astrocommunity.quickfix.quicker-nvim" },
@@ -39,6 +50,11 @@ return {
   {
     "catppuccin",
     opts = {
+      custom_highlights = function(colors)
+        return {
+          NormalFloat = { bg = colors.base, fg = colors.text },
+        }
+      end,
       color_overrides = {
         latte = {
           base = "#FAFAFA",
@@ -46,6 +62,10 @@ return {
       },
       integrations = {
         blink_cmp = true,
+        snacks = {
+          enabled = true,
+          indent_scope_color = "", -- catppuccin color (eg. `lavender`) Default: text
+        },
       },
     },
   },
@@ -114,6 +134,36 @@ return {
     "vimpostor/vim-lumen",
     lazy = false,
     -- NOTE(meijieru): revisit after https://github.com/neovim/neovim/issues/19362
+    enabled = false,
+  },
+
+  {
+    "ColaMint/pokemon.nvim",
+    config = function()
+      local number_candidates = {
+        "0025",
+        "0039",
+        "0104",
+        "0105",
+        "0116",
+        "0131",
+        "0006.3",
+        "0735.1",
+        "0196.1",
+        "0628.2",
+      }
+      local number
+      math.randomseed(os.time())
+      if math.random() > 0.5 then
+        number = "random"
+      else
+        number = number_candidates[math.random(#number_candidates)]
+      end
+      require("pokemon").setup {
+        number = number,
+        size = "tiny",
+      }
+    end,
     enabled = false,
   },
 }

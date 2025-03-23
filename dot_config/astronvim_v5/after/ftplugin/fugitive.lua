@@ -1,3 +1,4 @@
+--- TODO(meijieru): update
 --- TODO(meijieru): disable some keymaps
 local function keymap_config()
   -- local to_disable = {

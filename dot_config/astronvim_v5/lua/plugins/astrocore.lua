@@ -6,6 +6,7 @@
 -- default mappings:
 -- ~/.local/share/nvim/lazy/AstroNvim/lua/astronvim/plugins/_astrocore_mappings.lua
 -- ~/.local/share/nvim/lazy/AstroNvim/lua/astronvim/plugins/_astrolsp_mappings.lua
+-- ~/.local/share/nvim/lazy/AstroNvim/lua/astronvim/plugins/snacks.lua
 
 _G.qftf = require("core.utils.ui").qftf
 
@@ -16,58 +17,6 @@ local lua_normal_command = keymap_utils.lua_normal_command
 local is_available = require("astrocore").is_available
 local get_icon = require("astroui").get_icon
 
-local function smart_default(cmd, expr)
-  return function()
-    local word = vim.fn.expand(expr or "<cword>")
-    if #word > 1 and not (vim.tbl_contains({ 2, 3 }, #word) and string.find(word, '[",()]')) then
-      -- meaningful word, exclude word with short len & contains [,()]
-      vim.cmd(string.format("Telescope %s default_text=%s", cmd, word))
-    else
-      vim.cmd("Telescope " .. cmd)
-    end
-  end
-end
-
-local function visual_search(cmd)
-  return function()
-    local utils = require "core.utils"
-    local content = utils.get_visual_selection()
-    if content == nil then return end
-    local command = string.format("Telescope %s default_text=%s", cmd, vim.fn.escape(content, " ()"))
-    vim.cmd(command)
-  end
-end
-
-local function commented_lines_textobject()
-  local U = require "Comment.utils"
-  local cl = vim.api.nvim_win_get_cursor(0)[1] -- current line
-  local range = { srow = cl, scol = 0, erow = cl, ecol = 0 }
-  local ctx = {
-    ctype = U.ctype.linewise,
-    range = range,
-  }
-  local cstr = require("Comment.ft").calculate(ctx) or vim.bo.commentstring
-  local ll, rr = U.unwrap_cstr(cstr)
-  local padding = true
-  local is_commented = U.is_commented(ll, rr, padding)
-
-  local line = vim.api.nvim_buf_get_lines(0, cl - 1, cl, false)
-  if next(line) == nil or not is_commented(line[1]) then return end
-
-  local rs, re = cl, cl -- range start and end
-  repeat
-    rs = rs - 1
-    line = vim.api.nvim_buf_get_lines(0, rs - 1, rs, false)
-  until next(line) == nil or not is_commented(line[1])
-  rs = rs + 1
-  repeat
-    re = re + 1
-    line = vim.api.nvim_buf_get_lines(0, re - 1, re, false)
-  until next(line) == nil or not is_commented(line[1])
-  re = re - 1
-
-  vim.fn.execute("normal! " .. rs .. "GV" .. re .. "G")
-end
 ---@type LazySpec
 return {
   "AstroNvim/astrocore",
@@ -114,15 +63,6 @@ return {
 
         ["]g"] = false,
         ["[g"] = false,
-        ["<Leader>gl"] = false,
-        ["<Leader>gL"] = false,
-        ["<Leader>gp"] = false,
-        ["<Leader>gh"] = false,
-        ["<Leader>gr"] = false,
-        ["<Leader>gs"] = false,
-        ["<Leader>gS"] = false,
-        ["<Leader>gu"] = false,
-        ["<Leader>gd"] = false,
         ["<Leader>gt"] = false,
 
         ["<Leader>o"] = false,
@@ -136,26 +76,20 @@ return {
         ["<C-Left>"] = false,
         ["<C-Right>"] = false,
 
+        ["<Leader>ls"] = false,
         ["<Leader>lS"] = false,
-        ["<Leader>ls"] = { desc = "Document symbols" },
+        ["<Leader>lD"] = { desc = "Workspace Diagnostics" },
 
-        -- Telescope
-        ["<Leader>f'"] = false,
-        ["<Leader>f/"] = false,
+        -- Picker
         ["<Leader>fa"] = false,
         ["<Leader>fb"] = false,
         ["<Leader>fc"] = false,
         ["<Leader>fC"] = false,
         ["<Leader>ff"] = false,
         ["<Leader>fF"] = false,
-        ["<Leader>fh"] = false,
-        ["<Leader>fk"] = false,
-        ["<Leader>fm"] = false,
-        ["<Leader>fo"] = false,
-        ["<Leader>fr"] = false,
+        ["<Leader>fO"] = false,
+        ["<Leader>fs"] = false,
         ["<Leader>ft"] = false,
-        ["<Leader>fw"] = false,
-        ["<Leader>fW"] = false,
 
         -- Terminal
         ["<Leader>tn"] = false,
@@ -164,6 +98,7 @@ return {
         ["<Leader>uc"] = false,
         ["<Leader>uC"] = false,
         ["<Leader>ug"] = false,
+        ["<Leader>u>"] = false,
         ["<Leader>ul"] = false,
         ["<Leader>uL"] = false,
         ["<Leader>un"] = false,
@@ -172,11 +107,18 @@ return {
         ["<Leader>ut"] = false,
         ["<Leader>uu"] = false,
         ["<Leader>uy"] = false,
+        ["<Leader>uz"] = false,
+        ["<Leader>uZ"] = false,
+        ["<Leader>ua"] = false,
+        ["<Leader>ur"] = false,
+        ["<Leader>uR"] = false,
 
         -- Debug
         ["<Leader>dE"] = false,
         ["<Leader>dd"] = maps.n["<Leader>ds"],
         ["<Leader>ds"] = false,
+
+        ["<Leader>lI"] = false,
       },
       i = {
         ["<C-S>"] = false,
@@ -224,9 +166,53 @@ return {
           desc = "Diff Get | Reset Hunk",
         },
 
+        ["<Leader>gb"] = {
+          function()
+            require("snacks").picker.git_branches {
+              win = {
+                input = {
+                  keys = {
+                    ["<C-T>"] = { "diffview_branch", mode = { "i", "n" } },
+                  },
+                },
+              },
+            }
+          end,
+          desc = "Git branches",
+        },
+        ["<Leader>gc"] = {
+          function()
+            require("snacks").picker.git_log {
+              win = {
+                input = {
+                  keys = {
+                    ["<C-T>"] = { "diffview_commit", mode = { "i", "n" } },
+                  },
+                },
+              },
+            }
+          end,
+          desc = "Git commits (repository)",
+        },
+        ["<Leader>gC"] = {
+          function()
+            require("snacks").picker.git_log {
+              current_file = true,
+              follow = true,
+              win = {
+                input = {
+                  keys = {
+                    ["<C-T>"] = { "diffview_commit", mode = { "i", "n" } },
+                  },
+                },
+              },
+            }
+          end,
+          desc = "Git commits (current file)",
+        },
         ["<Leader>gd"] = { normal_command "DiffviewOpen", desc = "Diff View" },
         ["<Leader>gh"] = { normal_command "DiffviewFileHistory", desc = "Diff History" },
-        ["<Leader>gH"] = { normal_command "DiffviewFileHistory %", desc = "Diff History (for current file)" },
+        ["<Leader>gH"] = { normal_command "DiffviewFileHistory %", desc = "Diff History (current file)" },
         ["<Leader>gg"] = { function() require("core.utils.git").toggle_fugitive() end, desc = "Toggle Status" },
         ["<Leader>gl"] = {
           function()
@@ -245,7 +231,7 @@ return {
           keymap_utils.chain("Gitsigns toggle_deleted", "Gitsigns toggle_word_diff"),
           desc = "Toggle Inline Diff",
         },
-        ["<Leader>gm"] = { normal_command "Telescope git_status", desc = "Modified Files" },
+        ["<Leader>gm"] = { function() require("snacks").picker.git_status() end, desc = "Modified Files" },
 
         -- Next / Prev
         ["]c"] = {
@@ -295,31 +281,31 @@ return {
         ["m<space>"] = { normal_command "delmarks!", desc = "Delete All Marks" },
         ["g?"] = { normal_command "WhichKey", desc = "WhichKey" },
 
-        -- Telescope
+        -- Picker
         -- trick: <c-space> convert it as fuzzy
-        ["<C-P>"] = { normal_command "Telescope commands", desc = "Commands Palette" },
-        ["<Leader>*"] = { smart_default "live_grep", desc = "Grep" },
-        ["<Leader>b"] = { normal_command "Telescope buffers", desc = "Find Buffer" },
-        ["<Leader>/"] = { normal_command "Telescope search_history", desc = "Find Search History" },
-        ["<Leader>fc"] = { normal_command "Telescope command_history", desc = "Find Commands History" },
-        ["<Leader>ff"] = { normal_command "Telescope find_files", desc = "Find File" },
-        ["<Leader>fh"] = { smart_default "help_tags", desc = "Find Help" },
-        ["<Leader>fm"] = { smart_default "man_pages", desc = "Find man" },
-        ["<Leader>fk"] = { normal_command "Telescope keymaps", desc = "Keymaps" },
-        ["<Leader>fb"] = { smart_default "current_buffer_fuzzy_find", desc = "Grep Buffer" },
-        ["<Leader>fl"] = { normal_command "Telescope loclist", desc = "Find Loclist" },
-        ["<Leader>fp"] = { normal_command "Telescope projects", desc = "Projects" },
-        ["<Leader>fq"] = { normal_command "Telescope quickfix", desc = "Find QuickFix" },
+        ["<C-P>"] = { function() require("snacks").picker.commands() end, desc = "Commands Palette" },
+        ["<Leader>*"] = { function() require("snacks").picker.grep_word() end, desc = "Grep Word" },
+        ["<Leader>b"] = { function() require("snacks").picker.buffers() end, desc = "Find Buffers" },
+        ["<Leader>/"] = { function() require("snacks").picker.search_history() end, desc = "Find Search History" },
+        ["<Leader>:"] = { function() require("snacks").picker.command_history() end, desc = "Find Commands History" },
+        ["<Leader>ff"] = {
+          function() require("snacks").picker.smart { multi = { "buffers", { source = "files", hidden = true } } } end,
+          desc = "Find Files",
+        },
+        ["<Leader>fc"] = { function() require("snacks").picker.lines() end, desc = "Grep Lines" },
+        ["<Leader>fb"] = { function() require("snacks").picker.grep_buffers() end, desc = "Grep Buffers Lines" },
+        ["<Leader>fl"] = { function() require("snacks").picker.loclist() end, desc = "Find Loclist" },
+        ["<Leader>fq"] = { function() require("snacks").picker.qflist() end, desc = "Find QuickFix" },
+        ["<Leader>fu"] = { function() require("snacks").picker.undo() end, desc = "Find Undos" },
         ["<Leader>ft"] = { normal_command "OverseerRun", desc = "Find Tasks" },
-        ["<Leader>fj"] = { normal_command "Telescope jumplist", desc = "Find JumpList" },
-        ["<Leader>fr"] = { normal_command "Telescope oldfiles", desc = "Open Recent File" },
-        ["<Leader>fR"] = { normal_command "Telescope registers", desc = "Find Registers" },
+        ["<Leader>fw"] = { desc = "Grep" },
+        ["<Leader>fW"] = { desc = "Grep in All" },
 
         -- Debug
         ["<Leader>de"] = { function() require("dapui").eval() end, desc = "Evaluate" },
 
         -- Custom menu for modification of the user experience
-        ["<Leader>uc"] = { normal_command "ColorizerToggle", desc = "Colorizer" },
+        ["<Leader>uc"] = { function() vim.cmd.HighlightColors "Toggle" end, desc = "Toggle color highlight" },
         ["<Leader>uu"] = { normal_command "OverseerToggle", desc = "Overseer" },
         ["<Leader>uq"] = { function() require("core.utils.ui").toggle_quickfix() end, desc = "Quickfix" },
         ["<Leader>ul"] = { function() require("core.utils.ui").toggle_loclist() end, desc = "Loclist" },
@@ -346,9 +332,19 @@ return {
           desc = "Navigate",
         },
 
+        -- TODO(meijieru): more lsp use snacks
+        ["gO"] = { function() require("snacks").picker.lsp_symbols() end, desc = "Document Symbols" },
+        ["grr"] = { function() require("snacks").picker.lsp_references() end, desc = "References" },
+        ["gri"] = { function() require("snacks").picker.lsp_implementations() end, desc = "Implementations" },
+
         ["<F1>"] = {
           lua_normal_command "require('core.utils.ui').toggle_colorcolumn()",
           desc = "Toggle Colorcolumn",
+        },
+
+        ["<Leader>z"] = {
+          function() require("snacks").toggle.zen():toggle() end,
+          desc = "Zen Mode",
         },
       },
 
@@ -356,11 +352,9 @@ return {
         ["<"] = { "<gv" },
         [">"] = { ">gv" },
 
-        ["<Leader>*"] = { visual_search "live_grep", desc = "Grep" },
+        ["<Leader>*"] = { function() require("snacks").picker.grep_word() end, desc = "Grep Selection" },
         ["<Leader>g"] = maps.n["<Leader>g"],
         ["<Leader>f"] = maps.n["<Leader>f"],
-        ["<Leader>fh"] = { visual_search "help_tags", desc = "Find Help" },
-        ["<Leader>fb"] = { visual_search "current_buffer_fuzzy_find", desc = "Grep Buffer" },
 
         -- Debug
         ["<Leader>de"] = { function() require("dapui").eval() end, desc = "Evaluate" },
@@ -376,7 +370,7 @@ return {
       },
 
       o = {
-        u = { commented_lines_textobject, desc = "Commented Lines Textobject", silent = true },
+        u = { "gc", desc = "Commented Lines", remap = true },
       },
 
       i = {
@@ -401,29 +395,21 @@ return {
       -- TODO(meijieru): migrate more
     }
 
+    ---@type AstroCoreOpts
     local override = {
-      -- Configure core features of AstroNvim
       features = {
-        large_buf = { size = 1024 * 500, lines = 10000 }, -- set global limits for large files for disabling features like treesitter
-        autopairs = true, -- enable autopairs at start
-        cmp = true, -- enable completion at start
-        diagnostics_mode = 3, -- diagnostic mode on start (0 = off, 1 = no signs/virtual text, 2 = no virtual text, 3 = on)
-        highlighturl = true, -- highlight URLs at start
-        notifications = true, -- enable notifications at start
+        diagnostics = { virtual_text = true, virtual_lines = false },
       },
-      -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
-      diagnostics = {
-        virtual_text = true,
-        underline = true,
+      rooter = {
+        autochdir = true,
       },
-      -- vim options can be configured here
       options = {
-        opt = { -- vim.opt.<key>
-          relativenumber = false, -- sets vim.opt.relativenumber
-          number = true, -- sets vim.opt.number
-          spell = false, -- sets vim.opt.spell
-          signcolumn = "yes", -- sets vim.opt.signcolumn to auto
-          wrap = false, -- sets vim.opt.wrap
+        opt = {
+          relativenumber = false,
+          number = true,
+          spell = false,
+          signcolumn = "yes",
+          wrap = false,
           showtabline = 1,
           shiftwidth = 4,
           tabstop = 4,
@@ -433,15 +419,17 @@ return {
           background = "light",
           splitkeep = "screen",
           -- https://github.com/hrsh7th/nvim-cmp/issues/309
-          title = false,
+          title = not (is_available "nvim-cmp"),
           -- for click handler of `luukvbaal/statuscol.nvim`
           mousemodel = "extend",
           qftf = "{info -> v:lua._G.qftf(info, 'shorten')}",
           swapfile = false,
           clipboard = "",
           fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]],
+          -- FIXME(meijieru): until noice.nvim fix
+          -- winborder = "rounded",
         },
-        g = { -- vim.g.<key>
+        g = {
           -- configure global vim variables (vim.g)
           -- NOTE: `mapleader` and `maplocalleader` must be set in the AstroNvim opts or before `lazy.setup`
           -- This can be found in the `lua/lazy_setup.lua` file

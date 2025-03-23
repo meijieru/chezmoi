@@ -20,12 +20,17 @@ return {
     end,
     enabled = true,
   },
+
   {
-    "williamboman/mason-lspconfig.nvim",
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
     opts = function(_, opts)
-      if myvim.plugins.is_development_machine then
-        opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, { "basedpyright" })
-      end
+      opts.ensure_installed = require("astrocore").list_insert_unique(
+        vim.tbl_filter(
+          function(val) return not vim.tbl_contains({ "selene", "stylua" }, val) end,
+          opts.ensure_installed
+        ),
+        myvim.plugins.lsp.null_ls_ensure_installed
+      )
     end,
   },
 }

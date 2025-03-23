@@ -1,5 +1,6 @@
 return {
   "nvim-telescope/telescope.nvim",
+  optional = true,
   opts = function(_, opts)
     local actions = require "telescope.actions"
     local action_state = require "telescope.actions.state"
@@ -44,28 +45,28 @@ return {
       git_commits = {
         mappings = {
           i = {
-            ["<C-v>"] = git_diffview_commit,
+            ["<C-t>"] = git_diffview_commit,
           },
         },
       },
       git_bcommits = {
         mappings = {
           i = {
-            ["<C-v>"] = git_diffview_commit,
+            ["<C-t>"] = git_diffview_commit,
           },
         },
       },
       git_branches = {
         mappings = {
           i = {
-            ["<C-v>"] = git_diffview_branch,
+            ["<C-t>"] = git_diffview_branch,
           },
         },
       },
       buffers = {
         mappings = {
           i = {
-            ["<C-d>"] = actions.delete_buffer,
+            ["<C-x>"] = actions.delete_buffer,
           },
           n = {
             ["dd"] = actions.delete_buffer,

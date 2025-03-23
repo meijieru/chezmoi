@@ -37,6 +37,7 @@ delete:
 
   - .config/lvim/
   - .config/astronvim/
+  - .config/astronvim_v4/
   - .config/nvimpager/plugin
   - .config/nvimpager/init.vim
 

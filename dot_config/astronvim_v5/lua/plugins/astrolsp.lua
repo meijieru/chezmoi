@@ -16,24 +16,29 @@ local function opts_func(_, opts)
   local maps = opts.mappings
   local to_remap = {
     n = {
-      -- ["<Leader>ld"] = false,
+
+      ["<Leader>uY"] = false,
+      ["<Leader>uf"] = false,
+      ["<Leader>uF"] = false,
+      ["<Leader>u?"] = false,
+
       ["<Leader>la"] = false,
+      ["<Leader>lA"] = false,
       ["<Leader>lr"] = false,
-      ["<Leader>li"] = false,
-      ["<Leader>lI"] = false,
       ["<Leader>ll"] = false,
       ["<Leader>lL"] = false,
       ["<Leader>lR"] = false,
       ["<Leader>lh"] = false,
-
-      ["<Leader>lD"] = { desc = "Workspace Diagnostics" },
+      ["<Leader>lG"] = false,
 
       ["<Leader>ld"] = {
-        function() require("telescope.builtin").diagnostics { bufnr = 0 } end,
+        function() require("snacks").picker.diagnostics_buffer() end,
         desc = "Document diagnostics",
       },
-      ["<Leader>lS"] = vim.tbl_deep_extend("force", maps.n["<Leader>lG"], { desc = "Workspace symbols" }),
-      ["<Leader>lG"] = false,
+      ["grs"] = {
+        function() require("snacks").picker.lsp_workspace_symbols() end,
+        desc = "Workspace Symbols",
+      },
     },
 
     v = {
@@ -44,14 +49,11 @@ local function opts_func(_, opts)
       ["<Leader>la"] = false,
     },
   }
-  maps = vim.tbl_deep_extend("force", maps, to_remap)
+  maps = vim.tbl_deep_extend("force", maps or {}, to_remap)
 
-  -- -- TODO(meijieru): revisit
-  -- maps.n["<Leader>lS"] = {
-  --   function() require("telescope.builtin").lsp_dynamic_workspace_symbols() end,
-  --   desc = "Workspace symbols",
-  --   cond = "workspace/symbol",
-  -- }
+  maps.n["gd"][1] = function() require("snacks").picker.lsp_definitions() end
+  maps.n["gD"][1] = function() require("snacks").picker.lsp_declarations()() end
+  maps.n["gy"][1] = function() require("snacks").picker.lsp_type_definitions() end
 
   opts.mappings = maps
   return opts

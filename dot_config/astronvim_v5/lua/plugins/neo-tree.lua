@@ -1,5 +1,4 @@
-local keymap_utils = require "core.utils.keymap"
-local normal_command = keymap_utils.normal_command
+local normal_command = require("core.utils.keymap").normal_command
 
 return {
   "nvim-neo-tree/neo-tree.nvim",

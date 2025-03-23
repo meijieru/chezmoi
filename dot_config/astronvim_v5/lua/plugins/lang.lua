@@ -1,3 +1,8 @@
+if true then
+  -- FIXME(meijieru): revisit after v5
+  return {}
+end
+
 return {
 
   -- { import = "astrocommunity.pack.markdown" },

@@ -1,6 +1,6 @@
 M = {}
 
-function M.normal_command(command) return string.format("<cmd>%s<cr>", command) end
+function M.normal_command(command) return string.format("<Cmd>%s<CR>", command) end
 
 function M.lua_normal_command(command) return M.normal_command(string.format("lua %s", command)) end
 

@@ -52,19 +52,12 @@ local spec = {
     version = "*",
     lazy = true,
     opts = {},
+    enabled = false,
   },
 
   -- { import = "astrocommunity.completion.cmp-cmdline" },
   -- { import = "astrocommunity.completion.copilot-lua-cmp" },
 
-  {
-    "onsails/lspkind.nvim",
-    opts = {
-      symbol_map = {
-        Copilot = "",
-      },
-    },
-  },
 }
 
 if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machine then

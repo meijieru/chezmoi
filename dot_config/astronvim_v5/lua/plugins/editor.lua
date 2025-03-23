@@ -4,76 +4,10 @@ return {
   { import = "astrocommunity.editing-support.rainbow-delimiters-nvim" },
   { import = "astrocommunity.motion.vim-matchup" },
 
-  -- { import = "astrocommunity.editing-support.telescope-undo-nvim" },
-  {
-    "debugloop/telescope-undo.nvim",
-    dependencies = {
-      "nvim-telescope/telescope.nvim",
-    },
-    keys = {
-      {
-        "<leader>fu",
-        "<cmd>Telescope undo<cr>",
-        desc = "Find undos",
-      },
-    },
-    opts = function()
-      local actions = require "telescope-undo.actions"
-      return {
-        mappings = {
-          i = {
-            ["<cr>"] = actions.restore,
-          },
-        },
-      }
-    end,
-    config = function(_, config_opts)
-      require("telescope").setup {
-        extensions = {
-          undo = config_opts,
-        },
-      }
-    end,
-  },
-
-  { import = "astrocommunity.editing-support.zen-mode-nvim" },
-  {
-    "zen-mode.nvim",
-    keys = {
-      { "<leader>z", "<cmd>ZenMode<CR>", desc = "Zen Mode" },
-    },
-    opts = function(_, opts)
-      if require("astrocore").is_available "nvim-scrollbar" then
-        local on_open = opts.on_open
-        local on_close = opts.on_close
-
-        opts.on_open = function()
-          on_open()
-          vim.cmd "ScrollbarToggle"
-        end
-        opts.on_close = function()
-          on_close()
-          vim.cmd "ScrollbarToggle"
-        end
-      end
-      return opts
-    end,
-  },
-
   { import = "astrocommunity.motion.flash-nvim" },
   {
     "flash.nvim",
     opts = { modes = { search = { enabled = false } } },
-  },
-
-  { import = "astrocommunity.project.project-nvim" },
-  {
-    "project.nvim",
-    opts = function(_, opts)
-      opts.ignore_lsp = nil
-      opts.detection_methods = { "pattern", "lsp" }
-      return opts
-    end,
   },
 
   {

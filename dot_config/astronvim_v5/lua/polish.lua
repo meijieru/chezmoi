@@ -2,10 +2,13 @@
 -- things like custom filetypes. This just pure lua so anything that doesn't
 -- fit in the normal config locations above can go here
 
+local normal_command = require("core.utils.keymap").normal_command
+
 local api = vim.api
 local map = vim.keymap.set
 local on = vim.api.nvim_create_autocmd
 
+-- TODO(meijieru): use https://github.com/xvzc/chezmoi.nvim instead
 -- https://www.chezmoi.io/docs/how-to/#configure-vim-to-run-chezmoi-apply-whenever-you-save-a-dotfile
 on("BufWritePost", {
   pattern = { "*/.local/share/chezmoi/*" },
@@ -36,17 +39,12 @@ on("BufWritePost", {
 })
 
 on("FileType", {
-  pattern = { "startuptime", "fugitiveblame", "qf", "help" },
-  callback = function() map("n", "q", "<cmd>close<cr>", { buffer = 0, desc = "Close" }) end,
+  pattern = { "startuptime", "fugitiveblame", "gitsigns-blame", "qf", "help" },
+  callback = function() map("n", "q", normal_command "close", { buffer = 0, desc = "Close" }) end,
 })
 
 on("FileType", {
-  pattern = { "alpha" },
-  callback = function() map("n", "q", "<cmd>quit<cr>", { buffer = 0, desc = "Quit" }) end,
-})
-
-on("FileType", {
-  pattern = { "alpha", "lspinfo", "aerial", "dapui_scopes" },
+  pattern = { "lspinfo", "aerial", "dapui_scopes" },
   callback = function() api.nvim_set_option_value("foldenable", false, { scope = "local", win = 0 }) end,
   desc = "Disable fold",
 })

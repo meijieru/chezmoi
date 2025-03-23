@@ -1,3 +1,5 @@
+local normal_command = require("core.utils.keymap").normal_command
+
 return {
   {
     "tpope/vim-fugitive",
@@ -16,8 +18,8 @@ return {
         end,
       },
     },
-    -- TODO(meijieru): use own config
-    -- event = "User AstroGitFile",
+    -- TODO(meijieru): use snacks.gitbrowse
+    enabled = true,
   },
 
   { import = "astrocommunity.git.diffview-nvim" },
@@ -46,11 +48,11 @@ return {
         },
         keymaps = {
           file_panel = {
-            ["cc"] = "<cmd>Git commit<cr>",
-            ["q"] = "<cmd>tabclose<cr>",
+            ["cc"] = normal_command "Git commit",
+            ["q"] = normal_command "tabclose",
           },
           file_history_panel = {
-            ["q"] = "<cmd>tabclose<cr>",
+            ["q"] = normal_command "tabclose",
           },
         },
       })

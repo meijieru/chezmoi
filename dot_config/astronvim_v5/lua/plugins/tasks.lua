@@ -1,3 +1,5 @@
+local normal_command = require("core.utils.keymap").normal_command
+
 return {
 
   { import = "astrocommunity.code-runner.overseer-nvim" },
@@ -12,7 +14,7 @@ return {
       templates = { "builtin", "myplugin.global_tasks" },
       task_list = {
         bindings = {
-          ["q"] = "<cmd>close<cr>",
+          ["q"] = normal_command "close",
           ["<c-x>"] = "OpenSplit",
         },
       },
