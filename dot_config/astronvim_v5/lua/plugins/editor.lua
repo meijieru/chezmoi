@@ -3,6 +3,21 @@ return {
   { import = "astrocommunity.motion.nvim-surround" },
   { import = "astrocommunity.editing-support.rainbow-delimiters-nvim" },
   { import = "astrocommunity.motion.vim-matchup" },
+  {
+    "vim-matchup",
+    specs = {
+      "AstroNvim/astrocore",
+      opts = {
+        options = {
+          g = {
+            -- FIXME(meijieru): cause E36
+            -- matchup_matchparen_offscreen = { method = "popup" },
+            matchup_matchparen_offscreen = {},
+          },
+        },
+      },
+    },
+  },
 
   { import = "astrocommunity.motion.flash-nvim" },
   {
