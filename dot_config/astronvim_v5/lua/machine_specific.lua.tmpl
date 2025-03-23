@@ -17,6 +17,10 @@ myvim.plugins.lsp.servers_from_system = {
   "ruff",
   "clangd",
 }
+
+myvim.plugins.lsp.null_ls_ensure_installed = {
+  "debugpy",
+}
 {{ end }}
 
 {{ if or (eq .chezmoi.hostname "jierumei-glaptop") (eq .chezmoi.hostname "jierucloud") }}
