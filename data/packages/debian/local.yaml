@@ -3,4 +3,4 @@ opts:
   overwrite: true
 
 wget:
-  nvim: https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
+  nvim: https://github.com/neovim/neovim/releases/download/nightly/nvim-linux-x86_64.appimage
