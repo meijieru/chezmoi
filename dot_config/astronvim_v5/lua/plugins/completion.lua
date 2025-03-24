@@ -92,6 +92,7 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
       end,
       dependencies = {
         "fang2hou/blink-copilot",
+        -- TODO(meijieru): word/line accept
         opts = {
           max_completions = 2,
           max_attempts = 2,

@@ -2,7 +2,7 @@ return {
   {
     "none-ls.nvim",
     opts = function(_, opts)
-      if not myvim.plugins.is_development_machine then return opts end
+      if (not myvim.plugins.is_development_machine) or myvim.plugins.is_corporate_machine then return opts end
 
       local null_ls = require "null-ls"
 

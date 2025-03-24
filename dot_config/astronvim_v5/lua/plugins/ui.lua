@@ -6,7 +6,7 @@ return {
   -- FIXME(meijieru): should be enabled, but https://github.com/AstroNvim/astrocommunity/blob/155e7216fda0e313a8271973623921ddef704fca/lua/astrocommunity/utility/noice-nvim/init.lua?plain=1#L55
   -- { import = "astrocommunity.utility.noice-nvim" },
   {
-    "noice.nvim",
+    "folke/noice.nvim",
     dependencies = { "MunifTanjim/nui.nvim" },
     opts = {
       messages = {
@@ -21,7 +21,7 @@ return {
         },
         hover = {
           enabled = false,
-        }
+        },
       },
 
       presets = {
