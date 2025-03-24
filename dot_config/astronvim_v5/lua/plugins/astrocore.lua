@@ -402,6 +402,14 @@ return {
       },
       rooter = {
         autochdir = true,
+        detector = {
+          "lsp",
+          { ".git", "_darcs", ".hg", ".bzr", ".svn" },
+          { "MakeFile", "package.json", "WORKSPACE" }, --known project root files
+        },
+        ignore = {
+          servers = { "ciderlsp" },
+        },
       },
       options = {
         opt = {
