@@ -5,6 +5,10 @@ local function get_api_key(name)
   return key
 end
 
+local function remove_select(list)
+  return vim.tbl_filter(function(val) return not vim.tbl_contains({ "select_next", "select_prev" }, val) end, list)
+end
+
 local spec = {
 
   { import = "astrocommunity.completion.blink-cmp" },
@@ -13,8 +17,8 @@ local spec = {
     opts = function(_, opts)
       return vim.tbl_deep_extend("force", opts, {
         keymap = {
-          ["<Tab>"] = { "fallback" },
-          ["<S-Tab>"] = { "fallback" },
+          ["<Tab>"] = remove_select(opts.keymap["<Tab>"]),
+          ["<S-Tab>"] = remove_select(opts.keymap["<S-Tab>"]),
           ["<C-J>"] = { "fallback" },
           ["<C-K>"] = { "fallback" },
         },
@@ -57,7 +61,6 @@ local spec = {
 
   -- { import = "astrocommunity.completion.cmp-cmdline" },
   -- { import = "astrocommunity.completion.copilot-lua-cmp" },
-
 }
 
 if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machine then
