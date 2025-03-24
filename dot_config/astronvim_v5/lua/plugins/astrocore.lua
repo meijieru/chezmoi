@@ -404,8 +404,9 @@ return {
         autochdir = true,
         detector = {
           "lsp",
+          { "WORKSPACE" }, -- known project root files, higher priorities
           { ".git", "_darcs", ".hg", ".bzr", ".svn" },
-          { "MakeFile", "package.json", "WORKSPACE" }, --known project root files
+          { "MakeFile", "package.json" }, -- other known project root files
         },
         ignore = {
           servers = { "ciderlsp" },

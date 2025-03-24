@@ -5,6 +5,8 @@ return {
     local actions = require "telescope.actions"
     local action_state = require "telescope.actions.state"
 
+    local defaults = opts.defaults or {}
+
     local function send_and_open_qflist(...)
       actions.smart_send_to_qflist(...)
       actions.open_qflist(...)
@@ -12,7 +14,7 @@ return {
     -- useful defalt:
     -- <C-/> Show mappings for picker actions (insert mode)
     -- ? Show mappings for picker actions (normal mode)
-    local mappings = opts.defaults.mappings
+    local mappings = defaults.mappings or {}
     mappings.i = {
       ["<C-n>"] = actions.move_selection_next,
       ["<C-p>"] = actions.move_selection_previous,
@@ -75,10 +77,12 @@ return {
       },
     }
 
-    opts.defaults.path_display = {
-      filename_first = {
-        reverse_directories = false,
+    opts.defaults = vim.tbl_deep_extend("force", defaults, {
+      path_display = {
+        filename_first = {
+          reverse_directories = false,
+        },
       },
-    }
+    })
   end,
 }
