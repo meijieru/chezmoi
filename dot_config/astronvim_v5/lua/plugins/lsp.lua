@@ -29,7 +29,7 @@ return {
           function(val) return not vim.tbl_contains({ "selene", "stylua" }, val) end,
           opts.ensure_installed
         ),
-        myvim.plugins.lsp.null_ls_ensure_installed
+        myvim.plugins.lsp.ensure_installed
       )
     end,
   },

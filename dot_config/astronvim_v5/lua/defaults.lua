@@ -5,7 +5,7 @@ _G.myvim = {
 
     lsp = {
       servers_from_system = {},
-      null_ls_ensure_installed = {},
+      ensure_installed = {},
     },
   },
 }
