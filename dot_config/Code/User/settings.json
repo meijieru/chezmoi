@@ -1,4 +1,6 @@
+// TODO(meijieru): fix inlay hints
 {
+  // "editor.inlayHints.enabled": "on",
   "workbench.colorTheme": "Edge Light",
 
   "editor.fontSize": 17,
@@ -13,6 +15,14 @@
     {
       "before": ["j", "j"],
       "after": ["<Esc>"]
+    },
+    {
+      "before": ["<C-n>"],
+      "commands": ["selectNextSuggestion"]
+    },
+    {
+      "before": ["<C-p>"],
+      "commands": ["selectPrevSuggestion"]
     }
   ],
   "vim.leader": "<space>",
@@ -34,12 +44,24 @@
       "commands": ["workbench.action.previousEditor"]
     },
     {
+      "before": ["<leader>", "b"],
+      "commands": ["workbench.action.showAllEditors"]
+    },
+    {
       "before": ["]", "e"],
       "commands": ["editor.action.marker.nextInFiles"]
     },
     {
       "before": ["[", "e"],
       "commands": ["editor.action.marker.prevInFiles"]
+    },
+    {
+      "before": ["]", "r"],
+      "commands": ["editor.action.wordHighlight.next"]
+    },
+    {
+      "before": ["[", "r"],
+      "commands": ["editor.action.wordHighlight.prev"]
     },
     {
       "before": ["u"],
@@ -54,6 +76,18 @@
       "commands": [":nohl"]
     },
     {
+      "before": ["<leader>", "z"],
+      "commands": ["workbench.action.toggleZenMode"]
+    },
+    {
+      "before": ["g", "O"],
+      "commands": ["workbench.action.gotoSymbol"]
+    },
+    {
+      "before": ["g", "r", "s"],
+      "commands": ["workbench.action.showAllSymbols"]
+    },
+    {
       "before": ["g", "r", "r"],
       "commands": ["editor.action.goToReferences"]
     },
@@ -64,7 +98,7 @@
     {
       "before": ["g", "r", "n"],
       "commands": ["editor.action.rename"]
-    }
+    },
     {
       "before": ["g", "x"],
       "commands": ["editor.action.openLink"]
@@ -109,6 +143,16 @@
       "before": ["<leader>", "l", "f"],
       "commands": ["editor.action.format"]
     },
+    // {
+    //   "before": ["<leader>", "u", "h"],
+    //   "commands": "editor.action.inlayHints.toggle",
+    // }
+  ],
+  "vim.visualModeKeyBindings": [
+    {
+      "before": ["g", "q"],
+      "commands": ["editor.action.formatSelection"]
+    }
   ],
   "vim.handleKeys": {
     "<C-a>": false,
