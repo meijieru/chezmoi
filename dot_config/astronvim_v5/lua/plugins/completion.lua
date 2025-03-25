@@ -1,3 +1,5 @@
+local normal_command = require("core.utils.keymap").normal_command
+local get_icon = require("astroui").get_icon
 local list_insert_unique = require("astrocore").list_insert_unique
 
 local function get_api_key(name)
@@ -44,7 +46,7 @@ local spec = {
         },
         appearance = {
           kind_icons = {
-            Copilot = "",
+            Copilot = get_icon("Copilot", 0, true),
           },
         },
       })
@@ -110,7 +112,41 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
           opts = function(_, opts) opts.sources.default = list_insert_unique(opts.sources.default, { "codecompanion" }) end,
         },
       },
+      specs = {
+        "AstroNvim/astrocore",
+        opts = function(_, opts)
+          local function prompt(name)
+            return function() require("codecompanion").prompt(name) end
+          end
+          opts.mappings = vim.tbl_deep_extend("force", opts.mappings or {}, {
+            n = {
+              ["<Leader>a"] = { desc = get_icon("Copilot", 1, true) .. "AI" },
+              ["<Leader><Leader>"] = { normal_command "CodeCompanionChat Toggle", desc = "Toggle Chat" },
+              ["<Leader>aa"] = { normal_command "CodeCompanionActions", desc = "Actions" },
+            },
+            v = {
+              ["<Leader>a"] = { desc = get_icon("Copilot", 1, true) .. "AI" },
+              ["<Leader><Leader>"] = { normal_command "CodeCompanionChat Add", desc = "Add to Chat" },
+              ["<Leader>aa"] = { normal_command "CodeCompanionActions", desc = "Actions" },
+              ["<Leader>ae"] = { prompt "explain", desc = "Explain" },
+              ["<Leader>af"] = { prompt "fix", desc = "Fix" },
+              ["<Leader>at"] = { prompt "tests", desc = "Add Testcases" },
+            },
+            ca = {
+              -- abbr in cmdline
+              ["cc"] = { "CodeCompanion" },
+            },
+          })
+        end,
+      },
       opts = {
+        -- TODO(meijieru): 
+        -- 1. add https://codecompanion.olimorris.dev/usage/ui.html#heirline-nvim-integration
+        -- 2. keymap for refactor
+        -- 3. git commit in git commit message
+        opts = {
+          language = "Chinese",
+        },
         strategies = {
           chat = {
             adapter = "deepseek",
@@ -127,7 +163,7 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
               },
               schema = {
                 model = {
-                  default = "deepseek-reasoner",
+                  default = "deepseek-chat",
                 },
               },
             })
@@ -141,6 +177,10 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
               schema = {
                 model = {
                   default = "deepseek-ai/DeepSeek-R1",
+                  choices = {
+                    ["deepseek-ai/DeepSeek-R1"] = { opts = { can_reason = true } },
+                    "deepseek-ai/DeepSeek-V3",
+                  },
                 },
               },
             })
@@ -149,6 +189,7 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
       },
       enabled = true,
       lazy = true,
+      cmd = { "CodeCompanion", "CodeCompanionChat", "CodeCompanionActions" },
       event = { "InsertEnter", "CmdlineEnter" },
     },
   })

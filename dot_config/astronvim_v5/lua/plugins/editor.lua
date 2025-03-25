@@ -77,7 +77,7 @@ return {
     dependencies = { "nvim-treesitter" },
     keys = {
       {
-        "<leader>a",
+        "<leader>la",
         function() require("ts-node-action").node_action() end,
         desc = "TS Node Action",
       },

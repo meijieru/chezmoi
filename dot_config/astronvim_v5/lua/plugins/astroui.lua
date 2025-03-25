@@ -29,6 +29,7 @@ return {
       GitDelete = "",
       GitSignTopDelete = "▔",
       Quit = "",
+      Copilot = "",
     },
 
     status = {
