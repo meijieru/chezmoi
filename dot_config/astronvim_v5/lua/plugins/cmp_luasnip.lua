@@ -1,5 +1,6 @@
 return {
   "hrsh7th/nvim-cmp",
+  optional = true,
   opts = function(_, opts)
     local cmp = require "cmp"
     local snip_status_ok, luasnip = pcall(require, "luasnip")

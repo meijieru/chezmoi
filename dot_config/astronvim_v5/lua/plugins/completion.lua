@@ -13,7 +13,6 @@ end
 
 local spec = {
 
-  { import = "astrocommunity.completion.blink-cmp" },
   {
     "Saghen/blink.cmp",
     opts = function(_, opts)
