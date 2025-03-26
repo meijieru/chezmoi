@@ -140,12 +140,17 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
         end,
       },
       opts = {
-        -- TODO(meijieru): 
+        -- TODO(meijieru):
         -- 1. add https://codecompanion.olimorris.dev/usage/ui.html#heirline-nvim-integration
         -- 2. keymap for refactor
         -- 3. git commit in git commit message
         opts = {
           language = "Chinese",
+        },
+        display = {
+          diff = {
+            provider = "mini_diff",
+          },
         },
         strategies = {
           chat = {
@@ -168,7 +173,7 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
               },
             })
           end,
-          siliconflow = function()
+          deepseek_siliconflow = function()
             return require("codecompanion.adapters").extend("deepseek", {
               url = "https://api.siliconflow.com/v1/chat/completions",
               env = {
@@ -185,6 +190,46 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
               },
             })
           end,
+        },
+        -- https://github.com/olimorris/codecompanion.nvim/discussions/694
+        prompt_library = {
+          ["Commit Message"] = {
+            strategy = "inline",
+            description = "Generate a commit message",
+            opts = {
+              short_name = "commit_inline",
+              auto_submit = true,
+              placement = "replace",
+            },
+            prompts = {
+              {
+                role = "user",
+                content = function()
+                  return string.format(
+                    [[You are an expert at following the Conventional Commit specification. Given the git diff listed below, please generate a commit message for me:
+
+` ` `diff
+%s
+` ` `
+
+When unsure about the module names to use in the commit message, you can refer to the last 20 commit messages in this repository:
+
+` ` `
+%s
+` ` `
+
+Output only the commit message without any explanations and follow-up suggestions.
+]],
+                    vim.fn.system "git diff --no-ext-diff --staged",
+                    vim.fn.system 'git log --pretty=format:"%s" -n 20'
+                  )
+                end,
+                opts = {
+                  contains_code = true,
+                },
+              },
+            },
+          },
         },
       },
       enabled = true,

@@ -40,7 +40,7 @@ on("BufWritePost", {
 
 on("FileType", {
   pattern = { "startuptime", "fugitiveblame", "gitsigns-blame", "qf", "help" },
-  callback = function() map("n", "q", normal_command "close", { buffer = 0, desc = "Close" }) end,
+  callback = function() map("n", "q", normal_command "close", { buffer = true, desc = "Close" }) end,
 })
 
 on("FileType", {
@@ -57,6 +57,17 @@ on("FileType", {
     vim.bo.shiftwidth = 2
   end,
   desc = "Filetype indent",
+})
+
+-- `<Leader><Leader>` to codecompanion inline commit message
+on("FileType", {
+  pattern = { "gitcommit" },
+  callback = function()
+    vim.keymap.set("n", "<Leader><Leader>", function() require("codecompanion").prompt "commit_inline" end, {
+      buffer = true,
+      desc = "Generate commit message",
+    })
+  end,
 })
 
 -- diable autocmds

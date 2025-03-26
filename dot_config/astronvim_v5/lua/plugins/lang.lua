@@ -22,4 +22,12 @@ return {
       dependencies = "mfussenegger/nvim-dap-python",
     },
   },
+
+  { import = "astrocommunity.markdown-and-latex.render-markdown-nvim" },
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    opts = {
+      file_types = { "markdown", "codecompanion" },
+    },
+  },
 }

@@ -58,4 +58,28 @@ return {
       })
     end,
   },
+
+  { import = "astrocommunity.git.mini-diff" },
+  {
+    "mini.diff",
+    opts = function()
+      return {
+        view = {
+          style = "number",
+        },
+        mappings = {
+          apply = "",
+          reset = "",
+          textobject = "",
+          goto_first = "",
+          goto_prev = "",
+          goto_next = "",
+          goto_last = "",
+        },
+        opts = {
+          wrap_goto = true,
+        },
+      }
+    end,
+  },
 }

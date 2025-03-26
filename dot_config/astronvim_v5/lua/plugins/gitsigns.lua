@@ -4,7 +4,8 @@ return {
     local get_icon = require("astroui").get_icon
     opts.signs.topdelete = { text = get_icon "GitSignTopDelete" }
     opts.signcolumn = false
-    opts.numhl = true
+    opts.numhl = false
     opts.on_attach = nil
   end,
+  enabled = true,
 }
