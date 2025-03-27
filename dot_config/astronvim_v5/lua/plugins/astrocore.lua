@@ -384,15 +384,12 @@ return {
         },
       },
 
-      -- FIXME(meijieru): doesn't work
       c = {
         ["<C-K>"] = { "<Up>" },
         ["<C-J>"] = { "<Down>" },
         ["<C-H>"] = { "<Left>" },
         ["<C-L>"] = { "<Right>" },
       },
-
-      -- TODO(meijieru): migrate more
     }
 
     ---@type AstroCoreOpts

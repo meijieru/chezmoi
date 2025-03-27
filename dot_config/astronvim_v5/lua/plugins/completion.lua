@@ -18,6 +18,7 @@ local spec = {
     opts = function(_, opts)
       return vim.tbl_deep_extend("force", opts, {
         keymap = {
+          -- TODO(meijieru): word/line accept
           ["<Tab>"] = remove_select(opts.keymap["<Tab>"]),
           ["<S-Tab>"] = remove_select(opts.keymap["<S-Tab>"]),
           ["<C-J>"] = { "fallback" },
@@ -51,17 +52,6 @@ local spec = {
       })
     end,
   },
-
-  {
-    "saghen/blink.compat",
-    version = "*",
-    lazy = true,
-    opts = {},
-    enabled = false,
-  },
-
-  -- { import = "astrocommunity.completion.cmp-cmdline" },
-  -- { import = "astrocommunity.completion.copilot-lua-cmp" },
 }
 
 if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machine then
@@ -79,26 +69,28 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
         },
         copilot_model = "gpt-4o-copilot",
       },
-    },
-    {
-      "Saghen/blink.cmp",
-      opts = function(_, opts)
-        opts.sources.default = list_insert_unique(opts.sources.default, { "copilot" })
-        opts.sources.providers.copilot = {
-          name = "copilot",
-          module = "blink-copilot",
-          score_offset = 100,
-          async = true,
-        }
-      end,
-      dependencies = {
-        "fang2hou/blink-copilot",
-        -- TODO(meijieru): word/line accept
-        opts = {
-          max_completions = 2,
-          max_attempts = 2,
+      specs = {
+        {
+          "Saghen/blink.cmp",
+          opts = function(_, opts)
+            opts.sources.default = list_insert_unique(opts.sources.default, { "copilot" })
+            opts.sources.providers.copilot = {
+              name = "copilot",
+              module = "blink-copilot",
+              score_offset = 100,
+              async = true,
+            }
+          end,
+          dependencies = {
+            "fang2hou/blink-copilot",
+            opts = {
+              max_completions = 2,
+              max_attempts = 2,
+            },
+          },
         },
       },
+      enabled = false,
     },
 
     {
@@ -106,10 +98,6 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
       dependencies = {
         "nvim-lua/plenary.nvim",
         "nvim-treesitter/nvim-treesitter",
-        {
-          "Saghen/blink.cmp",
-          opts = function(_, opts) opts.sources.default = list_insert_unique(opts.sources.default, { "codecompanion" }) end,
-        },
       },
       specs = {
         "AstroNvim/astrocore",
@@ -142,7 +130,6 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
         -- TODO(meijieru):
         -- 1. add https://codecompanion.olimorris.dev/usage/ui.html#heirline-nvim-integration
         -- 2. keymap for refactor
-        -- 3. git commit in git commit message
         opts = {
           language = "Chinese",
         },
