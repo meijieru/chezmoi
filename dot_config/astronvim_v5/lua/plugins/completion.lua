@@ -90,7 +90,6 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
           },
         },
       },
-      enabled = false,
     },
 
     {
@@ -140,13 +139,26 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
         },
         strategies = {
           chat = {
-            adapter = "deepseek",
+            adapter = "gemini_openrouter",
           },
           inline = {
-            adapter = "deepseek",
+            adapter = "gemini_openrouter",
           },
         },
         adapters = {
+          gemini_openrouter = function()
+            return require("codecompanion.adapters").extend("openai_compatible", {
+              env = {
+                api_key = get_api_key "openrouter_key",
+                url = "https://openrouter.ai/api",
+              },
+              schema = {
+                model = {
+                  default = "google/gemini-2.5-pro-exp-03-25:free",
+                },
+              },
+            })
+          end,
           deepseek = function()
             return require("codecompanion.adapters").extend("deepseek", {
               env = {
