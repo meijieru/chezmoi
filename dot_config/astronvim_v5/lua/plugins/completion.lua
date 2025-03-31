@@ -150,6 +150,8 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
         adapters = {
           gemini_openrouter = function()
             return require("codecompanion.adapters").extend("openai_compatible", {
+              name = "gemini",
+              formatted_name = "Gemini",
               env = {
                 api_key = get_api_key "openrouter_key",
                 url = "https://openrouter.ai/api",
