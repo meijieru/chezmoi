@@ -27,7 +27,8 @@ return {
   {
     "MeanderingProgrammer/render-markdown.nvim",
     opts = {
-      file_types = { "markdown", "codecompanion" },
+      -- FIXME(meijieru): this is a temporary fix for the issue with the hover window extra lines
+      file_types = { "codecompanion" },
     },
   },
 }
