@@ -114,12 +114,14 @@ for _, backend in ipairs(backend_fallback) do
 end
 
 config.line_height = 0.95
-config.font_size = 13.0
+config.font_size = 11.0
 config.font_rules = font_rules
 config.font = font_with_fallback({
   normal_font,
 })
 config.default_prog = { "wsl.exe", "~", "-d", "archlinux" }
+
+config.enable_kitty_keyboard = true
 
 -- FIXME(meijieru): sync to monitor
 config.max_fps = 120
