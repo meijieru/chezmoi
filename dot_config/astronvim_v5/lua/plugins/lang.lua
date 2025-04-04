@@ -27,8 +27,19 @@ return {
   {
     "MeanderingProgrammer/render-markdown.nvim",
     opts = {
-      -- FIXME(meijieru): this is a temporary fix for the issue with the hover window extra lines
-      file_types = { "codecompanion" },
+      file_types = { "markdown", "codecompanion" },
+      overrides = {
+        buftype = {
+          nofile = {
+            code = {
+              border = "hide",
+              style = "normal",
+              -- TODO(meijieru): no shadow in hover window. How about codecopmanion?
+              highlight = "",
+            },
+          },
+        },
+      },
     },
   },
 }
