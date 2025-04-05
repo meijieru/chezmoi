@@ -133,7 +133,7 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
         -- 1. add https://codecompanion.olimorris.dev/usage/ui.html#heirline-nvim-integration
         -- 2. keymap for refactor
         opts = {
-          language = "Chinese",
+          language = "Simplified Chinese",
         },
         display = {
           diff = {
