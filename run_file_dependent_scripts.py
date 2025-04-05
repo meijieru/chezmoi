@@ -9,7 +9,8 @@ Update checksum without installing:
 
 Modified from https://gist.github.com/karlwbrown/7e48ebfdc3c14b3c879880d88bd77f66
 """
-from typing import Dict, Final, List
+
+from typing import Final
 
 import argparse
 import collections
@@ -41,7 +42,7 @@ DEPENDENCIES_MAPS = [
 ]
 
 
-def get_all_files(directory: str) -> List[str]:
+def get_all_files(directory: str) -> list[str]:
     res = []
     for root, _, files in os.walk(directory):
         for item in files:
@@ -50,7 +51,7 @@ def get_all_files(directory: str) -> List[str]:
     return res
 
 
-def get_dependencies() -> Dict[str, List[str]]:
+def get_dependencies() -> dict[str, list[str]]:
     res = collections.defaultdict(list)
     for dep in DEPENDENCIES_MAPS:
         script = dep["script"]
@@ -69,7 +70,7 @@ def get_dependencies() -> Dict[str, List[str]]:
     return res
 
 
-def create_checksum_file(checksum_target_files: List[str]) -> None:
+def create_checksum_file(checksum_target_files: list[str]) -> None:
     logging.info("Creating checksum file")
     sha_args = ["sha256sum"] + checksum_target_files
     with open(CHECKSUM_FILE, mode="w") as checksum_file:
@@ -102,7 +103,7 @@ def run_file(fname: str) -> None:
         subprocess.run(fname, check=True)
 
 
-def verify_checksums(existing_checksum_map: Dict[str, str], dependencies: Dict[str, List[str]]) -> bool:
+def verify_checksums(existing_checksum_map: dict[str, str], dependencies: dict[str, list[str]]) -> bool:
     checksum_refresh = False
     to_executes = set()
 
