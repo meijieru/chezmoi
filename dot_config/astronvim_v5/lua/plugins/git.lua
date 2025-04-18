@@ -63,7 +63,86 @@ return {
   {
     "mini.diff",
     opts = function()
+      local mini_diff = require "mini.diff"
+      local mercurial_source = {
+        name = "mercurial",
+
+        attach = function(buf_id)
+          local buf_path = vim.api.nvim_buf_get_name(buf_id)
+          if buf_path == "" then return mini_diff.fail_attach(buf_id) end
+
+          -- Get directory of the buffer file
+          local buf_dir = vim.fs.dirname(buf_path)
+
+          -- Find Mercurial root directory
+          local repo_root_result = vim.system({ "hg", "root" }, { cwd = buf_dir, text = true }):wait()
+
+          if repo_root_result.code ~= 0 then return mini_diff.fail_attach(buf_id) end
+          -- vim.print(repo_root_result.stdout:gsub("\n$", "")[1])
+          -- local repo_root = vim.fs.normalize(repo_root_result.stdout:gsub("\n$", "")[1])
+
+          local repo_root_stdout = (repo_root_result.stdout or ""):gsub("\n$", "")
+          local repo_root = vim.fs.normalize(repo_root_stdout)
+          vim.print(repo_root)
+
+          -- Get relative path within repo
+          local rel_path = vim.fn.fnamemodify(buf_path, ":." .. repo_root)
+
+          -- Check if file is tracked
+          local status_result = vim.system({ "hg", "status", "-A", rel_path }, { cwd = repo_root, text = true }):wait()
+
+          if status_result.code ~= 0 or status_result.stdout == "" then return mini_diff.fail_attach(buf_id) end
+
+          -- Return success with necessary data
+          return {
+            repo_root = repo_root,
+            rel_path = rel_path,
+          }
+        end,
+
+        detach = function(buf_id, data)
+          -- Nothing to clean up
+        end,
+
+        apply_hunks = function(buf_id, hunks, data)
+          -- Get current buffer content
+          local lines = vim.api.nvim_buf_get_lines(buf_id, 0, -1, false)
+
+          -- Apply hunks to create new content
+          local new_lines = MiniDiff.apply_hunks(lines, hunks)
+          local new_content = table.concat(new_lines, "\n")
+
+          -- Use hg import to apply changes
+          local import_result = vim
+            .system({
+              "hg",
+              "import",
+              "--no-commit",
+              "--quiet",
+              "--bypass",
+              "--partial",
+              "--similarity",
+              "100",
+              "-",
+              data.rel_path,
+            }, {
+              cwd = data.repo_root,
+              stdin = new_content,
+            })
+            :wait()
+
+          if import_result.code ~= 0 then
+            vim.notify(
+              "Failed to apply changes via Mercurial: " .. (import_result.stderr or "unknown error"),
+              vim.log.levels.ERROR,
+              { title = "mini.diff" }
+            )
+          end
+        end,
+      }
+
       return {
+        source = { mini_diff.gen_source.git(), mercurial_source },
         view = {
           style = "number",
         },
@@ -81,5 +160,6 @@ return {
         },
       }
     end,
+    event = { "User AstroFile" },
   },
 }
