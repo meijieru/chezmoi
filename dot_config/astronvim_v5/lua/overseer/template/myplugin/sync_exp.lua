@@ -1,7 +1,9 @@
-local remote = require "core.utils.remote"
+local remote = require("core.utils.remote")
 
 local config = remote.get_remote_config()
-if config == nil or config.expdir == nil then return {} end
+if config == nil or config.expdir == nil then
+  return {}
+end
 
 return {
   name = "sync_exp",
@@ -52,6 +54,8 @@ return {
     }
   end,
   condition = {
-    callback = function(_) return remote.get_remote_config_path() ~= nil and remote.get_remote_config().expdir ~= nil end,
+    callback = function(_)
+      return remote.get_remote_config_path() ~= nil and remote.get_remote_config().expdir ~= nil
+    end,
   },
 }

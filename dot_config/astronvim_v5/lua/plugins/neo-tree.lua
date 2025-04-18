@@ -5,7 +5,7 @@ return {
   keys = {
     {
       "<Leader>s",
-      normal_command "Neotree document_symbols toggle",
+      normal_command("Neotree document_symbols toggle"),
       desc = "Symbols",
     },
   },

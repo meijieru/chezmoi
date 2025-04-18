@@ -15,11 +15,15 @@ return {
 
         -- Terminal
         if maps.n["<Leader>tp"] then
-          local ipython = vim.fn.executable "ipython" == 1 and "ipython"
-            or vim.fn.executable "ipython3" == 1 and "ipython3"
+          local ipython = vim.fn.executable("ipython") == 1 and "ipython"
+            or vim.fn.executable("ipython3") == 1 and "ipython3"
           if ipython then
-            maps.n["<Leader>tp"] =
-              { function() require("astrocore").toggle_term_cmd(ipython) end, desc = "ToggleTerm python" }
+            maps.n["<Leader>tp"] = {
+              function()
+                require("astrocore").toggle_term_cmd(ipython)
+              end,
+              desc = "ToggleTerm python",
+            }
           end
         end
       end,
@@ -32,7 +36,9 @@ return {
       vim.opt_local.foldcolumn = "0"
       vim.opt_local.signcolumn = "no"
       if t.hidden then
-        local toggle = function() t:toggle() end
+        local toggle = function()
+          t:toggle()
+        end
         vim.keymap.set({ "n", "t", "i" }, "<C-t>", toggle, { desc = "Toggle terminal", buffer = t.bufnr })
       end
     end

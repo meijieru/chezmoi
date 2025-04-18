@@ -17,7 +17,7 @@ function M.reset_cache()
 end
 M.reset_cache()
 
-local utils = require "core.utils"
+local utils = require("core.utils")
 local config_dir_name = ".vim"
 local config_name = "remote.json"
 
@@ -42,7 +42,9 @@ function M.get_remote_config_path()
   end
 
   local config_dir = vim.fs.find(config_dir_name, { upward = true })[1]
-  if config_dir == nil then return end
+  if config_dir == nil then
+    return
+  end
   local file = vim.fs.joinpath(config_dir, config_name)
   if vim.fn.filereadable(file) == 1 then
     vim.notify(
@@ -81,16 +83,20 @@ end
 ---@param fpath string
 ---@param protocol string?
 ---@return string
-function M.get_remote_url(host, fpath, protocol) return string.format("%s://%s/%s", protocol or "oil-ssh", host, fpath) end
+function M.get_remote_url(host, fpath, protocol)
+  return string.format("%s://%s/%s", protocol or "oil-ssh", host, fpath)
+end
 
 --- Get the remote url for local fpath
 ---@param fpath string
 ---@return string?
 function M.get_remote_path_for_local(fpath)
   local remote_config = M.get_remote_config()
-  if remote_config == nil then return nil end
+  if remote_config == nil then
+    return nil
+  end
   local remote_dir = remote_config.targetdir
-  local path = require "plenary.path"
+  local path = require("plenary.path")
   local relpath = path:new(fpath):make_relative()
   return vim.fs.normalize(vim.fs.joinpath(remote_dir, relpath))
 end

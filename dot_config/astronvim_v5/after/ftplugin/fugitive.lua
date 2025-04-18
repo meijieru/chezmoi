@@ -11,8 +11,10 @@ local function keymap_config()
   -- end
   --
   local wk_avail, wk = pcall(require, "which-key")
-  if not wk_avail then return end
-  local keymap_utils = require "core.utils.keymap"
+  if not wk_avail then
+    return
+  end
+  local keymap_utils = require("core.utils.keymap")
 
   wk.register({
     q = { "<cmd>close<cr>", "Close" },

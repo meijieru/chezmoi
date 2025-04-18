@@ -3,15 +3,15 @@ return {
   "windwp/nvim-autopairs",
   config = function(plugin, opts)
     -- run default AstroNvim config
-    require "astronvim.plugins.configs.nvim-autopairs"(plugin, opts)
+    require("astronvim.plugins.configs.nvim-autopairs")(plugin, opts)
 
     -- https://github.com/windwp/nvim-autopairs/wiki/Custom-rules#add-spaces-between-parentheses
-    local npairs = require "nvim-autopairs"
-    local Rule = require "nvim-autopairs.rule"
-    local cond = require "nvim-autopairs.conds"
+    local npairs = require("nvim-autopairs")
+    local Rule = require("nvim-autopairs.rule")
+    local cond = require("nvim-autopairs.conds")
 
     local brackets = { { "(", ")" }, { "[", "]" }, { "{", "}" } }
-    npairs.add_rules {
+    npairs.add_rules({
       -- Rule for a pair with left-side ' ' and right side ' '
       Rule(" ", " ")
         -- Pair will only occur if the conditional function returns true
@@ -36,21 +36,23 @@ return {
             brackets[3][1] .. "  " .. brackets[3][2],
           }, context)
         end),
-    }
+    })
     -- For each pair of brackets we will add another rule
     for _, bracket in pairs(brackets) do
-      npairs.add_rules {
+      npairs.add_rules({
         -- Each of these rules is for a pair with left-side '( ' and right-side ' )' for each bracket type
         Rule(bracket[1] .. " ", " " .. bracket[2])
           :with_pair(cond.none())
-          :with_move(function(opts) return opts.char == bracket[2] end)
+          :with_move(function(opts)
+            return opts.char == bracket[2]
+          end)
           :with_del(cond.none())
           :use_key(bracket[2])
           -- Removes the trailing whitespace that can occur without this
-          :replace_map_cr(
-            function(_) return "<C-c>2xi<CR><C-c>O" end
-          ),
-      }
+          :replace_map_cr(function(_)
+            return "<C-c>2xi<CR><C-c>O"
+          end),
+      })
     end
   end,
 }

@@ -14,7 +14,7 @@ return {
       templates = { "builtin", "myplugin.global_tasks" },
       task_list = {
         bindings = {
-          ["q"] = normal_command "close",
+          ["q"] = normal_command("close"),
           ["<c-x>"] = "OpenSplit",
         },
       },

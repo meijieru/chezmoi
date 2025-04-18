@@ -10,7 +10,7 @@
 
 _G.qftf = require("core.utils.ui").qftf
 
-local keymap_utils = require "core.utils.keymap"
+local keymap_utils = require("core.utils.keymap")
 local normal_command = keymap_utils.normal_command
 local lua_normal_command = keymap_utils.lua_normal_command
 
@@ -152,7 +152,9 @@ return {
           desc = "Diff Put | Stage Hunk",
         },
         dP = {
-          function() require("gitsigns").undo_stage_hunk() end,
+          function()
+            require("gitsigns").undo_stage_hunk()
+          end,
           desc = "Undo Stage Hunk",
         },
         ["do"] = {
@@ -168,7 +170,7 @@ return {
 
         ["<Leader>gb"] = {
           function()
-            require("snacks").picker.git_branches {
+            require("snacks").picker.git_branches({
               win = {
                 input = {
                   keys = {
@@ -176,13 +178,13 @@ return {
                   },
                 },
               },
-            }
+            })
           end,
           desc = "Git branches",
         },
         ["<Leader>gc"] = {
           function()
-            require("snacks").picker.git_log {
+            require("snacks").picker.git_log({
               win = {
                 input = {
                   keys = {
@@ -190,13 +192,13 @@ return {
                   },
                 },
               },
-            }
+            })
           end,
           desc = "Git commits (repository)",
         },
         ["<Leader>gC"] = {
           function()
-            require("snacks").picker.git_log {
+            require("snacks").picker.git_log({
               current_file = true,
               follow = true,
               win = {
@@ -206,45 +208,55 @@ return {
                   },
                 },
               },
-            }
+            })
           end,
           desc = "Git commits (current file)",
         },
-        ["<Leader>gd"] = { normal_command "DiffviewOpen", desc = "Diff View" },
-        ["<Leader>gh"] = { normal_command "DiffviewFileHistory", desc = "Diff History" },
-        ["<Leader>gH"] = { normal_command "DiffviewFileHistory %", desc = "Diff History (current file)" },
-        ["<Leader>gg"] = { function() require("core.utils.git").toggle_fugitive() end, desc = "Toggle Status" },
+        ["<Leader>gd"] = { normal_command("DiffviewOpen"), desc = "Diff View" },
+        ["<Leader>gh"] = { normal_command("DiffviewFileHistory"), desc = "Diff History" },
+        ["<Leader>gH"] = { normal_command("DiffviewFileHistory %"), desc = "Diff History (current file)" },
+        ["<Leader>gg"] = {
+          function()
+            require("core.utils.git").toggle_fugitive()
+          end,
+          desc = "Toggle Status",
+        },
         ["<Leader>gl"] = {
           function()
-            if is_available "gitsigns.nvim" then
+            if is_available("gitsigns.nvim") then
               require("gitsigns").blame()
-            elseif is_available "fugitive" then
-              vim.cmd "Git blame"
+            elseif is_available("fugitive") then
+              vim.cmd("Git blame")
             else
               vim.notify("No available method for git blame", vim.log.levels.ERROR)
             end
           end,
           desc = "Git Blame",
         },
-        ["<Leader>gL"] = { normal_command "Gitsigns toggle_current_line_blame", desc = "Current Line Blame" },
+        ["<Leader>gL"] = { normal_command("Gitsigns toggle_current_line_blame"), desc = "Current Line Blame" },
         ["<Leader>gt"] = {
           keymap_utils.chain("Gitsigns toggle_deleted", "Gitsigns toggle_word_diff"),
           desc = "Toggle Inline Diff",
         },
-        ["<Leader>gm"] = { function() require("snacks").picker.git_status() end, desc = "Modified Files" },
+        ["<Leader>gm"] = {
+          function()
+            require("snacks").picker.git_status()
+          end,
+          desc = "Modified Files",
+        },
 
         -- Next / Prev
         ["]c"] = {
           function()
             for _ = 1, vim.v.count1 do
               if vim.o.diff then
-                vim.cmd.normal { "]c", bang = true }
-              elseif is_available "mini.diff" then
-                require("mini.diff").goto_hunk "next"
-              elseif is_available "gitsigns.nvim" then
-                require("gitsigns").nav_hunk "next"
-              elseif is_available "vim-signify" then
-                vim.cmd [[execute "normal! \<Plug>(signify-next-hunk)"]]
+                vim.cmd.normal({ "]c", bang = true })
+              elseif is_available("mini.diff") then
+                require("mini.diff").goto_hunk("next")
+              elseif is_available("gitsigns.nvim") then
+                require("gitsigns").nav_hunk("next")
+              elseif is_available("vim-signify") then
+                vim.cmd([[execute "normal! \<Plug>(signify-next-hunk)"]])
               else
                 vim.notify("No available method for next hunk", vim.log.levels.ERROR)
               end
@@ -256,13 +268,13 @@ return {
           function()
             for _ = 1, vim.v.count1 do
               if vim.o.diff then
-                vim.cmd.normal { "[c", bang = true }
-              elseif is_available "mini.diff" then
-                require("mini.diff").goto_hunk "prev"
-              elseif is_available "gitsigns.nvim" then
-                require("gitsigns").nav_hunk "prev"
-              elseif is_available "vim-signify" then
-                vim.cmd [[execute "normal! \<Plug>(signify-prev-hunk)"]]
+                vim.cmd.normal({ "[c", bang = true })
+              elseif is_available("mini.diff") then
+                require("mini.diff").goto_hunk("prev")
+              elseif is_available("gitsigns.nvim") then
+                require("gitsigns").nav_hunk("prev")
+              elseif is_available("vim-signify") then
+                vim.cmd([[execute "normal! \<Plug>(signify-prev-hunk)"]])
               else
                 vim.notify("No available method for prev hunk", vim.log.levels.ERROR)
               end
@@ -278,52 +290,124 @@ return {
         ["<A-l>"] = { "<C-W>l", desc = "Right Window" },
 
         -- Other
-        ["m<space>"] = { normal_command "delmarks!", desc = "Delete All Marks" },
-        ["g?"] = { normal_command "WhichKey", desc = "WhichKey" },
+        ["m<space>"] = { normal_command("delmarks!"), desc = "Delete All Marks" },
+        ["g?"] = { normal_command("WhichKey"), desc = "WhichKey" },
 
         -- Picker
         -- trick: <c-space> convert it as fuzzy
-        ["<C-P>"] = { function() require("snacks").picker.commands() end, desc = "Commands Palette" },
-        ["<Leader>*"] = { function() require("snacks").picker.grep_word() end, desc = "Grep Word" },
-        ["<Leader>b"] = { function() require("snacks").picker.buffers() end, desc = "Find Buffers" },
-        ["<Leader>/"] = { function() require("snacks").picker.search_history() end, desc = "Find Search History" },
-        ["<Leader>:"] = { function() require("snacks").picker.command_history() end, desc = "Find Commands History" },
+        ["<C-P>"] = {
+          function()
+            require("snacks").picker.commands()
+          end,
+          desc = "Commands Palette",
+        },
+        ["<Leader>*"] = {
+          function()
+            require("snacks").picker.grep_word()
+          end,
+          desc = "Grep Word",
+        },
+        ["<Leader>b"] = {
+          function()
+            require("snacks").picker.buffers()
+          end,
+          desc = "Find Buffers",
+        },
+        ["<Leader>/"] = {
+          function()
+            require("snacks").picker.search_history()
+          end,
+          desc = "Find Search History",
+        },
+        ["<Leader>:"] = {
+          function()
+            require("snacks").picker.command_history()
+          end,
+          desc = "Find Commands History",
+        },
         ["<Leader>ff"] = {
-          function() require("snacks").picker.smart { multi = { "buffers", { source = "files", hidden = true } } } end,
+          function()
+            require("snacks").picker.smart({ multi = { "buffers", { source = "files", hidden = true } } })
+          end,
           desc = "Find Files",
         },
-        ["<Leader>fc"] = { function() require("snacks").picker.lines() end, desc = "Grep Lines" },
-        ["<Leader>fb"] = { function() require("snacks").picker.grep_buffers() end, desc = "Grep Buffers Lines" },
-        ["<Leader>fl"] = { function() require("snacks").picker.loclist() end, desc = "Find Loclist" },
-        ["<Leader>fq"] = { function() require("snacks").picker.qflist() end, desc = "Find QuickFix" },
-        ["<Leader>fu"] = { function() require("snacks").picker.undo() end, desc = "Find Undos" },
-        ["<Leader>ft"] = { normal_command "OverseerRun", desc = "Find Tasks" },
+        ["<Leader>fc"] = {
+          function()
+            require("snacks").picker.lines()
+          end,
+          desc = "Grep Lines",
+        },
+        ["<Leader>fb"] = {
+          function()
+            require("snacks").picker.grep_buffers()
+          end,
+          desc = "Grep Buffers Lines",
+        },
+        ["<Leader>fl"] = {
+          function()
+            require("snacks").picker.loclist()
+          end,
+          desc = "Find Loclist",
+        },
+        ["<Leader>fq"] = {
+          function()
+            require("snacks").picker.qflist()
+          end,
+          desc = "Find QuickFix",
+        },
+        ["<Leader>fu"] = {
+          function()
+            require("snacks").picker.undo()
+          end,
+          desc = "Find Undos",
+        },
+        ["<Leader>ft"] = { normal_command("OverseerRun"), desc = "Find Tasks" },
         ["<Leader>fw"] = { desc = "Grep" },
         ["<Leader>fW"] = { desc = "Grep in All" },
 
         -- Debug
-        ["<Leader>de"] = { function() require("dapui").eval() end, desc = "Evaluate" },
+        ["<Leader>de"] = {
+          function()
+            require("dapui").eval()
+          end,
+          desc = "Evaluate",
+        },
 
         -- Custom menu for modification of the user experience
-        ["<Leader>uc"] = { function() vim.cmd.HighlightColors "Toggle" end, desc = "Toggle color highlight" },
-        ["<Leader>uu"] = { normal_command "OverseerToggle", desc = "Overseer" },
-        ["<Leader>uq"] = { function() require("core.utils.ui").toggle_quickfix() end, desc = "Quickfix" },
-        ["<Leader>ul"] = { function() require("core.utils.ui").toggle_loclist() end, desc = "Loclist" },
+        ["<Leader>uc"] = {
+          function()
+            vim.cmd.HighlightColors("Toggle")
+          end,
+          desc = "Toggle color highlight",
+        },
+        ["<Leader>uu"] = { normal_command("OverseerToggle"), desc = "Overseer" },
+        ["<Leader>uq"] = {
+          function()
+            require("core.utils.ui").toggle_quickfix()
+          end,
+          desc = "Quickfix",
+        },
+        ["<Leader>ul"] = {
+          function()
+            require("core.utils.ui").toggle_loclist()
+          end,
+          desc = "Loclist",
+        },
 
         -- Treesitter
-        ["<Leader>T"] = get_icon "ActiveTS" .. " Treesitter",
-        ["<Leader>Tc"] = { normal_command "TSConfigInfo", desc = "Config Info" },
-        ["<Leader>Tm"] = { normal_command "TSModuleInfo", desc = "Module Info" },
-        ["<Leader>Tt"] = { normal_command "InspectTree", desc = "Playground" },
-        ["<Leader>Ts"] = { normal_command "TSUpdate", desc = "Update Treesitter Parser" },
-        ["<Leader>Th"] = { normal_command "Inspect", desc = "Highlight Info" },
+        ["<Leader>T"] = get_icon("ActiveTS") .. " Treesitter",
+        ["<Leader>Tc"] = { normal_command("TSConfigInfo"), desc = "Config Info" },
+        ["<Leader>Tm"] = { normal_command("TSModuleInfo"), desc = "Module Info" },
+        ["<Leader>Tt"] = { normal_command("InspectTree"), desc = "Playground" },
+        ["<Leader>Ts"] = { normal_command("TSUpdate"), desc = "Update Treesitter Parser" },
+        ["<Leader>Th"] = { normal_command("Inspect"), desc = "Highlight Info" },
 
         -- Lang
         ["<Leader>ll"] = {
           function()
-            if is_available "dropbar.nvim" then
+            if is_available("dropbar.nvim") then
               require("dropbar.api").pick()
-            elseif is_available "aerial.nvim" then
+            elseif is_available("aerial.nvim") then
               require("aerial").nav_toggle()
             else
               vim.notify("No dropbar or aerial.nvim installed", vim.log.levels.ERROR)
@@ -333,17 +417,34 @@ return {
         },
 
         -- TODO(meijieru): more lsp use snacks
-        ["gO"] = { function() require("snacks").picker.lsp_symbols() end, desc = "Document Symbols" },
-        ["grr"] = { function() require("snacks").picker.lsp_references() end, desc = "References" },
-        ["gri"] = { function() require("snacks").picker.lsp_implementations() end, desc = "Implementations" },
+        ["gO"] = {
+          function()
+            require("snacks").picker.lsp_symbols()
+          end,
+          desc = "Document Symbols",
+        },
+        ["grr"] = {
+          function()
+            require("snacks").picker.lsp_references()
+          end,
+          desc = "References",
+        },
+        ["gri"] = {
+          function()
+            require("snacks").picker.lsp_implementations()
+          end,
+          desc = "Implementations",
+        },
 
         ["<F1>"] = {
-          lua_normal_command "require('core.utils.ui').toggle_colorcolumn()",
+          lua_normal_command("require('core.utils.ui').toggle_colorcolumn()"),
           desc = "Toggle Colorcolumn",
         },
 
         ["<Leader>z"] = {
-          function() require("snacks").toggle.zen():toggle() end,
+          function()
+            require("snacks").toggle.zen():toggle()
+          end,
           desc = "Zen Mode",
         },
       },
@@ -352,21 +453,31 @@ return {
         ["<"] = { "<gv" },
         [">"] = { ">gv" },
 
-        ["<Leader>*"] = { function() require("snacks").picker.grep_word() end, desc = "Grep Selection" },
+        ["<Leader>*"] = {
+          function()
+            require("snacks").picker.grep_word()
+          end,
+          desc = "Grep Selection",
+        },
         ["<Leader>g"] = maps.n["<Leader>g"],
         ["<Leader>f"] = maps.n["<Leader>f"],
 
         -- Debug
-        ["<Leader>de"] = { function() require("dapui").eval() end, desc = "Evaluate" },
+        ["<Leader>de"] = {
+          function()
+            require("dapui").eval()
+          end,
+          desc = "Evaluate",
+        },
       },
 
       t = {
         -- Improved Terminal Navigation
         ["<A-q>"] = { [[<C-\><C-N>]], desc = "Terminal normal mode" },
-        ["<A-h>"] = { normal_command "wincmd h", desc = "Terminal left window navigation" },
-        ["<A-j>"] = { normal_command "wincmd j", desc = "Terminal down window navigation" },
-        ["<A-k>"] = { normal_command "wincmd k", desc = "Terminal up window navigation" },
-        ["<A-l>"] = { normal_command "wincmd l", desc = "Terminal right window navigation" },
+        ["<A-h>"] = { normal_command("wincmd h"), desc = "Terminal left window navigation" },
+        ["<A-j>"] = { normal_command("wincmd j"), desc = "Terminal down window navigation" },
+        ["<A-k>"] = { normal_command("wincmd k"), desc = "Terminal up window navigation" },
+        ["<A-l>"] = { normal_command("wincmd l"), desc = "Terminal right window navigation" },
       },
 
       o = {
@@ -379,7 +490,7 @@ return {
         ["<C-H>"] = { "<Left>" },
         ["<C-L>"] = { "<Right>" },
         ["<F1>"] = {
-          lua_normal_command "require('core.utils.ui').toggle_colorcolumn()",
+          lua_normal_command("require('core.utils.ui').toggle_colorcolumn()"),
           desc = "Toggle Colorcolumn",
         },
       },
@@ -425,7 +536,7 @@ return {
           background = "light",
           splitkeep = "screen",
           -- https://github.com/hrsh7th/nvim-cmp/issues/309
-          title = not (is_available "nvim-cmp"),
+          title = not (is_available("nvim-cmp")),
           -- for click handler of `luukvbaal/statuscol.nvim`
           mousemodel = "extend",
           qftf = "{info -> v:lua._G.qftf(info, 'shorten')}",
@@ -451,7 +562,9 @@ return {
             event = "UIEnter",
             desc = "Set neovide related",
             callback = function()
-              if require("core.utils").is_neovide() then require("core.utils.env").neovide_setup() end
+              if require("core.utils").is_neovide() then
+                require("core.utils.env").neovide_setup()
+              end
             end,
           },
         },

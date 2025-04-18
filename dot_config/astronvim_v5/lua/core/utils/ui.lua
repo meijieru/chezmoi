@@ -1,6 +1,6 @@
 local M = {}
 
-local utils = require "core.utils"
+local utils = require("core.utils")
 
 local function range(lhs, rhs)
   local res = {}
@@ -11,7 +11,9 @@ local function range(lhs, rhs)
 end
 
 function M.toggle_quickfix()
-  local quickfix_exist = vim.iter(vim.fn.getwininfo()):any(function(win) return win["quickfix"] == 1 end)
+  local quickfix_exist = vim.iter(vim.fn.getwininfo()):any(function(win)
+    return win["quickfix"] == 1
+  end)
   if quickfix_exist then
     vim.cmd.cclose()
   else
@@ -29,10 +31,10 @@ function M.toggle_loclist()
 end
 
 function M.toggle_colorcolumn(first_column, second_column)
-  vim.validate {
+  vim.validate({
     first_column = { first_column, "number", true },
     second_column = { second_column, "number", true },
-  }
+  })
   first_column = first_column or 81
   second_column = second_column or 121
 

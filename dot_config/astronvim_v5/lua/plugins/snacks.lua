@@ -10,12 +10,16 @@ local function get_header()
     " じしf_,)〳",
   }
 
-  if is_available "pokemon.nvim" then return require("pokemon").header() end
+  if is_available("pokemon.nvim") then
+    return require("pokemon").header()
+  end
   return cutty_cat
 end
 
 local function schedule_cmd(value)
-  vim.schedule(function() vim.cmd(value) end)
+  vim.schedule(function()
+    vim.cmd(value)
+  end)
 end
 
 return {
@@ -69,9 +73,9 @@ return {
       preset = {
         header = table.concat(get_header(), "\n"),
         keys = {
-          { key = "n", action = normal_command "enew", icon = get_icon("FileNew", 0, true), desc = "New File" },
+          { key = "n", action = normal_command("enew"), icon = get_icon("FileNew", 0, true), desc = "New File" },
           { key = "l", action = "<Leader>Sl", icon = get_icon("Refresh", 0, true), desc = "Last Session" },
-          { key = "q", action = normal_command "quit", icon = get_icon("Quit", 0, true), desc = "Quit" },
+          { key = "q", action = normal_command("quit"), icon = get_icon("Quit", 0, true), desc = "Quit" },
         },
       },
       sections = {
@@ -84,7 +88,9 @@ return {
           icon = " ",
           title = "Git Status",
           section = "terminal",
-          enabled = function() return require("snacks").git.get_root() ~= nil end,
+          enabled = function()
+            return require("snacks").git.get_root() ~= nil
+          end,
           cmd = "git status --short --branch --renames",
           height = 5,
           padding = 1,
@@ -102,11 +108,15 @@ return {
     local zen = {
       on_open = function(win)
         on_open(win)
-        if is_available "nvim-scrollbar" then vim.cmd "ScrollbarToggle" end
+        if is_available("nvim-scrollbar") then
+          vim.cmd("ScrollbarToggle")
+        end
       end,
       on_close = function(win)
         on_close(win)
-        if is_available "nvim-scrollbar" then vim.cmd "ScrollbarToggle" end
+        if is_available("nvim-scrollbar") then
+          vim.cmd("ScrollbarToggle")
+        end
       end,
     }
     opts.zen = vim.tbl_deep_extend("force", opts.zen or {}, zen)

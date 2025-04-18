@@ -31,7 +31,9 @@ return {
       return {
         {
           "<leader>lg",
-          function() require("neogen").generate { type = "any" } end,
+          function()
+            require("neogen").generate({ type = "any" })
+          end,
           desc = "Neogen",
         },
       }
@@ -78,7 +80,9 @@ return {
     keys = {
       {
         "<leader>la",
-        function() require("ts-node-action").node_action() end,
+        function()
+          require("ts-node-action").node_action()
+        end,
         desc = "TS Node Action",
       },
     },
@@ -102,7 +106,9 @@ return {
       osc52 = {
         escseq = "tmux", -- use tmux escape sequence, only enable if you're using remote tmux and have issues (see #4)
       },
-      validate_yank = function() return vim.tbl_contains({ "y", "d" }, vim.v.operator) end,
+      validate_yank = function()
+        return vim.tbl_contains({ "y", "d" }, vim.v.operator)
+      end,
     },
   },
 

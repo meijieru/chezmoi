@@ -9,7 +9,9 @@ return {
   serializable = false,
   constructor = function(params)
     return {
-      on_preprocess_result = function(self, task, result) params.on_preprocess_result(self, task, result) end,
+      on_preprocess_result = function(self, task, result)
+        params.on_preprocess_result(self, task, result)
+      end,
     }
   end,
 }

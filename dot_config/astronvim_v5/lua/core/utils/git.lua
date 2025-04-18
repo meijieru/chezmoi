@@ -14,10 +14,14 @@ end
 --- Get the fugitive context for the item under the cursor.
 --- @return table?
 function M.get_info_under_cursor()
-  if vim.bo.ft ~= "fugitive" then return end
+  if vim.bo.ft ~= "fugitive" then
+    return
+  end
   local sid = get_sid()
 
-  if sid ~= nil then return vim.fn[("<SNR>%d_StageInfo"):format(sid)](vim.api.nvim_win_get_cursor(0)[1]) end
+  if sid ~= nil then
+    return vim.fn[("<SNR>%d_StageInfo"):format(sid)](vim.api.nvim_win_get_cursor(0)[1])
+  end
 end
 
 function M.toggle_fugitive()
@@ -30,10 +34,12 @@ function M.toggle_fugitive()
       return
     end
 
-    if vim.bo[buf_id].buftype == "nofile" then wins_to_close[#wins_to_close + 1] = win_id end
+    if vim.bo[buf_id].buftype == "nofile" then
+      wins_to_close[#wins_to_close + 1] = win_id
+    end
   end
 
-  vim.cmd "Git"
+  vim.cmd("Git")
   for _, win_id in ipairs(wins_to_close) do
     vim.api.nvim_win_close(win_id, false)
   end

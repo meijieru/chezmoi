@@ -28,7 +28,7 @@ return {
         bottom_search = true, -- use a classic bottom cmdline for search
         command_palette = true, -- position the cmdline and popupmenu together
         long_message_to_split = true, -- long messages will be sent to a split
-        inc_rename = is_available "inc-rename.nvim", -- enables an input dialog for inc-rename.nvim
+        inc_rename = is_available("inc-rename.nvim"), -- enables an input dialog for inc-rename.nvim
         lsp_doc_border = false, -- add a border to hover docs and signature help
       },
     },
@@ -91,7 +91,13 @@ return {
     },
     keys = function(_, _)
       return {
-        { "-", function() require("oil").open() end, desc = "Open parent directory" },
+        {
+          "-",
+          function()
+            require("oil").open()
+          end,
+          desc = "Open parent directory",
+        },
       }
     end,
   },
@@ -101,7 +107,7 @@ return {
     "neotest",
     opts = function(_, opts)
       opts.consumers = {
-        overseer = require "neotest.consumers.overseer",
+        overseer = require("neotest.consumers.overseer"),
       }
 
       local animated_icons = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
@@ -110,7 +116,9 @@ return {
         running = " ",
         failed = " ",
         unknown = " ",
-        running_animated = vim.tbl_map(function(s) return s .. " " end, animated_icons),
+        running_animated = vim.tbl_map(function(s)
+          return s .. " "
+        end, animated_icons),
         non_collapsible = " ",
         collapsed = "",
         expanded = "",
@@ -159,10 +167,10 @@ return {
       else
         number = number_candidates[math.random(#number_candidates)]
       end
-      require("pokemon").setup {
+      require("pokemon").setup({
         number = number,
         size = "tiny",
-      }
+      })
     end,
     enabled = false,
   },

@@ -15,7 +15,12 @@ return {
           end,
           desc = "Session Info",
         }
-        maps.n["<Leader>Su"] = { function() require("resession").detach() end, desc = "Detach this session" }
+        maps.n["<Leader>Su"] = {
+          function()
+            require("resession").detach()
+          end,
+          desc = "Detach this session",
+        }
       end,
     },
   },

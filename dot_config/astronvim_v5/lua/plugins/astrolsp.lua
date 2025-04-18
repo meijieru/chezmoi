@@ -32,11 +32,15 @@ local function opts_func(_, opts)
       ["<Leader>lG"] = false,
 
       ["<Leader>ld"] = {
-        function() require("snacks").picker.diagnostics_buffer() end,
+        function()
+          require("snacks").picker.diagnostics_buffer()
+        end,
         desc = "Document diagnostics",
       },
       ["grs"] = {
-        function() require("snacks").picker.lsp_workspace_symbols() end,
+        function()
+          require("snacks").picker.lsp_workspace_symbols()
+        end,
         desc = "Workspace Symbols",
       },
     },
@@ -51,9 +55,15 @@ local function opts_func(_, opts)
   }
   maps = vim.tbl_deep_extend("force", maps or {}, to_remap)
 
-  maps.n["gd"][1] = function() require("snacks").picker.lsp_definitions() end
-  maps.n["gD"][1] = function() require("snacks").picker.lsp_declarations()() end
-  maps.n["gy"][1] = function() require("snacks").picker.lsp_type_definitions() end
+  maps.n["gd"][1] = function()
+    require("snacks").picker.lsp_definitions()
+  end
+  maps.n["gD"][1] = function()
+    require("snacks").picker.lsp_declarations()()
+  end
+  maps.n["gy"][1] = function()
+    require("snacks").picker.lsp_type_definitions()
+  end
 
   opts.mappings = maps
   return opts

@@ -8,6 +8,8 @@ function M.remove_extension(file)
   return table.concat(tmp, ".", 1, #tmp - 1)
 end
 
-function M.get_output_component() return {} end
+function M.get_output_component()
+  return {}
+end
 
 return M

@@ -1,5 +1,5 @@
-local overseer = require "overseer"
-local remote = require "core.utils.remote"
+local overseer = require("overseer")
+local remote = require("core.utils.remote")
 
 local gpu_monitor_dir = "~/lib/gpu-monitor/"
 
@@ -41,6 +41,8 @@ return {
     cb(ret)
   end,
   condition = {
-    callback = function(_) return remote.get_remote_config_path() ~= nil end,
+    callback = function(_)
+      return remote.get_remote_config_path() ~= nil
+    end,
   },
 }

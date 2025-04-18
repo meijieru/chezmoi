@@ -8,7 +8,9 @@ local function get_api_key(name)
 end
 
 local function remove_select(list)
-  return vim.tbl_filter(function(val) return not vim.tbl_contains({ "select_next", "select_prev" }, val) end, list)
+  return vim.tbl_filter(function(val)
+    return not vim.tbl_contains({ "select_next", "select_prev" }, val)
+  end, list)
 end
 
 local spec = {
@@ -105,21 +107,23 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
         "AstroNvim/astrocore",
         opts = function(_, opts)
           local function prompt(name)
-            return function() require("codecompanion").prompt(name) end
+            return function()
+              require("codecompanion").prompt(name)
+            end
           end
           opts.mappings = vim.tbl_deep_extend("force", opts.mappings or {}, {
             n = {
               ["<Leader>a"] = { desc = get_icon("Copilot", 1, true) .. "AI" },
-              ["<Leader><Leader>"] = { normal_command "CodeCompanionChat Toggle", desc = "Toggle Chat" },
-              ["<Leader>aa"] = { normal_command "CodeCompanionActions", desc = "Actions" },
+              ["<Leader><Leader>"] = { normal_command("CodeCompanionChat Toggle"), desc = "Toggle Chat" },
+              ["<Leader>aa"] = { normal_command("CodeCompanionActions"), desc = "Actions" },
             },
             v = {
               ["<Leader>a"] = { desc = get_icon("Copilot", 1, true) .. "AI" },
-              ["<Leader><Leader>"] = { normal_command "CodeCompanionChat Add", desc = "Add to Chat" },
-              ["<Leader>aa"] = { normal_command "CodeCompanionActions", desc = "Actions" },
-              ["<Leader>ae"] = { prompt "explain", desc = "Explain" },
-              ["<Leader>af"] = { prompt "fix", desc = "Fix" },
-              ["<Leader>at"] = { prompt "tests", desc = "Add Testcases" },
+              ["<Leader><Leader>"] = { normal_command("CodeCompanionChat Add"), desc = "Add to Chat" },
+              ["<Leader>aa"] = { normal_command("CodeCompanionActions"), desc = "Actions" },
+              ["<Leader>ae"] = { prompt("explain"), desc = "Explain" },
+              ["<Leader>af"] = { prompt("fix"), desc = "Fix" },
+              ["<Leader>at"] = { prompt("tests"), desc = "Add Testcases" },
             },
             ca = {
               -- abbr in cmdline
@@ -154,7 +158,7 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
               name = "gemini",
               formatted_name = "Gemini",
               env = {
-                api_key = get_api_key "openrouter_key",
+                api_key = get_api_key("openrouter_key"),
                 url = "https://openrouter.ai/api",
               },
               schema = {
@@ -167,7 +171,7 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
           deepseek = function()
             return require("codecompanion.adapters").extend("deepseek", {
               env = {
-                api_key = get_api_key "deepseek_key",
+                api_key = get_api_key("deepseek_key"),
               },
               schema = {
                 model = {
@@ -180,7 +184,7 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
             return require("codecompanion.adapters").extend("deepseek", {
               url = "https://api.siliconflow.com/v1/chat/completions",
               env = {
-                api_key = get_api_key "siliconflow_key",
+                api_key = get_api_key("siliconflow_key"),
               },
               schema = {
                 model = {
@@ -223,8 +227,8 @@ When unsure about the module names to use in the commit message, you can refer t
 
 Output only the commit message without any explanations and follow-up suggestions.
 ]],
-                    vim.fn.system "git diff --no-ext-diff --staged",
-                    vim.fn.system 'git log --pretty=format:"%s" -n 20'
+                    vim.fn.system("git diff --no-ext-diff --staged"),
+                    vim.fn.system('git log --pretty=format:"%s" -n 20')
                   )
                 end,
                 opts = {

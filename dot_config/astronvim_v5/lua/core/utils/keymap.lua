@@ -1,8 +1,12 @@
 M = {}
 
-function M.normal_command(command) return string.format("<Cmd>%s<CR>", command) end
+function M.normal_command(command)
+  return string.format("<Cmd>%s<CR>", command)
+end
 
-function M.lua_normal_command(command) return M.normal_command(string.format("lua %s", command)) end
+function M.lua_normal_command(command)
+  return M.normal_command(string.format("lua %s", command))
+end
 
 function M.chain(...)
   local cmds = { ... }
@@ -16,7 +20,9 @@ function M.chain(...)
     end
   end
 
-  return function() vim.tbl_map(exe, cmds) end
+  return function()
+    vim.tbl_map(exe, cmds)
+  end
 end
 
 return M

@@ -2,9 +2,11 @@ return {
   {
     "none-ls.nvim",
     opts = function(_, opts)
-      if (not myvim.plugins.is_development_machine) or myvim.plugins.is_corporate_machine then return opts end
+      if (not myvim.plugins.is_development_machine) or myvim.plugins.is_corporate_machine then
+        return opts
+      end
 
-      local null_ls = require "null-ls"
+      local null_ls = require("null-ls")
 
       -- Check supported formatters and linters
       -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
@@ -25,10 +27,9 @@ return {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     opts = function(_, opts)
       opts.ensure_installed = require("astrocore").list_insert_unique(
-        vim.tbl_filter(
-          function(val) return not vim.tbl_contains({ "selene", "stylua" }, val) end,
-          opts.ensure_installed
-        ),
+        vim.tbl_filter(function(val)
+          return not vim.tbl_contains({ "selene", "stylua" }, val)
+        end, opts.ensure_installed),
         myvim.plugins.lsp.ensure_installed
       )
     end,

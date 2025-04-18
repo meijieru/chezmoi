@@ -48,11 +48,11 @@ return {
         },
         keymaps = {
           file_panel = {
-            ["cc"] = normal_command "Git commit",
-            ["q"] = normal_command "tabclose",
+            ["cc"] = normal_command("Git commit"),
+            ["q"] = normal_command("tabclose"),
           },
           file_history_panel = {
-            ["q"] = normal_command "tabclose",
+            ["q"] = normal_command("tabclose"),
           },
         },
       })

@@ -1,8 +1,8 @@
 local uv = vim.uv
-local overseer = require "overseer"
-local remote = require "core.utils.remote"
+local overseer = require("overseer")
+local remote = require("core.utils.remote")
 
-local lsyncd_tmpl_path = vim.fs.normalize "~/.config/lsyncd/ssh_tmpl.lua"
+local lsyncd_tmpl_path = vim.fs.normalize("~/.config/lsyncd/ssh_tmpl.lua")
 local tmpl = {
   priority = 52,
   params = {
@@ -22,7 +22,9 @@ local tmpl = {
 return {
   generator = function(_, cb)
     local config = remote.get_remote_config()
-    if config == nil then return {} end
+    if config == nil then
+      return {}
+    end
 
     local cwd = uv.cwd()
     local ret = {}
@@ -40,6 +42,8 @@ return {
     cb(ret)
   end,
   condition = {
-    callback = function(_) return remote.get_remote_config_path() ~= nil end,
+    callback = function(_)
+      return remote.get_remote_config_path() ~= nil
+    end,
   },
 }

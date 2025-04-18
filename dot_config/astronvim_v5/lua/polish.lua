@@ -20,7 +20,7 @@ on("BufWritePost", {
     end
 
     local file = env.file
-    local path = require "plenary.path"
+    local path = require("plenary.path")
     local relpath = path:new(file):make_relative()
     if vim.startswith(file, "fugitive:///") or vim.startswith(file, "oil:///") or vim.startswith(relpath, ".git") then
       return
@@ -40,12 +40,16 @@ on("BufWritePost", {
 
 on("FileType", {
   pattern = { "startuptime", "fugitiveblame", "gitsigns-blame", "qf", "help" },
-  callback = function() map("n", "q", normal_command "close", { buffer = true, desc = "Close" }) end,
+  callback = function()
+    map("n", "q", normal_command("close"), { buffer = true, desc = "Close" })
+  end,
 })
 
 on("FileType", {
   pattern = { "lspinfo", "aerial", "dapui_scopes" },
-  callback = function() api.nvim_set_option_value("foldenable", false, { scope = "local", win = 0 }) end,
+  callback = function()
+    api.nvim_set_option_value("foldenable", false, { scope = "local", win = 0 })
+  end,
   desc = "Disable fold",
 })
 
@@ -63,7 +67,9 @@ on("FileType", {
 on("FileType", {
   pattern = { "gitcommit" },
   callback = function()
-    vim.keymap.set("n", "<Leader><Leader>", function() require("codecompanion").prompt "commit_inline" end, {
+    vim.keymap.set("n", "<Leader><Leader>", function()
+      require("codecompanion").prompt("commit_inline")
+    end, {
       buffer = true,
       desc = "Generate commit message",
     })
@@ -80,7 +86,7 @@ for _, params in ipairs(autocmds_to_disable) do
 end
 
 api.nvim_create_user_command("DiffRemote", function(params)
-  local remote = require "core.utils.remote"
+  local remote = require("core.utils.remote")
   local fpath = vim.api.nvim_buf_get_name(0)
   local remote_path = remote.get_remote_path_for_local(fpath)
   if remote_path ~= nil then
@@ -93,7 +99,7 @@ end, {
   desc = "Diff remote file",
   nargs = 1,
   complete = function()
-    local remote = require "core.utils.remote"
+    local remote = require("core.utils.remote")
     local config = remote.get_remote_config()
     if config ~= nil then
       return config.hosts

@@ -2,8 +2,8 @@ return {
   "nvim-telescope/telescope.nvim",
   optional = true,
   opts = function(_, opts)
-    local actions = require "telescope.actions"
-    local action_state = require "telescope.actions.state"
+    local actions = require("telescope.actions")
+    local action_state = require("telescope.actions.state")
 
     local defaults = opts.defaults or {}
 
@@ -35,10 +35,16 @@ return {
       local selected_entry = action_state.get_selected_entry()
       local value = selected_entry.value
       actions.close(prompt_bufnr)
-      vim.schedule(function() vim.cmd(template:format(value)) end)
+      vim.schedule(function()
+        vim.cmd(template:format(value))
+      end)
     end
-    local function git_diffview_commit(prompt_bufnr) return git_diffview(prompt_bufnr, "DiffviewOpen %s^!") end
-    local function git_diffview_branch(prompt_bufnr) return git_diffview(prompt_bufnr, "DiffviewOpen %s") end
+    local function git_diffview_commit(prompt_bufnr)
+      return git_diffview(prompt_bufnr, "DiffviewOpen %s^!")
+    end
+    local function git_diffview_branch(prompt_bufnr)
+      return git_diffview(prompt_bufnr, "DiffviewOpen %s")
+    end
 
     opts.pickers = {
       find_files = {

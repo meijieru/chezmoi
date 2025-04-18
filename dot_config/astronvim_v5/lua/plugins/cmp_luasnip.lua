@@ -2,12 +2,14 @@ return {
   "hrsh7th/nvim-cmp",
   optional = true,
   opts = function(_, opts)
-    local cmp = require "cmp"
+    local cmp = require("cmp")
     local snip_status_ok, luasnip = pcall(require, "luasnip")
-    if not snip_status_ok then return end
+    if not snip_status_ok then
+      return
+    end
 
     local mapping = opts.mapping
-    for _, key in ipairs { "<C-J>", "<C-K>", "<C-Y>", "<Down>", "<Up>" } do
+    for _, key in ipairs({ "<C-J>", "<C-K>", "<C-Y>", "<Down>", "<Up>" }) do
       mapping[key] = nil
     end
 
