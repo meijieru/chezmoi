@@ -142,10 +142,10 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
         },
         strategies = {
           chat = {
-            adapter = "gemini_openrouter",
+            adapter = "deepseek",
           },
           inline = {
-            adapter = "gemini_openrouter",
+            adapter = "deepseek",
           },
         },
         adapters = {
