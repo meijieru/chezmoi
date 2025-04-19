@@ -7,7 +7,6 @@ return {
     event = "User AstroGitFile",
   },
 
-  { import = "astrocommunity.git.gitlinker-nvim" },
   {
     "gitlinker.nvim",
     opts = {

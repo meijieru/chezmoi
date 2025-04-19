@@ -128,6 +128,39 @@ return {
     }
     opts.notifier = vim.tbl_deep_extend("force", opts.notifier or {}, notifier)
 
+    ---@class snacks.gitbrowse.Config
+    local gitbrowse = {
+      url_patterns = {
+        ["gitea%.meijieru%.com"] = {
+          branch = "/src/branch/{branch}",
+          file = "/src/branch/{branch}/{file}#L{line_start}-L{line_end}",
+          permalink = "/src/commit/{commit}/{file}#L{line_start}-L{line_end}",
+          commit = "/commit/{commit}",
+        },
+      },
+    }
+    opts.gitbrowse = vim.tbl_deep_extend("force", opts.gitbrowse or {}, gitbrowse)
+
     return opts
   end,
+
+  specs = {
+    {
+      "AstroNvim/astrocore",
+      opts = function(_, opts)
+        local maps = opts.mappings
+
+        -- If snacks.gitbrawse is enabled, update keymaps
+        if maps.n["<Leader>go"] then
+          maps.n["<Leader>gx"] = maps.n["<Leader>go"]
+          maps.n["<Leader>go"] = false
+          maps.x["<Leader>gx"] = maps.x["<Leader>go"]
+          maps.x["<Leader>go"] = false
+
+          maps.n["<Leader>gy"] = { normal_command("GitLink"), desc = "Git browse (copy)" }
+          maps.v["<Leader>gy"] = { normal_command("GitLink!"), desc = "Git browse (copy)" }
+        end
+      end,
+    },
+  },
 }
