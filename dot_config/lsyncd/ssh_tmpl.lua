@@ -10,7 +10,7 @@ sync({
   host = os.getenv("HOST"),
   targetdir = os.getenv("TARGETDIR"),
   delay = 0,
-  exclude = { "__pycache__", "exp", "checkpoints", "*.log", "*.tar", "pretrained", ".git", "lsync" },
+  exclude = { "__pycache__", "exp", "checkpoints", "*.log", "*.tar", "pretrained", ".git", ".venv" },
   -- init           = false,
   delete = "true",
   rsync = {
