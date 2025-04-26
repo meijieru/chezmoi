@@ -99,6 +99,7 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
 
     {
       "olimorris/codecompanion.nvim",
+      branch = "feat/move-to-function-calling",
       dependencies = {
         "nvim-lua/plenary.nvim",
         "nvim-treesitter/nvim-treesitter",
@@ -146,14 +147,14 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
         },
         strategies = {
           chat = {
-            adapter = "deepseek",
+            adapter = "copilot",
           },
           inline = {
-            adapter = "deepseek",
+            adapter = "copilot",
           },
         },
         adapters = {
-          gemini_openrouter = function()
+          openrouter = function()
             return require("codecompanion.adapters").extend("openai_compatible", {
               name = "gemini",
               formatted_name = "Gemini",
@@ -163,7 +164,18 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
               },
               schema = {
                 model = {
-                  default = "google/gemini-2.5-pro-exp-03-25:free",
+                  -- default = "google/gemini-2.5-pro-exp-03-25:free",
+                  default = "deepseek/deepseek-chat-v3-0324:free",
+                },
+              },
+            })
+          end,
+          copilot = function()
+            return require("codecompanion.adapters").extend("copilot", {
+              -- use copilot.lua token
+              schema = {
+                model = {
+                  default = "claude-3.7-sonnet",
                 },
               },
             })
@@ -181,18 +193,14 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
             })
           end,
           deepseek_siliconflow = function()
-            return require("codecompanion.adapters").extend("deepseek", {
-              url = "https://api.siliconflow.com/v1/chat/completions",
+            return require("codecompanion.adapters").extend("openai_compatible", {
               env = {
                 api_key = get_api_key("siliconflow_key"),
+                url = "https://api.siliconflow.com",
               },
               schema = {
                 model = {
-                  default = "deepseek-ai/DeepSeek-R1",
-                  choices = {
-                    ["deepseek-ai/DeepSeek-R1"] = { opts = { can_reason = true } },
-                    "deepseek-ai/DeepSeek-V3",
-                  },
+                  default = "deepseek-ai/DeepSeek-V3",
                 },
               },
             })
