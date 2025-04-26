@@ -10,7 +10,7 @@ Update checksum without installing:
 Modified from https://gist.github.com/karlwbrown/7e48ebfdc3c14b3c879880d88bd77f66
 """
 
-from typing import Final
+from typing import Final, TypedDict, NotRequired
 
 import argparse
 import collections
@@ -19,13 +19,22 @@ import logging
 import os
 import subprocess
 import tempfile
+from pathlib import Path
 
 
 # Expects a file of the format output by sha256sum (text mode)
-CHECKSUM_FILE: Final = "data/tmp/local_checksum"
+CHECKSUM_FILE: Final[str] = "data/tmp/local_checksum"
+
+
+# Define a TypedDict for dependency maps
+class DependencyMap(TypedDict):
+    script: str
+    dependent_dirs: NotRequired[list[str]]
+    dependent_files: NotRequired[list[str]]
+
 
 # Global mapping between files/dirs & scripts
-DEPENDENCIES_MAPS = [
+DEPENDENCIES_MAPS: list[DependencyMap] = [
     {
         "script": "./tools/install_package/archlinux.sh.tmpl",
         "dependent_dirs": ["./data/packages/arch"],
@@ -46,7 +55,7 @@ def get_all_files(directory: str) -> list[str]:
     res = []
     for root, _, files in os.walk(directory):
         for item in files:
-            fpath = str(os.path.join(root, item))
+            fpath = str(Path(root) / item)
             res.append(fpath)
     return res
 
@@ -73,7 +82,7 @@ def get_dependencies() -> dict[str, list[str]]:
 def create_checksum_file(checksum_target_files: list[str]) -> None:
     logging.info("Creating checksum file")
     sha_args = ["sha256sum"] + checksum_target_files
-    with open(CHECKSUM_FILE, mode="w") as checksum_file:
+    with Path(CHECKSUM_FILE).open(mode="w") as checksum_file:
         subprocess.run(sha_args, check=True, stdout=checksum_file)
 
 
@@ -87,7 +96,8 @@ def UmaskNamedTemporaryFile(*args, perms: int = 0o700, **kargs):
 
 
 def run_file(fname: str) -> None:
-    base_name, ext = os.path.splitext(os.path.basename(fname))
+    path = Path(fname)
+    base_name, ext = path.stem, path.suffix
     if ext in [".tmpl"]:
         with UmaskNamedTemporaryFile(suffix=base_name, delete=False) as tmp_file:
             subprocess.run(
@@ -141,7 +151,7 @@ def main() -> None:
         encoding="utf-8",
     )
     os.chdir(result.stdout.strip())
-    existing_checksum_map = {}
+    existing_checksum_map: dict[str, str] = {}
     try:
         with open(CHECKSUM_FILE) as f:
             for line in f:
