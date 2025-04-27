@@ -205,6 +205,18 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
               },
             })
           end,
+          xai = function()
+            return require("codecompanion.adapters").extend("xai", {
+              env = {
+                api_key = get_api_key("xai_key"),
+              },
+              schema = {
+                model = {
+                  default = "grok-3-latest",
+                },
+              },
+            })
+          end,
         },
         -- https://github.com/olimorris/codecompanion.nvim/discussions/694
         prompt_library = {
