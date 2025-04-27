@@ -523,10 +523,7 @@ return {
       options = {
         opt = {
           relativenumber = false,
-          number = true,
           spell = false,
-          signcolumn = "yes",
-          wrap = false,
           showtabline = 1,
           shiftwidth = 4,
           tabstop = 4,
@@ -535,16 +532,13 @@ return {
           grepformat = "%f:%l:%c:%m",
           background = "light",
           splitkeep = "screen",
-          -- https://github.com/hrsh7th/nvim-cmp/issues/309
-          title = not (is_available("nvim-cmp")),
           -- for click handler of `luukvbaal/statuscol.nvim`
           mousemodel = "extend",
           qftf = "{info -> v:lua._G.qftf(info, 'shorten')}",
           swapfile = false,
           clipboard = "",
           fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]],
-          -- FIXME(meijieru): until noice.nvim fix
-          -- winborder = "rounded",
+          diffopt = vim.fn.has("nvim-0.12") == 1 and vim.list_extend(vim.opt.diffopt:get(), { "inline:char" }) or nil,
         },
         g = {
           -- configure global vim variables (vim.g)
