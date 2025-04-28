@@ -81,7 +81,16 @@ return {
       sections = {
         { section = "header" },
         { icon = " ", title = "Keymaps", section = "keys", indent = 2, padding = 1 },
-        { pane = 1, icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1 },
+        {
+          pane = 1,
+          icon = " ",
+          title = "Recent Files",
+          section = "recent_files",
+          indent = 2,
+          padding = 1,
+          -- Current dir only
+          cwd = true,
+        },
         { pane = 1, icon = " ", title = "Projects", section = "projects", indent = 2, padding = 1 },
         {
           pane = 1,
