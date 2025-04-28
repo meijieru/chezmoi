@@ -506,7 +506,10 @@ return {
     ---@type AstroCoreOpts
     local override = {
       features = {
+        ---@type AstroCoreDiagnosticsFeature
         diagnostics = { virtual_text = true, virtual_lines = false },
+        -- TODO(meijieru): current_line is not working
+        -- diagnostics = { virtual_text = { current_line = true }, virtual_lines = { current_line = true } },
       },
       rooter = {
         autochdir = true,
