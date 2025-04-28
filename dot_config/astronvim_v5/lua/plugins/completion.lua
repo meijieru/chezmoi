@@ -175,7 +175,7 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
               -- use copilot.lua token
               schema = {
                 model = {
-                  default = "claude-3.7-sonnet",
+                  default = "gemini-2.5-pro",
                 },
               },
             })
@@ -206,6 +206,11 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
             })
           end,
           xai = function()
+            vim.notify_once(
+              "Grok may share data with external services",
+              vim.log.levels.WARN,
+              { title = "CodeCompanion" }
+            )
             return require("codecompanion.adapters").extend("xai", {
               env = {
                 api_key = get_api_key("xai_key"),
