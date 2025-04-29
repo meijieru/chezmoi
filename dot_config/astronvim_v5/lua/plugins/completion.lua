@@ -99,7 +99,6 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
 
     {
       "olimorris/codecompanion.nvim",
-      branch = "feat/move-to-function-calling",
       dependencies = {
         "nvim-lua/plenary.nvim",
         "nvim-treesitter/nvim-treesitter",
@@ -154,6 +153,9 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
           },
         },
         adapters = {
+          opts = {
+            show_defaults = false,
+          },
           openrouter = function()
             return require("codecompanion.adapters").extend("openai_compatible", {
               name = "gemini",
