@@ -155,6 +155,12 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
           diff = {
             provider = "mini_diff",
           },
+          action_palette = {
+            opts = {
+              show_default_prompt_library = true,
+              show_default_actions = true,
+            },
+          },
         },
         strategies = {
           chat = {
@@ -180,15 +186,14 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
           },
           openrouter = function()
             return require("codecompanion.adapters").extend("openai_compatible", {
-              name = "gemini",
-              formatted_name = "Gemini",
+              name = "openrouter",
+              formatted_name = "OpenRouter",
               env = {
                 api_key = get_api_key("openrouter_key"),
                 url = "https://openrouter.ai/api",
               },
               schema = {
                 model = {
-                  -- default = "google/gemini-2.5-pro-exp-03-25:free",
                   default = "deepseek/deepseek-chat-v3-0324:free",
                 },
               },
@@ -199,9 +204,7 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
               -- use copilot.lua token
               schema = {
                 model = {
-                  default = "claude-3.7-sonnet",
-                  -- FIXME(meijieru): copilot gemini 2.5 pro hasn't supported function call yet
-                  -- default = "gemini-2.5-pro",
+                  default = "gemini-2.5-pro",
                 },
               },
             })
