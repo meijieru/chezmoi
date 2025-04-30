@@ -98,10 +98,22 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
     },
 
     {
+      "ravitemer/mcphub.nvim",
+      cmd = "MCPHub",
+      build = "bundled_build.lua",
+      config = function()
+        require("mcphub").setup({
+          use_bundled_binary = true,
+        })
+      end,
+    },
+
+    {
       "olimorris/codecompanion.nvim",
       dependencies = {
         "nvim-lua/plenary.nvim",
         "nvim-treesitter/nvim-treesitter",
+        "ravitemer/mcphub.nvim",
       },
       specs = {
         "AstroNvim/astrocore",
@@ -152,6 +164,16 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
             adapter = "copilot",
           },
         },
+        extensions = {
+          mcphub = {
+            callback = "mcphub.extensions.codecompanion",
+            opts = {
+              show_result_in_chat = true, -- Show mcp tool results in chat
+              make_vars = true, -- Convert resources to #variables
+              make_slash_commands = true, -- Add prompts as /slash commands
+            },
+          },
+        },
         adapters = {
           opts = {
             show_defaults = false,
@@ -177,7 +199,9 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
               -- use copilot.lua token
               schema = {
                 model = {
-                  default = "gemini-2.5-pro",
+                  default = "claude-3.7-sonnet",
+                  -- FIXME(meijieru): copilot gemini 2.5 pro hasn't supported function call yet
+                  -- default = "gemini-2.5-pro",
                 },
               },
             })
