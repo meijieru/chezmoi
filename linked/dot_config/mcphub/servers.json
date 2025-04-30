@@ -1,0 +1,21 @@
+{
+  "mcpServers": [
+    
+  ],
+  "nativeMCPServers": {
+    "neovim": {
+      "disabled_tools": [
+        "delete_item"
+      ],
+      "disabled_prompts": [
+        "parrot"
+      ]
+    },
+    "mcphub": {
+      "disabled": false,
+      "disabled_resources": [
+        "mcphub://changelog"
+      ]
+    }
+  }
+}
