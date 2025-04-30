@@ -542,6 +542,7 @@ return {
           clipboard = "",
           fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]],
           diffopt = vim.fn.has("nvim-0.12") == 1 and vim.list_extend(vim.opt.diffopt:get(), { "inline:char" }) or nil,
+          exrc = true,
         },
         g = {
           -- configure global vim variables (vim.g)
