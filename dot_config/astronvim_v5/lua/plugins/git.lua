@@ -8,7 +8,7 @@ return {
   },
 
   {
-    "gitlinker.nvim",
+    "linrongbin16/gitlinker.nvim",
     opts = {
       callbacks = {
         ["direct.meijieru.com"] = function(url_data)
