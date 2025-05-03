@@ -128,6 +128,12 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
               ["<Leader>a"] = { desc = get_icon("Copilot", 1, true) .. "AI" },
               ["<Leader><Leader>"] = { normal_command("CodeCompanionChat Toggle"), desc = "Toggle Chat" },
               ["<Leader>aa"] = { normal_command("CodeCompanionActions"), desc = "Actions" },
+              ["<Leader>ac"] = {
+                function()
+                  vim.cmd("Git commit")
+                  require("codecompanion").prompt("commit_inline")
+                end,
+              },
             },
             v = {
               ["<Leader>a"] = { desc = get_icon("Copilot", 1, true) .. "AI" },
