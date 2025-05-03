@@ -221,8 +221,10 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
               },
             })
           end,
-          deepseek_siliconflow = function()
+          siliconflow = function()
             return require("codecompanion.adapters").extend("openai_compatible", {
+              name = "siliconflow",
+              formatted_name = "SiliconFlow",
               env = {
                 api_key = get_api_key("siliconflow_key"),
                 url = "https://api.siliconflow.com",
