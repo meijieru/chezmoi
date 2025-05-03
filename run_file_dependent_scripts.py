@@ -10,7 +10,7 @@ Update checksum without installing:
 Modified from https://gist.github.com/karlwbrown/7e48ebfdc3c14b3c879880d88bd77f66
 """
 
-from typing import Final, TypedDict, NotRequired
+from typing import Final, TypedDict
 
 import argparse
 import collections
@@ -26,11 +26,10 @@ from pathlib import Path
 CHECKSUM_FILE: Final[str] = "data/tmp/local_checksum"
 
 
-# Define a TypedDict for dependency maps
 class DependencyMap(TypedDict):
     script: str
-    dependent_dirs: NotRequired[list[str]]
-    dependent_files: NotRequired[list[str]]
+    dependent_dirs: list[str]
+    dependent_files: list[str]
 
 
 # Global mapping between files/dirs & scripts
@@ -38,15 +37,17 @@ DEPENDENCIES_MAPS: list[DependencyMap] = [
     {
         "script": "./tools/install_package/archlinux.sh.tmpl",
         "dependent_dirs": ["./data/packages/arch"],
-        # "dependent_files": [],
+        "dependent_files": [],
     },
     {
         "script": "./tools/install_package/debian.sh.tmpl",
         "dependent_dirs": ["./data/packages/debian"],
+        "dependent_files": [],
     },
     {
         "script": "./tools/install_package/ubuntu.sh.tmpl",
         "dependent_dirs": ["./data/packages/ubuntu"],
+        "dependent_files": [],
     },
 ]
 

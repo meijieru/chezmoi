@@ -1,0 +1,11 @@
+[project]
+name = "chezmoi-scripts"
+version = "0.1.0"
+description = "Helper scripts for chezmoi"
+authors = [
+    { name = "Jieru Mei", email = "meijieru@gmail.com" }
+]
+license = { text = "MIT" }
+dependencies = [
+    "python>=3.9",
+]

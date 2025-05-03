@@ -3,5 +3,7 @@ data
 doc
 assets
 README.md
+pyproject.toml
 linked
 .tmuxp.yaml
+__pycache__
