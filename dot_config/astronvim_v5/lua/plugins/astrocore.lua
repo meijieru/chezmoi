@@ -149,13 +149,7 @@ return {
               require("gitsigns").stage_hunk()
             end
           end,
-          desc = "Diff Put | Stage Hunk",
-        },
-        dP = {
-          function()
-            require("gitsigns").undo_stage_hunk()
-          end,
-          desc = "Undo Stage Hunk",
+          desc = "Diff Put | Stage Hunk | Undo Stage Hunk",
         },
         ["do"] = {
           function()
