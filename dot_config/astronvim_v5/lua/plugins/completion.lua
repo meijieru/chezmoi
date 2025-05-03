@@ -130,9 +130,19 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
               ["<Leader>aa"] = { normal_command("CodeCompanionActions"), desc = "Actions" },
               ["<Leader>ac"] = {
                 function()
-                  vim.cmd("Git commit")
-                  require("codecompanion").prompt("commit_inline")
+                  if vim.bo.filetype == "gitcommit" then
+                    require("codecompanion").prompt("commit_inline")
+                  else
+                    vim.cmd("Git commit")
+                    vim.schedule(function()
+                      if vim.bo.filetype == "gitcommit" then
+                        -- It means we are in commit message buffer and the commit is not empty
+                        require("codecompanion").prompt("commit_inline")
+                      end
+                    end)
+                  end
                 end,
+                desc = "AI Commit",
               },
             },
             v = {

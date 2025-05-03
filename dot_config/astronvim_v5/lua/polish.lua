@@ -63,19 +63,6 @@ on("FileType", {
   desc = "Filetype indent",
 })
 
--- `<Leader><Leader>` to codecompanion inline commit message
-on("FileType", {
-  pattern = { "gitcommit" },
-  callback = function()
-    vim.keymap.set("n", "<Leader><Leader>", function()
-      require("codecompanion").prompt("commit_inline")
-    end, {
-      buffer = true,
-      desc = "Generate commit message",
-    })
-  end,
-})
-
 -- diable autocmds
 local autocmds_to_disable = {}
 for _, params in ipairs(autocmds_to_disable) do
