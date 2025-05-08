@@ -114,6 +114,7 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
         "nvim-lua/plenary.nvim",
         "nvim-treesitter/nvim-treesitter",
         "ravitemer/mcphub.nvim",
+        "ravitemer/codecompanion-history.nvim",
       },
       specs = {
         "AstroNvim/astrocore",
@@ -191,8 +192,17 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
             callback = "mcphub.extensions.codecompanion",
             opts = {
               show_result_in_chat = true, -- Show mcp tool results in chat
-              make_vars = true, -- Convert resources to #variables
+              make_vars = true,           -- Convert resources to #variables
               make_slash_commands = true, -- Add prompts as /slash commands
+            },
+          },
+          history = {
+            enabled = true,
+            opts = {
+              -- Reduce model call size?
+              auto_generate_title = false,
+              picker = "snacks",
+              delete_on_clearing_chat = false,
             },
           },
         },
