@@ -45,6 +45,7 @@ return {
     end,
   },
 
+  { import = "astrocommunity.pack.nvchad-ui" },
   { import = "astrocommunity.colorscheme.nordic-nvim" },
   { import = "astrocommunity.colorscheme.catppuccin" },
   {
