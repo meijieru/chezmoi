@@ -17,8 +17,6 @@ local spec = {
 
   {
     "Saghen/blink.cmp",
-    -- As we disabled the lazy_snapshot from AstroNvim.
-    version = "*",
     opts = function(_, opts)
       return vim.tbl_deep_extend("force", opts, {
         keymap = {
