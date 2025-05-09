@@ -69,6 +69,19 @@ return {
       },
     },
   },
+  { import = "astrocommunity.colorscheme.onedarkpro-nvim" },
+  {
+    "olimorris/onedarkpro.nvim",
+    opts = {
+      options = {
+        cursorline = true,
+        highlight_inactive_windows = false,
+      },
+      highlights = {
+        ["@variable"] = {}
+      }
+    },
+  },
 
   -- { import = "astrocommunity.file-explorer.oil-nvim" },
   {
