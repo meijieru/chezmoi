@@ -145,13 +145,18 @@ def main() -> None:
         level=logging.INFO,
     )
 
-    result = subprocess.run(
-        ["chezmoi", "source-path"],
-        check=True,
-        capture_output=True,
-        encoding="utf-8",
-    )
-    os.chdir(result.stdout.strip())
+    # NOTE: if run from chezmoi, it sets this env var
+    env_source_dir = os.environ.get("CHEZMOI_SOURCE_DIR")
+    if not env_source_dir:
+        result = subprocess.run(
+            ["chezmoi", "source-path"],
+            check=True,
+            capture_output=True,
+            encoding="utf-8",
+        )
+        env_source_dir = result.stdout.strip()
+    os.chdir(env_source_dir)
+
     existing_checksum_map: dict[str, str] = {}
     try:
         with open(CHECKSUM_FILE) as f:
