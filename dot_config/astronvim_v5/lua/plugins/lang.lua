@@ -12,9 +12,8 @@ return {
   {
     "mfussenegger/nvim-dap-python",
     lazy = true,
-    config = function(_, opts)
-      local path = require("mason-registry").get_package("debugpy"):get_install_path() .. "/venv/bin/python"
-      require("dap-python").setup(path, opts)
+    config = function(_, _)
+      require("dap-python").setup(vim.env.MASON .. "/bin/debugpy-adapter")
     end,
     specs = {
       "mfussenegger/nvim-dap",
