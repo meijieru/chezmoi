@@ -212,6 +212,7 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
         adapters = {
           opts = {
             show_defaults = false,
+            show_model_choices = true,
           },
           openrouter = function()
             return require("codecompanion.adapters").extend("openai_compatible", {
