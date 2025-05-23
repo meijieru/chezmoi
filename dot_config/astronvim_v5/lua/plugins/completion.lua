@@ -178,7 +178,7 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
         },
         strategies = {
           chat = {
-            adapter = "copilot",
+            adapter = "copilot_premium",
             tools = {
               opts = {
                 auto_submit_errors = true, -- Send any errors to the LLM automatically?
@@ -212,7 +212,7 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
         adapters = {
           opts = {
             show_defaults = false,
-            show_model_choices = true,
+            show_model_choices = false,
           },
           openrouter = function()
             return require("codecompanion.adapters").extend("openai_compatible", {
@@ -234,7 +234,19 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
               -- use copilot.lua token
               schema = {
                 model = {
-                  default = "gemini-2.5-pro",
+                  default = "gpt-4.1",
+                },
+              },
+            })
+          end,
+          copilot_premium = function()
+            return require("codecompanion.adapters").extend("copilot", {
+              -- use copilot.lua token
+              formatted_name = "Copilot Premium",
+              schema = {
+                model = {
+                  -- default = "gemini-2.5-pro",
+                  default = "claude-sonnet-4",
                 },
               },
             })
