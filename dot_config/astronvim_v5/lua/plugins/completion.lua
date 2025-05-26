@@ -96,6 +96,7 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
 
     {
       "ravitemer/mcphub.nvim",
+      version = "*",
       cmd = "MCPHub",
       build = "bundled_build.lua",
       config = function()
@@ -107,6 +108,7 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
 
     {
       "olimorris/codecompanion.nvim",
+      version = "*",
       dependencies = {
         "nvim-lua/plenary.nvim",
         "nvim-treesitter/nvim-treesitter",
