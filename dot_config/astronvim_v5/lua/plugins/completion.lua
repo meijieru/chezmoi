@@ -183,8 +183,15 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
             adapter = "copilot_premium",
             tools = {
               opts = {
-                auto_submit_errors = true, -- Send any errors to the LLM automatically?
+                auto_submit_errors = false, -- Send any errors to the LLM automatically?
                 auto_submit_success = true, -- Send any successful output to the LLM automatically?
+              },
+            },
+            variables = {
+              ["buffer"] = {
+                opts = {
+                  default_params = "watch", -- or 'pin'
+                },
               },
             },
           },
@@ -232,14 +239,7 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
             })
           end,
           copilot = function()
-            return require("codecompanion.adapters").extend("copilot", {
-              -- use copilot.lua token
-              schema = {
-                model = {
-                  default = "gpt-4.1",
-                },
-              },
-            })
+            return require("codecompanion.adapters").extend("copilot", {})
           end,
           copilot_premium = function()
             return require("codecompanion.adapters").extend("copilot", {
@@ -307,6 +307,10 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
               short_name = "commit_inline",
               auto_submit = true,
               placement = "replace",
+              adapter = {
+                name = "copilot",
+              },
+              ignore_system_prompt = true,
             },
             prompts = {
               {
