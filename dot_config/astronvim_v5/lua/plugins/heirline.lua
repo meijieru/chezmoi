@@ -1,6 +1,31 @@
 return {
   "rebelot/heirline.nvim",
   opts = function(_, opts)
+    local codecompanion = {
+      static = {
+        processing = false,
+      },
+      update = {
+        "User",
+        pattern = "CodeCompanionRequest*",
+        callback = function(self, args)
+          if args.match == "CodeCompanionRequestStarted" then
+            self.processing = true
+          elseif args.match == "CodeCompanionRequestFinished" then
+            self.processing = false
+          end
+          vim.cmd("redrawstatus")
+        end,
+      },
+      {
+        condition = function(self)
+          return self.processing
+        end,
+        provider = " ",
+        hl = { fg = "fg", bg = "bg" },
+      },
+    }
+
     opts.tabline = nil
     local status = require("astroui.status")
     local hl = require("astroui.status.hl")
@@ -19,6 +44,7 @@ return {
       status.component.cmd_info(),
       status.component.fill(),
       status.component.diagnostics(),
+      codecompanion,
       status.component.treesitter({
         str = { str = "", padding = { left = 0, right = 0 }, show_empty = true },
         surround = { separator = "none" },
