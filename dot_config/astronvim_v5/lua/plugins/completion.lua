@@ -211,10 +211,15 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
           history = {
             enabled = true,
             opts = {
-              -- Reduce model call size?
-              auto_generate_title = false,
-              picker = "snacks",
+              auto_generate_title = true,
+              title_generation_opts = {
+                adapter = "copilot",
+                model = nil,
+                refresh_every_n_prompts = 3,
+                max_refreshes = 3,
+              },
               delete_on_clearing_chat = false,
+              continue_last_chat = false,
             },
           },
         },
