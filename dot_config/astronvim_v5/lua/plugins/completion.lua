@@ -244,7 +244,11 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
             })
           end,
           copilot = function()
-            return require("codecompanion.adapters").extend("copilot", {})
+            return require("codecompanion.adapters").extend("copilot", {
+              model = {
+                default = "claude-sonnet-4",
+              },
+            })
           end,
           copilot_premium = function()
             return require("codecompanion.adapters").extend("copilot", {
@@ -252,8 +256,7 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
               formatted_name = "Copilot Premium",
               schema = {
                 model = {
-                  -- default = "gemini-2.5-pro",
-                  default = "claude-sonnet-4",
+                  default = "gemini-2.5-pro",
                 },
               },
             })
