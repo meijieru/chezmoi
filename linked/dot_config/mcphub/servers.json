@@ -1,21 +1,37 @@
 {
-  "mcpServers": [
-    
-  ],
   "nativeMCPServers": {
-    "neovim": {
-      "disabled_tools": [
-        "delete_item"
+    "mcphub": {
+      "disabled_prompts": [
+        "create_native_server"
       ],
+      "autoApprove": [
+        "get_current_servers"
+      ],
+      "disabled_resources": [
+        "mcphub://changelog",
+        "mcphub://native_server_guide"
+      ],
+      "disabled": false
+    },
+    "neovim": {
       "disabled_prompts": [
         "parrot"
-      ]
-    },
-    "mcphub": {
-      "disabled": false,
-      "disabled_resources": [
-        "mcphub://changelog"
+      ],
+      "autoApprove": [
+        "list_directory",
+        "find_files"
+      ],
+      "disabled_tools": [
+        "delete_item",
+        "replace_in_file",
+        "read_file",
+        "write_file",
+        "execute_command",
+        "execute_lua"
       ]
     }
-  }
+  },
+  "mcpServers": [
+    
+  ]
 }

@@ -187,13 +187,6 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
                 auto_submit_success = true, -- Send any successful output to the LLM automatically?
               },
             },
-            variables = {
-              ["buffer"] = {
-                opts = {
-                  default_params = "watch", -- or 'pin'
-                },
-              },
-            },
           },
           inline = {
             adapter = "copilot",
