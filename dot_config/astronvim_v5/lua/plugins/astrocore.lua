@@ -112,6 +112,8 @@ return {
         ["<Leader>ua"] = false,
         ["<Leader>ur"] = false,
         ["<Leader>uR"] = false,
+        ["<Leader>uf"] = false,
+        ["<Leader>uF"] = false,
 
         -- Debug
         ["<Leader>dE"] = false,

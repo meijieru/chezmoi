@@ -18,6 +18,7 @@ myvim.plugins.lsp.servers_from_system = {
 
 myvim.plugins.lsp.ensure_installed = {
   "debugpy",
+  "emmylua_ls",
   "basedpyright",
   "json-lsp",
 }
@@ -25,6 +26,7 @@ myvim.plugins.lsp.ensure_installed = {
 
 {{ if or (eq .chezmoi.hostname "jierumei-glaptop") (eq .chezmoi.hostname "jierucloud") }}
 myvim.plugins.lsp.ensure_installed = {
+  "emmylua_ls",
   "stylua",
 }
 {{ end }}
