@@ -1,9 +1,14 @@
 {
+  "mcpServers": {
+    "github": {
+      "url": "https://api.githubcopilot.com/mcp/",
+      "headers": {
+        "Authorization": "Bearer ${cmd:gpg --decrypt ~/.local/share/chezmoi/data/encrypted/github_access_token.gpg 2>/dev/null}"
+      }
+    }
+  },
   "nativeMCPServers": {
     "mcphub": {
-      "disabled_prompts": [
-        "create_native_server"
-      ],
       "autoApprove": [
         "get_current_servers"
       ],
@@ -11,16 +16,12 @@
         "mcphub://changelog",
         "mcphub://native_server_guide"
       ],
+      "disabled_prompts": [
+        "create_native_server"
+      ],
       "disabled": false
     },
     "neovim": {
-      "disabled_prompts": [
-        "parrot"
-      ],
-      "autoApprove": [
-        "list_directory",
-        "find_files"
-      ],
       "disabled_tools": [
         "delete_item",
         "replace_in_file",
@@ -28,10 +29,14 @@
         "write_file",
         "execute_command",
         "execute_lua"
+      ],
+      "disabled_prompts": [
+        "parrot"
+      ],
+      "autoApprove": [
+        "list_directory",
+        "find_files"
       ]
     }
-  },
-  "mcpServers": [
-    
-  ]
+  }
 }
