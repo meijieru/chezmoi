@@ -298,6 +298,13 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
               },
             })
           end,
+          tavily = function()
+            return require("codecompanion.adapters").extend("tavily", {
+              env = {
+                api_key = get_api_key("tavily_key"),
+              },
+            })
+          end,
         },
         -- https://github.com/olimorris/codecompanion.nvim/discussions/694
         prompt_library = {
