@@ -237,11 +237,7 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
             })
           end,
           copilot = function()
-            return require("codecompanion.adapters").extend("copilot", {
-              model = {
-                default = "claude-sonnet-4",
-              },
-            })
+            return require("codecompanion.adapters").extend("copilot", {})
           end,
           copilot_premium = function()
             return require("codecompanion.adapters").extend("copilot", {
