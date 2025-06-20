@@ -14,6 +14,7 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
     { import = "astrocommunity.pack.bash" },
     { import = "astrocommunity.pack.json" },
     { import = "astrocommunity.pack.markdown" },
+    { import = "astrocommunity.pack.biome" },
   })
 end
 
