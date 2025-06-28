@@ -114,4 +114,6 @@ return {
 
   { "tpope/vim-rsi", event = { "CmdlineEnter", "InsertEnter" } },
   { "tpope/vim-eunuch", event = "CmdlineEnter" },
+
+  { import = "astrocommunity.terminal-integration.flatten-nvim" },
 }
