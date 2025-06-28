@@ -82,6 +82,7 @@ yay:
   - lsyncd
   - nvimpager
   - bun-bin
+  - google-gemini-cli
   # - python-flax
   # - arxiv-latex-cleaner
   # - google-cloud-cli
