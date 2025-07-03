@@ -1,22 +1,35 @@
-# Collections of my dotfiles
+# My Dotfiles
 
-## Deploy
+This repository contains my personal dotfiles, managed by [chezmoi](https://www.chezmoi.io/).
+
+## Prerequisites
+
+- `git`
+- `curl`
+- `zsh`
+
+## Installation
+
+To bootstrap in one line:
 
 ```bash
-bash tools/chezmoi_init.sh
+zsh -c "$(curl -fsLS https://raw.githubusercontent.com/meijieru/chezmoi/master/tools/chezmoi_init.sh)"
 ```
 
-To preview the change,
+## Usage
+
+To preview changes, run:
 
 ```bash
 chezmoi apply --dry-run --verbose
 ```
 
-## Setup remote server
+## Other Setups
+
+### Remote Server
 
 Check [doc](./doc/server_setup.md).
 
-
-## Setup NAS
+### NAS
 
 Check [wiki](https://gitea.meijieru.com/meijieru/nas_management/wiki/?action=_pages).
