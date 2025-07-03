@@ -31,6 +31,11 @@ return {
   },
 
   opts = function(_, opts)
+    opts.size = 12
+    opts.winbar = {
+      enabled = true,
+    }
+
     -- modify the keymap to toggle the terminal
     opts.on_create = function(t)
       vim.opt_local.foldcolumn = "0"

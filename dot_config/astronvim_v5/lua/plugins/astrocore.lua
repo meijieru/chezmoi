@@ -376,7 +376,7 @@ return {
           end,
           desc = "Toggle color highlight",
         },
-        ["<Leader>uu"] = { normal_command("OverseerToggle"), desc = "Overseer" },
+        ["<Leader>uu"] = { normal_command("OverseerToggle left"), desc = "Overseer" },
         ["<Leader>uq"] = {
           function()
             require("core.utils.ui").toggle_quickfix()
