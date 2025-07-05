@@ -26,7 +26,7 @@ local spec = {
           ["<C-J>"] = { "fallback" },
           ["<C-K>"] = { "fallback" },
         },
-        cmdline = { enabled = true },
+        cmdline = { completion = { menu = { auto_show = true } } },
         signature = {
           enabled = true,
           window = {
