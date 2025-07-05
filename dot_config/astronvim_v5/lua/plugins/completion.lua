@@ -205,6 +205,10 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
             enabled = true,
             opts = {
               auto_generate_title = true,
+              generation_opts = {
+                adapter = "copilot",
+                model = nil,
+              },
               title_generation_opts = {
                 adapter = "copilot",
                 model = nil,
@@ -213,6 +217,13 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
               },
               delete_on_clearing_chat = false,
               continue_last_chat = false,
+              picker = "snacks",
+              picker_keymaps = {
+                -- FIXME(meijieru): revisit keymaps and fix
+                rename = { n = "<C-r>", i = "<C-r>" },
+                delete = { n = "<C-x>", i = "<C-x>" },
+                duplicate = { n = "<C-y>", i = "<C-y>" },
+              },
             },
           },
         },
