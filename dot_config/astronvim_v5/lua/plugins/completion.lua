@@ -144,6 +144,8 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
                 end,
                 desc = "AI Commit",
               },
+              -- vscode copilot style
+              ["<C-I>"] = { ":CodeCompanion " },
             },
             v = {
               ["<Leader>a"] = { desc = get_icon("Copilot", 1, true) .. "AI" },
@@ -152,6 +154,8 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
               ["<Leader>ae"] = { prompt("explain"), desc = "Explain" },
               ["<Leader>af"] = { prompt("fix"), desc = "Fix" },
               ["<Leader>at"] = { prompt("tests"), desc = "Add Testcases" },
+              -- vscode copilot style
+              ["<C-I>"] = { ":CodeCompanion " },
             },
             ca = {
               -- abbr in cmdline

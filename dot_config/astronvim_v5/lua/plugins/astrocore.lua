@@ -291,7 +291,7 @@ return {
 
         -- Picker
         -- trick: <c-space> convert it as fuzzy
-        ["<C-P>"] = {
+        ["<C-S-P>"] = {
           function()
             require("snacks").picker.commands()
           end,
