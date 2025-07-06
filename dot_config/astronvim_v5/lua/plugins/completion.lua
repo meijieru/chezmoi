@@ -144,8 +144,8 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
                 end,
                 desc = "AI Commit",
               },
-              -- vscode copilot style
-              ["<C-I>"] = { ":CodeCompanion " },
+              -- vscode copilot style, conflict with nvim stack navigation
+              -- ["<C-I>"] = { ":CodeCompanion " },
             },
             v = {
               ["<Leader>a"] = { desc = get_icon("Copilot", 1, true) .. "AI" },
