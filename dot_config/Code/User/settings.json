@@ -3,7 +3,7 @@
   // "editor.inlayHints.enabled": "on",
   "workbench.colorTheme": "Edge Light",
 
-  "editor.fontSize": 17,
+  "editor.fontSize": 15,
   "editor.fontFamily": "'JetBrains Mono', 'Fira Code', Consolas, 'Courier New', monospace",
   "editor.wordWrap": "on",
 
@@ -13,7 +13,7 @@
   "vim.hlsearch": true,
   "vim.insertModeKeyBindings": [
     {
-      "before": ["j", "j"],
+      "before": ["j", "k"],
       "after": ["<Esc>"]
     },
     {
@@ -129,7 +129,10 @@
     },
     {
       "before": ["<leader>", "*"],
-      "commands": ["workbench.action.findInFiles"]
+      "commands": [
+        "editor.action.addSelectionToNextFindMatch",
+        "workbench.action.findInFiles"
+      ]
     },
     {
       "before": ["<leader>", "f", "f"],
@@ -143,20 +146,44 @@
       "before": ["<leader>", "l", "f"],
       "commands": ["editor.action.format"]
     },
+    {
+      "before": ["<leader>", "<leader>"],
+      "commands": ["workbench.panel.chat.view.copilot.focus"]
+    },
+    {
+      "before": ["-"],
+      "commands": ["workbench.view.explorer", "workbench.action.focusSideBar"]
+    },
+    {
+      "before": ["<leader", "s"],
+      "commands": ["workbench.view.explorer", "workbench.action.focusSideBar"]
+    },
+    {
+      "before": ["<leader>", "g", "g"],
+      "commands": ["workbench.view.scm", "workbench.action.focusSideBar"]
+    }
     // {
     //   "before": ["<leader>", "u", "h"],
     //   "commands": "editor.action.inlayHints.toggle",
-    // }
+    // },
   ],
   "vim.visualModeKeyBindings": [
     {
       "before": ["g", "q"],
       "commands": ["editor.action.formatSelection"]
+    },
+    {
+      "before": ["<leader>", "*"],
+      "commands": [
+        "editor.action.addSelectionToNextFindMatch",
+        "workbench.action.findInFiles"
+      ]
     }
   ],
   "vim.handleKeys": {
     "<C-a>": false,
-    "<C-f>": false
+    "<C-f>": false,
+    "<C-i>": false
   },
   "vim.visualstar": true,
   "vim.highlightedyank.enable": true,
@@ -167,5 +194,7 @@
 
   "vscode-neovim.useWSL": true,
   "vscode-neovim.neovimExecutablePaths.linux": "/usr/sbin/nvim",
-  "vscode-neovim.neovimInitVimPaths.linux": "/home/jmei/.config/vscode_neovim/init.lua"
+  "vscode-neovim.neovimInitVimPaths.linux": "/home/jmei/.config/vscode_neovim/init.lua",
+  "python.terminal.activateEnvInCurrentTerminal": true,
+  "github.copilot.nextEditSuggestions.enabled": true
 }
