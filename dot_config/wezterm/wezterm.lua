@@ -1,5 +1,6 @@
 local wezterm = require("wezterm")
 local mux = wezterm.mux
+local act = wezterm.action
 
 local function scheme_for_appearance(appearance)
   if appearance:find("Dark") then
@@ -69,15 +70,26 @@ local font_rules = {
 
 -- FIXME(meijieru): ctrl + shift + w sometimes doesn't work
 local mykeys = {
-  { key = "{", mods = "SHIFT|ALT", action = wezterm.action({ ActivateTabRelative = -1 }) },
-  { key = "}", mods = "SHIFT|ALT", action = wezterm.action({ ActivateTabRelative = 1 }) },
+  {
+    key = "P",
+    mods = "CTRL|SHIFT",
+    action = act.DisableDefaultAssignment,
+  },
+
+  { key = "{", mods = "SHIFT|ALT", action = act({ ActivateTabRelative = -1 }) },
+  { key = "}", mods = "SHIFT|ALT", action = act({ ActivateTabRelative = 1 }) },
+  {
+    key = "Space",
+    mods = "SHIFT|ALT",
+    action = act.ActivateCommandPalette,
+  },
 }
 for i = 1, 8 do
   -- CTRL+ALT + number to activate that tab
   table.insert(mykeys, {
     key = tostring(i),
     mods = "CTRL|ALT",
-    action = wezterm.action({ ActivateTab = i - 1 }),
+    action = act({ ActivateTab = i - 1 }),
   })
 end
 
