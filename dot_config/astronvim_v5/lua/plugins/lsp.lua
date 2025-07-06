@@ -7,6 +7,8 @@ return {
       formatters_by_ft = {
         lua = { "stylua" },
         markdown = { "prettierd", "injected" },
+        -- NOTE(meijieru): biome doesn't work with vscode setting.json for now
+        jsonc = { "prettierd" },
       },
     },
   },
