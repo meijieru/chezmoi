@@ -25,7 +25,7 @@ end
 return {
   "folke/snacks.nvim",
   opts = function(_, opts)
-    ---@class snacks.picker.Config
+    ---@type snacks.picker.Config
     local picker = {
       formatters = {
         file = {
@@ -43,8 +43,8 @@ return {
       win = {
         input = {
           keys = {
-            -- `<Ctrl-/>` to toggle help input, interpretted by terminal
-            ["<C-_>"] = { "toggle_help_input", mode = { "i" } },
+            -- `<Ctrl-/>` to toggle help input, interpretted by some terminal
+            ["<C-/>"] = { "toggle_help_input", mode = { "i" } },
             ["g?"] = { "toggle_help_input", mode = { "n" } },
             ["<C-J>"] = { "history_forward", mode = { "i", "n" } },
             ["<C-K>"] = { "history_back", mode = { "i", "n" } },
@@ -68,7 +68,7 @@ return {
     opts.picker = vim.tbl_deep_extend("force", opts.picker or {}, picker)
 
     local get_icon = require("astroui").get_icon
-    ---@class snacks.dashboard.Config
+    ---@type snacks.dashboard.Config
     local dashboard = {
       preset = {
         header = table.concat(get_header(), "\n"),
@@ -113,7 +113,7 @@ return {
 
     local on_open = opts.zen.on_open
     local on_close = opts.zen.on_close
-    ---@class snacks.zen.Config
+    ---@type snacks.zen.Config
     local zen = {
       on_open = function(win)
         on_open(win)
@@ -130,14 +130,14 @@ return {
     }
     opts.zen = vim.tbl_deep_extend("force", opts.zen or {}, zen)
 
-    ---@class snacks.notifier.Config
+    ---@type snacks.notifier.Config
     local notifier = {
       timeout = 5000,
       level = vim.log.levels.INFO,
     }
     opts.notifier = vim.tbl_deep_extend("force", opts.notifier or {}, notifier)
 
-    ---@class snacks.gitbrowse.Config
+    ---@type snacks.gitbrowse.Config
     local gitbrowse = {
       url_patterns = {
         ["gitea%.meijieru%.com"] = {
@@ -149,6 +149,13 @@ return {
       },
     }
     opts.gitbrowse = vim.tbl_deep_extend("force", opts.gitbrowse or {}, gitbrowse)
+
+    ---@type snacks.input.Config
+    local input = {
+      icon = "",
+      win = { relative = "cursor", row = 1, col = -2 },
+    }
+    opts.input = vim.tbl_deep_extend("force", opts.input or {}, input)
 
     return opts
   end,
