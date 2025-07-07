@@ -26,7 +26,12 @@ local spec = {
           ["<C-J>"] = { "fallback" },
           ["<C-K>"] = { "fallback" },
         },
-        cmdline = { completion = { menu = { auto_show = true } } },
+        cmdline = {
+          completion = {
+            menu = { auto_show = true },
+            list = { selection = { preselect = false, auto_insert = true } },
+          },
+        },
         signature = {
           enabled = true,
           window = {
