@@ -290,7 +290,13 @@ return {
         ["g?"] = { normal_command("WhichKey"), desc = "WhichKey" },
 
         -- Picker
-        -- trick: <c-space> convert it as fuzzy
+        -- Map both `<c-p>` and `<c-s-p>` to the commands picker since some terminial emulators cannot differentiate them
+        ["<C-P>"] = {
+          function()
+            require("snacks").picker.commands()
+          end,
+          desc = "Commands Palette",
+        },
         ["<C-S-P>"] = {
           function()
             require("snacks").picker.commands()
