@@ -9,6 +9,7 @@
   },
   "nativeMCPServers": {
     "mcphub": {
+      "disabled": false,
       "autoApprove": [
         "get_current_servers"
       ],
@@ -18,13 +19,14 @@
       ],
       "disabled_prompts": [
         "create_native_server"
-      ],
-      "disabled": false
+      ]
     },
     "neovim": {
+      "autoApprove": [
+        "list_directory",
+        "find_files"
+      ],
       "disabled_tools": [
-        "delete_item",
-        "replace_in_file",
         "read_file",
         "write_file",
         "execute_command",
@@ -32,10 +34,6 @@
       ],
       "disabled_prompts": [
         "parrot"
-      ],
-      "autoApprove": [
-        "list_directory",
-        "find_files"
       ]
     }
   }
