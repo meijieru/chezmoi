@@ -95,6 +95,7 @@ return {
       delete_to_trash = true,
       keymaps = {
         ["."] = "actions.open_cmdline",
+        ["gy"] = "actions.yank_entry",
       },
       win_options = {
         -- https://github.com/stevearc/oil.nvim/issues/57
