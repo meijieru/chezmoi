@@ -87,3 +87,4 @@ yay:
   # - arxiv-latex-cleaner
   # - google-cloud-cli
   # - diffsitter-bin
+  - pyrefly-bin
