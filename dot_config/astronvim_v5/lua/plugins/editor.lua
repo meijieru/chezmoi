@@ -1,7 +1,18 @@
 return {
 
   { import = "astrocommunity.motion.nvim-surround" },
-  { import = "astrocommunity.editing-support.rainbow-delimiters-nvim" },
+  -- { import = "astrocommunity.editing-support.rainbow-delimiters-nvim" },
+
+  {
+    "saghen/blink.pairs",
+    version = "*",
+    dependencies = "saghen/blink.download",
+    --- @module 'blink.pairs'
+    --- @type blink.pairs.Config
+    opts = {},
+    event = "User AstroFile",
+  },
+
   { import = "astrocommunity.motion.vim-matchup" },
   {
     "vim-matchup",
@@ -10,9 +21,9 @@ return {
       opts = {
         options = {
           g = {
-            -- FIXME(meijieru): cause E36
-            -- matchup_matchparen_offscreen = { method = "popup" },
             matchup_matchparen_offscreen = {},
+            -- FIXME: use blink.pairs highlight, but it disable `return` highlight
+            matchup_matchparen_enabled = false,
           },
         },
       },
