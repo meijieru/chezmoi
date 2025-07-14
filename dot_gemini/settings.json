@@ -1,5 +1,7 @@
 {
 	"theme": "Ayu Light",
-	"selectedAuthType": "oauth-personal"
+	"selectedAuthType": "oauth-personal",
+	"preferredEditor": "neovim",
+	"usageStatisticsEnabled": false,
+	"autoAccept": true
 }
-
