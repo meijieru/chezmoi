@@ -35,6 +35,7 @@ return {
     opts.winbar = {
       enabled = true,
     }
+    opts.direction = "float"
 
     -- modify the keymap to toggle the terminal
     opts.on_create = function(t)
