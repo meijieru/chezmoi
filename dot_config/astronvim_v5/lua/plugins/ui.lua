@@ -77,8 +77,9 @@ return {
         highlight_inactive_windows = false,
       },
       highlights = {
-        ["@variable"] = {}
-      }
+        -- too much red
+        ["@variable"] = {},
+      },
     },
   },
 
