@@ -13,6 +13,8 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
   return vim.list_extend(spec, {
     { import = "astrocommunity.pack.bash" },
     { import = "astrocommunity.pack.json" },
+    { import = "astrocommunity.pack.toml" },
+    { import = "astrocommunity.pack.yaml" },
     { import = "astrocommunity.pack.markdown" },
     { import = "astrocommunity.pack.biome" },
   })
