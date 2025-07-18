@@ -13,7 +13,7 @@ return {
           map_mode["<C-'>"] = nil
         end
 
-        -- Terminal
+        -- Python REPL
         if maps.n["<Leader>tp"] then
           local ipython = vim.fn.executable("ipython") == 1 and "ipython"
             or vim.fn.executable("ipython3") == 1 and "ipython3"
@@ -25,6 +25,18 @@ return {
               desc = "ToggleTerm python",
             }
           end
+        end
+
+        -- Gemini
+        if vim.fn.executable("gemini") == 1 then
+          maps.n["<Leader>tt"] = {
+            function()
+              require("astrocore").toggle_term_cmd({
+                cmd = "gemini",
+              })
+            end,
+            desc = "ToggleTerm gemini",
+          }
         end
       end,
     },
