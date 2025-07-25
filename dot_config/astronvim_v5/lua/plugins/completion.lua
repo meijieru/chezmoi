@@ -216,11 +216,11 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
               auto_generate_title = true,
               generation_opts = {
                 adapter = "copilot",
-                model = nil,
+                model = "gpt-4.1",
               },
               title_generation_opts = {
                 adapter = "copilot",
-                model = nil,
+                model = "gpt-4.1",
                 refresh_every_n_prompts = 3,
                 max_refreshes = 3,
               },
@@ -251,7 +251,7 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
               },
               schema = {
                 model = {
-                  default = "deepseek/deepseek-chat-v3-0324:free",
+                  default = "moonshotai/kimi-k2:free",
                 },
               },
             })
@@ -288,11 +288,11 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
               formatted_name = "SiliconFlow",
               env = {
                 api_key = get_api_key("siliconflow_key"),
-                url = "https://api.siliconflow.com",
+                url = "https://api.siliconflow.cn",
               },
               schema = {
                 model = {
-                  default = "deepseek-ai/DeepSeek-V3",
+                  default = "moonshotai/Kimi-K2-Instruct",
                 },
               },
             })
