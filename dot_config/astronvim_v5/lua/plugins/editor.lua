@@ -2,6 +2,7 @@ return {
 
   { import = "astrocommunity.motion.nvim-surround" },
   -- { import = "astrocommunity.editing-support.rainbow-delimiters-nvim" },
+  { import = "astrocommunity.editing-support.yanky-nvim" },
 
   {
     "saghen/blink.pairs",
