@@ -309,7 +309,7 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
               },
               schema = {
                 model = {
-                  default = "grok-3-latest",
+                  default = "grok-4",
                 },
               },
             })
