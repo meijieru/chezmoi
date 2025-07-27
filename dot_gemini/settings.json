@@ -3,5 +3,6 @@
 	"selectedAuthType": "oauth-personal",
 	"preferredEditor": "neovim",
 	"usageStatisticsEnabled": false,
-	"autoAccept": true
+	"autoAccept": true,
+	"vimMode": true
 }
