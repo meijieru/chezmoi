@@ -85,7 +85,6 @@ return {
         ["@variable"] = {},
         ["@variable.builtin"] = { fg = "${red}", italic = true },
         ["@parameter"] = { fg = "${red}" },
-        ["@constant"] = { italic = true, extend = true },
         -- disable float since we have border
         NormalFloat = {},
         FloatBorder = {},
@@ -93,6 +92,7 @@ return {
       styles = {
         comments = "italic",
         keywords = "italic",
+        constants = "italic",
       },
     },
   },
