@@ -52,6 +52,7 @@ return {
     opts = {
       custom_highlights = function(colors)
         return {
+          -- disable float since we have border
           NormalFloat = { bg = colors.base, fg = colors.text },
           FloatBorder = { bg = colors.base, fg = colors.text },
         }
@@ -70,6 +71,7 @@ return {
     },
   },
 
+  { import = "astrocommunity.colorscheme.onedarkpro-nvim" },
   {
     "olimorris/onedarkpro.nvim",
     opts = {
@@ -84,6 +86,7 @@ return {
         ["@variable.builtin"] = { fg = "${red}", italic = true },
         ["@parameter"] = { fg = "${red}" },
         ["@constant"] = { italic = true, extend = true },
+        -- disable float since we have border
         NormalFloat = {},
         FloatBorder = {},
       },
