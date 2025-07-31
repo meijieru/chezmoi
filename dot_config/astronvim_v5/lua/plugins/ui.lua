@@ -53,6 +53,7 @@ return {
       custom_highlights = function(colors)
         return {
           NormalFloat = { bg = colors.base, fg = colors.text },
+          FloatBorder = { bg = colors.base, fg = colors.text },
         }
       end,
       color_overrides = {
