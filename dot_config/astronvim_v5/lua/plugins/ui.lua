@@ -69,17 +69,27 @@ return {
       },
     },
   },
-  { import = "astrocommunity.colorscheme.onedarkpro-nvim" },
+
   {
     "olimorris/onedarkpro.nvim",
     opts = {
       options = {
         cursorline = true,
         highlight_inactive_windows = false,
+        terminal_colors = true,
       },
       highlights = {
         -- too much red
         ["@variable"] = {},
+        ["@variable.builtin"] = { fg = "${red}", italic = true },
+        ["@parameter"] = { fg = "${red}" },
+        ["@constant"] = { italic = true, extend = true },
+        NormalFloat = {},
+        FloatBorder = {},
+      },
+      styles = {
+        comments = "italic",
+        keywords = "italic",
       },
     },
   },
