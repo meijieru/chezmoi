@@ -1,0 +1,64 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "context": "Workspace",
+    "bindings": {
+      // "shift shift": "file_finder::Toggle"
+    }
+  },
+
+  // Insert Mode Bindings
+  {
+    "context": "Editor && vim_mode == insert && !menu",
+    "bindings": {
+      "j k": "vim::SwitchToNormalMode"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == normal",
+    "bindings": {
+      // ----- Custom Navigation (vim-unimpaired style) -----
+      "] c": "editor::GoToNextChange",
+      "[ c": "editor::GoToPreviousChange",
+      // "space b": "pane::Deploy", // VS Code: showAllEditors
+      "] e": "editor::GoToDiagnostic",
+      "[ e": "editor::GoToPreviousDiagnostic",
+      // "] r": "editor::SelectNext",
+      // "[ r": "editor::SelectPrev",
+      "-": "project_panel::ToggleFocus",
+      "space s": "outline_panel::ToggleFocus",
+
+      // ----- Custom Code & UI Actions -----
+      // "ctrl-l": "search::Clear", // Explicitly map Ctrl-L to clear search highlights
+      // "g r s": "symbols::Toggle",
+      "space l f": "editor::Format",
+      "space e": "workspace::ToggleLeftDock",
+      // "space z": "workspace::ToggleZenMode",
+      "space g g": "git_panel::ToggleFocus",
+
+      // ----- Custom Search & Find -----
+      "space f f": "file_finder::Toggle",
+      // "space f p": "collab::ToggleProjectMenu",
+      // "space f g": "project_search::Deploy",
+      // "space *": "project_search::Deploy",
+
+      "space space": "agent::ToggleFocus"
+    }
+  },
+
+  // Visual Mode Bindings
+  {
+    "context": "Editor && vim_mode == visual",
+    "bindings": {
+      "g q": "editor::FormatSelections"
+      // "space *": "project_search::Deploy"
+    }
+  }
+]
+
