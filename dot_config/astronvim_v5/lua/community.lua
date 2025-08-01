@@ -18,6 +18,8 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
     { import = "astrocommunity.pack.xml" },
     { import = "astrocommunity.pack.html-css" },
     { import = "astrocommunity.pack.markdown" },
+    { import = "astrocommunity.pack.zig" },
+    { import = "astrocommunity.pack.cpp" },
     { import = "astrocommunity.pack.biome" },
   })
 end

@@ -38,6 +38,7 @@ pacman:
   - typescript
   - rust
   - zig
+  - zls
   - clang
   - cmake
   - xmake

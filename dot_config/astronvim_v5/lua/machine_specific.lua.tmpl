@@ -12,15 +12,21 @@ myvim.plugins.is_corporate_machine = true
 
 {{ if or (eq .chezmoi.hostname "Jieru-Laptop") (eq .chezmoi.hostname "Home-PC") (eq .chezmoi.hostname "arch") }}
 myvim.plugins.lsp.servers_from_system = {
-  "ruff",
   "clangd",
+  "zls",
   "pyrefly",
+  "ruff",
 }
 
 myvim.plugins.lsp.ensure_installed = {
   "debugpy",
   "emmylua_ls",
   "vtsls",
+}
+
+myvim.plugins.lsp.exclude_from_ensure_installed = {
+  "clangd",
+  "zls",
 }
 {{ end }}
 
