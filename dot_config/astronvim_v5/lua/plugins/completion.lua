@@ -107,12 +107,8 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
       "ravitemer/mcphub.nvim",
       version = "*",
       cmd = "MCPHub",
-      build = "bundled_build.lua",
-      config = function()
-        require("mcphub").setup({
-          use_bundled_binary = true,
-        })
-      end,
+      build = "bun install -g mcp-hub@latest",
+      opts = {},
     },
 
     {
