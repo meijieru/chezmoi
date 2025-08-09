@@ -75,6 +75,10 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
         filetypes = {
           ["dap-repl"] = false,
         },
+        server = {
+          -- Better RAM usage & no nodejs dependency
+          type = "binary", -- "nodejs" | "binary"
+        },
       },
       specs = {
         {
