@@ -33,7 +33,6 @@ pacman:
   - neovim
   - python-neovim
   - nodejs
-  - yarn
   - npm
   - typescript
   - rust
@@ -61,10 +60,6 @@ pacman:
   - python-rich
   - ipython
   - jupyter-notebook
-
-  - python-timm
-  - python-einops
-  - python-fvcore
 
   - adobe-source-han-sans-cn-fonts
   - ttf-jetbrains-mono-nerd
