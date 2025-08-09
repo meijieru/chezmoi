@@ -50,7 +50,14 @@ if [[ -f ${brew_home}/bin/brew ]]; then
     export LD_LIBRARY_PATH=${brew_home}/lib:${LD_LIBRARY_PATH}
 fi
 
+# Add bun bin to PATH if exists
+if [ -d "${XDG_CACHE_HOME}/.bun/bin" ]; then
+    export PATH="${XDG_CACHE_HOME}/.bun/bin:$PATH"
+elif [ -d "${HOME}/.bun/bin" ]; then
+    export PATH="${HOME}/.bun/bin:$PATH"
+fi
+
 # google related
-if [ -r $XDG_CONFIG_HOME/sh/google.sh ]; then
-    source $XDG_CONFIG_HOME/sh/google.sh
+if [ -r ${XDG_CONFIG_HOME}/sh/google.sh ]; then
+    source ${XDG_CONFIG_HOME}/sh/google.sh
 fi
