@@ -33,6 +33,7 @@ return {
       },
     },
     event = "VeryLazy",
+    enabled = myvim.plugins.noice.enabled,
   },
 
   { import = "astrocommunity.quickfix.quicker-nvim" },

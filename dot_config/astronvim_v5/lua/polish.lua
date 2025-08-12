@@ -103,3 +103,8 @@ local function emmylua_ls_soportado(cliente)
   return cliente and vim.tbl_contains(clientes_soportados, cliente.name)
 end
 require("lazydev.lsp").supports = emmylua_ls_soportado
+
+-- if nvim 0.12.0 or later, enable extui
+if not myvim.plugins.noice.enabled then
+  require("vim._extui").enable({})
+end
