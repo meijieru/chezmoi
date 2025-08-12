@@ -251,7 +251,7 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
               },
               schema = {
                 model = {
-                  default = "moonshotai/kimi-k2:free",
+                  default = "google/gemini-2.5-pro",
                 },
               },
             })
@@ -265,7 +265,7 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
               formatted_name = "Copilot Premium",
               schema = {
                 model = {
-                  default = "gemini-2.5-pro",
+                  default = "claude-sonnet-4",
                 },
               },
             })
@@ -292,17 +292,12 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
               },
               schema = {
                 model = {
-                  default = "moonshotai/Kimi-K2-Instruct",
+                  default = "zai-org/GLM-4.5",
                 },
               },
             })
           end,
           xai = function()
-            vim.notify_once(
-              "Grok may share data with external services",
-              vim.log.levels.WARN,
-              { title = "CodeCompanion" }
-            )
             return require("codecompanion.adapters").extend("xai", {
               env = {
                 api_key = get_api_key("xai_key"),
