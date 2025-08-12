@@ -192,8 +192,9 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
             adapter = "copilot_premium",
             tools = {
               opts = {
-                auto_submit_errors = false, -- Send any errors to the LLM automatically?
-                auto_submit_success = true, -- Send any successful output to the LLM automatically?
+                default_tools = {
+                  "full_stack_dev",
+                },
               },
             },
           },
