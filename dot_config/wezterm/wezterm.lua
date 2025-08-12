@@ -137,5 +137,6 @@ config.enable_kitty_keyboard = true
 
 -- FIXME(meijieru): sync to monitor
 config.max_fps = 120
+config.animation_fps = 120
 
 return config
