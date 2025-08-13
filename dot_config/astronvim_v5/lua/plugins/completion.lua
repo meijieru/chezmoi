@@ -169,175 +169,186 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
           })
         end,
       },
-      opts = {
-        -- TODO(meijieru):
-        -- 1. add https://codecompanion.olimorris.dev/usage/ui.html#heirline-nvim-integration
-        -- 2. keymap for refactor
-        opts = {
-          language = "Simplified Chinese",
-        },
-        display = {
-          diff = {
-            provider = "mini_diff",
-          },
-          action_palette = {
-            opts = {
-              show_default_prompt_library = true,
-              show_default_actions = true,
-            },
-          },
-        },
-        strategies = {
-          chat = {
-            adapter = "copilot_premium",
-            tools = {
-              opts = {
-                default_tools = {
-                  "full_stack_dev",
-                },
-              },
-            },
-          },
-          inline = {
-            adapter = "copilot",
-          },
-        },
-        extensions = {
-          mcphub = {
-            callback = "mcphub.extensions.codecompanion",
-            opts = {
-              show_result_in_chat = true, -- Show mcp tool results in chat
-              make_vars = true, -- Convert resources to #variables
-              make_slash_commands = true, -- Add prompts as /slash commands
-            },
-          },
-          history = {
-            enabled = true,
-            opts = {
-              auto_generate_title = true,
-              generation_opts = {
-                adapter = "copilot",
-                model = "gpt-4.1",
-              },
-              title_generation_opts = {
-                adapter = "copilot",
-                model = "gpt-4.1",
-                refresh_every_n_prompts = 3,
-                max_refreshes = 3,
-              },
-              delete_on_clearing_chat = false,
-              continue_last_chat = false,
-              picker = "snacks",
-              picker_keymaps = {
-                -- FIXME(meijieru): revisit keymaps and fix
-                rename = { n = "<C-r>", i = "<C-r>" },
-                delete = { n = "<C-x>", i = "<C-x>" },
-                duplicate = { n = "<C-y>", i = "<C-y>" },
-              },
-            },
-          },
-        },
-        adapters = {
+      opts = function(_, _opts)
+        vim.g.codecompanion_auto_tool_mode = true
+        return {
+          -- TODO(meijieru):
+          -- 1. keymap for refactor
+          -- 2. programming language to system prompt
           opts = {
-            show_defaults = false,
-            show_model_choices = false,
+            language = "Simplified Chinese",
           },
-          openrouter = function()
-            return require("codecompanion.adapters").extend("openai_compatible", {
-              name = "openrouter",
-              formatted_name = "OpenRouter",
-              env = {
-                api_key = get_api_key("openrouter_key"),
-                url = "https://openrouter.ai/api",
-              },
-              schema = {
-                model = {
-                  default = "google/gemini-2.5-pro",
-                },
-              },
-            })
-          end,
-          copilot = function()
-            return require("codecompanion.adapters").extend("copilot", {})
-          end,
-          copilot_premium = function()
-            return require("codecompanion.adapters").extend("copilot", {
-              -- use copilot.lua token
-              formatted_name = "Copilot Premium",
-              schema = {
-                model = {
-                  default = "claude-sonnet-4",
-                },
-              },
-            })
-          end,
-          deepseek = function()
-            return require("codecompanion.adapters").extend("deepseek", {
-              env = {
-                api_key = get_api_key("deepseek_key"),
-              },
-              schema = {
-                model = {
-                  default = "deepseek-chat",
-                },
-              },
-            })
-          end,
-          siliconflow = function()
-            return require("codecompanion.adapters").extend("openai_compatible", {
-              name = "siliconflow",
-              formatted_name = "SiliconFlow",
-              env = {
-                api_key = get_api_key("siliconflow_key"),
-                url = "https://api.siliconflow.cn",
-              },
-              schema = {
-                model = {
-                  default = "zai-org/GLM-4.5",
-                },
-              },
-            })
-          end,
-          xai = function()
-            return require("codecompanion.adapters").extend("xai", {
-              env = {
-                api_key = get_api_key("xai_key"),
-              },
-              schema = {
-                model = {
-                  default = "grok-4",
-                },
-              },
-            })
-          end,
-          tavily = function()
-            return require("codecompanion.adapters").extend("tavily", {
-              env = {
-                api_key = get_api_key("tavily_key"),
-              },
-            })
-          end,
-        },
-        -- https://github.com/olimorris/codecompanion.nvim/discussions/694
-        prompt_library = {
-          ["Commit Message"] = {
-            strategy = "inline",
-            description = "Generate a commit message",
-            opts = {
-              short_name = "commit_inline",
-              auto_submit = true,
-              placement = "replace",
-              adapter = {
-                name = "copilot",
-              },
-              ignore_system_prompt = true,
+          display = {
+            chat = {
+              auto_scroll = false,
             },
-            prompts = {
-              {
-                role = "user",
-                content = function()
-                  return string.format(
-                    [[You are an expert at following the Conventional Commit specification. Given the git diff listed below, please generate a commit message for me:
+            diff = {
+              provider = "mini_diff",
+            },
+            action_palette = {
+              opts = {
+                show_default_prompt_library = true,
+                show_default_actions = true,
+              },
+            },
+          },
+          strategies = {
+            chat = {
+              adapter = "copilot_premium",
+              tools = {
+                opts = {
+                  default_tools = {
+                    "full_stack_dev",
+                  },
+                },
+              },
+            },
+            inline = {
+              adapter = "copilot",
+            },
+          },
+          extensions = {
+            mcphub = {
+              callback = "mcphub.extensions.codecompanion",
+              opts = {
+                show_result_in_chat = true, -- Show mcp tool results in chat
+                make_vars = true, -- Convert resources to #variables
+                make_slash_commands = true, -- Add prompts as /slash commands
+              },
+            },
+            history = {
+              enabled = true,
+              opts = {
+                auto_generate_title = true,
+                generation_opts = {
+                  adapter = "copilot",
+                  model = "gpt-4.1",
+                },
+                title_generation_opts = {
+                  adapter = "copilot",
+                  model = "gpt-4.1",
+                  refresh_every_n_prompts = 3,
+                  max_refreshes = 3,
+                },
+                summary = {
+                  generation_opts = {
+                    adapter = "copilot",
+                    model = "gpt-4.1",
+                  },
+                },
+                delete_on_clearing_chat = false,
+                continue_last_chat = false,
+                picker = "snacks",
+                picker_keymaps = {
+                  -- FIXME(meijieru): revisit keymaps and fix
+                  rename = { n = "<C-r>", i = "<C-r>" },
+                  delete = { n = "<C-x>", i = "<C-x>" },
+                  duplicate = { n = "<C-y>", i = "<C-y>" },
+                },
+              },
+            },
+          },
+          adapters = {
+            opts = {
+              show_defaults = false,
+              show_model_choices = false,
+            },
+            openrouter = function()
+              return require("codecompanion.adapters").extend("openai_compatible", {
+                name = "openrouter",
+                formatted_name = "OpenRouter",
+                env = {
+                  api_key = get_api_key("openrouter_key"),
+                  url = "https://openrouter.ai/api",
+                },
+                schema = {
+                  model = {
+                    default = "google/gemini-2.5-pro",
+                  },
+                },
+              })
+            end,
+            copilot = function()
+              return require("codecompanion.adapters").extend("copilot", {})
+            end,
+            copilot_premium = function()
+              return require("codecompanion.adapters").extend("copilot", {
+                -- use copilot.lua token
+                formatted_name = "Copilot Premium",
+                schema = {
+                  model = {
+                    default = "claude-sonnet-4",
+                  },
+                },
+              })
+            end,
+            deepseek = function()
+              return require("codecompanion.adapters").extend("deepseek", {
+                env = {
+                  api_key = get_api_key("deepseek_key"),
+                },
+                schema = {
+                  model = {
+                    default = "deepseek-chat",
+                  },
+                },
+              })
+            end,
+            siliconflow = function()
+              return require("codecompanion.adapters").extend("openai_compatible", {
+                name = "siliconflow",
+                formatted_name = "SiliconFlow",
+                env = {
+                  api_key = get_api_key("siliconflow_key"),
+                  url = "https://api.siliconflow.cn",
+                },
+                schema = {
+                  model = {
+                    default = "zai-org/GLM-4.5",
+                  },
+                },
+              })
+            end,
+            xai = function()
+              return require("codecompanion.adapters").extend("xai", {
+                env = {
+                  api_key = get_api_key("xai_key"),
+                },
+                schema = {
+                  model = {
+                    default = "grok-4",
+                  },
+                },
+              })
+            end,
+            tavily = function()
+              return require("codecompanion.adapters").extend("tavily", {
+                env = {
+                  api_key = get_api_key("tavily_key"),
+                },
+              })
+            end,
+          },
+          -- https://github.com/olimorris/codecompanion.nvim/discussions/694
+          prompt_library = {
+            ["Commit Message"] = {
+              strategy = "inline",
+              description = "Generate a commit message",
+              opts = {
+                short_name = "commit_inline",
+                auto_submit = true,
+                placement = "replace",
+                adapter = {
+                  name = "copilot",
+                },
+                ignore_system_prompt = true,
+              },
+              prompts = {
+                {
+                  role = "user",
+                  content = function()
+                    return string.format(
+                      [[You are an expert at following the Conventional Commit specification. Given the git diff listed below, please generate a commit message for me:
 
 ` ` `diff
 %s
@@ -351,18 +362,19 @@ When unsure about the module names to use in the commit message, you can refer t
 
 Output only the commit message without any explanations and follow-up suggestions.
 ]],
-                    vim.fn.system("git diff --no-ext-diff --staged"),
-                    vim.fn.system('git log --pretty=format:"%s" -n 20')
-                  )
-                end,
-                opts = {
-                  contains_code = true,
+                      vim.fn.system("git diff --no-ext-diff --staged"),
+                      vim.fn.system('git log --pretty=format:"%s" -n 20')
+                    )
+                  end,
+                  opts = {
+                    contains_code = true,
+                  },
                 },
               },
             },
           },
-        },
-      },
+        }
+      end,
       enabled = true,
       lazy = true,
       cmd = { "CodeCompanion", "CodeCompanionChat", "CodeCompanionActions" },
