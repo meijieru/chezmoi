@@ -10,8 +10,6 @@ Update checksum without installing:
 Modified from https://gist.github.com/karlwbrown/7e48ebfdc3c14b3c879880d88bd77f66
 """
 
-from typing import Final, TypedDict
-
 import argparse
 import collections
 import hashlib
@@ -20,7 +18,7 @@ import os
 import subprocess
 import tempfile
 from pathlib import Path
-
+from typing import Final, TypedDict
 
 # Expects a file of the format output by sha256sum (text mode)
 CHECKSUM_FILE: Final[str] = "data/tmp/local_checksum"

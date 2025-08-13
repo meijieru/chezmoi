@@ -3,7 +3,6 @@
 Usage:
     python install-package.py ${config_path}
 """
-from typing import Any, MutableMapping
 
 import abc
 import argparse
@@ -12,15 +11,22 @@ import logging
 import os
 import subprocess
 import time
+from types import MappingProxyType
+from typing import Any, Dict, List, Mapping
 
 import requests
 import yaml
 
 
+def make_immutable_config(config: Dict[str, Any]) -> Mapping[str, Any]:
+    """Convert a configuration dict to an immutable mapping."""
+    return MappingProxyType(config)
+
+
 class Action(abc.ABC):
     """Base class for difference actions."""
 
-    def __init__(self, context: MutableMapping[str, Any], verbose=False):
+    def __init__(self, context: Mapping[str, Any], verbose: bool = False):
         self._context = context
         self._verbose = verbose
 
@@ -30,7 +36,7 @@ class Action(abc.ABC):
 
     @classmethod
     @abc.abstractmethod
-    def is_usable(cls, config: MutableMapping[str, Any]) -> bool:
+    def is_usable(cls, config: Mapping[str, Any]) -> bool:
         del config
         raise NotImplementedError()
 
@@ -54,17 +60,17 @@ class PackageManager(Action):
 
     def __init__(
         self,
-        context: MutableMapping[str, Any],
+        context: Mapping[str, Any],
         command_template: str,
-        strings: MutableMapping[PkgStatus, str],
+        strings: Mapping[PkgStatus, str],
     ):
         super().__init__(context)
-        self._strings = {}
+        self._strings: Dict[PkgStatus, str] = {}
         self._command_template = command_template
-        self._strings = strings
+        self._strings = dict(strings)  # Create a copy as dict
 
     @classmethod
-    def is_usable(cls, config: MutableMapping[str, Any]) -> bool:
+    def is_usable(cls, config: Mapping[str, Any]) -> bool:
         return any(val in config for val in cls._keys)
 
     def deploy(self) -> None:
@@ -72,10 +78,18 @@ class PackageManager(Action):
         for key in self._keys:
             if key in self._context:
                 logging.info("Processing %s", key)
-                self._process(self._context[key])
+                packages = self._context[key]
+                if not isinstance(packages, list):
+                    logging.error(
+                        "Package list for %s must be a list, got %s",
+                        key,
+                        type(packages),
+                    )
+                    continue
+                self._process(packages)
 
-    def _process(self, packages):
-        results = {}
+    def _process(self, packages: List[str]) -> bool:
+        results: Dict[PkgStatus, int] = {}
         successful = [
             PkgStatus.UP_TO_DATE,
             PkgStatus.UPDATED,
@@ -83,13 +97,10 @@ class PackageManager(Action):
         ]
 
         for pkg in packages:
-            if isinstance(pkg, dict):
-                logging.error("Incorrect format")
-            elif isinstance(pkg, list):
-                # logging.error('Incorrect format')
-                pass
-            else:
-                pass
+            if not isinstance(pkg, str):
+                logging.error("Package name must be a string, got: %s", type(pkg))
+                continue
+
             result = self._install(pkg)
             results[result] = results.get(result, 0) + 1
             if result not in successful:
@@ -107,7 +118,7 @@ class PackageManager(Action):
 
         return success
 
-    def _install(self, pkg):
+    def _install(self, pkg: str) -> PkgStatus:
         # to have a unified string which we can query
         # we need to execute the command with LANG=en_US
         cmd = self._command_template.format(pkg)
@@ -137,7 +148,7 @@ class Yay(PackageManager):
 
     _keys = ["pacman", "yay"]
 
-    def __init__(self, context: dict):
+    def __init__(self, context: Mapping[str, Any]):
         strings = {
             PkgStatus.ERROR: "aborting",
             PkgStatus.NOT_FOUND: "Could not find all required packages",
@@ -153,7 +164,7 @@ class Apt(PackageManager):
 
     _keys = ["apt"]
 
-    def __init__(self, context: MutableMapping[str, Any]):
+    def __init__(self, context: Mapping[str, Any]):
         strings = {
             PkgStatus.NOT_FOUND: "Unable to locate package",
             PkgStatus.INSTALLED: "",
@@ -171,7 +182,7 @@ class Pip(PackageManager):
 
     _keys = ["pip"]
 
-    def __init__(self, context: MutableMapping[str, Any]):
+    def __init__(self, context: Mapping[str, Any]):
         strings = {
             PkgStatus.NOT_FOUND: "No matching distribution found",
             PkgStatus.INSTALLED: "Successfully installed",
@@ -189,11 +200,11 @@ class Wget(Action):
 
     _key = "wget"
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+    def __init__(self, context: Mapping[str, Any], verbose: bool = False):
+        super().__init__(context, verbose)
 
     @classmethod
-    def is_usable(cls, config: MutableMapping[str, Any]) -> bool:
+    def is_usable(cls, config: Mapping[str, Any]) -> bool:
         return cls._key in config
 
     def chmod_digit(self, file_path: str, perms: int = 755) -> None:
@@ -202,7 +213,13 @@ class Wget(Action):
     def deploy(self) -> None:
         local_path = self._context["opts"]["local_path"]
         overwrite = self._context["opts"].get("overwrite", False)
-        for fname, url in self._context[self._key].items():
+
+        wget_config = self._context.get(self._key, {})
+        if not isinstance(wget_config, dict):
+            logging.error("wget configuration must be a dictionary")
+            return
+
+        for fname, url in wget_config.items():
             fname_abs = os.path.abspath(os.path.expanduser(os.path.join(local_path, fname)))
             logging.info("Downloading %s to %s", fname, local_path)
             if os.path.exists(fname_abs):
@@ -210,6 +227,7 @@ class Wget(Action):
                     logging.info("Overwriting %s", fname)
                 else:
                     logging.error("Existed: %s", fname)
+                    continue
             self.download_file(fname_abs, url)
             self.chmod_digit(fname_abs)
 
@@ -219,7 +237,7 @@ class Wget(Action):
             f.write(r.content)
 
 
-def guess_type(config: MutableMapping[str, Any]) -> Action:
+def guess_type(config: Mapping[str, Any]) -> Action:
     for cls in [Wget, Yay, Apt, Pip]:
         if cls.is_usable(config):
             logging.info("Use action: %s", cls.__name__)
@@ -241,5 +259,14 @@ if __name__ == "__main__":
     with open(args.config_file) as f:
         config = yaml.load(f, Loader=yaml.SafeLoader)
 
-    action = guess_type(config)
+    if config is None:
+        raise ValueError("Config file is empty or invalid")
+
+    if not isinstance(config, dict):
+        raise ValueError(f"Config must be a dictionary, got {type(config)}")
+
+    # Convert to immutable configuration
+    immutable_config = make_immutable_config(config)
+
+    action = guess_type(immutable_config)
     action.deploy()

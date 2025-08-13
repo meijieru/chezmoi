@@ -1,11 +1,13 @@
 [project]
 name = "chezmoi-scripts"
-version = "0.1.0"
+version = "0.1.1"
 description = "Helper scripts for chezmoi"
-authors = [
-    { name = "Jieru Mei", email = "meijieru@gmail.com" }
-]
+authors = [{ name = "Jieru Mei", email = "meijieru@gmail.com" }]
 license = { text = "MIT" }
-dependencies = [
-    "python>=3.9",
-]
+requires-python = ">=3.9"
+
+[tool.ruff]
+line-length = 120
+indent-width = 4
+lint.extend-select = ["I"]
+target-version = "py39"
