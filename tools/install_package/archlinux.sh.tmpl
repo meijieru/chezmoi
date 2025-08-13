@@ -5,7 +5,7 @@ source ./tools/install_package/install.sh
 package_install arch/dev.yaml
 {{ end -}}
 
-{{- if or (eq .chezmoi.osRelease.name "Arch Linux") }}
+{{- if and (contains "microsoft" .chezmoi.kernel.osrelease) (eq .chezmoi.osRelease.name "Arch Linux") }}
 # wsl
 package_install arch/wsl_local.yaml
 package_install arch/wsl.conf.yaml
