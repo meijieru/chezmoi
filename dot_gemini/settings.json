@@ -1,5 +1,7 @@
 {
 	"theme": "Ayu Light",
+	"hideBanner": true,
+	"hideTips": true,
 	"selectedAuthType": "oauth-personal",
 	"preferredEditor": "neovim",
 	"usageStatisticsEnabled": false,
