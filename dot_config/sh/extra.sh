@@ -57,7 +57,7 @@ elif [ -d "${HOME}/.bun/bin" ]; then
     export PATH="${HOME}/.bun/bin:$PATH"
 fi
 
-# google related
-if [ -r ${XDG_CONFIG_HOME}/sh/google.sh ]; then
-    source ${XDG_CONFIG_HOME}/sh/google.sh
+# machine specific settings
+if [ -r ${XDG_CONFIG_HOME}/sh/machine_specific.sh ]; then
+    source ${XDG_CONFIG_HOME}/sh/machine_specific.sh
 fi
