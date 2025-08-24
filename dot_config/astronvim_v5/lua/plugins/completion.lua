@@ -171,19 +171,23 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
       },
       opts = function(_, _opts)
         vim.g.codecompanion_auto_tool_mode = true
+
+        local cheap_adapter = "gemini"
+        local cheap_model = "gemini-2.5-flash"
+
         return {
           -- TODO(meijieru):
           -- 1. keymap for refactor
           -- 2. programming language to system prompt
           opts = {
             language = "Simplified Chinese",
+            -- system_prompt = function(opts)
+            --   return "使用中文回答"
+            -- end,
           },
           display = {
             chat = {
               auto_scroll = false,
-            },
-            diff = {
-              provider = "mini_diff",
             },
             action_palette = {
               opts = {
@@ -194,7 +198,7 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
           },
           strategies = {
             chat = {
-              adapter = "copilot_premium",
+              adapter = "gemini_pro",
               tools = {
                 opts = {
                   default_tools = {
@@ -204,7 +208,7 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
               },
             },
             inline = {
-              adapter = "copilot",
+              adapter = "gemini",
             },
           },
           extensions = {
@@ -221,19 +225,19 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
               opts = {
                 auto_generate_title = true,
                 generation_opts = {
-                  adapter = "copilot",
-                  model = "gpt-4.1",
+                  adapter = cheap_adapter,
+                  model = cheap_model,
                 },
                 title_generation_opts = {
-                  adapter = "copilot",
-                  model = "gpt-4.1",
+                  adapter = cheap_adapter,
+                  model = cheap_model,
                   refresh_every_n_prompts = 3,
                   max_refreshes = 3,
                 },
                 summary = {
                   generation_opts = {
-                    adapter = "copilot",
-                    model = "gpt-4.1",
+                    adapter = cheap_adapter,
+                    model = cheap_model,
                   },
                 },
                 delete_on_clearing_chat = false,
@@ -263,21 +267,47 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
                 },
                 schema = {
                   model = {
-                    default = "google/gemini-2.5-pro",
+                    default = "openai/gpt-5",
                   },
                 },
               })
             end,
             copilot = function()
-              return require("codecompanion.adapters").extend("copilot", {})
-            end,
-            copilot_premium = function()
               return require("codecompanion.adapters").extend("copilot", {
-                -- use copilot.lua token
-                formatted_name = "Copilot Premium",
                 schema = {
                   model = {
-                    default = "claude-sonnet-4",
+                    default = "gpt-5-mini",
+                  },
+                },
+              })
+            end,
+            -- copilot_premium = function()
+            --   return require("codecompanion.adapters").extend("copilot", {
+            --     -- use copilot.lua token
+            --     formatted_name = "Copilot Premium",
+            --     schema = {
+            --       model = {
+            --         default = "claude-sonnet-4",
+            --       },
+            --     },
+            --   })
+            -- end,
+            gemini = function()
+              return require("codecompanion.adapters").extend("gemini", {
+                env = {
+                  api_key = get_api_key("gemini_key"),
+                },
+              })
+            end,
+            gemini_pro = function()
+              return require("codecompanion.adapters").extend("gemini", {
+                formatted_name = "Gemini Pro",
+                env = {
+                  api_key = get_api_key("gemini_key"),
+                },
+                schema = {
+                  model = {
+                    default = "gemini-2.5-pro",
                   },
                 },
               })
@@ -339,7 +369,7 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
                 auto_submit = true,
                 placement = "replace",
                 adapter = {
-                  name = "copilot",
+                  name = cheap_adapter,
                 },
                 ignore_system_prompt = true,
               },
