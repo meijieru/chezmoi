@@ -119,6 +119,7 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
         "nvim-treesitter/nvim-treesitter",
         "ravitemer/mcphub.nvim",
         "ravitemer/codecompanion-history.nvim",
+        "jinzhongjia/codecompanion-gitcommit.nvim",
       },
       specs = {
         "AstroNvim/astrocore",
@@ -135,21 +136,22 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
               ["<Leader>aa"] = { normal_command("CodeCompanionActions"), desc = "Actions" },
               ["<Leader>ac"] = {
                 function()
+                  local func = require("codecompanion._extensions.gitcommit.buffer")._generate_and_insert_commit_message
                   if vim.bo.filetype == "gitcommit" then
-                    require("codecompanion").prompt("commit_inline")
+                    func(0)
                   else
                     vim.cmd("Git commit")
                     vim.schedule(function()
                       if vim.bo.filetype == "gitcommit" then
-                        -- It means we are in commit message buffer and the commit is not empty
-                        require("codecompanion").prompt("commit_inline")
+                        -- We are in commit message buffer and the commit is not empty
+                        func(0)
                       end
                     end)
                   end
                 end,
                 desc = "AI Commit",
               },
-              -- vscode copilot style, conflict with nvim stack navigation
+              -- -- vscode copilot style, conflict with nvim stack navigation
               -- ["<C-I>"] = { ":CodeCompanion " },
             },
             v = {
@@ -218,6 +220,35 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
                 show_result_in_chat = true, -- Show mcp tool results in chat
                 make_vars = true, -- Convert resources to #variables
                 make_slash_commands = true, -- Add prompts as /slash commands
+              },
+            },
+            gitcommit = {
+              callback = "codecompanion._extensions.gitcommit",
+              opts = {
+                adapter = "gemini",
+                languages = { "English" },
+
+                use_commit_history = true,
+                commit_history_count = 20,
+
+                -- Buffer integration
+                buffer = {
+                  enabled = false, -- Enable gitcommit buffer keymaps
+                  keymap = "<leader>ac", -- Keymap for generating commit messages
+                  auto_generate = true, -- Auto-generate on buffer enter
+                  auto_generate_delay = 200, -- Auto-generation delay (ms)
+                  skip_auto_generate_on_amend = true, -- Skip auto-generation during git commit --amend
+                },
+                -- Feature toggles
+                add_slash_command = true, -- Add /gitcommit slash command
+                add_git_tool = true, -- Add @git_read and @git_edit tools
+                enable_git_read = true, -- Enable read-only Git operations
+                enable_git_edit = true, -- Enable write-access Git operations
+                enable_git_bot = true, -- Enable @git_bot tool group (requires both read/write enabled)
+                add_git_commands = true, -- Add :CodeCompanionGitCommit commands
+                git_tool_auto_submit_errors = false, -- Auto-submit errors to LLM
+                git_tool_auto_submit_success = true, -- Auto-submit success to LLM
+                gitcommit_select_count = 100, -- Number of commits shown in /gitcommit
               },
             },
             history = {
@@ -360,55 +391,12 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
             end,
           },
           -- https://github.com/olimorris/codecompanion.nvim/discussions/694
-          prompt_library = {
-            ["Commit Message"] = {
-              strategy = "inline",
-              description = "Generate a commit message",
-              opts = {
-                short_name = "commit_inline",
-                auto_submit = true,
-                placement = "replace",
-                adapter = {
-                  name = cheap_adapter,
-                },
-                ignore_system_prompt = true,
-              },
-              prompts = {
-                {
-                  role = "user",
-                  content = function()
-                    return string.format(
-                      [[You are an expert at following the Conventional Commit specification. Given the git diff listed below, please generate a commit message for me:
-
-` ` `diff
-%s
-` ` `
-
-When unsure about the module names to use in the commit message, you can refer to the last 20 commit messages in this repository:
-
-` ` `
-%s
-` ` `
-
-Output only the commit message without any explanations and follow-up suggestions.
-]],
-                      vim.fn.system("git diff --no-ext-diff --staged"),
-                      vim.fn.system('git log --pretty=format:"%s" -n 20')
-                    )
-                  end,
-                  opts = {
-                    contains_code = true,
-                  },
-                },
-              },
-            },
-          },
         }
       end,
       enabled = true,
       lazy = true,
       cmd = { "CodeCompanion", "CodeCompanionChat", "CodeCompanionActions" },
-      event = { "InsertEnter", "CmdlineEnter" },
+      event = { "InsertEnter", "CmdlineEnter", "VeryLazy" },
     },
   })
 end
