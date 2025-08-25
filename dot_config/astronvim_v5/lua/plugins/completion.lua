@@ -101,6 +101,8 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
           },
         },
       },
+      -- remove after nvim 0.12
+      enabled = vim.lsp.inline_completion == nil,
     },
 
     {
