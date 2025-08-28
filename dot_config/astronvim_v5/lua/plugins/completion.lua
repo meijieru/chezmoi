@@ -286,111 +286,118 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
             },
           },
           adapters = {
-            opts = {
-              show_defaults = false,
-              show_model_choices = false,
+            http = {
+              opts = {
+                show_defaults = false,
+                show_model_choices = false,
+              },
+              openrouter = function()
+                return require("codecompanion.adapters").extend("openai_compatible", {
+                  name = "openrouter",
+                  formatted_name = "OpenRouter",
+                  env = {
+                    api_key = get_api_key("openrouter_key"),
+                    url = "https://openrouter.ai/api",
+                  },
+                  schema = {
+                    model = {
+                      default = "openai/gpt-5",
+                    },
+                  },
+                })
+              end,
+              copilot = function()
+                return require("codecompanion.adapters").extend("copilot", {
+                  schema = {
+                    model = {
+                      default = "gpt-5-mini",
+                    },
+                  },
+                })
+              end,
+              -- copilot_premium = function()
+              --   return require("codecompanion.adapters").extend("copilot", {
+              --     -- use copilot.lua token
+              --     formatted_name = "Copilot Premium",
+              --     schema = {
+              --       model = {
+              --         default = "claude-sonnet-4",
+              --       },
+              --     },
+              --   })
+              -- end,
+              gemini = function()
+                return require("codecompanion.adapters").extend("gemini", {
+                  env = {
+                    api_key = get_api_key("gemini_key"),
+                  },
+                })
+              end,
+              gemini_pro = function()
+                return require("codecompanion.adapters").extend("gemini", {
+                  formatted_name = "Gemini Pro",
+                  env = {
+                    api_key = get_api_key("gemini_key"),
+                  },
+                  schema = {
+                    model = {
+                      default = "gemini-2.5-pro",
+                    },
+                  },
+                })
+              end,
+              deepseek = function()
+                return require("codecompanion.adapters").extend("deepseek", {
+                  env = {
+                    api_key = get_api_key("deepseek_key"),
+                  },
+                  schema = {
+                    model = {
+                      default = "deepseek-chat",
+                    },
+                  },
+                })
+              end,
+              siliconflow = function()
+                return require("codecompanion.adapters").extend("openai_compatible", {
+                  name = "siliconflow",
+                  formatted_name = "SiliconFlow",
+                  env = {
+                    api_key = get_api_key("siliconflow_key"),
+                    url = "https://api.siliconflow.cn",
+                  },
+                  schema = {
+                    model = {
+                      default = "zai-org/GLM-4.5",
+                    },
+                  },
+                })
+              end,
+              xai = function()
+                return require("codecompanion.adapters").extend("xai", {
+                  env = {
+                    api_key = get_api_key("xai_key"),
+                  },
+                  schema = {
+                    model = {
+                      default = "grok-4",
+                    },
+                  },
+                })
+              end,
+              tavily = function()
+                return require("codecompanion.adapters").extend("tavily", {
+                  env = {
+                    api_key = get_api_key("tavily_key"),
+                  },
+                })
+              end,
             },
-            openrouter = function()
-              return require("codecompanion.adapters").extend("openai_compatible", {
-                name = "openrouter",
-                formatted_name = "OpenRouter",
-                env = {
-                  api_key = get_api_key("openrouter_key"),
-                  url = "https://openrouter.ai/api",
-                },
-                schema = {
-                  model = {
-                    default = "openai/gpt-5",
-                  },
-                },
-              })
-            end,
-            copilot = function()
-              return require("codecompanion.adapters").extend("copilot", {
-                schema = {
-                  model = {
-                    default = "gpt-5-mini",
-                  },
-                },
-              })
-            end,
-            -- copilot_premium = function()
-            --   return require("codecompanion.adapters").extend("copilot", {
-            --     -- use copilot.lua token
-            --     formatted_name = "Copilot Premium",
-            --     schema = {
-            --       model = {
-            --         default = "claude-sonnet-4",
-            --       },
-            --     },
-            --   })
-            -- end,
-            gemini = function()
-              return require("codecompanion.adapters").extend("gemini", {
-                env = {
-                  api_key = get_api_key("gemini_key"),
-                },
-              })
-            end,
-            gemini_pro = function()
-              return require("codecompanion.adapters").extend("gemini", {
-                formatted_name = "Gemini Pro",
-                env = {
-                  api_key = get_api_key("gemini_key"),
-                },
-                schema = {
-                  model = {
-                    default = "gemini-2.5-pro",
-                  },
-                },
-              })
-            end,
-            deepseek = function()
-              return require("codecompanion.adapters").extend("deepseek", {
-                env = {
-                  api_key = get_api_key("deepseek_key"),
-                },
-                schema = {
-                  model = {
-                    default = "deepseek-chat",
-                  },
-                },
-              })
-            end,
-            siliconflow = function()
-              return require("codecompanion.adapters").extend("openai_compatible", {
-                name = "siliconflow",
-                formatted_name = "SiliconFlow",
-                env = {
-                  api_key = get_api_key("siliconflow_key"),
-                  url = "https://api.siliconflow.cn",
-                },
-                schema = {
-                  model = {
-                    default = "zai-org/GLM-4.5",
-                  },
-                },
-              })
-            end,
-            xai = function()
-              return require("codecompanion.adapters").extend("xai", {
-                env = {
-                  api_key = get_api_key("xai_key"),
-                },
-                schema = {
-                  model = {
-                    default = "grok-4",
-                  },
-                },
-              })
-            end,
-            tavily = function()
-              return require("codecompanion.adapters").extend("tavily", {
-                env = {
-                  api_key = get_api_key("tavily_key"),
-                },
-              })
-            end,
+            acp = {
+              gemini_cli = function()
+                return require("codecompanion.adapters").extend("gemini_cli", {})
+              end,
+            },
           },
           -- https://github.com/olimorris/codecompanion.nvim/discussions/694
         }
