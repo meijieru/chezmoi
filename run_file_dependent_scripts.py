@@ -63,6 +63,11 @@ DEPENDENCY_MAPS: Final[list[DependencyMap]] = [
         "dependent_dirs": ["./data/packages/ubuntu"],
         "dependent_files": [],
     },
+    {
+        "script": "./tools/install_package/mac.sh.tmpl",
+        "dependent_dirs": ["./data/packages/mac"],
+        "dependent_files": [],
+    },
 ]
 
 

@@ -1,0 +1,28 @@
+brew:
+  - btop
+  - tealdeer
+  - fastfetch
+  - wget
+  - eza
+  - hyperfine
+  - tmux
+  - tmuxp
+  - btop
+  - fzf
+  - git
+  - git-extras
+  - tokei
+  - ripgrep
+  - fd
+  - dust
+  - duf
+  - bat
+  - zoxide
+  - grex
+  - bandwhich
+
+  - sqlite
+  - neovim
+  - chezmoi
+
+  - uv

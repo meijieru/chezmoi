@@ -5,7 +5,7 @@
 myvim.plugins.is_development_machine = true
 {{ end }}
 
-{{ if or (eq .chezmoi.hostname "jierumei-glaptop") (eq .chezmoi.hostname "jierucloud") }}
+{{ if or (eq .chezmoi.hostname "jierumei-mac") (eq .chezmoi.hostname "jierucloud") }}
 myvim.plugins.is_development_machine = true
 myvim.plugins.is_corporate_machine = true
 {{ end }}
@@ -33,7 +33,7 @@ myvim.plugins.lsp.exclude_from_ensure_installed = {
 }
 {{ end }}
 
-{{ if or (eq .chezmoi.hostname "jierumei-glaptop") (eq .chezmoi.hostname "jierucloud") }}
+{{ if or (eq .chezmoi.hostname "jierumei-mac") (eq .chezmoi.hostname "jierucloud") }}
 myvim.plugins.lsp.ensure_installed = {
   "emmylua_ls",
   "stylua",

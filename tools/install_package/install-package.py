@@ -14,7 +14,6 @@ import time
 from types import MappingProxyType
 from typing import Any, Dict, List, Mapping
 
-import requests
 import yaml
 
 
@@ -178,7 +177,7 @@ class Apt(PackageManager):
 
 
 class Pip(PackageManager):
-    """Download from apt."""
+    """Download from pip."""
 
     _keys = ["pip"]
 
@@ -191,6 +190,26 @@ class Pip(PackageManager):
         super().__init__(
             context,
             "LANG=en_US pip3 install --upgrade {}",
+            strings,
+        )
+
+
+class Brew(PackageManager):
+    """Download from Homebrew."""
+
+    _keys = ["brew"]
+
+    def __init__(self, context: Mapping[str, Any]):
+        strings = {
+            PkgStatus.ERROR: "Error:",
+            PkgStatus.NOT_FOUND: "No available formula with the name",
+            PkgStatus.UP_TO_DATE: "already installed and up-to-date",
+            # If no other status is found, assume it was installed successfully.
+            PkgStatus.INSTALLED: "",
+        }
+        super().__init__(
+            context,
+            "HOMEBREW_NO_AUTO_UPDATE=1 brew install {}",
             strings,
         )
 
@@ -232,13 +251,15 @@ class Wget(Action):
             self.chmod_digit(fname_abs)
 
     def download_file(self, fname: str, url: str) -> None:
+        import requests
+
         with open(fname, "wb") as f:
             r = requests.get(url, allow_redirects=True)
             f.write(r.content)
 
 
 def guess_type(config: Mapping[str, Any]) -> Action:
-    for cls in [Wget, Yay, Apt, Pip]:
+    for cls in [Wget, Yay, Apt, Pip, Brew]:
         if cls.is_usable(config):
             logging.info("Use action: %s", cls.__name__)
             return cls(config)
