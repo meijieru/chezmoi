@@ -331,6 +331,14 @@ if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machi
                   env = {
                     api_key = get_api_key("gemini_key"),
                   },
+                  schema = {
+                    model = {
+                      default = "gemini-2.5-flash",
+                    },
+                    reasoning_effort = {
+                      default = "none",
+                    },
+                  },
                 })
               end,
               gemini_pro = function()
