@@ -31,7 +31,6 @@ return {
         ["<Leader>q"] = false,
         ["<Leader>Q"] = false,
         ["<Leader>n"] = false,
-        ["<C-S>"] = false,
         ["<C-Q>"] = false,
         ["|"] = false,
         ["\\"] = false,
