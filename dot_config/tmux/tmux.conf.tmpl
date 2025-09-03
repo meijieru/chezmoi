@@ -60,9 +60,8 @@ bind -r C-k resize-pane -U 2
 bind -r C-l resize-pane -R 2
 
 set -g default-terminal "tmux-256color"
-set -as terminal-overrides ',xterm*:sitm=\E[3m'  # italic font
-set -ga terminal-overrides ",xterm-256color:Tc:"  # true color
-setw -g xterm-keys
+set -ga terminal-features ",*xterm*:sitm,xterm-256color:Tc"
+set -g extended-keys always
 
 # status line
 set -g focus-events on
