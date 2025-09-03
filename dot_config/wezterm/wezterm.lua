@@ -76,8 +76,6 @@ local mykeys = {
     action = act.DisableDefaultAssignment,
   },
 
-  { key = "{", mods = "SHIFT|ALT", action = act({ ActivateTabRelative = -1 }) },
-  { key = "}", mods = "SHIFT|ALT", action = act({ ActivateTabRelative = 1 }) },
   {
     key = "Space",
     mods = "SHIFT|ALT",
