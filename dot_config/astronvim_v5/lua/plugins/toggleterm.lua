@@ -1,3 +1,5 @@
+local terminal_toggle_map = "<C-`>"
+
 return {
   "akinsho/toggleterm.nvim",
   dependencies = {
@@ -8,7 +10,7 @@ return {
 
         local termial_related_modes = { maps.n, maps.t, maps.i }
         for _, map_mode in ipairs(termial_related_modes) do
-          map_mode["<C-t>"] = map_mode["<F7>"]
+          map_mode[terminal_toggle_map] = map_mode["<F7>"]
           map_mode["<F7>"] = nil
           map_mode["<C-'>"] = nil
         end
@@ -57,7 +59,7 @@ return {
         local toggle = function()
           t:toggle()
         end
-        vim.keymap.set({ "n", "t", "i" }, "<C-t>", toggle, { desc = "Toggle terminal", buffer = t.bufnr })
+        vim.keymap.set({ "n", "t", "i" }, terminal_toggle_map, toggle, { desc = "Toggle terminal", buffer = t.bufnr })
       end
     end
 
