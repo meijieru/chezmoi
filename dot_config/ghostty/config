@@ -1,0 +1,50 @@
+# Ghostty Configuration
+
+# -----------------------------------------------------------------------------
+# -- Appearance
+# -----------------------------------------------------------------------------
+
+# You can list available themes with `ghostty +list-themes`.
+theme = "light:ayu_light,dark:nord"
+
+# Corresponds to maximizing the window on startup.
+maximize = true
+
+# -----------------------------------------------------------------------------
+# -- Font
+# -----------------------------------------------------------------------------
+
+font-size = 13.0
+font-family = "JetBrains Mono"
+font-family-italic = "Victor Mono"
+font-family-bold = "JetBrains Mono"
+font-family-bold-italic = "Victor Mono"
+
+# -----------------------------------------------------------------------------
+# -- Keybindings
+# -----------------------------------------------------------------------------
+
+# You can list available actions with `ghostty +list-actions`.
+
+keybind = "ctrl+alt+t=toggle_quick_terminal"
+
+keybind = "ctrl+shift+t=new_tab"
+keybind = "ctrl+shift+w=close_tab"
+
+# TODO: command palette
+
+# Activate tab by number (1-8)
+keybind = "ctrl+alt+1=goto_tab:1"
+keybind = "ctrl+alt+2=goto_tab:2"
+keybind = "ctrl+alt+3=goto_tab:3"
+keybind = "ctrl+alt+4=goto_tab:4"
+keybind = "ctrl+alt+5=goto_tab:5"
+keybind = "ctrl+alt+6=goto_tab:6"
+keybind = "ctrl+alt+7=goto_tab:7"
+keybind = "ctrl+alt+8=goto_tab:8"
+
+# -----------------------------------------------------------------------------
+# -- Other
+# -----------------------------------------------------------------------------
+
+quit-after-last-window-closed = true
