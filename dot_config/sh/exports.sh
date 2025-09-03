@@ -36,7 +36,7 @@ export MANPAGER=$PAGER
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 # term
-export TERM="xterm-256color"
+# Don't set, let terminal emulator determine
 
 # Customize to your needs...
 export -U PATH=$HOME/.local/bin/:$PATH
