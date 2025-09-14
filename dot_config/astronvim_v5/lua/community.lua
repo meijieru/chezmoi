@@ -9,7 +9,7 @@ local spec = {
   -- import/override with your plugins folder
 }
 
-if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machine then
+if myvim.plugins.machine_specific.is_development_machine and not myvim.plugins.machine_specific.is_using_corp_lsp then
   return vim.list_extend(spec, {
     { import = "astrocommunity.pack.bash" },
     { import = "astrocommunity.pack.json" },

@@ -1,7 +1,10 @@
 _G.myvim = {
   plugins = {
-    is_development_machine = false,
-    is_corporate_machine = false,
+    machine_specific = {
+      is_development_machine = false,
+      is_using_corp_lsp = false,
+      is_corporate_machine = false,
+    },
 
     lsp = {
       servers_from_system = {},

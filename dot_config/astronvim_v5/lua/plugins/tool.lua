@@ -12,6 +12,6 @@ return {
     opts = {
       lang = "python3",
     },
-    enabled = myvim.plugins.is_development_machine,
+    enabled = myvim.plugins.machine_specific.is_development_machine,
   },
 }

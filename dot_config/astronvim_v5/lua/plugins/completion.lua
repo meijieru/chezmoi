@@ -56,7 +56,9 @@ local spec = {
   },
 }
 
-if myvim.plugins.is_development_machine and not myvim.plugins.is_corporate_machine then
+if
+  myvim.plugins.machine_specific.is_development_machine and not myvim.plugins.machine_specific.is_corporate_machine
+then
   return vim.list_extend(spec, {
 
     {
