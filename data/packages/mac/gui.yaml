@@ -5,3 +5,4 @@ brew:
   - monitorcontrol
   - rectangle
   - alt-tab
+  # - bitwarden  # Install from app store for biometrics in browser
