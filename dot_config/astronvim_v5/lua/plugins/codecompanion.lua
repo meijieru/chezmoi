@@ -10,7 +10,7 @@ local cheap_model, cheap_adapter, chat_adapter, inline_adapter
 local adapters
 local default_tools
 
-if myvim.plugins.is_corporate_machine then
+if myvim.plugins.machine_specific.is_corporate_machine then
   cheap_model = ""
   cheap_adapter = "gemini_cli"
   chat_adapter = "gemini_cli"
@@ -170,7 +170,7 @@ local extensions = {
   history = {
     enabled = true,
     opts = {
-      auto_generate_title = not myvim.plugins.is_corporate_machine,
+      auto_generate_title = not myvim.plugins.machine_specific.is_corporate_machine,
       generation_opts = {
         adapter = cheap_adapter,
         -- model = cheap_model,
@@ -200,7 +200,7 @@ local extensions = {
   },
 }
 
-if not myvim.plugins.is_corporate_machine then
+if not myvim.plugins.machine_specific.is_corporate_machine then
   extensions.mcphub = {
     callback = "mcphub.extensions.codecompanion",
     opts = {
@@ -248,7 +248,7 @@ local spec = {
     cmd = "MCPHub",
     build = "bun install -g mcp-hub@latest",
     opts = {},
-    enabled = not myvim.plugins.is_corporate_machine,
+    enabled = not myvim.plugins.machine_specific.is_corporate_machine,
   },
   {
     "olimorris/codecompanion.nvim",
