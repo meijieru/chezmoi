@@ -221,7 +221,7 @@ if not myvim.plugins.machine_specific.is_corporate_machine then
 
       -- Buffer integration
       buffer = {
-        enabled = false, -- Enable gitcommit buffer keymaps
+        enabled = true, -- Enable gitcommit buffer keymaps
         keymap = "<leader>ac", -- Keymap for generating commit messages
         auto_generate = true, -- Auto-generate on buffer enter
         auto_generate_delay = 200, -- Auto-generation delay (ms)
@@ -275,18 +275,8 @@ local spec = {
             ["<Leader>aa"] = { normal_command("CodeCompanionActions"), desc = "Actions" },
             ["<Leader>ac"] = {
               function()
-                local func = require("codecompanion._extensions.gitcommit.buffer")._generate_and_insert_commit_message
-                if vim.bo.filetype == "gitcommit" then
-                  func(0)
-                else
-                  vim.cmd("Git commit")
-                  vim.schedule(function()
-                    if vim.bo.filetype == "gitcommit" then
-                      -- We are in commit message buffer and the commit is not empty
-                      func(0)
-                    end
-                  end)
-                end
+                -- Delegate to gitcommit extension's buffer integration
+                vim.cmd("Git commit")
               end,
               desc = "AI Commit",
             },
