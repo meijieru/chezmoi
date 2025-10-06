@@ -1,0 +1,10 @@
+{
+  "theme": "Ayu Light",
+  "hideBanner": true,
+  "hideTips": true,
+  "selectedAuthType": "gemini-api-key",
+  "preferredEditor": "neovim",
+  "usageStatisticsEnabled": false,
+  "autoAccept": true,
+  "vimMode": false
+}
