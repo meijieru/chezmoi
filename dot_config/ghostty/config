@@ -5,7 +5,7 @@
 # -----------------------------------------------------------------------------
 
 # You can list available themes with `ghostty +list-themes`.
-theme = "light:ayu_light,dark:nord"
+theme = "light:Ayu Light,dark:Nord"
 
 # Corresponds to maximizing the window on startup.
 maximize = true
@@ -26,7 +26,13 @@ font-family-bold-italic = "Victor Mono"
 
 # You can list available actions with `ghostty +list-actions`.
 
+# FIXME(meijieru)
 keybind = "ctrl+alt+t=toggle_quick_terminal"
+quick-terminal-size = 100%
+
+# TODO(meijieru): 
+# 1. ssh improvement
+# 1. cursor animation
 
 keybind = "ctrl+shift+t=new_tab"
 keybind = "ctrl+shift+w=close_tab"
@@ -48,3 +54,5 @@ keybind = "ctrl+alt+8=goto_tab:8"
 # -----------------------------------------------------------------------------
 
 quit-after-last-window-closed = true
+
+# custom-shader = ~/.config/ghostty/shaders/shader.glsl
