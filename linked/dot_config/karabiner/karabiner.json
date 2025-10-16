@@ -308,6 +308,7 @@
                     },
                     {
                         "description": "Home",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "conditions": [
@@ -501,6 +502,7 @@
                     },
                     {
                         "description": "End",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "conditions": [
@@ -1135,6 +1137,7 @@
                     },
                     {
                         "description": "I (Ctrl)",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "conditions": [
@@ -1184,6 +1187,7 @@
                     },
                     {
                         "description": "N (Ctrl)",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "conditions": [
@@ -1233,6 +1237,7 @@
                     },
                     {
                         "description": "O (Ctrl)",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "conditions": [
@@ -1282,6 +1287,7 @@
                     },
                     {
                         "description": "P (Ctrl)",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "conditions": [
@@ -1331,6 +1337,7 @@
                     },
                     {
                         "description": "R (Ctrl)",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "conditions": [
