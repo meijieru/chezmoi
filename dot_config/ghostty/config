@@ -53,6 +53,9 @@ keybind = "ctrl+alt+8=goto_tab:8"
 # -- Other
 # -----------------------------------------------------------------------------
 
+# Copy Ghostty's terminfo entry to the remote machine
+shell-integration-features = ssh-terminfo
+
 quit-after-last-window-closed = true
 
 # custom-shader = ~/.config/ghostty/shaders/shader.glsl
