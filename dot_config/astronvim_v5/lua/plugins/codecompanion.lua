@@ -6,6 +6,8 @@ local function get_api_key(name)
   return key
 end
 
+local enable_mcphub = false
+
 local cheap_model, cheap_adapter, chat_adapter, inline_adapter
 local adapters
 local default_tools
@@ -201,14 +203,16 @@ local extensions = {
 }
 
 if not myvim.plugins.machine_specific.is_corporate_machine then
-  extensions.mcphub = {
-    callback = "mcphub.extensions.codecompanion",
-    opts = {
-      show_result_in_chat = true, -- Show mcp tool results in chat
-      make_vars = true, -- Convert resources to #variables
-      make_slash_commands = true, -- Add prompts as /slash commands
-    },
-  }
+  if enable_mcphub then
+    extensions.mcphub = {
+      callback = "mcphub.extensions.codecompanion",
+      opts = {
+        show_result_in_chat = true, -- Show mcp tool results in chat
+        make_vars = true,           -- Convert resources to #variables
+        make_slash_commands = true, -- Add prompts as /slash commands
+      },
+    }
+  end
 
   extensions.gitcommit = {
     callback = "codecompanion._extensions.gitcommit",
@@ -221,22 +225,22 @@ if not myvim.plugins.machine_specific.is_corporate_machine then
 
       -- Buffer integration
       buffer = {
-        enabled = true, -- Enable gitcommit buffer keymaps
-        keymap = "<leader>ac", -- Keymap for generating commit messages
-        auto_generate = true, -- Auto-generate on buffer enter
-        auto_generate_delay = 200, -- Auto-generation delay (ms)
+        enabled = true,                     -- Enable gitcommit buffer keymaps
+        keymap = "<leader>ac",              -- Keymap for generating commit messages
+        auto_generate = true,               -- Auto-generate on buffer enter
+        auto_generate_delay = 200,          -- Auto-generation delay (ms)
         skip_auto_generate_on_amend = true, -- Skip auto-generation during git commit --amend
       },
       -- Feature toggles
-      add_slash_command = true, -- Add /gitcommit slash command
-      add_git_tool = true, -- Add @git_read and @git_edit tools
-      enable_git_read = true, -- Enable read-only Git operations
-      enable_git_edit = true, -- Enable write-access Git operations
-      enable_git_bot = true, -- Enable @git_bot tool group (requires both read/write enabled)
-      add_git_commands = true, -- Add :CodeCompanionGitCommit commands
+      add_slash_command = true,            -- Add /gitcommit slash command
+      add_git_tool = true,                 -- Add @git_read and @git_edit tools
+      enable_git_read = true,              -- Enable read-only Git operations
+      enable_git_edit = true,              -- Enable write-access Git operations
+      enable_git_bot = true,               -- Enable @git_bot tool group (requires both read/write enabled)
+      add_git_commands = true,             -- Add :CodeCompanionGitCommit commands
       git_tool_auto_submit_errors = false, -- Auto-submit errors to LLM
       git_tool_auto_submit_success = true, -- Auto-submit success to LLM
-      gitcommit_select_count = 100, -- Number of commits shown in /gitcommit
+      gitcommit_select_count = 100,        -- Number of commits shown in /gitcommit
     },
   }
 end
@@ -248,7 +252,7 @@ local spec = {
     cmd = "MCPHub",
     build = "bun install -g mcp-hub@latest",
     opts = {},
-    enabled = not myvim.plugins.machine_specific.is_corporate_machine,
+    enabled = enable_mcphub,
   },
   {
     "olimorris/codecompanion.nvim",
