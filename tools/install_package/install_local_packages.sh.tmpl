@@ -2,6 +2,7 @@
 
 source ./tools/install_package/install.sh
 
+{{- if eq .chezmoi.os "linux" -}}
 {{- if eq .chezmoi.osRelease.name "Ubuntu" }}
 package_install ubuntu/local.yaml
 {{ end -}}
@@ -13,3 +14,8 @@ package_install debian/local.yaml
 {{- if or (eq .chezmoi.osRelease.name "Arch Linux") (eq .chezmoi.osRelease.name "Arch Linux ARM") }}
 package_install arch/local.yaml
 {{ end -}}
+{{- end -}}
+
+{{- if eq .chezmoi.os "darwin" }}
+echo "TODO(jierumei): run macos installer"
+{{- end -}}

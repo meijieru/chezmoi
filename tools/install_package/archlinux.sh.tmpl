@@ -1,11 +1,11 @@
 #!/bin/bash
 
-{{- if or (eq .chezmoi.osRelease.name "Arch Linux") (eq .chezmoi.osRelease.name "Arch Linux ARM") }}
+{{- if and (eq .chezmoi.os "linux") (or (eq .chezmoi.osRelease.name "Arch Linux") (eq .chezmoi.osRelease.name "Arch Linux ARM")) }}
 source ./tools/install_package/install.sh
 package_install arch/dev.yaml
 {{ end -}}
 
-{{- if and (contains "microsoft" .chezmoi.kernel.osrelease) (eq .chezmoi.osRelease.name "Arch Linux") }}
+{{- if and (eq .chezmoi.os "linux") (contains "microsoft" .chezmoi.kernel.osrelease) (eq .chezmoi.osRelease.name "Arch Linux") }}
 # wsl
 package_install arch/wsl_local.yaml
 package_install arch/wsl.conf.yaml
@@ -15,7 +15,7 @@ package_install arch/wsl.conf.yaml
 package_install arch/home_pc.conf.yaml
 {{- else }}
 
-{{- if or (eq .chezmoi.osRelease.name "Arch Linux") }}
+{{- if and (eq .chezmoi.os "linux") (or (eq .chezmoi.osRelease.name "Arch Linux")) }}
 package_install arch/other_machines.yaml
 {{- else }}
 echo "Skip pytorch due to arm64"
