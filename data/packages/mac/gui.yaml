@@ -5,4 +5,18 @@ brew:
   - monitorcontrol
   - rectangle
   - alt-tab
+  - topnotch
+  # - TheBoredTeam/boring-notch/boring-notch
+  - pixpin
+  - font-victor-mono
+  - obsidian
+
+  # From app store
   # - bitwarden  # Install from app store for biometrics in browser
+  # - 专注清单
+  # - microsoft todo
+
+  # TODO
+  - bluesnooze
+  # - maccy
+  # - homerow

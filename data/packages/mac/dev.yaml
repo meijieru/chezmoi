@@ -1,5 +1,6 @@
 brew:
   - btop
+  - asitop
   - tealdeer
   - fastfetch
   - wget
@@ -7,7 +8,6 @@ brew:
   - hyperfine
   - tmux
   - tmuxp
-  - btop
   - fzf
   - git
   - git-extras
@@ -20,11 +20,15 @@ brew:
   - zoxide
   - grex
   - bandwhich
+  - gnupg
 
   - sqlite
   - neovim
   - chezmoi
   - nodejs
   - npm
+  - oven-sh/bun/bun
 
   - uv
+  - ipython
+  - pyrefly
