@@ -5,6 +5,7 @@ description = "Helper scripts for chezmoi"
 authors = [{ name = "Jieru Mei", email = "meijieru@gmail.com" }]
 license = { text = "MIT" }
 requires-python = ">=3.9"
+dependencies = ["pyyaml"]
 
 [tool.ruff]
 line-length = 120
