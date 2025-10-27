@@ -1,5 +1,7 @@
 *.bak
 data/tmp/*
+linked/dot_config/karabiner/automatic_backups
+linked/dot_config/karabiner/assets
 
 # ---> Python
 # Byte-compiled / optimized / DLL files
