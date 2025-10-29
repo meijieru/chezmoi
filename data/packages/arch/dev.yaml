@@ -68,6 +68,8 @@ pacman:
   - rclone
   - gdown
 
+  - gemini-cli
+
   # - texlive-latexextra
   # - texlive-mathscience
   # - texlive-fontsextra
@@ -78,7 +80,6 @@ yay:
   - lsyncd
   - nvimpager
   - bun-bin
-  - gemini-cli-bin
   # - python-flax
   # - arxiv-latex-cleaner
   # - google-cloud-cli
