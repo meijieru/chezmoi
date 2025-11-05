@@ -1779,6 +1779,7 @@
                     },
                     {
                         "description": "Space (Ctrl)",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "conditions": [
