@@ -1,10 +1,23 @@
 {
-  "theme": "Ayu Light",
-  "hideBanner": true,
-  "hideTips": true,
-  "selectedAuthType": "gemini-api-key",
-  "preferredEditor": "neovim",
-  "usageStatisticsEnabled": false,
-  "autoAccept": true,
-  "vimMode": false
+  "tools": {
+    "autoAccept": true
+  },
+  "ui": {
+    "hideTips": true,
+    "hideBanner": true,
+    "theme": "Ayu Light"
+  },
+  "general": {
+    "preferredEditor": "neovim",
+    "vimMode": false,
+    "previewFeatures": true
+  },
+  "security": {
+    "auth": {
+      "selectedType": "gemini-api-key"
+    }
+  },
+  "privacy": {
+    "usageStatisticsEnabled": false
+  }
 }
