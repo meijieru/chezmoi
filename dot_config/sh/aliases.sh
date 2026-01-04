@@ -26,8 +26,22 @@ alias -s tgz='tar -xzvf'
 alias -s zip='unzip'
 alias -s bz2='tar -xjvf'
 
-alias tp='trash-put'
-alias tl='trash-list'
+
+_os_name=$(uname -s)
+if [ "$_os_name" == "Darwin" ]; then
+    # 'trash' places files into the macOS Dock Trash.
+    alias tp='trash'
+    
+    # macOS lacks a CLI "list" command for the native Trash.
+    # Opening the Trash folder in Finder is the best alternative.
+    alias tl='open ~/.Trash' 
+
+elif [ "$_os_name" == "Linux" ]; then
+    # Dependency: trash-cli (install via apt, yum, pacman, etc.)
+    # 'trash-put' places files into ~/.local/share/Trash
+    alias tp='trash-put'
+    alias tl='trash-list'
+fi
 alias rm='echo "This is not the command you are looking for."; false'
 
 if [ -x "$(command -v xclip)" ]; then
