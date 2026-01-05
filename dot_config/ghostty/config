@@ -58,4 +58,6 @@ shell-integration-features = ssh-terminfo
 
 quit-after-last-window-closed = true
 
+clipboard-read = allow
+
 # custom-shader = ~/.config/ghostty/shaders/shader.glsl
