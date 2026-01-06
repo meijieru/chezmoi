@@ -26,19 +26,22 @@ if myvim.plugins.machine_specific.is_corporate_machine then
         local override = require("core.utils.google").codecompanion.gemini_cli_override
         return require("codecompanion.adapters").extend("gemini_cli", override)
       end,
+      opts = {
+        show_presets = false,
+      },
     },
     http = {
       opts = {
-        show_defaults = false,
+        show_presets = false,
         show_model_choices = false,
       },
     },
   }
 else
-  cheap_adapter = "gemini"
-  cheap_model = "gemini-2.5-flash"
-  chat_adapter = "gemini_pro"
-  inline_adapter = "gemini"
+  cheap_model = ""
+  cheap_adapter = "copilot"
+  chat_adapter = "copilot"
+  inline_adapter = "copilot"
 
   default_tools = {
     "full_stack_dev",
@@ -47,7 +50,7 @@ else
   adapters = {
     http = {
       opts = {
-        show_defaults = false,
+        show_presets = false,
         show_model_choices = false,
       },
       openrouter = function()
@@ -92,23 +95,10 @@ else
           },
           schema = {
             model = {
-              default = "gemini-2.5-flash",
+              default = "gemini-3-flash-preview",
             },
             reasoning_effort = {
               default = "none",
-            },
-          },
-        })
-      end,
-      gemini_pro = function()
-        return require("codecompanion.adapters").extend("gemini", {
-          formatted_name = "Gemini Pro",
-          env = {
-            api_key = get_api_key("gemini_key"),
-          },
-          schema = {
-            model = {
-              default = "gemini-2.5-pro",
             },
           },
         })
@@ -125,21 +115,6 @@ else
           },
         })
       end,
-      siliconflow = function()
-        return require("codecompanion.adapters").extend("openai_compatible", {
-          name = "siliconflow",
-          formatted_name = "SiliconFlow",
-          env = {
-            api_key = get_api_key("siliconflow_key"),
-            url = "https://api.siliconflow.cn",
-          },
-          schema = {
-            model = {
-              default = "zai-org/GLM-4.5",
-            },
-          },
-        })
-      end,
       xai = function()
         return require("codecompanion.adapters").extend("xai", {
           env = {
@@ -147,7 +122,7 @@ else
           },
           schema = {
             model = {
-              default = "grok-4",
+              default = "grok-4-1-fast-reasoning",
             },
           },
         })
@@ -161,8 +136,24 @@ else
       end,
     },
     acp = {
+      opts = {
+        show_presets = false,
+      },
       gemini_cli = function()
-        return require("codecompanion.adapters").extend("gemini_cli", {})
+        return require("codecompanion.adapters").extend("gemini_cli", {
+          commands = {
+            default = {
+              "gemini",
+              "--model",
+              "models/gemini-3-flash-preview",
+              "--experimental-acp",
+            },
+          },
+          defaults = {
+            auth_method = "gemini-api-key",
+            timeout = 20000, -- 20 seconds
+          },
+        })
       end,
     },
   }
@@ -313,9 +304,6 @@ local spec = {
         -- 2. programming language to system prompt
         opts = {
           language = "Simplified Chinese",
-          -- system_prompt = function(opts)
-          --   return "使用中文回答"
-          -- end,
         },
         display = {
           chat = {
@@ -324,11 +312,11 @@ local spec = {
           action_palette = {
             opts = {
               show_default_prompt_library = true,
-              show_default_actions = true,
+              show_preset_actions = true,
             },
           },
         },
-        strategies = {
+        interactions = {
           chat = {
             adapter = chat_adapter,
             tools = {
