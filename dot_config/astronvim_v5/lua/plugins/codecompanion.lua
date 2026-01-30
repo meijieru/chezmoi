@@ -12,6 +12,44 @@ local cheap_model, cheap_adapter, chat_adapter, inline_adapter
 local adapters
 local default_tools
 
+local auto_title_config = {
+  enabled = true, -- Global enable/disable
+  paid_models = { -- Models that cost money (disable auto-title)
+    "copilot",
+    "deepseek",
+    "xai",
+    "openrouter",
+    "gemini",
+  },
+  free_models = { -- Models that are free (enable auto-title)
+    "gemini_cli",
+  },
+  chat_enabled = false, -- Override for chat: disable auto-title for chat to save cost
+}
+
+local function should_auto_generate_title()
+  if not auto_title_config.enabled then
+    return false
+  end
+
+  -- Check if adapter is in paid list
+  for _, paid_adapter in ipairs(auto_title_config.paid_models) do
+    if cheap_adapter == paid_adapter then
+      return false -- Disable for paid models
+    end
+  end
+
+  -- Check if adapter is in free list
+  for _, free_adapter in ipairs(auto_title_config.free_models) do
+    if cheap_adapter == free_adapter then
+      return true -- Enable for free models
+    end
+  end
+
+  -- Default: enable if cheap_model exists and not corporate
+  return (cheap_model ~= "") and not myvim.plugins.machine_specific.is_corporate_machine
+end
+
 if myvim.plugins.machine_specific.is_corporate_machine then
   cheap_model = ""
   cheap_adapter = "gemini_cli"
@@ -63,7 +101,7 @@ else
           },
           schema = {
             model = {
-              default = "openai/gpt-5",
+              default = "moonshotai/kimi-k2.5",
             },
           },
         })
@@ -72,7 +110,7 @@ else
         return require("codecompanion.adapters").extend("copilot", {
           schema = {
             model = {
-              default = "gpt-5-mini",
+              default = "claude-haiku-4.5",
             },
           },
         })
@@ -163,7 +201,7 @@ local extensions = {
   history = {
     enabled = true,
     opts = {
-      auto_generate_title = not myvim.plugins.machine_specific.is_corporate_machine,
+      auto_generate_title = should_auto_generate_title() and not auto_title_config.chat_enabled,
       generation_opts = {
         adapter = cheap_adapter,
         -- model = cheap_model,
@@ -199,7 +237,7 @@ if not myvim.plugins.machine_specific.is_corporate_machine then
       callback = "mcphub.extensions.codecompanion",
       opts = {
         show_result_in_chat = true, -- Show mcp tool results in chat
-        make_vars = true,           -- Convert resources to #variables
+        make_vars = true, -- Convert resources to #variables
         make_slash_commands = true, -- Add prompts as /slash commands
       },
     }
@@ -216,22 +254,22 @@ if not myvim.plugins.machine_specific.is_corporate_machine then
 
       -- Buffer integration
       buffer = {
-        enabled = true,                     -- Enable gitcommit buffer keymaps
-        keymap = "<leader>ac",              -- Keymap for generating commit messages
-        auto_generate = true,               -- Auto-generate on buffer enter
-        auto_generate_delay = 200,          -- Auto-generation delay (ms)
+        enabled = true, -- Enable gitcommit buffer keymaps
+        keymap = "<leader>ac", -- Keymap for generating commit messages
+        auto_generate = true, -- Auto-generate on buffer enter
+        auto_generate_delay = 200, -- Auto-generation delay (ms)
         skip_auto_generate_on_amend = true, -- Skip auto-generation during git commit --amend
       },
       -- Feature toggles
-      add_slash_command = true,            -- Add /gitcommit slash command
-      add_git_tool = true,                 -- Add @git_read and @git_edit tools
-      enable_git_read = true,              -- Enable read-only Git operations
-      enable_git_edit = true,              -- Enable write-access Git operations
-      enable_git_bot = true,               -- Enable @git_bot tool group (requires both read/write enabled)
-      add_git_commands = true,             -- Add :CodeCompanionGitCommit commands
+      add_slash_command = true, -- Add /gitcommit slash command
+      add_git_tool = true, -- Add @git_read and @git_edit tools
+      enable_git_read = true, -- Enable read-only Git operations
+      enable_git_edit = true, -- Enable write-access Git operations
+      enable_git_bot = true, -- Enable @git_bot tool group (requires both read/write enabled)
+      add_git_commands = true, -- Add :CodeCompanionGitCommit commands
       git_tool_auto_submit_errors = false, -- Auto-submit errors to LLM
       git_tool_auto_submit_success = true, -- Auto-submit success to LLM
-      gitcommit_select_count = 100,        -- Number of commits shown in /gitcommit
+      gitcommit_select_count = 100, -- Number of commits shown in /gitcommit
     },
   }
 end
