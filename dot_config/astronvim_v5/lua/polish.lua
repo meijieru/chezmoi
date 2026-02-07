@@ -98,7 +98,7 @@ end, {
 
 -- if nvim 0.12.0 or later, enable extui
 if not myvim.plugins.noice.enabled then
-  require("vim._extui").enable({})
+  require("vim._core.ui2").enable({})
 end
 
 -- if nvim 0.12.0 or later, enable inline_completion
