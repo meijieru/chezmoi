@@ -115,32 +115,6 @@ else
           },
         })
       end,
-      -- copilot_premium = function()
-      --   return require("codecompanion.adapters").extend("copilot", {
-      --     -- use copilot.lua token
-      --     formatted_name = "Copilot Premium",
-      --     schema = {
-      --       model = {
-      --         default = "claude-sonnet-4",
-      --       },
-      --     },
-      --   })
-      -- end,
-      gemini = function()
-        return require("codecompanion.adapters").extend("gemini", {
-          env = {
-            api_key = get_api_key("gemini_key"),
-          },
-          schema = {
-            model = {
-              default = "gemini-3-flash-preview",
-            },
-            reasoning_effort = {
-              default = "none",
-            },
-          },
-        })
-      end,
       deepseek = function()
         return require("codecompanion.adapters").extend("deepseek", {
           env = {
