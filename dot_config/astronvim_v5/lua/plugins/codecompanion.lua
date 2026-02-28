@@ -82,7 +82,7 @@ else
   inline_adapter = "copilot"
 
   default_tools = {
-    "full_stack_dev",
+    "agent",
   }
 
   adapters = {
