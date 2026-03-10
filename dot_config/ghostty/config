@@ -49,6 +49,9 @@ keybind = "ctrl+alt+6=goto_tab:6"
 keybind = "ctrl+alt+7=goto_tab:7"
 keybind = "ctrl+alt+8=goto_tab:8"
 
+# TODO(meijieru): Config https://ghostty.org/docs/install/release-notes/1-3-0#key-tables-chained-keybinds-and-catch_all
+
+
 # -----------------------------------------------------------------------------
 # -- Other
 # -----------------------------------------------------------------------------
@@ -59,5 +62,9 @@ shell-integration-features = ssh-terminfo
 quit-after-last-window-closed = true
 
 clipboard-read = allow
+
+notify-on-command-finish = unfocused
+notify-on-command-finish-action = no-bell,notify
+notify-on-command-finish-after = 30s
 
 # custom-shader = ~/.config/ghostty/shaders/shader.glsl
