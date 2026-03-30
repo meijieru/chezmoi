@@ -1,5 +1,4 @@
 brew:
-  - telegram
   - wetype
   - ghostty
   - monitorcontrol
