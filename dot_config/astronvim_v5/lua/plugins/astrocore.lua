@@ -515,6 +515,8 @@ return {
         "regex",
         "markdown",
         "markdown_inline",
+        -- make codecompanion rendering happy
+        "html",
         "gitcommit",
         "yaml",
       },
