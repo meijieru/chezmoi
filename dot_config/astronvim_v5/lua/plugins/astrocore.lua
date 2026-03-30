@@ -504,6 +504,33 @@ return {
       },
     }
 
+    ---@type AstroCoreTreesitterOpts
+    local treesitter_opts = {
+      ensure_installed = {
+        "lua",
+        "vim",
+        "vimdoc",
+        "comment",
+        "rst",
+        "regex",
+        "markdown",
+        "markdown_inline",
+        "gitcommit",
+        "yaml",
+      },
+      highlight = true,
+      textobjects = {
+        select = {
+          select_textobject = {
+            ["a,"] = { query = "@parameter.outer", desc = "around argument" },
+            ["i,"] = { query = "@parameter.inner", desc = "inside argument" },
+            ["aa"] = { query = "@assignment.outer", desc = "around assignment" },
+            ["ia"] = { query = "@assignment.inner", desc = "inside assignment" },
+          },
+        },
+      },
+    }
+
     ---@type AstroCoreOpts
     local override = {
       features = {
@@ -512,6 +539,7 @@ return {
         -- TODO(meijieru): current_line is not working
         -- diagnostics = { virtual_text = { current_line = true }, virtual_lines = { current_line = true } },
       },
+      treesitter = treesitter_opts,
       rooter = {
         autochdir = true,
         detector = {

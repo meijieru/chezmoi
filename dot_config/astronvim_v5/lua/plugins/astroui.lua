@@ -9,6 +9,7 @@ return {
   ---@type AstroUIOpts
   opts = {
     colorscheme = "onelight",
+    winborder = "rounded",
     icons = {
       -- configure the loading of the lsp in the status line
       LSPLoading1 = "⠋",

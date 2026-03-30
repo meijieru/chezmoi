@@ -10,7 +10,7 @@ end
 local spec = {
 
   {
-    "Saghen/blink.cmp",
+    "saghen/blink.cmp",
     opts = function(_, opts)
       return vim.tbl_deep_extend("force", opts, {
         keymap = {
@@ -78,7 +78,7 @@ then
       },
       specs = {
         {
-          "Saghen/blink.cmp",
+          "saghen/blink.cmp",
           opts = function(_, opts)
             opts.sources.default = list_insert_unique(opts.sources.default, { "copilot" })
             opts.sources.providers.copilot = {

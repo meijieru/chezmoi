@@ -59,7 +59,7 @@ local function opts_func(_, opts)
     require("snacks").picker.lsp_definitions()
   end
   maps.n["gD"][1] = function()
-    require("snacks").picker.lsp_declarations()()
+    require("snacks").picker.lsp_declarations()
   end
   maps.n["gy"][1] = function()
     require("snacks").picker.lsp_type_definitions()

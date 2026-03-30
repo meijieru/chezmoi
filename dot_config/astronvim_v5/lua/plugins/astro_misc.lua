@@ -20,8 +20,4 @@ return {
 
   { "s1n7ax/nvim-window-picker", enabled = false },
   { "none-ls.nvim", enabled = false },
-
-  { "AstroNvim/astrocore", version = false, branch = "v3" },
-  { "AstroNvim/astrolsp", version = false, branch = "v4" },
-  { "AstroNvim/astroui", version = false, branch = "v4" },
 }
