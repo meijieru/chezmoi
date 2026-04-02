@@ -40,7 +40,7 @@ fi
 # load anaconda
 if [[ -f $HOME/lib/anaconda/bin/conda ]]; then
     export ANACONDA_HOME=${HOME}/lib/anaconda
-    eval "$(${ANACONDA_HOME}/bin/conda shell.$(echo "$SHELL" | sed "s/.*\///") hook)"
+    eval "$("${ANACONDA_HOME}"/bin/conda shell.$(echo "$SHELL" | sed "s/.*\///") hook)"
 fi
 
 # load brew
@@ -48,6 +48,13 @@ brew_home=/home/linuxbrew/.linuxbrew
 if [[ -f ${brew_home}/bin/brew ]]; then
     export PATH=${brew_home}/bin:${PATH}
     export LD_LIBRARY_PATH=${brew_home}/lib:${LD_LIBRARY_PATH}
+fi
+
+# load fzf
+if command -v fzf &>/dev/null; then
+    if [[ "$(bindkey '^R')" != *fzf-history-widget* ]]; then
+        source <(fzf --zsh)
+    fi
 fi
 
 # Add bun bin to PATH if exists
@@ -58,6 +65,6 @@ elif [ -d "${HOME}/.bun/bin" ]; then
 fi
 
 # machine specific settings
-if [ -r ${XDG_CONFIG_HOME}/sh/machine_specific.sh ]; then
-    source ${XDG_CONFIG_HOME}/sh/machine_specific.sh
+if [ -r "${XDG_CONFIG_HOME}"/sh/machine_specific.sh ]; then
+    source "${XDG_CONFIG_HOME}"/sh/machine_specific.sh
 fi

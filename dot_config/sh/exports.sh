@@ -47,12 +47,6 @@ export GTAGSCONF=$HOME/.config/gtags.conf
 
 export XAUTHORITY=$HOME/.Xauthority
 
-# XDG
-export XDG_CONFIG_HOME=$HOME/.config
-export XDG_CACHE_HOME=$HOME/.cache
-export XDG_DATA_HOME=$HOME/.local/share
-export XDG_STATE_HOME=$HOME/.local/state
-
 export _ZL_DATA=$XDG_STATE_HOME/zlua
 export WGETRC=$XDG_CONFIG_HOME/wgetrc
 export GNUPGHOME="$XDG_DATA_HOME"/gnupg
