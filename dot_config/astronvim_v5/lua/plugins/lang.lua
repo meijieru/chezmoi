@@ -23,6 +23,8 @@ return {
   },
 
   { import = "astrocommunity.markdown-and-latex.render-markdown-nvim" },
+
+  { import = "astrocommunity.pack.chezmoi" },
   {
     "MeanderingProgrammer/render-markdown.nvim",
     opts = {

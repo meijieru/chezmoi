@@ -6,37 +6,7 @@ local normal_command = require("core.utils.keymap").normal_command
 
 local api = vim.api
 local map = vim.keymap.set
-local on = vim.api.nvim_create_autocmd
-
--- TODO(meijieru): use https://github.com/xvzc/chezmoi.nvim instead
--- https://www.chezmoi.io/docs/how-to/#configure-vim-to-run-chezmoi-apply-whenever-you-save-a-dotfile
-on("BufWritePost", {
-  pattern = { "*/.local/share/chezmoi/*" },
-  callback = function(env)
-    local opts = { title = "Chezmoi Apply" }
-    if vim.system == nil then
-      vim.notify_once("Chezmoi apply require nvim 0.10+, skipped", vim.log.levels.WARN, opts)
-      return
-    end
-
-    local file = env.file
-    local path = require("plenary.path")
-    local relpath = path:new(file):make_relative()
-    if vim.startswith(file, "fugitive:///") or vim.startswith(file, "oil:///") or vim.startswith(relpath, ".git") then
-      return
-    end
-
-    vim.system({ "chezmoi", "apply", "--source-path", file }, { text = true }, function(obj)
-      if obj.code == 0 and obj.signal == 0 then
-        vim.notify(string.format("Done: %s", relpath), vim.log.levels.INFO, opts)
-        return
-      end
-      local info = table.concat(vim.split(obj.stderr, ":"), ":", 2):gsub("\n$", "")
-      vim.notify(info, vim.log.levels.ERROR, opts)
-    end)
-  end,
-  desc = "Trigger chezmoi apply",
-})
+local on = api.nvim_create_autocmd
 
 on("FileType", {
   pattern = { "startuptime", "fugitiveblame", "gitsigns-blame", "qf", "help" },
