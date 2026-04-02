@@ -11,10 +11,5 @@ _G.myvim = {
       ensure_installed = {},
       exclude_from_ensure_installed = {},
     },
-
-    noice = {
-      -- if nvim 0.12.0 or later, enable extui
-      enabled = not (vim.version().major >= 0 and vim.version().minor >= 12),
-    },
   },
 }

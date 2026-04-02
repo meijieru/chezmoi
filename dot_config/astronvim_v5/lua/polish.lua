@@ -66,24 +66,7 @@ end, {
   end,
 })
 
--- if nvim 0.12.0 or later, enable extui
-if not myvim.plugins.noice.enabled then
-  require("vim._core.ui2").enable({})
-end
+require("vim._core.ui2").enable({})
 
--- if nvim 0.12.0 or later, enable inline_completion
-if vim.lsp.inline_completion ~= nil then
-  vim.lsp.inline_completion.enable()
-  vim.lsp.enable("copilot")
-
-  -- TODO(meijieru): move to keymap table if nvim 0.12 released
-  map("i", "<Tab>", function()
-    if not vim.lsp.inline_completion.get() then
-      return "<Tab>"
-    end
-  end, {
-    expr = true,
-    replace_keycodes = true,
-    desc = "Get the current inline completion",
-  })
-end
+vim.lsp.inline_completion.enable()
+vim.lsp.enable("copilot")

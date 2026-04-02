@@ -494,6 +494,17 @@ return {
           lua_normal_command("require('core.utils.ui').toggle_colorcolumn()"),
           desc = "Toggle Colorcolumn",
         },
+
+        ["<Tab>"] = {
+          function()
+            if not vim.lsp.inline_completion.get() then
+              return "<Tab>"
+            end
+          end,
+          expr = true,
+          replace_keycodes = true,
+          desc = "Get the current inline completion",
+        },
       },
 
       c = {
@@ -572,7 +583,6 @@ return {
           swapfile = false,
           clipboard = "",
           fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]],
-          diffopt = vim.fn.has("nvim-0.12") == 1 and vim.list_extend(vim.opt.diffopt:get(), { "inline:char" }) or nil,
           exrc = true,
         },
         g = {

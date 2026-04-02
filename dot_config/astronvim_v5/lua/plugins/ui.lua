@@ -3,39 +3,6 @@ local is_available = require("astrocore").is_available
 return {
   { import = "astrocommunity.scrolling.nvim-scrollbar" },
   { import = "astrocommunity.bars-and-lines.dropbar-nvim" },
-  -- FIXME(meijieru): should be enabled, but https://github.com/AstroNvim/astrocommunity/blob/155e7216fda0e313a8271973623921ddef704fca/lua/astrocommunity/utility/noice-nvim/init.lua?plain=1#L55
-  -- { import = "astrocommunity.utility.noice-nvim" },
-  {
-    "folke/noice.nvim",
-    dependencies = { "MunifTanjim/nui.nvim" },
-    opts = {
-      messages = {
-        view_search = false,
-      },
-      lsp = {
-        progress = {
-          enabled = false,
-        },
-        signature = {
-          enabled = false,
-        },
-        hover = {
-          enabled = false,
-        },
-      },
-
-      presets = {
-        bottom_search = true, -- use a classic bottom cmdline for search
-        command_palette = true, -- position the cmdline and popupmenu together
-        long_message_to_split = true, -- long messages will be sent to a split
-        inc_rename = is_available("inc-rename.nvim"), -- enables an input dialog for inc-rename.nvim
-        lsp_doc_border = false, -- add a border to hover docs and signature help
-      },
-    },
-    event = "VeryLazy",
-    enabled = myvim.plugins.noice.enabled,
-  },
-
   { import = "astrocommunity.quickfix.quicker-nvim" },
   { import = "astrocommunity.quickfix.nvim-bqf" },
   {
