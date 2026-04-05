@@ -152,20 +152,7 @@ else
         show_presets = false,
       },
       gemini_cli = function()
-        return require("codecompanion.adapters").extend("gemini_cli", {
-          commands = {
-            default = {
-              "gemini",
-              "--model",
-              "models/gemini-3-flash-preview",
-              "--experimental-acp",
-            },
-          },
-          defaults = {
-            auth_method = "gemini-api-key",
-            timeout = 20000, -- 20 seconds
-          },
-        })
+        return require("codecompanion.adapters").extend("gemini_cli", {})
       end,
     },
   }
