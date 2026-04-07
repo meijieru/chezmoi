@@ -16,7 +16,8 @@
     "checkpointing": {
       "enabled": true
     },
-    "enablePromptCompletion": true
+    "enablePromptCompletion": true,
+    "defaultApprovalMode": "default"
   },
   "security": {
     "auth": {
