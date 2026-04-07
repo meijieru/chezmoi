@@ -1,0 +1,31 @@
+{{ $hostname := lower .chezmoi.hostname }}
+
+# Default machine configuration
+{{ $defaults := dict "chassis_type" "server" "is_dev" false "is_corporate" false "is_using_corp_lsp" false }}
+
+# Per-hostname overrides
+{{ $overrides := dict
+  "arch" (dict "is_dev" true)
+  "jiercloud" (dict "is_dev" true "is_corporate" true "is_using_corp_lsp" true)
+  "jierumei-mac" (dict "chassis_type" "laptop" "is_dev" true "is_corporate" true)
+  "jieru-laptop" (dict "chassis_type" "laptop" "is_dev" true)
+  "home-pc" (dict "chassis_type" "desktop" "is_dev" true)
+  "huihui--mitaomacbook-pro" (dict "chassis_type" "laptop" "is_dev" true)
+}}
+
+{{ $config := merge $defaults (index $overrides $hostname) }}
+
+{{ $chassis_type := $config.chassis_type }}
+{{ $is_dev := $config.is_dev }}
+{{ $is_corporate := $config.is_corporate }}
+{{ $is_using_corp_lsp := $config.is_using_corp_lsp }}
+
+# GUI is available on all non-server machines
+{{ $has_gui := ne $chassis_type "server" }}
+
+[data.machine]
+    is_development_machine = {{ $is_dev }}
+    has_gui = {{ $has_gui }}
+    chassis_type = "{{ $chassis_type }}"
+    is_corporate_machine = {{ $is_corporate }}
+    is_using_corp_lsp = {{ $is_using_corp_lsp }}

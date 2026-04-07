@@ -1,0 +1,9 @@
+{{ if .machine.has_gui }}
+
+[".config/ghostty/shaders"]
+    type = "git-repo"
+    url = "https://github.com/hackr-sh/ghostty-shaders.git"
+    refreshPeriod = "168h"
+    exact = true
+
+{{ end }}
