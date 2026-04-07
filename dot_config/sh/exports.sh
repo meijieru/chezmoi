@@ -9,8 +9,9 @@ else
 fi
 export GIT_EDITOR=${EDITOR}
 
-# Larger bash history (allow 32³ entries; default is 500)
-export HISTSIZE=32768
+# Larger bash history
+export HISTFILE="$XDG_STATE_HOME"/zsh/history
+export HISTSIZE=1000000
 export HISTFILESIZE=$HISTSIZE
 export HISTCONTROL=ignoredups
 # Make some commands not show up in history
