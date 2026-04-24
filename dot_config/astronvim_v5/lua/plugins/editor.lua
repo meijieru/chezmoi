@@ -107,23 +107,6 @@ return {
     },
   },
 
-  {
-    "ibhagwan/smartyank.nvim",
-    event = { "VeryLazy" },
-    opts = {
-      highlight = {
-        higroup = "Search", -- highlight group of yanked text
-        timeout = 200, -- timeout for clearing the highlight
-      },
-      osc52 = {
-        escseq = "tmux", -- use tmux escape sequence, only enable if you're using remote tmux and have issues (see #4)
-      },
-      validate_yank = function()
-        return vim.tbl_contains({ "y", "d" }, vim.v.operator)
-      end,
-    },
-  },
-
   { "tpope/vim-rsi", event = { "CmdlineEnter", "InsertEnter" } },
   { "tpope/vim-eunuch", event = "CmdlineEnter" },
 

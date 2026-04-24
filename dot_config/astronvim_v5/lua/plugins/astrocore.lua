@@ -581,6 +581,7 @@ return {
           mousemodel = "extend",
           qftf = "{info -> v:lua._G.qftf(info, 'shorten')}",
           swapfile = false,
+          -- Avoid contaminate system clipboard
           clipboard = "",
           fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:,foldinner: ]],
           exrc = true,

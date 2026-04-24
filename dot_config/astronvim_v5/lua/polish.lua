@@ -33,6 +33,15 @@ on("FileType", {
   desc = "Filetype indent",
 })
 
+on("TextYankPost", {
+  group = api.nvim_create_augroup("SmartYankOSC52", { clear = true }),
+  callback = function()
+    if vim.v.event.operator == "y" and vim.v.event.regname == "" then
+      vim.fn.setreg("+", vim.fn.getreg('"'))
+    end
+  end,
+})
+
 -- diable autocmds
 local autocmds_to_disable = {}
 for _, params in ipairs(autocmds_to_disable) do
