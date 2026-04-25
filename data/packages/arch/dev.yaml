@@ -5,6 +5,7 @@ pacman:
   - sudo
   - zsh
   - lua
+  - reflector
   - etckeeper
 
   - tealdeer # alter to outfieldr according to the benchmark?
@@ -35,6 +36,7 @@ pacman:
   - python-neovim
   - nodejs
   - npm
+  - bun
   - typescript
   - rust
   - zig
@@ -53,7 +55,6 @@ pacman:
 
   - uv
   - python-yaml
-  - python-pytoml
   - python-scipy
   - python-matplotlib
   - python-ipdb
@@ -70,7 +71,8 @@ pacman:
   - gdown
 
   - gemini-cli
-  - opencode-bin
+  - opencode
+  - openai-codex
 
   # - texlive-latexextra
   # - texlive-mathscience
@@ -81,9 +83,9 @@ pacman:
 yay:
   - lsyncd
   - nvimpager
-  - bun-bin
   # - python-flax
   # - arxiv-latex-cleaner
   # - google-cloud-cli
   # - diffsitter-bin
   - pyrefly-bin
+  - codex-acp
