@@ -23,9 +23,18 @@
 # GUI is available on all non-server machines
 {{ $has_gui := ne $chassis_type "server" }}
 
+# Detect virtualization environment
+{{ $virt := "" }}
+{{ if lookPath "systemd-detect-virt" }}
+{{ $virt = trim (output "systemd-detect-virt") }}
+{{ end }}
+
+{{ $is_lxc := hasPrefix "lxc" $virt }}
+
 [data.machine]
     is_development_machine = {{ $is_dev }}
     has_gui = {{ $has_gui }}
     chassis_type = "{{ $chassis_type }}"
     is_corporate_machine = {{ $is_corporate }}
     is_using_corp_lsp = {{ $is_using_corp_lsp }}
+    is_lxc = {{ $is_lxc }}
