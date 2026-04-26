@@ -17,6 +17,85 @@ local lua_normal_command = keymap_utils.lua_normal_command
 local is_available = require("astrocore").is_available
 local get_icon = require("astroui").get_icon
 
+local function core_treesitter_opts()
+  return {
+    ensure_installed = {
+      "lua",
+      "vim",
+      "vimdoc",
+      "comment",
+      "rst",
+      "regex",
+      "markdown",
+      "markdown_inline",
+      -- make codecompanion rendering happy
+      "html",
+      "gitcommit",
+      "yaml",
+    },
+    highlight = true,
+    textobjects = {
+      select = {
+        select_textobject = {
+          ["a,"] = { query = "@parameter.outer", desc = "around argument" },
+          ["i,"] = { query = "@parameter.inner", desc = "inside argument" },
+          ["aa"] = { query = "@assignment.outer", desc = "around assignment" },
+          ["ia"] = { query = "@assignment.inner", desc = "inside assignment" },
+        },
+      },
+    },
+  }
+end
+
+local function core_options()
+  return {
+    opt = {
+      relativenumber = false,
+      spell = false,
+      showtabline = 1,
+      shiftwidth = 4,
+      tabstop = 4,
+      showbreak = "↳ ",
+      grepprg = [[rg --hidden --glob "!.git" --no-heading --smart-case --vimgrep --follow $*]],
+      grepformat = "%f:%l:%c:%m",
+      background = "light",
+      splitkeep = "screen",
+      -- for click handler of `luukvbaal/statuscol.nvim`
+      mousemodel = "extend",
+      qftf = "{info -> v:lua._G.qftf(info, 'shorten')}",
+      swapfile = false,
+      -- Avoid contaminate system clipboard
+      clipboard = "",
+      fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:,foldinner: ]],
+      exrc = true,
+    },
+    g = {
+      -- configure global vim variables (vim.g)
+      -- NOTE: `mapleader` and `maplocalleader` must be set in the AstroNvim opts or before `lazy.setup`
+      -- This can be found in the `lua/lazy_setup.lua` file
+    },
+  }
+end
+
+local function core_autocmds()
+  return {
+    q_close_windows = false,
+    -- TODO(meijieru): enable for oil.nvim
+    neotree_start = false,
+    neovide_init = {
+      {
+        event = "UIEnter",
+        desc = "Set neovide related",
+        callback = function()
+          if require("core.utils").is_neovide() then
+            require("core.utils.env").neovide_setup()
+          end
+        end,
+      },
+    },
+  }
+end
+
 ---@type LazySpec
 return {
   "AstroNvim/astrocore",
@@ -515,35 +594,6 @@ return {
       },
     }
 
-    ---@type AstroCoreTreesitterOpts
-    local treesitter_opts = {
-      ensure_installed = {
-        "lua",
-        "vim",
-        "vimdoc",
-        "comment",
-        "rst",
-        "regex",
-        "markdown",
-        "markdown_inline",
-        -- make codecompanion rendering happy
-        "html",
-        "gitcommit",
-        "yaml",
-      },
-      highlight = true,
-      textobjects = {
-        select = {
-          select_textobject = {
-            ["a,"] = { query = "@parameter.outer", desc = "around argument" },
-            ["i,"] = { query = "@parameter.inner", desc = "inside argument" },
-            ["aa"] = { query = "@assignment.outer", desc = "around assignment" },
-            ["ia"] = { query = "@assignment.inner", desc = "inside assignment" },
-          },
-        },
-      },
-    }
-
     ---@type AstroCoreOpts
     local override = {
       features = {
@@ -552,7 +602,7 @@ return {
         -- TODO(meijieru): current_line is not working
         -- diagnostics = { virtual_text = { current_line = true }, virtual_lines = { current_line = true } },
       },
-      treesitter = treesitter_opts,
+      treesitter = core_treesitter_opts(),
       rooter = {
         autochdir = true,
         detector = {
@@ -565,50 +615,9 @@ return {
           servers = { "ciderlsp" },
         },
       },
-      options = {
-        opt = {
-          relativenumber = false,
-          spell = false,
-          showtabline = 1,
-          shiftwidth = 4,
-          tabstop = 4,
-          showbreak = "↳ ",
-          grepprg = [[rg --hidden --glob "!.git" --no-heading --smart-case --vimgrep --follow $*]],
-          grepformat = "%f:%l:%c:%m",
-          background = "light",
-          splitkeep = "screen",
-          -- for click handler of `luukvbaal/statuscol.nvim`
-          mousemodel = "extend",
-          qftf = "{info -> v:lua._G.qftf(info, 'shorten')}",
-          swapfile = false,
-          -- Avoid contaminate system clipboard
-          clipboard = "",
-          fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:,foldinner: ]],
-          exrc = true,
-        },
-        g = {
-          -- configure global vim variables (vim.g)
-          -- NOTE: `mapleader` and `maplocalleader` must be set in the AstroNvim opts or before `lazy.setup`
-          -- This can be found in the `lua/lazy_setup.lua` file
-        },
-      },
+      options = core_options(),
 
-      autocmds = {
-        q_close_windows = false,
-        -- TODO(meijieru): enable for oil.nvim
-        neotree_start = false,
-        neovide_init = {
-          {
-            event = "UIEnter",
-            desc = "Set neovide related",
-            callback = function()
-              if require("core.utils").is_neovide() then
-                require("core.utils.env").neovide_setup()
-              end
-            end,
-          },
-        },
-      },
+      autocmds = core_autocmds(),
 
       -- Mappings can be configured through AstroCore as well.
       -- NOTE: keycodes follow the casing in the vimdocs. For example, `<Leader>` must be capitalized
