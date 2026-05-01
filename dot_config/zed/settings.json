@@ -7,6 +7,9 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "edit_predictions": {
+    "provider": "copilot"
+  },
   "agent": {
     "default_model": {
       "provider": "copilot_chat",
@@ -18,9 +21,6 @@
     "diagnostics": false
   },
   "vim_mode": true,
-  "features": {
-    "edit_prediction_provider": "copilot"
-  },
   "ui_font_size": 14,
   "buffer_font_size": 15,
   "theme": {
