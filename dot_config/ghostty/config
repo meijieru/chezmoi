@@ -20,6 +20,10 @@ font-family-italic = "Victor Mono"
 font-family-bold = "JetBrains Mono"
 font-family-bold-italic = "Victor Mono"
 
+# Keep Latin glyphs on the mono fonts and only route CJK codepoints to a
+# dedicated Chinese font, so ASCII width and terminal alignment stay stable.
+font-codepoint-map = U+3000-U+303F,U+3400-U+4DBF,U+4E00-U+9FFF,U+F900-U+FAFF,U+FF00-U+FFEF=PingFang SC
+
 # -----------------------------------------------------------------------------
 # -- Keybindings
 # -----------------------------------------------------------------------------
