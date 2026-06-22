@@ -13,7 +13,7 @@ local profile
 
 -- Keep OpenRouter choices intentionally small; the full catalog is too noisy for chat use.
 local openrouter_model_choices = {
-  { label = "GLM 5.1", model = "z-ai/glm-5.1", default_effort = "medium" },
+  { label = "GLM 5.2", model = "z-ai/glm-5.2", default_effort = "medium" },
   { label = "Kimi K2.6", model = "moonshotai/kimi-k2.6", default_effort = "medium" },
   {
     label = "DeepSeek V4 Flash",
@@ -181,12 +181,9 @@ local function personal_adapters()
         show_model_choices = false,
       },
       openrouter = function()
-        return require("codecompanion.adapters").extend("openai_compatible", {
-          name = "openrouter",
-          formatted_name = "OpenRouter",
+        return require("codecompanion.adapters").extend("openrouter", {
           env = {
             api_key = get_api_key("openrouter_key"),
-            url = "https://openrouter.ai/api",
           },
           schema = {
             model = {
