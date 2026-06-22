@@ -70,7 +70,6 @@ pacman:
   - rclone
   - gdown
 
-  - gemini-cli
   - opencode
   - openai-codex
 
@@ -89,3 +88,4 @@ yay:
   # - diffsitter-bin
   - pyrefly-bin
   - codex-acp
+  - antigravity-cli
